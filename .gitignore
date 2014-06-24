@@ -1,2 +1,6 @@
 ### Bower ###
 libs
+
+### System ###
+*.DS_Store
+*Thumbs.db
