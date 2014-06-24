@@ -1,0 +1,23 @@
+{
+  "name": "kickstarter",
+  "version": "0.0.1",
+  "authors": [
+    "Michael Kühnel <m.kuehnel@micromata.de>"
+  ],
+  "description": "Bootstrap skelton based on bower dependencies and our default structure.",
+  "license": "tba.",
+  "homepage": "https://git2.micromata.de/projects/BT/repos/kickstarter/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1",
+    "jquery": "~1.11"
+  }
+}
