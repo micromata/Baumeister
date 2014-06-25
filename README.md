@@ -14,7 +14,7 @@ Your Terminal should response with the version number of Bower if Bower is insta
 
 	1.3.5
 	
-Otherwise you have to install Bower first.
+Otherwise you have to install Bower first:
 
 ### Installing Bower
 [Bower][bower] depends on Node and npm. 
