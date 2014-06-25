@@ -61,3 +61,19 @@ The `~` means: Install the latest version including dot-releases.
 So `~1.11` installed the latest 1.11.x release which is version 1.11.1 in case of jQuery right now. So  jQuery 1.11.2 will be fetched as soon as it is released when you fire `bower update` or `bower install`. But Bower won’t install jQuery 1.12 or later.
 
 Check <http://semver-ftw.org> for more information about »Semantic Versioning«.
+
+##Version history
+
+**Version 0.0.1 (06-25-2014)**
+
+- Initial »release«
+
+**Version 0.0.2 (06-25-2014)**
+
+* Add html5shiv
+* Fix typos.
+* Add respond.js
+* Add HTML Boilerplate code from Kai.
+* Update HTML Boilerplate:
+	* User local resources from libs directory
+	* Adapt stuff from the »HTML5 Boilerplate«
