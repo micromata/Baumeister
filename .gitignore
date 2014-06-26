@@ -4,3 +4,6 @@ libs
 ### System ###
 *.DS_Store
 *Thumbs.db
+
+### CodeKit ###
+config.codekit
