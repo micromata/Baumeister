@@ -10,10 +10,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
-	<meta name="author" content="" />
+	<meta name="author" content="Micromata GmbH" />
 	<title></title>
 
-	<!-- Our Compiled and merged LESS files -->
+	<!-- Our compiled and merged LESS files -->
 	<link href="/assets/css/index.css" rel="stylesheet" />
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. -->
@@ -64,17 +64,25 @@
 	<!-- Own JS -->
 	<script src="/assets/js/base.min.js"></script>
 
-	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<!-- Piwik Analytics: change setSiteID and idsite -->
 	<!--
-    <script>
-		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-		e.src='//www.google-analytics.com/analytics.js';
-		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-		ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
+	<script type="text/javascript">
+  		var _paq = _paq || [];
+  		_paq.push(['trackPageView']);
+  		_paq.push(['enableLinkTracking']);
+  		(function() {
+    		var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.micromata.de/tracking/";
+    		_paq.push(['setTrackerUrl', u+'piwik.php']);
+    		_paq.push(['setSiteId', 1]);
+    		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    		g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  		})();
+	</script>
+	<noscript>
+		<p><img src="http://www.micromata.de/tracking/piwik.php?idsite=1" style="border:0;" alt="" /></p>
+	</noscript>
 	-->
+	<!-- End Piwik Code -->
 
 </body>
 
