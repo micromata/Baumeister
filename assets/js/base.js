@@ -3,6 +3,20 @@
  * @author Michael Kühnel m.kuehnel@micromata.de>
  */
 
+// JSHint settings
+/* jshint unused: false */
+
+/**
+ * The jQuery object or a jQuery set containing on or more DOM elements.
+ * @typedef {Object} jQuery
+ */
+
+/**
+ * Namespace of the app
+ * @namespace yourAppName
+ */
+var yourAppName = window.yourAppName || {};
+
 // Fix viewport issues with IE 10.
 // See http://getbootstrap.com/getting-started/#support-ie10-width
 if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
