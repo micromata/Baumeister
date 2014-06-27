@@ -47,7 +47,7 @@ Just fire the following in the terminal:
 
 That should place a `lib` directory containing the dependencies defined in the `bower.json` in your root directory of the project.
 
-### Changing version of external resources
+### Changing versions of external resources
 
 You can change the version of the external resources by editing the `bower.json` file within the root directory of the project.
 
@@ -62,33 +62,7 @@ So `~1.11` installed the latest 1.11.x release which is version 1.11.1 in case o
 
 Check <http://semver-ftw.org> for more information about »Semantic Versioning«.
 
-##Version history
+## License
 
-**Version 0.0.1 (06-25-2014)**
-
-- Initial »release«
-
-**Version 0.0.2 (06-25-2014)**
-
-* Add html5shiv
-* Fix typos.
-* Add respond.js
-* Add HTML Boilerplate code from Kai.
-* Update HTML Boilerplate:
-	* User local resources from libs directory
-	* Adapt stuff from the »HTML5 Boilerplate«
-	
-**Version 0.0.3 (06-27-2014)**
-
-* Add viewport fix according to http://getbootstrap.com/getting-started/#support-ie10-width
-* Add Piwikand remove Google Analytics
-* Add config.codekit to .gitignore
-* Update base.js - Add console methods for old IEs
-* Replace "no-js" class with "js" when JavaScript is available.
-* Documentation: Get slightly more explicit.
-* Add example javascript module to `assets/js`
-
-
-
-
-
+Please be aware of the licenses of the components we use in this project.
+Everything else that has been developed by the contributions to this project is under [MIT License](LICENSE.md).
