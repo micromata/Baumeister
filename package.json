@@ -1,0 +1,23 @@
+{
+  "name": "kickstarter",
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git2.micromata.de:7999/bt/kickstarter.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-imagemin": "~0.4.0",
+    "grunt-contrib-less": "~0.8.3",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-jshint": "~0.8.0",
+    "jshint-stylish": "~0.1.4",
+    "grunt-notify": "~0.2.16",
+    "grunt-contrib-copy": "~0.5.0"
+  },
+  "scripts": {
+    "postinstall": "bower install"
+  }
+}
