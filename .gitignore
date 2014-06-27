@@ -1,9 +1,15 @@
 ### Bower ###
-libs
+/libs
+
+### npm ###
+/node_modules
 
 ### System ###
 *.DS_Store
 *Thumbs.db
+
+### Build ###
+/dist
 
 ### CodeKit ###
 config.codekit
