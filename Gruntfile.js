@@ -73,20 +73,33 @@ module.exports = function(grunt) {
 		// uglify
 		uglify: {
 			options: {
-				sourceMap: true,
-				compress: {
-					// drop_console: true
-				},
-				banner: '/*! <%= pkg.name %> - v<%= pkg.version %>' +
-						' - MIT License - ' +
+				banner: '/*! <%= pkg.title %> - v<%= pkg.version %>' +
+						' - <%= pkg.license %> License - ' +
 						'<%= grunt.template.today("yyyy-mm-dd") %> */'
 			},
-			modules : {
+			dev : {
+				options: {
+					sourceMap: true,
+				},
 				files: [{
 					expand: true,
 					cwd: 'assets/js',
 					src: ['**/*.js', '!**/*min.js'],
 					dest: 'assets/js',
+					ext: '.min.js',
+					extDot: 'first'
+				}]
+			},
+			build : {
+				options: {
+					banner: '<%= uglify.options.banner %>\n',
+					compress: { drop_console: true },
+				},
+				files: [{
+					expand: true,
+					cwd: 'assets/js',
+					src: ['**/*.js', '!**/*min.js'],
+					dest: 'dist/assets/js',
 					ext: '.min.js',
 					extDot: 'first'
 				}]
@@ -110,7 +123,14 @@ module.exports = function(grunt) {
 
 		autoprefixer: {
 			options: {
-				browsers: ['> 1%', 'last 3 version', 'ie 8', 'ie 9', 'Firefox ESR', 'Opera 12.1'],
+				browsers: [
+					'> 1%',
+					'last 3 version',
+					'ie 8',
+					'ie 9',
+					'Firefox ESR',
+					'Opera 12.1'
+				],
 				// diff: true, // or 'custom/path/to/file.css.patch',
 				map: true
 			},
@@ -166,8 +186,8 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					keepSpecialComments: 0,
-					banner: '/*! <%= pkg.name %> - v<%= pkg.version %>' +
-						' - MIT License - ' +
+					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>' +
+						' - <%= pkg.license %> License - ' +
 						'<%= grunt.template.today("yyyy-mm-dd") %> */'
 				},
 				files: {
@@ -214,7 +234,6 @@ module.exports = function(grunt) {
 						src: [
 							'assets/css/*.css',
 							'assets/fonts/**',
-							'assets/js/**/*',
 							'libs/bootstrap/dist/js/*.js',
 							'libs/bootstrap/js/*.js',
 							'libs/jquery/dist/*'
@@ -260,7 +279,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['jshint', 'uglify:modules'/*, 'plato'*//*, 'jsdoc'*/],
+				tasks: ['jshint', 'uglify:dev'/*, 'plato'*//*, 'jsdoc'*/],
 				options: {
 					spawn: false
 				}
@@ -311,7 +330,7 @@ module.exports = function(grunt) {
 		'assets directory and generating docs / reports.',
 		[
 			'jshint',
-			'uglify:modules',
+			'uglify:dev',
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
@@ -343,7 +362,7 @@ module.exports = function(grunt) {
 		'`grunt build` builds production ready sources to dist directory.', [
 		'clean:dist',
 		'jshint',
-		'uglify:modules',
+		'uglify:build',
 		'less:dev',
 		'autoprefixer',
 		'clean:less',
