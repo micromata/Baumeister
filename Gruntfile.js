@@ -2,7 +2,6 @@
 /* jshint camelcase: false, es3: false */
 
 'use strict';
-//var mozjpeg = require('imagemin-mozjpeg');
 
 module.exports = function(grunt) {
 
@@ -15,6 +14,40 @@ module.exports = function(grunt) {
 	// Config
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+
+		// List available tasks
+		availabletasks: {
+			tasks: {
+				options: {
+					filter: 'include',
+					tasks: [
+						'default',
+						'dev',
+						'server',
+						'watch',
+						'build',
+						'checkBuild',
+					],
+					descriptions: {
+						'watch':
+							'Run dev tasks whenever watched files change and ' +
+							'Reloads the browser with »LiveReload« plugin.'
+					},
+					groups: {
+						'Dev': ['default', 'dev', 'server', 'watch'],
+						'Production': ['build', 'checkBuild'],
+					},
+					sort: [
+						'default',
+						'dev',
+						'server',
+						'watch',
+						'build',
+						'checkBuild',
+					]
+				}
+			}
+		},
 
 		// jsHint
 		jshint: {
@@ -226,13 +259,17 @@ module.exports = function(grunt) {
 
 	});
 
-
+	// List available Tasks
+	grunt.registerTask('tasks',
+		'`grunt tasks` shows all tasks which are registered for use.',
+		['availabletasks']
+	);
 
 	/**
 	 * A task for development
 	 */
 	grunt.registerTask('dev',
-		'`grunt server` will hint your JS and building sources within the ' +
+		'`grunt dev` will hint your JS and building sources within the ' +
 		'assets directory while developing.',
 		[
 			'jshint',
@@ -245,8 +282,7 @@ module.exports = function(grunt) {
 
 	// Start dev server and watching files
 	grunt.registerTask('server',
-		'`grunt server` starts a local dev server und watches your files to ' +
-		'run dev tasks when saving (jsHint, Uglify, LESS, Autoprefixer etc.)',
+		'`grunt server` starts a local dev server and fires `grunt watch`',
 		[
 			'connect:dev',
 			'watch'
@@ -256,7 +292,7 @@ module.exports = function(grunt) {
 	// Default task
 	grunt.registerTask(
 		'default',
-		'Default Task. Just type `grunt` for this one. Alias to `grunt server`',
+		'Default Task. Just type `grunt` for this one. Alias to `grunt server`.',
 		['server']
 	);
 
@@ -264,7 +300,7 @@ module.exports = function(grunt) {
 	 * A task for your production ready build
 	 */
 	grunt.registerTask('build',
-		'`grunt build` builds production ready sources to dist directory', [
+		'`grunt build` builds production ready sources to dist directory.', [
 		'clean:dist',
 		'jshint',
 		'uglify:modules',
@@ -281,11 +317,9 @@ module.exports = function(grunt) {
 
 	// Start server to check production build
 	grunt.registerTask('checkBuild',
-		'`grunt checkBuild` starts a local server to make it possible to check'+
-		'the build in the browser',
-		[
-			'connect:dist'
-		]
+		'`grunt checkBuild` starts a local server to make it possible to check '+
+		'the build in the browser.',
+		['connect:dist']
 	);
 
 
