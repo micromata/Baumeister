@@ -1,5 +1,5 @@
 // JSHint settings
-/* jshint camelcase: false */
+/* jshint camelcase: false, es3: false */
 
 'use strict';
 
@@ -56,12 +56,12 @@ module.exports = function(grunt) {
 			dev: {
 				options: {
 					sourceMap: true,
-					sourceMapFilename: "assets/css/index.css.map",
-					sourceMapURL: "index.css.map",
+					sourceMapFilename: "assets/css/index_raw.css.map",
+					sourceMapURL: "index_raw.css.map",
 					sourceMapRootpath: "../../"
 				},
 				files: {
-					"assets/css/index.css": "assets/less/index.less"
+					"assets/css/index_raw.css": "assets/less/index.less"
 				}
 			},
 			production: {
@@ -73,6 +73,23 @@ module.exports = function(grunt) {
 					"dist/css/main.min.css": "src/less/main.less"
 				}
 			}
+		},
+
+		autoprefixer: {
+			options: {
+				browsers: ['> 1%', 'last 3 version', 'ie 8', 'ie 9', 'Firefox ESR', 'Opera 12.1'],
+				// diff: true, // or 'custom/path/to/file.css.patch',
+				map: true
+			},
+
+			index: {
+				src: 'assets/css/index_raw.css',
+				dest: 'assets/css/index.css'
+			}
+		},
+
+		clean: {
+			js: ["assets/css/index_raw.*"]
 		},
 
 		// watch
@@ -96,9 +113,21 @@ module.exports = function(grunt) {
 			},
 			css: {
 				files: ['assets/less/**/*.less'],
-				tasks: ['less:dev'],
+				tasks: ['less:dev', 'autoprefixer', 'clean'],
 				options: {
 					spawn: false
+				}
+			},
+			html: {
+				files: ['assets/**/*.html'],
+				options: {
+					spawn: false,
+				}
+			},
+			images: {
+				files: ['assets/img/**/*.{png,jpg,gif}'],
+				options: {
+					spawn: false,
 				}
 			}
 		}
@@ -113,7 +142,9 @@ module.exports = function(grunt) {
 	grunt.registerTask('dev', [
 		'jshint',
 		'uglify:modules',
-		'less:dev'
+		'less:dev',
+		'autoprefixer',
+		'clean'
 	]);
 
 	// Default task
