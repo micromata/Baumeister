@@ -24,6 +24,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-jsdoc": "^0.5.6",
     "grunt-notify": "~0.3.0",
+    "grunt-plato": "^1.0.0",
     "grunt-processhtml": "^0.3.3",
     "grunt-uncss": "^0.3.4",
     "jshint-stylish": "~0.2.0",

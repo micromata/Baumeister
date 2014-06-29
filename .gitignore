@@ -11,6 +11,7 @@
 ### Build ###
 /dist
 /docs
+/reports
 
 ### CodeKit ###
 config.codekit

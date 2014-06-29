@@ -27,6 +27,7 @@ module.exports = function(grunt) {
 						'watch',
 						'build',
 						'checkBuild',
+						'plato',
 						'jsdoc'
 					],
 					descriptions: {
@@ -34,14 +35,17 @@ module.exports = function(grunt) {
 							'Run dev tasks whenever watched files change and ' +
 							'Reloads the browser with »LiveReload« plugin.',
 						'jsdoc':
-							'Generates source documentation using jsdoc.'
+							'Generates source documentation using jsdoc.',
+						'plato':
+							'Generate static code analysis charts with plato.'
 					},
 					groups: {
-						'Dev': ['default', 'dev', 'server', 'watch', 'jsdoc'],
+						'Dev': ['default', 'dev', 'server', 'watch','plato', 'jsdoc'],
 						'Production': ['build', 'checkBuild'],
 					},
 					sort: [
 						'default',
+						'plato',
 						'jsdoc',
 						'dev',
 						'server',
@@ -226,10 +230,25 @@ module.exports = function(grunt) {
 				src: [
 					'assets/js/**/*.js',
 					'!assets/js/**/*.min.js',
-					'test/*.js'
+					'test/**/*.js'
 				],
 				options: {
 					destination: 'docs'
+				}
+			}
+		},
+
+		plato: {
+			options: {
+				 jshint: grunt.file.readJSON('.jshintrc')
+			},
+			dist: {
+				files: {
+					'reports/': [
+						'assets/js/**/*.js',
+						'!assets/js/**/*.min.js',
+						'test/**/*.js'
+					]
 				}
 			}
 		},
@@ -241,7 +260,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['jshint', 'uglify:modules'/*, 'jsdoc'*/],
+				tasks: ['jshint', 'uglify:modules'/*, 'plato'*//*, 'jsdoc'*/],
 				options: {
 					spawn: false
 				}
@@ -288,14 +307,15 @@ module.exports = function(grunt) {
 	 * A task for development
 	 */
 	grunt.registerTask('dev',
-		'`grunt dev` will hint your JS and building sources within the ' +
-		'assets directory while developing and generating docs.',
+		'`grunt dev` will hint your JS, building sources within the ' +
+		'assets directory and generating docs / reports.',
 		[
 			'jshint',
 			'uglify:modules',
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
+			'plato',
 			'jsdoc',
 		]
 	);
@@ -333,6 +353,7 @@ module.exports = function(grunt) {
 		'processhtml',
 		'copy',
 		'clean:temp',
+		'plato',
 		'jsdoc'
 	]);
 
