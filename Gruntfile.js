@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 				compress: {
 					// drop_console: true
 				},
-				banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+				banner: '/*! <%= pkg.name %> - v<%= pkg.version %>' +
 						' - MIT License - ' +
 						'<%= grunt.template.today("yyyy-mm-dd") %> */'
 			},
