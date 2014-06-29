@@ -1,20 +1,31 @@
 {
   "name": "kickstarter",
+  "description": "This is an initial boilerplate for Bootstrap themes.",
   "version": "0.0.3",
   "authors": [
     "Michael Kühnel <m.kuehnel@micromata.de>",
     "Moritz Fröhner <m.froehner@micromata.de>"
   ],
-  "description": "Bootstrap skelton based on bower dependencies and our default structure.",
-  "license": "tba.",
+  "license": "MIT.",
   "homepage": "https://git2.micromata.de/projects/BT/repos/kickstarter/",
+  "repository": {
+    "type": "git",
+    "url": "git@git2.micromata.de:7999/bt/kickstarter.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "boilerplate",
+    "skeleton",
+    "theme",
+    "kickstart"
+  ],
   "ignore": [
-    "**/.*",
     "node_modules",
     "bower_components",
     "libs",
-    "test",
-    "tests"
+    "dist",
+    "docs",
+    "reports"
   ],
   "dependencies": {
     "bootstrap": "~3.2",
