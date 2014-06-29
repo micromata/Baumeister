@@ -72,7 +72,7 @@ kickstarter.modulName = (function($) {
 $(function() {
 	'use strict';
 
-	kickstarter.modulName.yourPublicMethod('Hi .');
+	kickstarter.modulName.yourPublicMethod('Hi public.');
 });
 
 
