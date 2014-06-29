@@ -2,6 +2,7 @@
 /* jshint camelcase: false, es3: false */
 
 'use strict';
+//var mozjpeg = require('imagemin-mozjpeg');
 
 module.exports = function(grunt) {
 
@@ -22,7 +23,7 @@ module.exports = function(grunt) {
 				jshintrc: '.jshintrc',
 				ignores: ['assets/js/*.min.js']
 			},
-			files: [
+			all: [
 				'Gruntfile.js',
 				'assets/js/*.js'
 			]
@@ -63,15 +64,6 @@ module.exports = function(grunt) {
 				files: {
 					"assets/css/index_raw.css": "assets/less/index.less"
 				}
-			},
-			production: {
-				options: {
-					paths: ["assets/css"],
-					cleancss: true
-				},
-				files: {
-					"dist/css/main.min.css": "src/less/main.less"
-				}
 			}
 		},
 
@@ -81,15 +73,89 @@ module.exports = function(grunt) {
 				// diff: true, // or 'custom/path/to/file.css.patch',
 				map: true
 			},
-
-			index: {
+			dist: {
 				src: 'assets/css/index_raw.css',
 				dest: 'assets/css/index.css'
 			}
 		},
 
 		clean: {
-			js: ["assets/css/index_raw.*"]
+			less: ["assets/css/index_raw.*"],
+			dist: ["dist"],
+			temp: ["temp"],
+		},
+
+		uncss: {
+			options: {
+				ignoreSheets: [/fonts.googleapis/],
+			},
+			dist: {
+				src: 'assets/*.html',
+				dest: 'temp/index.css'
+			}
+		},
+
+		cssmin: {
+			dist: {
+				options: {
+					keepSpecialComments: 0,
+					banner: '/*! <%= pkg.name %> - v<%= pkg.version %>' +
+						' - MIT License - ' +
+						'<%= grunt.template.today("yyyy-mm-dd") %> */'
+				},
+				files: {
+					'dist/assets/css/index.uncss.min.css': ['temp/index.css'],
+					'dist/assets/css/index.min.css': ['assets/css/index.css'],
+				}
+			}
+		},
+
+		imagemin: {
+			dist: {
+				options: {},
+				files: [{
+					expand: true, // Enable dynamic expansion
+					cwd: 'assets/img', // Src matches are relative to this path
+					src: ['**/*.{png,jpg,gif}'], // Actual patterns to match
+					dest: 'dist/assets/img' // Destination path prefix
+				}]
+			}
+		},
+
+		processhtml: {
+			dist: {
+				// files: {
+				// 	'dist/assets/index.html': ['assets/index.html'],
+				// }
+				files: [
+					{
+						expand: true,
+						src: [
+							'assets/*.html'
+						],
+						dest: 'dist/'
+					},
+				]
+			}
+		},
+
+		copy: {
+			dist: {
+				files: [
+					{
+						expand: true,
+						src: [
+							'assets/css/*.css',
+							'assets/fonts/**',
+							'assets/js/**/*',
+							'libs/bootstrap/dist/js/*.js',
+							'libs/bootstrap/js/*.js',
+							'libs/jquery/dist/*'
+						],
+						dest: 'dist/'
+					},
+				]
+			}
 		},
 
 		// watch
@@ -113,7 +179,7 @@ module.exports = function(grunt) {
 			},
 			css: {
 				files: ['assets/less/**/*.less'],
-				tasks: ['less:dev', 'autoprefixer', 'clean'],
+				tasks: ['less:dev', 'autoprefixer', 'clean:less'],
 				options: {
 					spawn: false
 				}
@@ -136,18 +202,36 @@ module.exports = function(grunt) {
 
 
 
-	// Define tasks.
-	// grunt.registerTask('default', ['copy', 'less', 'uglify', 'imagemin', 'jshint']);
-
+	/**
+	 * A task for development
+	 */
 	grunt.registerTask('dev', [
 		'jshint',
 		'uglify:modules',
 		'less:dev',
 		'autoprefixer',
-		'clean'
+		'clean:less'
 	]);
 
 	// Default task
 	grunt.registerTask('default', ['dev']);
+
+	/**
+	 * A task for building your pages
+	 */
+	grunt.registerTask('build', [
+		'clean:dist',
+		'jshint',
+		'uglify:modules',
+		'less:dev',
+		'autoprefixer',
+		'clean:less',
+		'uncss',
+		'cssmin',
+		'imagemin',
+		'processhtml',
+		'copy',
+		'clean:temp',
+	]);
 
 };
