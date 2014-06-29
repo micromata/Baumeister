@@ -1,5 +1,5 @@
 # TODO
 
 ##Grunt
-* JSDoc
+* Browser Sync
 * Plato

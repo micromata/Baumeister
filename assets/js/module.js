@@ -1,5 +1,7 @@
 /**
- * @file Manages the extended funtionality of the main tabs of the application.
+ * @file An example module extending the the functionality of Bootstraps »Foo«
+ * module or an own module which has nothing to do with Bootstraps JavaScript
+ * code.
  * @author Michael Kühnel <m.kuehnel@micromata.de>
  */
 
@@ -30,6 +32,8 @@ kickstarter.modulName = (function($) {
 	 * @memberof kickstarter.modulName
 	 * @public
 	 * @param {string} message Message to write into the console.
+	 * @example
+	 * kickstarter.modulName.yourPublicMethod('Hi Public.');
 	 */
 	var yourPublicMethod = function(message) {
 		console.info(message);
@@ -68,7 +72,7 @@ kickstarter.modulName = (function($) {
 $(function() {
 	'use strict';
 
-	kickstarter.modulName.yourPublicMethod('Hi Public.');
+	kickstarter.modulName.yourPublicMethod('Hi .');
 });
 
 

@@ -27,18 +27,22 @@ module.exports = function(grunt) {
 						'watch',
 						'build',
 						'checkBuild',
+						'jsdoc'
 					],
 					descriptions: {
 						'watch':
 							'Run dev tasks whenever watched files change and ' +
-							'Reloads the browser with »LiveReload« plugin.'
+							'Reloads the browser with »LiveReload« plugin.',
+						'jsdoc':
+							'Generates source documentation using jsdoc.'
 					},
 					groups: {
-						'Dev': ['default', 'dev', 'server', 'watch'],
+						'Dev': ['default', 'dev', 'server', 'watch', 'jsdoc'],
 						'Production': ['build', 'checkBuild'],
 					},
 					sort: [
 						'default',
+						'jsdoc',
 						'dev',
 						'server',
 						'watch',
@@ -217,6 +221,19 @@ module.exports = function(grunt) {
 			}
 		},
 
+		jsdoc: {
+			dist: {
+				src: [
+					'assets/js/**/*.js',
+					'!assets/js/**/*.min.js',
+					'test/*.js'
+				],
+				options: {
+					destination: 'docs'
+				}
+			}
+		},
+
 		// watch
 		watch: {
 			options: {
@@ -224,7 +241,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['jshint', 'uglify:modules'],
+				tasks: ['jshint', 'uglify:modules'/*, 'jsdoc'*/],
 				options: {
 					spawn: false
 				}
@@ -265,18 +282,21 @@ module.exports = function(grunt) {
 		['availabletasks']
 	);
 
+	// grunt.registerTask('dev',
+
 	/**
 	 * A task for development
 	 */
 	grunt.registerTask('dev',
 		'`grunt dev` will hint your JS and building sources within the ' +
-		'assets directory while developing.',
+		'assets directory while developing and generating docs.',
 		[
 			'jshint',
 			'uglify:modules',
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
+			'jsdoc',
 		]
 	);
 
@@ -313,6 +333,7 @@ module.exports = function(grunt) {
 		'processhtml',
 		'copy',
 		'clean:temp',
+		'jsdoc'
 	]);
 
 	// Start server to check production build
