@@ -2,4 +2,3 @@
 
 ##Grunt
 * Browser Sync
-* Plato
