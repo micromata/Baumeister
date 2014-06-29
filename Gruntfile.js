@@ -73,7 +73,7 @@ module.exports = function(grunt) {
 				// diff: true, // or 'custom/path/to/file.css.patch',
 				map: true
 			},
-			dist: {
+			dev: {
 				src: 'assets/css/index_raw.css',
 				dest: 'assets/css/index.css'
 			}
@@ -83,6 +83,32 @@ module.exports = function(grunt) {
 			less: ["assets/css/index_raw.*"],
 			dist: ["dist"],
 			temp: ["temp"],
+		},
+
+		// Local dev server
+		connect: {
+			dev: {
+				options: {
+					port: 9000,
+					hostname: 'localhost',
+					open: {
+						 target: 'http://<%= connect.dev.options.hostname %>:' +
+						 '<%= connect.dev.options.port %>/assets',
+					},
+				}
+			},
+			dist: {
+				options: {
+					port: 9001,
+					hostname: 'localhost',
+					base: 'dist',
+					keepalive: true,
+					open: {
+						 target: 'http://<%= connect.dev.options.hostname %>:' +
+						 '<%= connect.dist.options.port %>/assets',
+					},
+				}
+			}
 		},
 
 		uncss: {
@@ -205,21 +231,40 @@ module.exports = function(grunt) {
 	/**
 	 * A task for development
 	 */
-	grunt.registerTask('dev', [
-		'jshint',
-		'uglify:modules',
-		'less:dev',
-		'autoprefixer',
-		'clean:less'
-	]);
+	grunt.registerTask('dev',
+		'`grunt server` will hint your JS and building sources within the ' +
+		'assets directory while developing.',
+		[
+			'jshint',
+			'uglify:modules',
+			'less:dev',
+			'autoprefixer',
+			'clean:less',
+		]
+	);
+
+	// Start dev server and watching files
+	grunt.registerTask('server',
+		'`grunt server` starts a local dev server und watches your files to ' +
+		'run dev tasks when saving (jsHint, Uglify, LESS, Autoprefixer etc.)',
+		[
+			'connect:dev',
+			'watch'
+		]
+	);
 
 	// Default task
-	grunt.registerTask('default', ['dev']);
+	grunt.registerTask(
+		'default',
+		'Default Task. Just type `grunt` for this one. Alias to `grunt server`',
+		['server']
+	);
 
 	/**
-	 * A task for building your pages
+	 * A task for your production ready build
 	 */
-	grunt.registerTask('build', [
+	grunt.registerTask('build',
+		'`grunt build` builds production ready sources to dist directory', [
 		'clean:dist',
 		'jshint',
 		'uglify:modules',
@@ -233,5 +278,15 @@ module.exports = function(grunt) {
 		'copy',
 		'clean:temp',
 	]);
+
+	// Start server to check production build
+	grunt.registerTask('checkBuild',
+		'`grunt checkBuild` starts a local server to make it possible to check'+
+		'the build in the browser',
+		[
+			'connect:dist'
+		]
+	);
+
 
 };
