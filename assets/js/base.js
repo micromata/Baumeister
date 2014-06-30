@@ -36,7 +36,6 @@ kickstarter.base = (function() {
 	 * @private
 	 */
 	var _fixViewportIssues = (function() {
-		console.log('huhu');
 		if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 			var msViewportStyle = document.createElement('style');
 			msViewportStyle.appendChild(
