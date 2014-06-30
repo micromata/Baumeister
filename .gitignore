@@ -1,9 +1,11 @@
 ### Bower ###
-libs
+/libs
 
 ### System ###
 *.DS_Store
 *Thumbs.db
 
-### CodeKit ###
+### Dev ###
 config.codekit
+*.sublime-project
+*.sublime-workspace
