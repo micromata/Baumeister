@@ -13,5 +13,7 @@
 /docs
 /reports
 
-### CodeKit ###
+### Dev ###
 config.codekit
+*.sublime-project
+*.sublime-workspace
