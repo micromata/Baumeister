@@ -12,7 +12,8 @@
  */
 
 /**
- * Namespace of the app
+ * Namespace of the app.
+ * This should be only variable the app should store in the global scope.
  * @namespace kickstarter
  * @todo Rename the global variable throughout the whole file according to your needs.
  * @example
@@ -22,7 +23,8 @@
 var kickstarter = window.kickstarter || {};
 
 /**
- * Namespace of the base module.
+ * Namespace of the base module. Contains JavaScript needed independent of the
+ * project or other modules.
  * @namespace base
  * @memberof kickstarter
  */
