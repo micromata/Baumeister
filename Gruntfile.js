@@ -45,9 +45,9 @@ module.exports = function(grunt) {
 					},
 					sort: [
 						'default',
+						'dev',
 						'plato',
 						'jsdoc',
-						'dev',
 						'server',
 						'watch',
 						'build',
@@ -361,8 +361,13 @@ module.exports = function(grunt) {
 	// Default task
 	grunt.registerTask(
 		'default',
-		'Default Task. Just type `grunt` for this one. Alias to `grunt server`.',
-		['server']
+		'Default Task. Just type `grunt` for this one. Calls `grunt dev` first '+
+		'and `grunt server` afterwards. Bascically the only task you need while ' +
+		'developing.',
+		[
+			'dev',
+			'server'
+		]
 	);
 
 	/**
