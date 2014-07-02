@@ -12,6 +12,8 @@
 /dist
 /docs
 /reports
+/assets/js/*.min.js
+/assets/js/*.map
 
 ### Dev ###
 config.codekit
