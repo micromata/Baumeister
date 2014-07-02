@@ -272,6 +272,15 @@ module.exports = function(grunt) {
 			}
 		},
 
+		cacheBust: {
+			options: {
+				ignorePatterns: ['libs']
+			},
+			files: {
+				src: ['assets/*.html']
+			}
+		},
+
 		// watch
 		watch: {
 			options: {
@@ -335,6 +344,7 @@ module.exports = function(grunt) {
 			'autoprefixer',
 			'clean:less',
 			'plato',
+			'cacheBust',
 			'jsdoc',
 		]
 	);
