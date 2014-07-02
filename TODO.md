@@ -1,9 +1,5 @@
 # TODO
 
-## Git Project setup
-* Add minified JS/CSS sources to .gitignore
-	* Advantage: Less hassle with commits
-
 ## Structure of Assets
 * Move htmls to root directory
 
