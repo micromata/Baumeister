@@ -3,9 +3,13 @@
 ## Structure of Assets
 * Move htmls to root directory
 
+## Inline documentation ##
+* Add example to LESS modules
+*	// Variables
+	// Mixins
+	// Styles
+
 ##Grunt
-* Improve default Task:
-	* Calling `grunt dev` before calling `server` task
 * Production Build
 	* Delete JavaScript Sources and Sourcemaps from Production build
 	* Delete non minified CSS from Production build
