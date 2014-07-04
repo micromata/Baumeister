@@ -162,8 +162,8 @@ module.exports = function(grunt) {
 			},
 			sync: {
 				options: {
-					port: '<%= connect.dev.options.port %>',
-					hostname: 'http://<%= connect.dev.options.hostname %>',
+					port: 9000,
+					hostname: 'localhost'
 				}
 			},
 			dist: {
@@ -302,8 +302,8 @@ module.exports = function(grunt) {
 					]
 				},
 				options: {
-					proxy:	'<%= connect.sync.options.hostname %>:' +
-							'<%= connect.sync.options.port %>',
+					proxy:	'<%= connect.dev.options.hostname %>:' +
+							'<%= connect.dev.options.port %>',
 					watchTask: true,
 				}
 			}
@@ -391,7 +391,7 @@ module.exports = function(grunt) {
 		'`grunt sync` starts a local dev server, sync browsers and runs `grunt watch`',
 		[
 			'dev',
-			'connect:dev',
+			'connect:sync',
 			'browserSync',
 			'watch'
 		]
