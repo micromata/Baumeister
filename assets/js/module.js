@@ -17,7 +17,7 @@
 var kickstarter = window.kickstarter || {};
 
 /**
- * Namespace of our module.
+ * Namespace of the module.
  * Aliasing the jQuery Namespace via Self Invoking Anonymous Function.
  * @namespace modulName
  * @memberof kickstarter
