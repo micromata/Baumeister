@@ -17,5 +17,4 @@
 	* Define Bootstrap Modules for Production build
 	* Add version to »dist« directory
 	* Zip Production build
-* Check Browser Sync Task
 * Check LESS Styleguide Task
