@@ -28,7 +28,8 @@ module.exports = function(grunt) {
 						'build',
 						'checkBuild',
 						'plato',
-						'jsdoc'
+						'jsdoc',
+						'sync'
 					],
 					descriptions: {
 						'watch':
@@ -40,12 +41,13 @@ module.exports = function(grunt) {
 							'Generate static code analysis charts with plato.'
 					},
 					groups: {
-						'Dev': ['default', 'dev', 'server', 'watch','plato', 'jsdoc'],
+						'Dev': ['default', 'dev', 'sync', 'server', 'watch','plato', 'jsdoc'],
 						'Production': ['build', 'checkBuild'],
 					},
 					sort: [
 						'default',
 						'dev',
+						'sync',
 						'plato',
 						'jsdoc',
 						'server',
@@ -156,6 +158,12 @@ module.exports = function(grunt) {
 						 target: 'http://<%= connect.dev.options.hostname %>:' +
 						 '<%= connect.dev.options.port %>/assets',
 					},
+				}
+			},
+			sync: {
+				options: {
+					port: '<%= connect.dev.options.port %>',
+					hostname: 'http://<%= connect.dev.options.hostname %>',
 				}
 			},
 			dist: {
@@ -281,6 +289,26 @@ module.exports = function(grunt) {
 			}
 		},
 
+		browserSync: {
+			dev: {
+				bsFiles: {
+					src: [
+						'assets/css/*.css',
+						'assets/img/**/*.jpg',
+						'assets/img/**/*.png',
+						'assets/img/**/*.gif',
+						'assets/js/**/*.js',
+						'assets/**/*.html'
+					]
+				},
+				options: {
+					proxy:	'<%= connect.sync.options.hostname %>:' +
+							'<%= connect.sync.options.port %>',
+					watchTask: true,
+				}
+			}
+		},
+
 		// watch
 		watch: {
 			options: {
@@ -351,9 +379,20 @@ module.exports = function(grunt) {
 
 	// Start dev server and watching files
 	grunt.registerTask('server',
-		'`grunt server` starts a local dev server and fires `grunt watch`',
+		'`grunt server` starts a local dev server and runs `grunt watch`',
 		[
 			'connect:dev',
+			'watch'
+		]
+	);
+
+	// Start browser sync and watching files
+	grunt.registerTask('sync',
+		'`grunt sync` starts a local dev server, sync browsers and runs `grunt watch`',
+		[
+			'dev',
+			'connect:dev',
+			'browserSync',
 			'watch'
 		]
 	);
