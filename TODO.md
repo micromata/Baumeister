@@ -3,6 +3,9 @@
 ## Structure of Assets
 * Move htmls to root directory
 
+## Conditional classes for html element
+* Add generic ie class for all IEs
+
 ## Inline documentation ##
 * Add example to LESS modules
 *	// Variables
