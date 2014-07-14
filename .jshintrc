@@ -1,11 +1,4 @@
-/**!
- * See http://www.jshint.com/docs/options/ for all available options.
- */
 {
-	/**
-	 * Enforcing options
-	 * See http://www.jshint.com/docs/options/#enforcing-options
-	 */
 	"bitwise": true,
 	"camelcase": true,
 	"curly": true,
@@ -20,34 +13,23 @@
 	"trailing": true,
 	"es3": true,
 
-	/**
-	 * Relaxing options
-	 * See http://www.jshint.com/docs/options/#relaxing-options
-	 */
+
 	"eqnull": true,
 	"esnext": true,
 	"smarttabs": true,
 
-	/**
-	 * Environments
-	 * See http://www.jshint.com/docs/options/#environments
-	 */
 	"node": true,
 	"browser": true,
 	"jquery": true,
 
-	/**
-	 * Globals
-	 * See http://www.jshint.com/docs/
-	 */
+
 	"globals": {
-		// RequireJS
+
 		"module": true,
 		"require": true,
 		"requirejs": true,
 		"define": true,
 
-		// Jasmin
 		"sinon": true,
 		"describe": true,
 		"it": true,

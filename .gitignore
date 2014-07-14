@@ -1,9 +1,19 @@
 ### Bower ###
 /libs
 
+### npm ###
+/node_modules
+
 ### System ###
 *.DS_Store
 *Thumbs.db
+
+### Build ###
+/dist
+/docs
+/reports
+/assets/js/*.min.js
+/assets/js/*.map
 
 ### Dev ###
 config.codekit

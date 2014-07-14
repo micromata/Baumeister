@@ -1,32 +1,39 @@
 /**
- * @file Manages the extended funtionality of the main tabs of the application.
- * @author Michael Kühnel m.kuehnel@micromata.de>
+ * @file An example module extending the the functionality of Bootstraps »Foo«
+ * module or an own module which has nothing to do with Bootstraps JavaScript
+ * code.
+ * @author Michael Kühnel <m.kuehnel@micromata.de>
  */
-
 
 /**
  * Make sure our global object is available.
- * @namespace yourAppName
+ * @namespace kickstarter
+ * @todo Rename the global variable throughout the whole file according to your needs.
+ * @example
+ * yourAppName = window.yourAppName || {};
+ * @todo Update documentation after renaming.
  * @ignore
  */
-var yourAppName = window.yourAppName || {};
+var kickstarter = window.kickstarter || {};
 
 /**
- * Namespace of our module.
+ * Namespace of the module.
  * Aliasing the jQuery Namespace via Self Invoking Anonymous Function.
  * @namespace modulName
- * @memberof yourAppName
+ * @memberof kickstarter
  * @param 	{jQuery} $	passing the jQuery object to make $ available even when
  *                    	using jQuery.noConflict()
  */
-yourAppName.modulName = (function($) {
+kickstarter.modulName = (function($) {
 	'use strict';
 
 	/**
 	 * Just an example public method that you could call from the global scope.
-	 * @memberof yourAppName.modulName
+	 * @memberof kickstarter.modulName
 	 * @public
 	 * @param {string} message Message to write into the console.
+	 * @example
+	 * kickstarter.modulName.yourPublicMethod('Hi Public.');
 	 */
 	var yourPublicMethod = function(message) {
 		console.info(message);
@@ -35,7 +42,7 @@ yourAppName.modulName = (function($) {
 	/**
 	 * Just an example private method that you only can call from within this
 	 * module.
-	 * @memberof yourAppName.modulName
+	 * @memberof kickstarter.modulName
 	 * @private
 	 * @param {string} message Message to write into the console.
 	 */
@@ -63,7 +70,9 @@ yourAppName.modulName = (function($) {
  * @event
  */
 $(function() {
-	yourAppName.modulName.yourPublicMethod('Hi Public.');
+	'use strict';
+
+	kickstarter.modulName.yourPublicMethod('Hi public.');
 });
 
 
