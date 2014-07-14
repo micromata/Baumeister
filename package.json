@@ -9,7 +9,7 @@
     "url": "http://www.micromata.de"
   },
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": {
     "type": "git",
     "url": "ssh://git@git2.micromata.de:7999/bt/kickstarter.git"

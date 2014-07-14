@@ -1,7 +1,7 @@
 {
   "name": "kickstarter",
   "description": "This is an initial boilerplate for Bootstrap themes.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "authors": [
     "Michael Kühnel <m.kuehnel@micromata.de>",
     "Moritz Fröhner <m.froehner@micromata.de>"
