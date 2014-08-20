@@ -29,7 +29,8 @@ module.exports = function(grunt) {
 						'checkBuild',
 						'plato',
 						'jsdoc',
-						'sync'
+						'sync',
+						'release'
 					],
 					descriptions: {
 						'watch':
@@ -42,7 +43,7 @@ module.exports = function(grunt) {
 					},
 					groups: {
 						'Dev': ['default', 'dev', 'sync', 'server', 'watch','plato', 'jsdoc'],
-						'Production': ['build', 'checkBuild'],
+						'Production': ['build', 'checkBuild', 'release'],
 					},
 					sort: [
 						'default',
@@ -54,6 +55,7 @@ module.exports = function(grunt) {
 						'watch',
 						'build',
 						'checkBuild',
+						'release'
 					]
 				}
 			}
@@ -309,6 +311,27 @@ module.exports = function(grunt) {
 			}
 		},
 
+		compress: {
+			dist: {
+				options: {
+					archive: 'dist-v<%= pkg.version %>.zip'
+				},
+				files: [{
+					src: ['dist/**'],
+					dest: './'
+				}]
+			},
+			src: {
+				options: {
+					archive: 'src-v<%= pkg.version %>.zip'
+				},
+				files: [
+					{src: ['./*', '!./*.zip', '!./*.sublime*',], dest: './', filter: 'isFile'}, // includes files in path
+					{src: ['assets/**', '!assets/css/**'], dest: './'}, // includes files in path and its subdirs
+				]
+			}
+		},
+
 		// watch
 		watch: {
 			options: {
@@ -435,6 +458,12 @@ module.exports = function(grunt) {
 		'`grunt checkBuild` starts a local server to make it possible to check '+
 		'the build in the browser.',
 		['connect:dist']
+	);
+
+	// Relase task
+	grunt.registerTask('release',
+		'`grunt release` builds the current sources and creates zip.files.',
+		['build', 'compress']
 	);
 
 
