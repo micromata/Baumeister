@@ -13,6 +13,8 @@
 	// Styles
 
 ##Grunt
+* Increase meintainability of Gruntfile
+	* https://github.com/firstandthird/load-grunt-config#example
 * Production Build
 	* Delete JavaScript Sources and Sourcemaps from Production build
 	* Delete non minified CSS from Production build
