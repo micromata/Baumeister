@@ -77,9 +77,11 @@ module.exports = function(grunt) {
 		// uglify
 		uglify: {
 			options: {
-				banner: '/*! <%= pkg.title %> - v<%= pkg.version %>' +
-						' - <%= pkg.license %> License - ' +
-						'<%= grunt.template.today("yyyy-mm-dd") %> */'
+				banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+						' * m.kuehnel@micromata.de\n' +
+						' * Copyright ©2014 Micromata GmbH\n' +
+						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+						' */'
 			},
 			dev : {
 				options: {
@@ -196,9 +198,11 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					keepSpecialComments: 0,
-					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>' +
-						' - <%= pkg.license %> License - ' +
-						'<%= grunt.template.today("yyyy-mm-dd") %> */'
+					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+						' * m.kuehnel@micromata.de\n' +
+						' * Copyright ©2014 Micromata GmbH\n' +
+						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+						' */'
 				},
 				files: {
 					'dist/assets/css/index.uncss.min.css': ['temp/index.css'],
