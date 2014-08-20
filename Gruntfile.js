@@ -250,6 +250,7 @@ module.exports = function(grunt) {
 							'assets/fonts/**',
 							'libs/bootstrap/dist/js/*.js',
 							'libs/bootstrap/js/*.js',
+							'libs/bootstrap/fonts/*',
 							'libs/jquery/dist/*'
 						],
 						dest: 'dist/'
