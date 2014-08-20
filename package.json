@@ -9,7 +9,7 @@
     "url": "http://www.micromata.de"
   },
   "license": "MIT",
-  "version": "0.0.5",
+  "version": "0.0.4",
   "repository": {
     "type": "git",
     "url": "ssh://git@git2.micromata.de:7999/bt/kickstarter.git"
@@ -23,7 +23,6 @@
     "grunt-autoprefixer": "~0.8.0",
     "grunt-available-tasks": "^0.5.0",
     "grunt-browser-sync": "^1.1.2",
-    "grunt-bump": "0.0.15",
     "grunt-cache-bust": "^0.3.9",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-compress": "^0.10.0",
