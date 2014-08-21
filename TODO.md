@@ -18,7 +18,13 @@
 * Increase meintainability of Gruntfile
 	* https://github.com/firstandthird/load-grunt-config#example
 * Production Build
+	* Bump version
+	* Generate Changelog
 	* Tag release in Git
+	* Merge to master
+		* https://github.com/rubenv/grunt-git
+		* https://github.com/vojtajina/grunt-bump
+		* https://github.com/ericmatthys/grunt-changelog
 	* Delete JavaScript Sources and Sourcemaps from Production build
 	* Delete non minified CSS from Production build
 	* Merge JavaScript
