@@ -337,6 +337,38 @@ module.exports = function(grunt) {
 			}
 		},
 
+		bump: {
+			options: {
+				files: ['package.json', 'bower.json'],
+				updateConfigs: ['pkg'],
+				// commit: false,
+				commitMessage: 'Bump version number v%VERSION%',
+				commitFiles: ['package.json', 'bower.json'],
+				createTag: false,
+				// tagMessage: 'Release %VERSION%',
+				push: false,
+				// pushTo: 'origin',
+				// gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
+			}
+		},
+
+		changelog: {
+			release: {
+				options: {
+					// after: '<%= pkg.version %>',
+					after: '0.0.3',
+					dest : 'CHANGELOG-TEST.md',
+					insertType: 'prepend',
+					template: '## Version <%= pkg.version %> ({{date}})\n\n{{> features}}',
+					featureRegex: /^(.*)$/gim,
+					partials: {
+						features: '{{#if features}}{{#each features}}{{> feature}}{{/each}}{{else}}{{> empty}}{{/if}}\n',
+						feature: '- {{this}} {{this.date}}\n'
+					}
+				}
+			}
+		},
+
 		// watch
 		watch: {
 			options: {
