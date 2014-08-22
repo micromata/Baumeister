@@ -251,7 +251,8 @@ module.exports = function(grunt) {
 							'libs/bootstrap/dist/js/*.js',
 							'libs/bootstrap/js/*.js',
 							'libs/bootstrap/fonts/*',
-							'libs/jquery/dist/*'
+							'libs/jquery/dist/*',
+							'libs/jquery-placeholder/jquery.placeholder.js'
 						],
 						dest: 'dist/'
 					},
