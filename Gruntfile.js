@@ -160,7 +160,7 @@ module.exports = function(grunt) {
 					hostname: 'localhost',
 					open: {
 						 target: 'http://<%= connect.dev.options.hostname %>:' +
-						 '<%= connect.dev.options.port %>/assets',
+						 '<%= connect.dev.options.port %>',
 					},
 				}
 			},
@@ -178,7 +178,7 @@ module.exports = function(grunt) {
 					keepalive: true,
 					open: {
 						 target: 'http://<%= connect.dev.options.hostname %>:' +
-						 '<%= connect.dist.options.port %>/assets',
+						 '<%= connect.dist.options.port %>',
 					},
 				}
 			}
@@ -189,7 +189,7 @@ module.exports = function(grunt) {
 				ignoreSheets: [/fonts.googleapis/],
 			},
 			dist: {
-				src: 'assets/*.html',
+				src: '*.html',
 				dest: 'temp/index.css'
 			}
 		},
@@ -225,14 +225,11 @@ module.exports = function(grunt) {
 
 		processhtml: {
 			dist: {
-				// files: {
-				// 	'dist/assets/index.html': ['assets/index.html'],
-				// }
 				files: [
 					{
 						expand: true,
 						src: [
-							'assets/*.html'
+							'*.html'
 						],
 						dest: 'dist/'
 					},
@@ -293,7 +290,7 @@ module.exports = function(grunt) {
 				ignorePatterns: ['libs']
 			},
 			files: {
-				src: ['assets/*.html']
+				src: ['*.html']
 			}
 		},
 
@@ -306,7 +303,7 @@ module.exports = function(grunt) {
 						'assets/img/**/*.png',
 						'assets/img/**/*.gif',
 						'assets/js/**/*.js',
-						'assets/**/*.html'
+						'*.html'
 					]
 				},
 				options: {
@@ -365,7 +362,7 @@ module.exports = function(grunt) {
 				}
 			},
 			html: {
-				files: ['assets/**/*.html'],
+				files: ['*.html'],
 				options: {
 					spawn: false,
 				}
