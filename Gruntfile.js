@@ -147,9 +147,10 @@ module.exports = function(grunt) {
 		},
 
 		clean: {
-			less: ["assets/css/index_raw.*"],
-			dist: ["dist"],
-			temp: ["temp"],
+			less: ['assets/css/index_raw.*'],
+			dist: ['dist', 'server'],
+			server: ['server'],
+			temp: ['temp'],
 		},
 
 		// Local dev server
@@ -158,6 +159,7 @@ module.exports = function(grunt) {
 				options: {
 					port: 9000,
 					hostname: 'localhost',
+					base: 'server',
 					open: {
 						 target: 'http://<%= connect.dev.options.hostname %>:' +
 						 '<%= connect.dev.options.port %>',
@@ -167,7 +169,8 @@ module.exports = function(grunt) {
 			sync: {
 				options: {
 					port: 9000,
-					hostname: 'localhost'
+					hostname: 'localhost',
+					base: 'server'
 				}
 			},
 			dist: {
@@ -238,22 +241,37 @@ module.exports = function(grunt) {
 		},
 
 		copy: {
+			server: {
+				expand: true,
+				src: [
+					'*.html',
+					'assets/**/*',
+					'libs/bootstrap/dist/js/**/*',
+					'libs/bootstrap/js/**/*',
+					'libs/bootstrap/fonts/**/*',
+					'libs/html5shiv/dist/**/*',
+					'libs/jquery/dist/**/*',
+					'libs/jquery-placeholder/jquery.placeholder.js',
+					'libs/respondJs/dest/**/*',
+				],
+				dest: 'server/'
+			},
 			dist: {
-				files: [
-					{
-						expand: true,
-						src: [
-							'assets/css/*.css',
-							'assets/fonts/**',
-							'libs/bootstrap/dist/js/*.js',
-							'libs/bootstrap/js/*.js',
-							'libs/bootstrap/fonts/*',
-							'libs/jquery/dist/*',
-							'libs/jquery-placeholder/jquery.placeholder.js'
-						],
-						dest: 'dist/'
-					},
-				]
+				expand: true,
+				src: [
+					'*.html',
+					'assets/css/*.css',
+					'assets/fonts/**/*',
+					'assets/img/**/*',
+					'libs/bootstrap/dist/js/**/*',
+					'libs/bootstrap/js/**/*',
+					'libs/bootstrap/fonts/**/*',
+					'libs/html5shiv/dist/**/*',
+					'libs/jquery/dist/**/*',
+					'libs/jquery-placeholder/jquery.placeholder.js',
+					'libs/respondJs/dest/**/*',
+				],
+				dest: 'dist/'
 			}
 		},
 
@@ -286,11 +304,8 @@ module.exports = function(grunt) {
 		},
 
 		cacheBust: {
-			options: {
-				ignorePatterns: ['libs']
-			},
 			files: {
-				src: ['*.html']
+				src: ['server/*.html']
 			}
 		},
 
@@ -342,7 +357,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['jshint', 'uglify:dev'/*, 'plato'*//*, 'jsdoc'*/],
+				tasks: ['jshint', 'uglify:dev'],
 				options: {
 					spawn: false
 				}
@@ -398,7 +413,6 @@ module.exports = function(grunt) {
 			'autoprefixer',
 			'clean:less',
 			'plato',
-			'cacheBust',
 			'jsdoc',
 		]
 	);
@@ -407,6 +421,9 @@ module.exports = function(grunt) {
 	grunt.registerTask('server',
 		'`grunt server` starts a local dev server and runs `grunt watch`',
 		[
+			'clean:server',
+			'copy:server',
+			'cacheBust',
 			'connect:dev',
 			'watch'
 		]
@@ -417,6 +434,9 @@ module.exports = function(grunt) {
 		'`grunt sync` starts a local dev server, sync browsers and runs `grunt watch`',
 		[
 			'dev',
+			'clean:server',
+			'copy:server',
+			'cacheBust',
 			'connect:sync',
 			'browserSync',
 			'watch'
@@ -450,7 +470,7 @@ module.exports = function(grunt) {
 		'cssmin',
 		'imagemin',
 		'processhtml',
-		'copy',
+		'copy:dist',
 		'clean:temp',
 		'plato',
 		'jsdoc'
