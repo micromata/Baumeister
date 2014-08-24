@@ -3,9 +3,6 @@
 ## Structure of Assets
 * HTML standard templates from http://getbootstrap.com/getting-started/#examples
 
-## Conditional classes for html element
-* Add generic ie class for all IEs
-
 ## Inline documentation ##
 * Add example to LESS modules
 *	// Variables
