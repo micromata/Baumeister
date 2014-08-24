@@ -1,7 +1,6 @@
 # TODO
 
 ## Structure of Assets
-* Move htmls to root directory
 * HTML standard templates from http://getbootstrap.com/getting-started/#examples
 
 ## Conditional classes for html element
