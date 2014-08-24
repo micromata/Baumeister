@@ -1,7 +1,7 @@
 {
-  "name": "bootstrap-theme-kickstarter",
+  "name": "bootstrap-kickstart",
   "title": "Bootstrap Theme Kickstarter",
-  "description": "This is an initial boilerplate for Bootstrap themes.",
+  "description": "This is a boilerplate for scaffolding Bootstrap themes.",
   "homepage": "https://git2.micromata.de/projects/BT/repos/kickstarter",
   "author": {
     "name": "Michael Kühnel",
@@ -12,11 +12,12 @@
   "version": "0.0.4",
   "repository": {
     "type": "git",
-    "url": "ssh://git@git2.micromata.de:7999/bt/kickstarter.git"
+    "url": "git@github.com:micromata/bootstrap-kickstart.git"
   },
   "bugs": {
-    "url": "tba"
+    "url": "https://github.com/micromata/bootstrap-kickstart/issues"
   },
+  "private": true,
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.5",
