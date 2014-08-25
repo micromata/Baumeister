@@ -357,7 +357,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['jshint', 'uglify:dev'],
+				tasks: ['jshint', 'uglify:dev', 'copy:server'],
 				options: {
 					spawn: false
 				}
@@ -371,19 +371,19 @@ module.exports = function(grunt) {
 			},
 			css: {
 				files: ['assets/less/**/*.less'],
-				tasks: ['less:dev', 'autoprefixer', 'clean:less'],
+				tasks: ['less:dev', 'autoprefixer', 'clean:less', 'copy:server'],
 				options: {
 					spawn: false
 				}
 			},
 			html: {
-				files: ['*.html'],
+				files: ['*.html', 'copy:server'],
 				options: {
 					spawn: false,
 				}
 			},
 			images: {
-				files: ['assets/img/**/*.{png,jpg,gif}'],
+				files: ['assets/img/**/*.{png,jpg,gif}', 'copy:server'],
 				options: {
 					spawn: false,
 				}
