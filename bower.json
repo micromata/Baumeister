@@ -27,6 +27,7 @@
     "bower_components",
     "libs",
     "dist",
+    "server",
     "docs",
     "reports"
   ],

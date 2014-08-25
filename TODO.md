@@ -10,7 +10,6 @@
 	// Styles
 
 ## Grunt
-* Make use of temporary dev directory to prevent conflicts with cache-bust params.
 * Increase maintainability of Gruntfile
 	* https://github.com/firstandthird/load-grunt-config#example
 * Improve Release task
