@@ -14,6 +14,7 @@ module.exports = function(grunt) {
 	// Config
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		pkpCopy: grunt.file.readJSON('package.json'),
 
 		// List available tasks
 		availabletasks: {
@@ -358,12 +359,12 @@ module.exports = function(grunt) {
 			options: {
 				files: ['package.json', 'bower.json'],
 				updateConfigs: ['pkg'],
-				commit: false,
-				commitMessage: 'Bump version number v%VERSION%',
-				commitFiles: ['package.json', 'bower.json'],
-				createTag: false,
+				// commit: false,
+				commitMessage: 'Release v%VERSION%',
+				commitFiles: ['package.json', 'bower.json', 'CHANGELOG.md'],
+				// createTag: false,
 				tagName: '%VERSION%',
-				tagMessage: 'Release %VERSION%',
+				tagMessage: 'Version v%VERSION%',
 				push: false,
 				// pushTo: 'origin',
 				// gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
@@ -373,7 +374,7 @@ module.exports = function(grunt) {
 		changelog: {
 			release: {
 				options: {
-					after: '<%= pkg.version %>',
+					after: '<%= pkpCopy.version %>',
 					dest : 'CHANGELOG.md',
 					insertType: 'prepend',
 					template: '## Version <%= pkg.version %> ({{date}})\n\n{{> features}}',
@@ -524,15 +525,15 @@ module.exports = function(grunt) {
 	// Relase tasks
 	grunt.registerTask('releasePatch',
 		'`grunt releasePatch` builds the current sources, bumps version number (0.0.1) and creates zip.files.',
-		['build', 'changelog', 'bump-only:patch', 'compress']
+		['bump-only:patch', 'build', 'changelog', 'bump-commit', 'compress']
 	);
 	grunt.registerTask('releaseMinor',
 		'`grunt releaseMinor` builds the current sources, bumps version number (0.1.0) and creates zip.files.',
-		['build', 'changelog', 'bump-only:minor', 'compress']
+		['bump-only:minor', 'build', 'changelog', 'bump-commit', 'compress']
 	);
 	grunt.registerTask('releaseMajor',
 		'`grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
-		['build', 'changelog', 'bump-only:minor', 'compress']
+		['bump-only:major', 'build', 'changelog', 'bump-commit', 'compress']
 	);
 
 
