@@ -1,36 +1,44 @@
 {
-  "name": "kickstarter",
-  "description": "This is an initial boilerplate for Bootstrap themes.",
+  "name": "bootstrap-kickstart",
+  "description": "This is a boilerplate for scaffolding Bootstrap themes.",
   "version": "0.0.4",
   "authors": [
-    "Michael Kühnel <m.kuehnel@micromata.de>",
-    "Moritz Fröhner <m.froehner@micromata.de>"
+    "Michael Kühnel <m.kuehnel@micromata.de>"
   ],
-  "license": "MIT.",
-  "homepage": "https://git2.micromata.de/projects/BT/repos/kickstarter/",
+  "license": "MIT",
+  "homepage": "https://github.com/micromata/bootstrap-kickstart",
   "repository": {
     "type": "git",
-    "url": "git@git2.micromata.de:7999/bt/kickstarter.git"
+    "url": "git@github.com:micromata/bootstrap-kickstart.git"
   },
   "keywords": [
     "bootstrap",
     "boilerplate",
     "skeleton",
+    "scaffolding",
+    "scaffold",
     "theme",
-    "kickstart"
+    "themes",
+    "kickstart",
+    "kickstarter"
   ],
   "ignore": [
     "node_modules",
     "bower_components",
     "libs",
     "dist",
+    "server",
     "docs",
     "reports"
   ],
   "dependencies": {
-    "bootstrap": "~3.2",
-    "jquery": "~1.11",
-    "html5shiv": "~3.7",
-    "respondJs": "~1.4"
+    "bootstrap": "3.2.0",
+    "jquery": "1.11.1",
+    "html5shiv": "3.7.2",
+    "respondJs": "1.4.2",
+    "jquery-placeholder": "2.0.8"
+  },
+  "resolutions": {
+    "jquery": "1.11.1"
   }
 }

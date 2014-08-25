@@ -1,11 +1,7 @@
 # TODO
 
 ## Structure of Assets
-* Move htmls to root directory
-* HTML standard HTML templates from http://getbootstrap.com/getting-started/#examples
-
-## Conditional classes for html element
-* Add generic ie class for all IEs
+* HTML standard templates from http://getbootstrap.com/getting-started/#examples
 
 ## Inline documentation ##
 * Add example to LESS modules
@@ -14,17 +10,18 @@
 	// Styles
 
 ## Grunt
-* Make use of temporary dev directory to prevent conflicts with cache-bust params.
-* Increase meintainability of Gruntfile
+* Increase maintainability of Gruntfile
 	* https://github.com/firstandthird/load-grunt-config#example
-* Production Build
+* Improve Release task
 	* Bump version
 	* Generate Changelog
 	* Tag release in Git
-	* Merge to master
+	* Merge to master?
+	* Push to origin?
 		* https://github.com/rubenv/grunt-git
 		* https://github.com/vojtajina/grunt-bump
 		* https://github.com/ericmatthys/grunt-changelog
+* Production Build
 	* Delete JavaScript Sources and Sourcemaps from Production build
 	* Delete non minified CSS from Production build
 	* Merge JavaScript

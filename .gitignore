@@ -11,6 +11,7 @@
 ### Build ###
 /dist
 /docs
+/server
 /reports
 /assets/js/*.min.js
 /assets/js/*.map

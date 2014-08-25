@@ -1,4 +1,4 @@
-Copyright (c) 2014 Michael Kühnel, http://michael-kuehnel.de
+Copyright (c) 2014 Micromata (Michael Kühnel), www.micromata.de
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

@@ -1,7 +1,7 @@
 {
-  "name": "bootstrap-theme-kickstarter",
+  "name": "bootstrap-kickstart",
   "title": "Bootstrap Theme Kickstarter",
-  "description": "This is an initial boilerplate for Bootstrap themes.",
+  "description": "This is a boilerplate for scaffolding Bootstrap themes.",
   "homepage": "https://git2.micromata.de/projects/BT/repos/kickstarter",
   "author": {
     "name": "Michael Kühnel",
@@ -12,38 +12,38 @@
   "version": "0.0.4",
   "repository": {
     "type": "git",
-    "url": "ssh://git@git2.micromata.de:7999/bt/kickstarter.git"
+    "url": "git@github.com:micromata/bootstrap-kickstart.git"
   },
   "bugs": {
-    "url": "tba"
+    "url": "https://github.com/micromata/bootstrap-kickstart/issues"
   },
+  "private": true,
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.5",
-    "grunt-autoprefixer": "~0.8.0",
+    "grunt-autoprefixer": "^0.8.2",
     "grunt-available-tasks": "^0.5.0",
-    "grunt-browser-sync": "^1.1.2",
-    "grunt-bump": "0.0.15",
+    "grunt-browser-sync": "^1.3.6",
     "grunt-cache-bust": "^0.3.9",
-    "grunt-changelog": "^0.2.2",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-compress": "^0.10.0",
     "grunt-contrib-connect": "^0.8.0",
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-imagemin": "^0.7.1",
+    "grunt-contrib-imagemin": "^0.7.2",
     "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-less": "~0.11.3",
-    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-contrib-less": "^0.11.4",
+    "grunt-contrib-uglify": "^0.5.1",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-jsdoc": "^0.5.6",
-    "grunt-notify": "~0.3.0",
-    "grunt-plato": "^1.0.0",
+    "grunt-jsdoc": "^0.5.7",
+    "grunt-newer": "^0.7.0",
+    "grunt-notify": "^0.3.1",
+    "grunt-plato": "^1.3.0",
     "grunt-processhtml": "^0.3.3",
-    "grunt-uncss": "^0.3.4",
-    "jshint-stylish": "~0.2.0",
+    "grunt-uncss": "^0.3.6",
+    "jshint-stylish": "^0.2.0",
     "load-grunt-tasks": "~0.6.0",
-    "time-grunt": "~0.3.2"
+    "time-grunt": "^0.3.2"
   },
   "scripts": {
     "postinstall": "bower install"

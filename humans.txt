@@ -1,0 +1,27 @@
+/* TEAM */
+Main Development:   Michael Kühnel
+Twitter:            @mkuehnel
+Site:               http://www.micromata.de
+Location:           Kassel, Germany
+
+Support:            Micromata UX-Team (Moritz Fröhner, Julian Mengel, Ulrich Schmidt)
+Twitter:            @nuzy_, @vitamin_J
+
+
+/* THANKS */
+Kai Dorschner:      For creating and documenting a pretty slick file structure
+                    for developing Bootstrap themes and giving technical
+                    advice → http://krnl.de
+HTML5 Boilerplate:  For providing some awesome snippets
+                    → http://html5boilerplate.com
+INIT:               For inspiration about the grunt workflow
+                    → http://use-init.com
+
+
+/* SITE */
+Standards:          HTML5, CSS3
+Components:         Bootstrap, jQuery, HTML5 Shiv, HTML5 Placeholder jQuery
+                    Plugin, Respond.js, Normalize.css
+Build tool:         Grunt
+Package Manager:    Bower
+Software:           Sublime Text, MacDown, Terminal, SourceTree, Tower, Kaleidoscope
