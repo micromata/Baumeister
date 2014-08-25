@@ -496,7 +496,7 @@ module.exports = function(grunt) {
 		'`grunt build` builds production ready sources to dist directory.', [
 		'clean:dist',
 		'jshint',
-		'uglify:build',
+		'uglify:dist',
 		'less:dev',
 		'autoprefixer',
 		'clean:less',
