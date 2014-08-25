@@ -30,7 +30,9 @@ module.exports = function(grunt) {
 						'plato',
 						'jsdoc',
 						'sync',
-						'release'
+						'releasePatch',
+						'releaseMinor',
+						'releaseMajor'
 					],
 					descriptions: {
 						'watch':
@@ -55,7 +57,9 @@ module.exports = function(grunt) {
 						'watch',
 						'build',
 						'checkBuild',
-						'release'
+						'releasePatch',
+						'releaseMinor',
+						'releaseMajor'
 					]
 				}
 			}
@@ -96,7 +100,7 @@ module.exports = function(grunt) {
 					extDot: 'first'
 				}]
 			},
-			build : {
+			dist : {
 				options: {
 					banner: '<%= uglify.options.banner %>\n',
 					compress: { drop_console: true },
@@ -354,11 +358,12 @@ module.exports = function(grunt) {
 			options: {
 				files: ['package.json', 'bower.json'],
 				updateConfigs: ['pkg'],
-				// commit: false,
+				commit: false,
 				commitMessage: 'Bump version number v%VERSION%',
 				commitFiles: ['package.json', 'bower.json'],
 				createTag: false,
-				// tagMessage: 'Release %VERSION%',
+				tagName: '%VERSION%',
+				tagMessage: 'Release %VERSION%',
 				push: false,
 				// pushTo: 'origin',
 				// gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
@@ -368,15 +373,14 @@ module.exports = function(grunt) {
 		changelog: {
 			release: {
 				options: {
-					// after: '<%= pkg.version %>',
-					after: '0.0.3',
-					dest : 'CHANGELOG-TEST.md',
+					after: '<%= pkg.version %>',
+					dest : 'CHANGELOG.md',
 					insertType: 'prepend',
 					template: '## Version <%= pkg.version %> ({{date}})\n\n{{> features}}',
 					featureRegex: /^(.*)$/gim,
 					partials: {
 						features: '{{#if features}}{{#each features}}{{> feature}}{{/each}}{{else}}{{> empty}}{{/if}}\n',
-						feature: '- {{this}} {{this.date}}\n'
+						feature: '- {{{this}}}\n'
 					}
 				}
 			}
@@ -481,7 +485,7 @@ module.exports = function(grunt) {
 	grunt.registerTask(
 		'default',
 		'Default Task. Just type `grunt` for this one. Calls `grunt dev` first '+
-		'and `grunt server` afterwards. Bascically the only task you need while ' +
+		'and `grunt server` afterwards. Basically the only task you need while ' +
 		'developing.',
 		[
 			'dev',
@@ -517,10 +521,18 @@ module.exports = function(grunt) {
 		['connect:dist']
 	);
 
-	// Relase task
-	grunt.registerTask('release',
-		'`grunt release` builds the current sources and creates zip.files.',
-		['build', 'compress']
+	// Relase tasks
+	grunt.registerTask('releasePatch',
+		'`grunt releasePatch` builds the current sources, bumps version number (0.0.1) and creates zip.files.',
+		['build', 'changelog', 'bump-only:patch', 'compress']
+	);
+	grunt.registerTask('releaseMinor',
+		'`grunt releaseMinor` builds the current sources, bumps version number (0.1.0) and creates zip.files.',
+		['build', 'changelog', 'bump-only:minor', 'compress']
+	);
+	grunt.registerTask('releaseMajor',
+		'`grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
+		['build', 'changelog', 'bump-only:minor', 'compress']
 	);
 
 
