@@ -9,6 +9,7 @@ Twitter: @nuzy_, @vitamin_J , @krnlde, @DennisHilpmann
 
 
 /* THANKS */
+Kai Dorschner: For creating and documenting our pretty slick file structure for developing Bootstrap themes
 HTML5 Boilerplate: For providing some awesome snippets → http://html5boilerplate.com
 INIT: For inspiration about the grunt workflow → http://use-init.com
 
