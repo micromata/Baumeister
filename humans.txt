@@ -4,7 +4,7 @@ Twitter:            @mkuehnel
 Site:               http://www.micromata.de
 Location:           Kassel, Germany
 
-Support:            Micromata UX-Team (Moritz Fröhner, Julian Mengel)
+Support:            Micromata UX-Team (Moritz Fröhner, Julian Mengel, Ulrich Schmidt)
 Twitter:            @nuzy_, @vitamin_J
 
 
@@ -24,5 +24,4 @@ Components:         Bootstrap, jQuery, HTML5 Shiv, HTML5 Placeholder jQuery
                     Plugin, Respond.js, Normalize.css
 Build tool:         Grunt
 Package Manager:    Bower
-Software:           Sublime Text, MacDown, Terminal, SourceTree, Tower
-                    Kaleidoscope
+Software:           Sublime Text, MacDown, Terminal, SourceTree, Tower, Kaleidoscope
