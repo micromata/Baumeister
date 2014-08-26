@@ -1,0 +1,41 @@
+//
+// Own mixins
+// --------------------------------------------------
+// Additional global mixins which are meant to be used accross modules.
+//
+// Local mixins (for use in specific modules) should be placed within these
+// corresponding files.
+//
+
+#gradient {
+	.mm_vertical-five-colors(
+		@start-color: rgb(255,255,255);
+		@start-color-stop: 0%;
+		@second-color: rgb(255,255,255);
+		@second-color-stop: 8%;
+		@third-color: rgb(239,239,239);
+		@third-color-stop: 36%;
+		@fourth-color: rgb(187,187,187);
+		@fourth-color-stop: 99%;
+		@end-color: rgb(187,187,187);
+		@end-color-stop: 100%;
+	) {
+		background-image: -webkit-linear-gradient(
+			@start-color @start-color-stop,
+			@second-color @second-color-stop,
+			@third-color @third-color-stop,
+			@fourth-color @fourth-color-stop,
+			@end-color @end-color-stop,
+		);
+		background-image: linear-gradient(
+			@start-color @start-color-stop,
+			@second-color @second-color-stop,
+			@third-color @third-color-stop,
+			@fourth-color @fourth-color-stop,
+			@end-color @end-color-stop,
+		);
+		background-repeat: no-repeat;
+		filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", argb(@start-color), argb(@end-color)));
+		// IE9 and down, gets no color-stop at all for proper fallback
+	}
+}
