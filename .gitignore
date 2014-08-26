@@ -9,6 +9,7 @@
 *Thumbs.db
 
 ### Build ###
+/*.zip
 /dist
 /docs
 /server
