@@ -1,9 +1,5 @@
 #Kickstarter for Bootstrap themes
 
-##Structure of the assets
-
-The structure of the assets is described in detail over here: <https://team.micromata.de/confluence/display/UXTEAM/Bootstrap+Workflow>
-
 ##Setup of external sources
 
 Bootstrap and jQuery are installed via Bower. You can check the availability of bower with typing the following into your terminal:
@@ -61,6 +57,32 @@ The `~` means: Install the latest version including dot-releases.
 So `~1.11` installed the latest 1.11.x release which is version 1.11.1 in case of jQuery right now. So  jQuery 1.11.2 will be fetched as soon as it is released when you fire `bower update` or `bower install`. But Bower won’t install jQuery 1.12 or later.
 
 Check <http://semver-ftw.org> for more information about »Semantic Versioning«.
+
+## Setup 
+
+**TODO!**  
+Describe Grunt and npm setup.
+
+## Grunt Workflow and tasks
+
+**TODO!**  
+Describe Grunt tasks. Basically:
+
+    grunt tasks
+
+## File and folder structure
+
+**TODO!**  
+Add Description …
+
+## Contributing to this project
+
+Anyone and everyone is welcome to contribute. Please take a moment to
+review the [guidelines for contributing](CONTRIBUTING.md).
+
+* [Bug reports](CONTRIBUTING.md#bugs)
+* [Feature requests](CONTRIBUTING.md#features)
+* [Pull requests](CONTRIBUTING.md#pull-requests)
 
 ## License
 
