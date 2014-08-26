@@ -1,3 +1,29 @@
+## Version 1.0.0 (2014-08-27)
+
+- Delete headline in changelog
+- Add zips to .git ignore
+- Finished README for v1.0.0
+- Update comments
+- More logical order of importants
+- Add new keyword
+- Epic update of README.md
+- Edit Gruntfile
+- Update README
+- Update bower.json
+- Add reference to jquery.placeholder.js
+- Remove CSS from version control
+- Delete CSS from assets.
+- Add more demo pages and related LESS files
+- Delete TODO.md
+- Update README
+- Prefix tag name with »v«
+- Relaxing versions of bower dependencies.
+- Relaxing versions of dev dependencies.
+- Add @necolas to humans.txt
+- Rename LICENSE
+- Update To Do
+
+
 ## Version 0.1.0 (2014-08-26)
 
 - 91326b29fc3a3954fe610c948a60c510bd4d84d9 - @mischah, 2014-08-26: Release v0.1.0
