@@ -1,40 +1,43 @@
 #Kickstarter for Bootstrap themes
 
-##Setup of external sources
+## Dependencies
 
-Bootstrap and jQuery are installed via Bower. You can check the availability of bower with typing the following into your terminal:
+### Node.js
 
-	bower --version
+The major dependency is [Node.js](http://nodejs.org/) including the Node.js package manager called »npm«. The other depencies can be installed with npm.
 
-Your Terminal should response with the version number of Bower if Bower is installed properly. Something like:
-
-	1.3.5
-
-Otherwise you have to install Bower first.
-
-### Installing Bower
-[Bower][bower] depends on Node and npm.
-
-So you have to install [Node.js][node] first in case you don’t have it installed already.
-
-If you’re not sure about the availability of these just type the flowing into your terminal to check wether it’s existing or not:
+Please enter the following in your terminal if your aren’t sure about the availability of Node.js and npm on your machine:
 
 	npm --version
 
-Your Terminal should response with the version number of npm if node is installed properly. Something like:
+This should return the something like the following in case Node.js and npm is already installed:
 
-	1.4.10
+	1.4.24
 
-You can continue with the global installation of bower using npm in that case:
+If that isn’t the case you have to install Node.js first. On OS X I strongly recommend installing Node via [Homebrew](http://brew.sh). Not just because it’s easier to switch versions with Homebrew but also beacuse you prevent potential permission problems when running npm.
+
+
+### Bower
+
+Bootstrap and jQuery and other other plugiuns are installed via [Bower](http://bower.io) (»A package manager for the web«). You can check the availability of bower with typing the following into your terminal:
+
+	bower --version
+
+Your Terminal should response with the version number of Bower, if Bower is installed properly. Something like:
+
+	1.3.9
+
+Otherwise you have to install Bower first.
+
+#### Installing Bower
+
+Thnanks do Node.js and npm intsalling Bower is just this simple one liner:
 
 	npm install -g bower
 
 Also make sure that git is installed as some bower packages require it to be fetched and installed.
 
-[node]: http://nodejs.org/
-[bower]: http://bower.io/
-
-### Installing external resources
+### Installing and updating external resources with Bower
 
 Just fire the following in the terminal:
 
