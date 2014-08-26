@@ -20,7 +20,8 @@
     "theme",
     "themes",
     "kickstart",
-    "kickstarter"
+    "kickstarter",
+    "micromata"
   ],
   "ignore": [
     "node_modules",
