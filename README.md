@@ -4,7 +4,7 @@
 
 For those already using Node, Grunt and stuff:
 	
-	$ git clone git@github.com:micromata/bootstrap-kickstart.git
+	$ bower install bootstrap-kickstart
 	$ npm install
 	$ grunt tasks
 
@@ -201,8 +201,131 @@ which will:
 
 ## File and folder structure of LESS files
 
-**TODO!**  
-Add Description …
+This is s short version of our conventions when ist comes to create bootstrap themes.  Below you’ll find a screenshot from `/assets/less`
+
+![Screenshot](http://f.cl.ly/items/1e2B2v0P1Z0U2E2A3q2g/screenshot-less.png)
+
+Seems to be a pretty huge amount of files for such a little project. So here we go with an explanation.
+
+### index.less  
+Our main LESS file which is the one which is creating our index.css file. This file is just about a few imports and setting the path to the icon fonts provided by bootstrap.
+  
+```css
+// Bootstrap Core
+// --------------------------------------------------
+@import "../../libs/bootstrap/less/bootstrap.less";
+
+// Set path to icon fonts
+@icon-font-path: "../../libs/bootstrap/fonts/";
+
+// Base styles
+// --------------------------------------------------
+// Independent of design (shared definitions).
+// base.less is meant to be used for different themes for one customer.
+@import "base.less";
+
+// Corporate Design
+// --------------------------------------------------
+@import "customerName.less";
+
+////////// Do NOT insert style-definitions here! //////////
+```
+
+### base.less
+Is used for (shared definitions) which makes sense when dealing with different themes for one customer/project. The defaults consist only of a few lines.
+
+```css
+// Base styles
+// --------------------------------------------------
+// Independent of design (shared definitions)
+// base.less is meant to be used for different themes for one customer.
+
+// Fix viewport issues with IE 10.
+// See http://getbootstrap.com/getting-started/#support-ie10-width
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+@viewport           { width: device-width; }
+```
+
+### customerName.less
+
+We used this file to import the modules/files which defines the actual theme. You could also use this to write down your styles and omit the use of the seperate files laying around in the corresponding folder `customerName`. But thats not a recomondation. See content of `customerName.less`:
+
+```css
+// Override and extend Bootstrap stuff
+// --------------------------------------------------
+// Files, classes, mixins etc.
+@import "customerName/variables.less";
+@import "customerName/mixins.less";
+@import "customerName/scaffolding.less";
+@import "customerName/alerts.less";
+
+// Own modules
+// --------------------------------------------------
+@import "customerName/demoElements.less";
+@import "customerName/footer.less";
+@import "customerName/ribbon.less";
+
+// Important note //
+// You could also use this file to insert customer related style definitions
+// directly within this file. But we recommend to exclude your Less code to
+// seperate files like the examples above when you exceed a few hundred lines
+// of code. Otherwise it will definitely have a negative impact on
+// maintainabilty.
+
+```
+
+### customerName folder
+
+This folder holds the modules needed by the theme. The skeleton of such a module looks like the comments within `ribbon.less`
+
+```css
+//
+// Ribbon
+// --------------------------------------------------
+// The main ribbon navigation
+
+// Local variables
+//
+// Which are meant to be used only in this module. »Global« variables are stored
+// in /assets/less/customerName/variables.less
+
+// Local mixins
+//
+// Which are meant to be used only in this module. »Global« variables are stored
+// in /assets/less/customerName/mixins.less
+
+// Styles
+//
+```
+
+See [footer.less](assets/less/customerName/footer.less) for a »real life« example.
+
+Please have also a look at comments within the following files to get an idea how to handle them:
+
+- [variables.less](assets/less/customerName/variables.less)  
+  Used to override bootstrap variables. Make sure to read the comments which describe how to handle this file which can save you lots of time when it comes to a Bootstrap update.
+- [scaffolding.less](assets/less/customerName/scaffolding.less)  
+  Used to define the most generic html elements. 
+
+## Browser support
+
+It depends on you and the CSS you are writing. We still have to support IE8 in a few projects so the HTML templates used in this repository are containing the following snippet taken from the [HTML5 Boilerplate](http://html5boilerplate.com/):
+
+````
+<!--[if lt IE 8>
+	<p class="browsehappy">
+		You are using an <strong>outdated</strong> browser.
+		Please <a href="http://browsehappy.com/">upgrade your browser</a>
+		to improve your experience.
+	</p>
+<![endif]-->
+````
+
+Change this according to your needs. And make sure to visit the [Browser and device support](http://getbootstrap.com/getting-started/#support) information provided by Bootstrap.
+
 
 ## Contributing to this project
 
