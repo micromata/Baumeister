@@ -13,6 +13,7 @@
 /docs
 /server
 /reports
+/assets/css
 /assets/js/*.min.js
 /assets/js/*.map
 
