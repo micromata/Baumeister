@@ -47,14 +47,17 @@ That should place a `lib` directory containing the dependencies defined in the `
 
 You can change the version of the external resources by editing the `bower.json` file within the root directory of the project.
 
-	"dependencies": {
-	    "bootstrap": "~3.1",
-	    "jquery": "~1.11"
-	}
+    "dependencies": {
+        "bootstrap": "~3.2.0",
+        jquery": "^1.11.1",
+    }
 
-The `~` means: Install the latest version including dot-releases.
+The tilde `~` means: Install the latest version including patch-releases.
+The caret `^` means: Install the latest version including minor-releases.
 
-So `~1.11` installed the latest 1.11.x release which is version 1.11.1 in case of jQuery right now. So  jQuery 1.11.2 will be fetched as soon as it is released when you fire `bower update` or `bower install`. But Bower won’t install jQuery 1.12 or later.
+So `~3.2.0` installed the latest 3.2.x release which is version v3.2.0 in case of Bootstrap right now. So  Bootstrap 3.2.1 will be fetched as soon as it is released when you fire `bower update` or `bower install`. But Bower won’t install Bootstrap 3.3.x or later.
+
+Where `^1.11.1` installed the latest 1.x.x release which is version 1.11.1 in case of jQuery right now. So jQuery 1.11.2 as well as jQuery 1.12.0 will be fetched as soon as it is released when you fire `bower update` or `bower install`. But Bower won’t install jQuery 2.x.x or later.
 
 Check <http://semver-ftw.org> for more information about »Semantic Versioning«.
 
