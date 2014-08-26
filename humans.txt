@@ -16,6 +16,8 @@ HTML5 Boilerplate:  For providing some awesome snippets
                     → http://html5boilerplate.com
 INIT:               For inspiration about the grunt workflow
                     → http://use-init.com
+Nicolas Gallagher:  For writing those lovely contributing guidelines
+                    → https://github.com/necolas/issue-guidelines
 
 
 /* SITE */
