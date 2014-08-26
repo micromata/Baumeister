@@ -64,7 +64,7 @@ Check <http://semver-ftw.org> for more information about »Semantic Versioning«
 ## Setup 
 
 **TODO!**  
-Describe Grunt and npm setup.
+Describe Grunt and npm setup. See <http://getbootstrap.com/getting-started/#grunt-installing>
 
 ## Grunt Workflow and tasks
 
@@ -72,11 +72,15 @@ Describe Grunt and npm setup.
 Describe Grunt tasks. Basically:
 
     grunt tasks
+    
+See <http://getbootstrap.com/getting-started/#grunt-commands>
 
 ## File and folder structure
 
 **TODO!**  
 Add Description …
+
+See <http://getbootstrap.com/getting-started/#whats-included-source>
 
 ## Contributing to this project
 
