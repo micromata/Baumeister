@@ -87,4 +87,4 @@ review the [guidelines for contributing](CONTRIBUTING.md).
 ## License
 
 Please be aware of the licenses of the components we use in this project.
-Everything else that has been developed by the contributions to this project is under [MIT License](LICENSE.md).
+Everything else that has been developed by the contributions to this project is under [MIT License](LICENSE).
