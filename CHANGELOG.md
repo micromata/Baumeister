@@ -1,5 +1,3 @@
-# Changelog
-
 ## Version 0.1.0 (2014-08-26)
 
 - 91326b29fc3a3954fe610c948a60c510bd4d84d9 - @mischah, 2014-08-26: Release v0.1.0
