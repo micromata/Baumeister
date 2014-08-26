@@ -37,16 +37,16 @@ module.exports = function(grunt) {
 					],
 					descriptions: {
 						'watch':
-							'Run dev tasks whenever watched files change and ' +
+							'`grunt watch` run dev tasks whenever watched files change and ' +
 							'Reloads the browser with »LiveReload« plugin.',
 						'jsdoc':
-							'Generates source documentation using jsdoc.',
+							'`grunt jsdoc` generates source documentation using jsdoc.',
 						'plato':
-							'Generate static code analysis charts with plato.'
+							'`grunt plato` generates static code analysis charts with plato.'
 					},
 					groups: {
 						'Dev': ['default', 'dev', 'sync', 'server', 'watch','plato', 'jsdoc'],
-						'Production': ['build', 'checkBuild', 'release'],
+						'Production': ['build', 'checkBuild', 'releasePatch', 'releaseMinor', 'releaseMajor'],
 					},
 					sort: [
 						'default',
@@ -486,8 +486,7 @@ module.exports = function(grunt) {
 	grunt.registerTask(
 		'default',
 		'Default Task. Just type `grunt` for this one. Calls `grunt dev` first '+
-		'and `grunt server` afterwards. Basically the only task you need while ' +
-		'developing.',
+		'and `grunt server` afterwards.',
 		[
 			'dev',
 			'server'
