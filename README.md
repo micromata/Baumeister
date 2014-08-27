@@ -15,11 +15,21 @@ The aim of this repository is to help you with the creation of Bootstrap themes 
   - release new versions
   - and more.
 
-## Quick guide 
+## Quick install guide 
 
-For those already using Node, Grunt and stuff:
+For those already using Node, Grunt and stuff.
+
+### via Git
+
+	$ git clone git@github.com:micromata/bootstrap-kickstart.git
+	$ npm install
+	$ grunt tasks
+
+### via Bower
 	
 	$ bower install bootstrap-kickstart
+	$ mv bower_components/bootstrap-kickstart/* ./
+	$ rm -rf bower_components
 	$ npm install
 	$ grunt tasks
 
