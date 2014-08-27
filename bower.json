@@ -24,12 +24,12 @@
     "micromata"
   ],
   "ignore": [
-    "node_modules",
-    "libs",
-    "dist",
-    "server",
-    "docs",
-    "reports"
+    "bootstrap",
+    "html5-boilerplate",
+    "html5shiv",
+    "jquery",
+    "jquery-placeholder",
+    "respondJs"
   ],
   "dependencies": {
     "bootstrap": "~3.2.0",
