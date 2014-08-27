@@ -1,3 +1,10 @@
+## Version 1.0.1 (2014-08-27)
+
+- Get rid of `v` prefix in tags.
+- Update README.md
+- Fix typos in README.md
+
+
 ## Version 1.0.0 (2014-08-27)
 
 - Delete headline in changelog
