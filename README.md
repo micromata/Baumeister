@@ -1,5 +1,20 @@
 #Kickstarter for Bootstrap themes
 
+The aim of this repository is to help you with the creation of Bootstrap themes by providing:
+
+- a file structure with focus on maintainibilty and upgradability
+- a Grunt workflow with the following »features«
+  - compile and minify our code
+  - add sourcemaps for JavaScript and CSS
+  - get rid of `console` output in production files
+  - add vendor prefixes
+  - optimize images (lossless)
+  - start a local server
+  - keep browsers in sync
+  - delete unused CSS (optional)
+  - release new versions
+  - and more.
+
 ## Quick guide 
 
 For those already using Node, Grunt and stuff:
@@ -26,16 +41,16 @@ This should return the something like the following in case Node.js and npm is a
 
 	1.4.24
 
-If that isn’t the case you have to install Node.js first. On OS X I strongly recommend installing Node via [Homebrew](http://brew.sh). Not just because it’s easier to switch versions with Homebrew but also beacuse you prevent potential permission problems when running npm.
+If that isn’t the case you have to install Node.js first. On OS X I strongly recommend installing Node via [Homebrew](http://brew.sh). Not just because it’s easier to switch versions with Homebrew but also because you prevent potential permission problems when running npm.
 
 
 ### Bower
 
-Bootstrap and jQuery and other plugins are installed via [Bower](http://bower.io) (»A package manager for the web«). You can check the availability of bower with typing the following into your terminal:
+Bootstrap, jQuery and other plugins are installed via [Bower](http://bower.io) (»a package manager for the web«). You can check the availability of bower with typing the following into your terminal:
 
 	bower --version
 
-Your Terminal should response with the version number of Bower, if Bower is installed properly. Something like:
+Your terminal should response with the version number of Bower, if Bower is installed properly. Something like:
 
 	1.3.9
 
@@ -43,7 +58,7 @@ Otherwise you have to install Bower first.
 
 #### Installing Bower
 
-Thanks do Node.js and npm installing Bower globally is just this simple one liner:
+Thanks to Node.js and npm installing Bower globally is just this simple one-liner:
 
 	npm install -g bower
 
@@ -55,7 +70,7 @@ Like Bootstrap itself this project uses [Grunt](http://gruntjs.com/) for its bui
 
 #### Installing Grunt
 
-Thanks do Node.js and npm installing the Grunt command line tools globally is just this simple one liner:
+Thanks do Node.js and npm installing the Grunt command line tools globally is just this simple one-liner:
 
     npm install -g grunt-cli
     
@@ -84,7 +99,7 @@ Just type the following to get an overview about the available Tasks:
  
     grunt tasks
 
-This will give you the main Grunt tasks which are ready for you te be fired from the terminal (grouped into »Dev« and »Production« Tasks):
+This will give you the main Grunt tasks which are ready for you to be fired from the terminal (grouped into »Dev« and »Production« Tasks):
 
 ````
 Dev
@@ -137,7 +152,7 @@ See `/Gruntfile.js` to see what happens in Details.
 
 The following isn’t needed after setting up the project because `bower install` is called with `npm install`. See [Setting up the project](#setup).
 
-But it’s good to know that you always can always install the dependencies needed for your theme by entering the following in the terminal:
+But it’s good to know that you always can install the dependencies needed for your theme by entering the following in the terminal:
 
 	cd path/to/your/checkout/of/bootstrap-kickstart
 	bower install
@@ -201,7 +216,7 @@ which will:
 
 ## File and folder structure of LESS files
 
-This is s short version of our conventions when ist comes to create bootstrap themes.  Below you’ll find a screenshot from `/assets/less`
+This is s short version of our conventions when it comes to create bootstrap themes.  Below you’ll find a screenshot from `/assets/less`
 
 ![Screenshot](http://f.cl.ly/items/1e2B2v0P1Z0U2E2A3q2g/screenshot-less.png)
 
@@ -232,7 +247,7 @@ Our main LESS file which is the one which is creating our index.css file. This f
 ```
 
 ### base.less
-Is used for (shared definitions) which makes sense when dealing with different themes for one customer/project. The defaults consist only of a few lines.
+Is used for shared definitions which makes sense when dealing with different themes for one customer/project. The defaults consist only of a few lines.
 
 ```css
 // Base styles
@@ -251,7 +266,7 @@ Is used for (shared definitions) which makes sense when dealing with different t
 
 ### customerName.less
 
-We used this file to import the modules/files which defines the actual theme. You could also use this to write down your styles and omit the use of the seperate files laying around in the corresponding folder `customerName`. But thats not a recomondation. See content of `customerName.less`:
+We used this file to import the modules/files which defines the actual theme. You could also use this to write down your styles and omit the use of the seperate files laying around in the corresponding folder `customerName`. But that’s not a recommendation. See content of `customerName.less`:
 
 ```css
 // Override and extend Bootstrap stuff
@@ -303,10 +318,12 @@ This folder holds the modules needed by the theme. The skeleton of such a module
 
 See [footer.less](assets/less/customerName/footer.less) for a »real life« example.
 
-Please have also a look at comments within the following files to get an idea how to handle them:
+There are three files which differ from the regular modules. Please have a look at comments within the following files to get an idea how to handle them:
 
 - [variables.less](assets/less/customerName/variables.less)  
   Used to override bootstrap variables. Make sure to read the comments which describe how to handle this file which can save you lots of time when it comes to a Bootstrap update.
+- [mixins.less](assets/less/customerName/mixins.less)  
+  Holds additional global mixins which are meant to be used accross modules.
 - [scaffolding.less](assets/less/customerName/scaffolding.less)  
   Used to define the most generic html elements. 
 
