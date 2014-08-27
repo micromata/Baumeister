@@ -31,7 +31,7 @@ If that isn’t the case you have to install Node.js first. On OS X I strongly r
 
 ### Bower
 
-Bootstrap and jQuery and other other plugiuns are installed via [Bower](http://bower.io) (»A package manager for the web«). You can check the availability of bower with typing the following into your terminal:
+Bootstrap and jQuery and other plugins are installed via [Bower](http://bower.io) (»A package manager for the web«). You can check the availability of bower with typing the following into your terminal:
 
 	bower --version
 
@@ -103,7 +103,7 @@ releasePatch => `grunt releasePatch` builds the current sources, bumps version n
 releaseMinor => `grunt releaseMinor` builds the current sources, bumps version number (0.1.0) and creates zip.files.
 releaseMajor => `grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.
 ````
-Running those tasks will create a bunch of bunch of directories and files which aren’t under version control. So don’t wonder when the following ressources are created after setting up the project:
+Running those tasks will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following ressources are created after setting up the project:
 
 ````
 bootstrap-kickstart/
