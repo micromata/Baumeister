@@ -1,3 +1,9 @@
+## Version 1.0.2 (2014-08-27)
+
+- Improve Quick guide
+- Fix Bower package
+
+
 ## Version 1.0.1 (2014-08-27)
 
 - Get rid of `v` prefix in tags.
