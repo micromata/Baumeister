@@ -21,7 +21,8 @@
     "themes",
     "kickstart",
     "kickstarter",
-    "micromata"
+    "micromata",
+    "workflow"
   ],
   "dependencies": {
     "bootstrap": "~3.2.0",
