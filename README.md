@@ -162,7 +162,7 @@ See `/Gruntfile.js` to see what happens in Details.
 
 The following isn’t needed after setting up the project because `bower install` is called with `npm install`. See [Setting up the project](#setup).
 
-But it’s good to know that you always can install the dependencies needed for your theme by entering the following in the terminal:
+But it’s good to know that you can always install the dependencies needed for your theme by entering the following in the terminal:
 
 	cd path/to/your/checkout/of/bootstrap-kickstart
 	bower install
