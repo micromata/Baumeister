@@ -164,7 +164,7 @@ I recommend setting up a project within in your editor if you don’t want to se
 ```json
 {
   "folders": [{
-    "path": "/Users/mkuehnel/Documents/Projects/kira",
+    "path": "path/to/your/checkout/of/bootstrap-kickstart",
     "folder_exclude_patterns": [
       "node_modules",
       "server",
