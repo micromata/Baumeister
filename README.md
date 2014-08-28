@@ -157,6 +157,39 @@ bootstrap-kickstart/
 
 See `/Gruntfile.js` to see what happens in Details.
 
+### Setting up your Editor (optionally)
+
+I recommend setting up a project within in your editor if you don’t want to see these generated files cluttered all over your project. In case of Sublime Text it’s as easy as hitting »Project« → »Save Project As …« and adding the following to `projectName.sublime-project`.
+
+```json
+{
+  "folders": [{
+    "path": "/Users/mkuehnel/Documents/Projects/kira",
+    "folder_exclude_patterns": [
+      "node_modules",
+      "server",
+      "dist",
+      "reports",
+      "docs",
+      "assets/css",
+      "libs"
+    ],
+    "file_exclude_patterns": [
+      "assets/js/*.min.js",
+      "assets/js/*.min.js.map",
+      ".*rc",
+      ".editorconfig",
+      ".gitignore",
+      "*.zip",
+      "*.md",
+      "LICENSE",
+      "*.json",
+      "Gruntfile.js"
+    ]
+  }]
+}
+``` 
+
 <a name="using-bower"></a>
 ## Installing and updating external resources with Bower
 
@@ -352,7 +385,6 @@ It depends on you and the CSS you are writing. We still have to support IE8 in a
 ````
 
 Change this according to your needs. And make sure to visit the [Browser and device support](http://getbootstrap.com/getting-started/#support) information provided by Bootstrap.
-
 
 ## Contributing to this project
 
