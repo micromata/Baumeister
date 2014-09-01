@@ -1,0 +1,141 @@
+// Testing media querie helpers defined in variables.less
+// This adds a label in the corners which display the current media query state.
+body:after,
+body:before,
+html:before {
+	background: grey;
+	color: white;
+	content:'undefined';
+	display: inline;
+	.opacity(0.8);
+	padding: .5em 1em;
+	position: absolute;
+	text-align: center;
+	z-index: 9999;
+	font-size: 14px;
+	font-family: verdana, sans-serif;
+}
+
+body {
+	&:after {
+		@media @retina { content:"undefined / retina"; }
+		@media @xs-only {
+			content:"xs-only";
+			left: 0;
+			bottom: 0;
+			@media @retina {
+				content:"xs-only / retina";
+				left: 0;
+				bottom: 0;
+			}
+		}
+		@media @sm-only {
+			content:"sm-only";
+			left: 0;
+			bottom: 0;
+			@media @retina {
+				content:"sm-only / retina";
+				left: 0;
+				bottom: 0;
+			}
+		}
+		@media @md-only {
+			content:"md-only";
+			left: 0;
+			bottom: 0;
+			@media @retina {
+				content:"md-only / retina";
+				left: 0;
+				bottom: 0;
+			}
+		}
+		@media @lg-only {
+			content:"lg-only";
+			left: 0;
+			bottom: 0;
+			@media @retina {
+				content:"lg / retina";
+				left: 0;
+				bottom: 0;
+			}
+		}
+	}
+	&:before {
+		@media @retina { content:"undefined / retina"; }
+		@media @lg-and-below {
+			content:"lg-and-below";
+			left: 0;
+			top: 0;
+			@media @retina {
+				content:"lg-and-below / retina";
+				left: 0;
+				top: 0;
+			}
+		}
+		@media @md-and-below {
+			content:"md-and-below";
+			left: 0;
+			top: 0;
+			@media @retina {
+				content:"md-and-below / retina";
+				left: 0;
+				top: 0;
+			}
+		}
+		@media @sm-and-below {
+			content:"sm-and-below";
+			left: 0;
+			top: 0;
+			@media @retina {
+				content:"sm-and-below / retina";
+				left: 0;
+				top: 0;
+			}
+		}
+	}
+}
+
+html:before {
+	@media @retina { content:"undefined / retina"; }
+	@media @sm-and-above {
+		content:"sm-and-above";
+		right: 0;
+		bottom: 0;
+		@media @retina {
+			content:"sm-and-above / retina";
+			right: 0;
+			bottom: 0;
+		}
+	}
+	@media @md-and-above {
+		content:"md-and-above";
+		right: 0;
+		bottom: 0;
+		@media @retina {
+			content:"md-and-above / retina";
+			right: 0;
+			bottom: 0;
+		}
+	}
+	@media @lg-and-above {
+		content:"lg-and-above";
+		right: 0;
+		bottom: 0;
+		@media @retina {
+			content:"lg-and-above / retina";
+			right: 0;
+			bottom: 0;
+		}
+	}
+	@media @xl-and-above {
+		content:"xl-and-above";
+		right: 0;
+		bottom: 0;
+		@media @retina {
+			content:"xl-and-above / retina";
+			right: 0;
+			bottom: 0;
+		}
+	}
+
+}
