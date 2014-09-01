@@ -153,6 +153,7 @@ module.exports = function(grunt) {
 
 		clean: {
 			less: ['assets/css/index_raw.*'],
+			js: ['assets/js/**/*min.js*'],
 			dist: ['dist', 'server'],
 			server: ['server'],
 			temp: ['temp'],
@@ -524,15 +525,15 @@ module.exports = function(grunt) {
 	// Relase tasks
 	grunt.registerTask('releasePatch',
 		'`grunt releasePatch` builds the current sources, bumps version number (0.0.1) and creates zip.files.',
-		['bump-only:patch', 'build', 'changelog', 'bump-commit', 'compress']
+		['bump-only:patch', 'build', 'clean:js', 'changelog', 'bump-commit', 'compress']
 	);
 	grunt.registerTask('releaseMinor',
 		'`grunt releaseMinor` builds the current sources, bumps version number (0.1.0) and creates zip.files.',
-		['bump-only:minor', 'build', 'changelog', 'bump-commit', 'compress']
+		['bump-only:minor', 'build', 'clean:js', 'changelog', 'bump-commit', 'compress']
 	);
 	grunt.registerTask('releaseMajor',
 		'`grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
-		['bump-only:major', 'build', 'changelog', 'bump-commit', 'compress']
+		['bump-only:major', 'build', 'clean:js', 'changelog', 'bump-commit', 'compress']
 	);
 
 
