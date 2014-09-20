@@ -1,6 +1,8 @@
 #Kickstarter for Bootstrap themes
 
-The aim of this repository is to help you with the creation of Bootstrap themes by providing:
+![Logo](assets/img/bootstrap-kickstart-logo.png)
+
+The aim of this repository is to help you with the creation of Bootstrap themes and sites by providing:
 
 - a file structure with focus on maintainibilty and upgradability
 - a Grunt workflow with the following »features«
