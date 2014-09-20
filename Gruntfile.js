@@ -252,13 +252,7 @@ module.exports = function(grunt) {
 				src: [
 					'*.html',
 					'assets/**/*',
-					'libs/bootstrap/dist/js/**/*',
-					'libs/bootstrap/js/**/*',
-					'libs/bootstrap/fonts/**/*',
-					'libs/html5shiv/dist/**/*',
-					'libs/jquery/dist/**/*',
-					'libs/jquery-placeholder/jquery.placeholder.js',
-					'libs/respondJs/dest/**/*',
+					'libs/**/*',
 				],
 				dest: 'server/'
 			},
@@ -269,13 +263,7 @@ module.exports = function(grunt) {
 					'assets/css/*.css',
 					'assets/fonts/**/*',
 					'assets/img/**/*',
-					'libs/bootstrap/dist/js/**/*',
-					'libs/bootstrap/js/**/*',
-					'libs/bootstrap/fonts/**/*',
-					'libs/html5shiv/dist/**/*',
-					'libs/jquery/dist/**/*',
-					'libs/jquery-placeholder/jquery.placeholder.js',
-					'libs/respondJs/dest/**/*',
+					'libs/**/*',
 				],
 				dest: 'dist/'
 			}
