@@ -21,15 +21,8 @@
     "themes",
     "kickstart",
     "kickstarter",
-    "micromata"
-  ],
-  "ignore": [
-    "bootstrap",
-    "html5-boilerplate",
-    "html5shiv",
-    "jquery",
-    "jquery-placeholder",
-    "respondJs"
+    "micromata",
+    "workflow"
   ],
   "dependencies": {
     "bootstrap": "~3.2.0",

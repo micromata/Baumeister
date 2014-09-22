@@ -1,6 +1,8 @@
 #Kickstarter for Bootstrap themes
 
-The aim of this repository is to help you with the creation of Bootstrap themes by providing:
+![Logo](assets/img/bootstrap-kickstart-logo.png)
+
+The aim of this repository is to help you with the creation of Bootstrap themes and sites by providing:
 
 - a file structure with focus on maintainibilty and upgradability
 - a Grunt workflow with the following »features«
@@ -157,12 +159,45 @@ bootstrap-kickstart/
 
 See `/Gruntfile.js` to see what happens in Details.
 
+### Setting up your Editor (optionally)
+
+I recommend setting up a project within in your editor if you don’t want to see these generated files cluttered all over your project. In case of Sublime Text it’s as easy as hitting »Project« → »Save Project As …« and adding the following to `projectName.sublime-project`.
+
+```json
+{
+  "folders": [{
+    "path": "path/to/your/checkout/of/bootstrap-kickstart",
+    "folder_exclude_patterns": [
+      "node_modules",
+      "server",
+      "dist",
+      "reports",
+      "docs",
+      "assets/css",
+      "libs"
+    ],
+    "file_exclude_patterns": [
+      "assets/js/*.min.js",
+      "assets/js/*.min.js.map",
+      ".*rc",
+      ".editorconfig",
+      ".gitignore",
+      "*.zip",
+      "*.md",
+      "LICENSE",
+      "*.json",
+      "Gruntfile.js"
+    ]
+  }]
+}
+``` 
+
 <a name="using-bower"></a>
 ## Installing and updating external resources with Bower
 
 The following isn’t needed after setting up the project because `bower install` is called with `npm install`. See [Setting up the project](#setup).
 
-But it’s good to know that you always can install the dependencies needed for your theme by entering the following in the terminal:
+But it’s good to know that you can always install the dependencies needed for your theme by entering the following in the terminal:
 
 	cd path/to/your/checkout/of/bootstrap-kickstart
 	bower install
@@ -352,7 +387,6 @@ It depends on you and the CSS you are writing. We still have to support IE8 in a
 ````
 
 Change this according to your needs. And make sure to visit the [Browser and device support](http://getbootstrap.com/getting-started/#support) information provided by Bootstrap.
-
 
 ## Contributing to this project
 
