@@ -98,7 +98,7 @@ module.exports = function(grunt) {
 					src: ['**/*.js', '!**/*min.js'],
 					dest: 'assets/js',
 					ext: '.min.js',
-					extDot: 'first'
+					extDot: 'last'
 				}]
 			},
 			dist : {
@@ -112,7 +112,7 @@ module.exports = function(grunt) {
 					src: ['**/*.js', '!**/*min.js'],
 					dest: 'dist/assets/js',
 					ext: '.min.js',
-					extDot: 'first'
+					extDot: 'last'
 				}]
 			}
 		},
