@@ -1,3 +1,18 @@
+## Version 1.0.3 (2014-09-22)
+
+- Fix filename for minified JavaScript files
+- Add logo
+- Get rid of test images
+- Copy the whole libs directory to server and dist directories
+- Add »divider« comment which remains in compiled CSS
+- Update release tasks
+- Update README
+- Add editor settings to README.md
+- Update Readme
+- Add keyword to bower.json
+- Update bower.json
+
+
 ## Version 1.0.2 (2014-08-27)
 
 - Improve Quick guide
