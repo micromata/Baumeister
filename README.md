@@ -1,3 +1,5 @@
+[![devDependency Status](https://david-dm.org/micromata/bootstrap-kickstart/dev-status.svg)](https://david-dm.org/micromata/bootstrap-kickstart/dev-status.svg)
+
 #Kickstarter for Bootstrap themes
 
 ![Logo](assets/img/bootstrap-kickstart-logo.png)
