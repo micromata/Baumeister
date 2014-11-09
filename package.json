@@ -9,7 +9,7 @@
     "url": "http://www.micromata.de"
   },
   "license": "MIT",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:micromata/bootstrap-kickstart.git"

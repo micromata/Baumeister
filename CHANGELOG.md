@@ -1,3 +1,14 @@
+## Version 1.1.0 (2014-11-09)
+
+- Fire `bower install` via git post-merge hook. Closes #10
+- Validate HTML and lint markup with via Bootlint
+- Auto check status of dev dependencies via badge.
+- Update dev dependencies.
+- Update Bootstrap from 3.2.0 to 3.3.0
+- Fix typo and add newline at end of file.
+- Add own Print-CSS for better accessibility and readability.
+
+
 ## Version 1.0.3 (2014-09-22)
 
 - Fix filename for minified JavaScript files
