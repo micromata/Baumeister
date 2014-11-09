@@ -33,7 +33,8 @@ module.exports = function(grunt) {
 						'sync',
 						'releasePatch',
 						'releaseMinor',
-						'releaseMajor'
+						'releaseMajor',
+						'lint'
 					],
 					descriptions: {
 						'watch':
@@ -45,7 +46,7 @@ module.exports = function(grunt) {
 							'`grunt plato` generates static code analysis charts with plato.'
 					},
 					groups: {
-						'Dev': ['default', 'dev', 'sync', 'server', 'watch','plato', 'jsdoc'],
+						'Dev': ['default', 'dev', 'sync', 'server', 'watch','plato', 'jsdoc', 'lint'],
 						'Production': ['build', 'checkBuild', 'releasePatch', 'releaseMinor', 'releaseMajor'],
 					},
 					sort: [
@@ -376,6 +377,20 @@ module.exports = function(grunt) {
 			}
 		},
 
+		htmllint: {
+			options: {
+				ignore: ['Bad value “X-UA-Compatible” for attribute “http-equiv” on XHTML element “meta”.']
+			},
+			all: ['*.html']
+		},
+
+		bootlint: {
+			options: {
+				stoponerror: true
+			},
+			files: ['*.html']
+		},
+
 		// watch
 		watch: {
 			options: {
@@ -404,7 +419,7 @@ module.exports = function(grunt) {
 			},
 			html: {
 				files: ['*.html'],
-				tasks: ['newer:copy:server'],
+				tasks: ['newer:htmllint', 'newer:bootlint', 'newer:copy:server'],
 				options: {
 					spawn: false,
 				}
@@ -426,16 +441,24 @@ module.exports = function(grunt) {
 		['availabletasks']
 	);
 
-	// grunt.registerTask('dev',
+	// Lint files
+	grunt.registerTask('lint',
+		'`grunt lint` lints JavasScript (JSHint) and HTML files (validate and Bootlint)',
+		[
+			'htmllint',
+			'bootlint',
+			'jshint'
+		]
+	);
 
 	/**
 	 * A task for development
 	 */
 	grunt.registerTask('dev',
-		'`grunt dev` will hint your JS, building sources within the ' +
+		'`grunt dev` will hint your files, build sources within the ' +
 		'assets directory and generating docs / reports.',
 		[
-			'jshint',
+			'lint',
 			'uglify:dev',
 			'less:dev',
 			'autoprefixer',
@@ -488,7 +511,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('build',
 		'`grunt build` builds production ready sources to dist directory.', [
 		'clean:dist',
-		'jshint',
+		'lint',
 		'uglify:dist',
 		'less:dev',
 		'autoprefixer',
