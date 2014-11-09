@@ -391,6 +391,26 @@ module.exports = function(grunt) {
 			files: ['*.html']
 		},
 
+		githooks: {
+			options: {
+				hashbang: '#!/bin/sh',
+				template: 'node_modules/grunt-githooks/templates/shell.hb',
+				startMarker: '## GRUNT-GITHOOKS START',
+				endMarker: '## GRUNT-GITHOOKS END',
+				command: 'PATH=' + process.env.PATH + ' grunt',
+				args: '--no-color'
+			},
+			install: {
+				'pre-commit': 'shell:bowerinstall'
+			}
+		},
+
+		shell: {
+			bowerinstall: {
+				command: 'bower install'
+			}
+		},
+
 		// watch
 		watch: {
 			options: {
