@@ -1,3 +1,8 @@
+## Version 1.1.1 (2014-11-10)
+
+- Fix link to status of dev dependencies.
+- Update grunt-bootlint to latest version (0.5.1)
+
 ## Version 1.1.0 (2014-11-09)
 
 - Fire `bower install` via git post-merge hook. Closes #10
