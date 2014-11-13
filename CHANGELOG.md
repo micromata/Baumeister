@@ -1,3 +1,7 @@
+## Version 1.1.2 (2014-11-13)
+
+- Update Bootstrap from v3.3.0 to v3.3.1
+
 ## Version 1.1.1 (2014-11-10)
 
 - Fix link to status of dev dependencies.
