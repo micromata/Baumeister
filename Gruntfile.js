@@ -164,7 +164,7 @@ module.exports = function(grunt) {
 		connect: {
 			dev: {
 				options: {
-					port: 9000,
+					port: 9001,
 					hostname: 'localhost',
 					base: 'server',
 					open: {
@@ -175,14 +175,14 @@ module.exports = function(grunt) {
 			},
 			sync: {
 				options: {
-					port: 9000,
+					port: 9001,
 					hostname: 'localhost',
 					base: 'server'
 				}
 			},
 			dist: {
 				options: {
-					port: 9001,
+					port: 9002,
 					hostname: 'localhost',
 					base: 'dist',
 					keepalive: true,
