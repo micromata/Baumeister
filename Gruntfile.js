@@ -299,6 +299,9 @@ module.exports = function(grunt) {
 		},
 
 		cacheBust: {
+			options: {
+				rename: false
+			},
 			files: {
 				src: ['server/*.html']
 			}
