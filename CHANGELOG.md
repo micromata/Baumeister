@@ -1,3 +1,10 @@
+## Version 1.1.3 (2014-11-26)
+
+- Fix cachebusting in conjunction with the dev server
+- Change port numbers of dev servers
+- Update dev dependencies
+- Update homepage within package.json
+
 ## Version 1.1.2 (2014-11-13)
 
 - Update Bootstrap from v3.3.0 to v3.3.1
