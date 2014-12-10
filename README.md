@@ -23,6 +23,13 @@ The aim of this repository is to help you with the creation of Bootstrap themes 
 
 For those already using Node, Grunt and stuff.
 
+### via Yeoman
+
+	$ npm install -g generator-bootstrap-kickstart
+	$ yo bootstrap-kickstart
+	
+See: <https://github.com/micromata/generator-bootstrap-kickstart>
+
 ### via Git
 
 	$ git clone https://github.com/micromata/bootstrap-kickstart.git
