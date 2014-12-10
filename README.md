@@ -26,6 +26,7 @@ For those already using Node, Grunt and stuff.
 ### via Git
 
 	$ git clone https://github.com/micromata/bootstrap-kickstart.git
+	$ cd bootstrap-kickstart
 	$ npm install
 	$ grunt tasks
 
