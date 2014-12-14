@@ -21,10 +21,11 @@ The aim of this repository is to help you with the creation of Bootstrap themes 
 
 ## Quick install guide 
 
-For those already using Node, Grunt and stuff.
+For those already using Node, Grunt, Bower and stuff.
 
 ### via Yeoman
 
+	$ npm install -g yo
 	$ npm install -g generator-bootstrap-kickstart
 	$ yo bootstrap-kickstart
 	
