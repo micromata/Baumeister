@@ -123,12 +123,12 @@ module.exports = function(grunt) {
 			dev: {
 				options: {
 					sourceMap: true,
-					sourceMapFilename: "assets/css/index_raw.css.map",
-					sourceMapURL: "index_raw.css.map",
-					sourceMapRootpath: "../../"
+					sourceMapFilename: 'assets/css/index_raw.css.map',
+					sourceMapURL: 'index_raw.css.map',
+					sourceMapRootpath: '../../'
 				},
 				files: {
-					"assets/css/index_raw.css": "assets/less/index.less"
+					'assets/css/index_raw.css': 'assets/less/index.less'
 				}
 			}
 		},
