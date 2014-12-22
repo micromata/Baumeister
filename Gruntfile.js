@@ -260,7 +260,6 @@ module.exports = function(grunt) {
 			dist: {
 				expand: true,
 				src: [
-					'*.html',
 					'assets/css/*.css',
 					'assets/fonts/**/*',
 					'assets/img/**/*',
