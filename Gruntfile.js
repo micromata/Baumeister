@@ -376,7 +376,7 @@ module.exports = function(grunt) {
 				args: '--no-color'
 			},
 			install: {
-				'pre-commit': 'shell:bowerinstall'
+				'post-merge': 'shell:bowerinstall'
 			}
 		},
 
@@ -528,6 +528,5 @@ module.exports = function(grunt) {
 		'`grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
 		['bump-only:major', 'build', 'clean:js', 'changelog', 'bump-commit', 'compress']
 	);
-
 
 };
