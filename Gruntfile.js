@@ -87,34 +87,28 @@ module.exports = function(grunt) {
 						' * m.kuehnel@micromata.de\n' +
 						' * Copyright ©2014 Micromata GmbH\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */'
+						' */',
+				sourceMap: true,
+				sourceMapIncludeSources: true,
+				compress: {
+					drop_console: true,
+					drop_debugger: true
+				}
 			},
-			dev : {
-				options: {
-					sourceMap: true,
-				},
+			minify : {
 				files: [{
 					expand: true,
 					cwd: 'assets/js',
-					src: ['**/*.js', '!**/*min.js'],
-					dest: 'assets/js',
-					ext: '.min.js',
-					extDot: 'last'
-				}]
-			},
-			dist : {
-				options: {
-					banner: '<%= uglify.options.banner %>\n',
-					compress: { drop_console: true },
-				},
-				files: [{
-					expand: true,
-					cwd: 'assets/js',
-					src: ['**/*.js', '!**/*min.js'],
+					src: ['**/*.js'],
 					dest: 'dist/assets/js',
 					ext: '.min.js',
 					extDot: 'last'
 				}]
+			},
+			concatenate : {
+				files: {
+					'dist/assets/js/built.min.js': ['assets/js/**/*.js']
+				}
 			}
 		},
 
@@ -420,7 +414,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['newer:jshint', 'newer:uglify:dev', 'newer:copy:server'],
+				tasks: ['newer:jshint', 'newer:copy:server'],
 				options: {
 					spawn: false
 				}
@@ -481,7 +475,6 @@ module.exports = function(grunt) {
 		'assets directory and generating docs / reports.',
 		[
 			'lint',
-			'uglify:dev',
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
@@ -534,7 +527,8 @@ module.exports = function(grunt) {
 		'`grunt build` builds production ready sources to dist directory.', [
 		'clean:dist',
 		'lint',
-		'uglify:dist',
+		'uglify:minify',
+		'uglify:concatenate',
 		'less:dev',
 		'autoprefixer',
 		'clean:less',
