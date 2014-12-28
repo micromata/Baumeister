@@ -150,7 +150,6 @@ module.exports = function(grunt) {
 			less: ['assets/css/index_raw.*'],
 			js: ['assets/js/**/*min.js*'],
 			dist: ['dist', 'server'],
-			server: ['server'],
 			temp: ['temp'],
 		},
 
@@ -160,7 +159,6 @@ module.exports = function(grunt) {
 				options: {
 					port: 9001,
 					hostname: 'localhost',
-					base: 'server',
 					open: {
 						 target: 'http://<%= connect.dev.options.hostname %>:' +
 						 '<%= connect.dev.options.port %>',
@@ -171,7 +169,6 @@ module.exports = function(grunt) {
 				options: {
 					port: 9001,
 					hostname: 'localhost',
-					base: 'server'
 				}
 			},
 			dist: {
@@ -242,15 +239,6 @@ module.exports = function(grunt) {
 		},
 
 		copy: {
-			server: {
-				expand: true,
-				src: [
-					'*.html',
-					'assets/**/*',
-					'libs/**/*',
-				],
-				dest: 'server/'
-			},
 			dist: {
 				expand: true,
 				src: [
@@ -288,15 +276,6 @@ module.exports = function(grunt) {
 						'test/**/*.js'
 					]
 				}
-			}
-		},
-
-		cacheBust: {
-			options: {
-				rename: false
-			},
-			files: {
-				src: ['server/*.html']
 			}
 		},
 
@@ -414,7 +393,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['newer:jshint', 'newer:copy:server'],
+				tasks: ['newer:jshint'],
 				options: {
 					spawn: false
 				}
@@ -428,21 +407,14 @@ module.exports = function(grunt) {
 			},
 			css: {
 				files: ['assets/less/**/*.less'],
-				tasks: ['newer:less:dev', 'newer:autoprefixer', 'clean:less', 'newer:copy:server'],
+				tasks: ['less:dev', 'autoprefixer', 'clean:less'],
 				options: {
 					spawn: false
 				}
 			},
 			html: {
 				files: ['*.html'],
-				tasks: ['newer:htmllint', 'newer:bootlint', 'newer:copy:server'],
-				options: {
-					spawn: false,
-				}
-			},
-			images: {
-				files: ['assets/img/**/*.{png,jpg,gif}'],
-				tasks: ['newer:copy:server'],
+				tasks: ['newer:htmllint', 'newer:bootlint'],
 				options: {
 					spawn: false,
 				}
@@ -487,9 +459,6 @@ module.exports = function(grunt) {
 	grunt.registerTask('server',
 		'`grunt server` starts a local dev server and runs `grunt watch`',
 		[
-			'clean:server',
-			'copy:server',
-			'cacheBust',
 			'connect:dev',
 			'watch'
 		]
@@ -500,9 +469,6 @@ module.exports = function(grunt) {
 		'`grunt sync` starts a local dev server, sync browsers and runs `grunt watch`',
 		[
 			'dev',
-			'clean:server',
-			'copy:server',
-			'cacheBust',
 			'connect:sync',
 			'browserSync',
 			'watch'
