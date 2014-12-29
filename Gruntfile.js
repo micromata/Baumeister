@@ -212,12 +212,7 @@ module.exports = function(grunt) {
 		cssmin: {
 			assets: {
 				options: {
-					keepSpecialComments: 0,
-					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * m.kuehnel@micromata.de\n' +
-						' * Copyright ©2014 Micromata GmbH\n' +
-						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */'
+					keepSpecialComments: 0
 				},
 				files: {
 					'dist/assets/css/index.uncss.min.css': ['temp/index.css'],
@@ -226,16 +221,41 @@ module.exports = function(grunt) {
 			},
 			bower: {
 				options: {
-					keepSpecialComments: 0,
+					keepSpecialComments: 0
+				},
+				files: {
+					'dist/libs/libs.css': ['dist/libs/libs.css']
+				}
+			}
+		},
+
+		usebanner: {
+			assets: {
+				options: {
+					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+						' * m.kuehnel@micromata.de\n' +
+						' * Copyright ©2014 Micromata GmbH\n' +
+						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+						' */'
+				},
+				files: {
+					src: [
+						'dist/assets/css/index.uncss.min.css',
+						'dist/assets/css/index.min.css'
+					]
+				}
+			},
+			bower: {
+				options: {
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
 						' * m.kuehnel@micromata.de\n' +
 						' * – Contatenated libs –  \n' +
 						' * Copyright ©2014 Micromata GmbH\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */',
+						' */'
 				},
 				files: {
-					'dist/libs/libs.css': ['dist/libs/libs.css']
+					src: ['dist/libs/libs.css']
 				}
 			}
 		},
@@ -555,6 +575,7 @@ module.exports = function(grunt) {
 		'bower_concat',
 		'uglify:bower',
 		'cssmin:bower',
+		'usebanner',
 		'clean:temp',
 		'plato',
 		'jsdoc'
