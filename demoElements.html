@@ -713,17 +713,16 @@
 
 	<!--
 	JavaScript
-    =======================================================
+	=======================================================
 	Placed at the end of the document. Performance reasons.
+	Non minified/merged versions for debugging purposes are
+	replaced in the production ready build.
 	-->
-	<script src="libs/jquery/dist/jquery.min.js"></script>
-	<script src="libs/jquery-placeholder/jquery.placeholder.js"></script>
 
-	<!--
-	Bootstrap core JavaScript
-	Non minified/merged versions for debugging purposes.
-	-->
-	<!-- build:js:dist libs/bootstrap/dist/js/bootstrap.min.js -->
+	<!-- Libs -->
+	<!-- build:js:dist libs/libs.js -->
+	<script src="libs/jquery/dist/jquery.js"></script>
+	<script src="libs/jquery-placeholder/jquery.placeholder.js"></script>
 	<script src="libs/bootstrap/js/affix.js"></script>
 	<script src="libs/bootstrap/js/alert.js"></script>
 	<script src="libs/bootstrap/js/button.js"></script>

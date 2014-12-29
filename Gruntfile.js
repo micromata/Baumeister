@@ -95,7 +95,7 @@ module.exports = function(grunt) {
 					drop_debugger: true
 				}
 			},
-			minify : {
+			minify: {
 				files: [{
 					expand: true,
 					cwd: 'assets/js',
@@ -105,9 +105,23 @@ module.exports = function(grunt) {
 					extDot: 'last'
 				}]
 			},
-			concatenate : {
+			concatenate: {
 				files: {
 					'dist/assets/js/built.min.js': ['assets/js/**/*.js']
+				}
+			},
+			bower: {
+				options: {
+					sourceMap: false,
+					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+						' * m.kuehnel@micromata.de\n' +
+						' * – Contatenated libs –  \n' +
+						' * Copyright ©2014 Micromata GmbH\n' +
+						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+						' */',
+				},
+				files: {
+					'dist/libs/libs.js': ['dist/libs/libs.js']
 				}
 			}
 		},
@@ -196,7 +210,7 @@ module.exports = function(grunt) {
 		},
 
 		cssmin: {
-			dist: {
+			assets: {
 				options: {
 					keepSpecialComments: 0,
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
@@ -208,6 +222,20 @@ module.exports = function(grunt) {
 				files: {
 					'dist/assets/css/index.uncss.min.css': ['temp/index.css'],
 					'dist/assets/css/index.min.css': ['assets/css/index.css'],
+				}
+			},
+			bower: {
+				options: {
+					keepSpecialComments: 0,
+					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+						' * m.kuehnel@micromata.de\n' +
+						' * – Contatenated libs –  \n' +
+						' * Copyright ©2014 Micromata GmbH\n' +
+						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+						' */',
+				},
+				files: {
+					'dist/libs/libs.css': ['dist/libs/libs.css']
 				}
 			}
 		},
@@ -239,15 +267,36 @@ module.exports = function(grunt) {
 		},
 
 		copy: {
-			dist: {
+			assets: {
 				expand: true,
 				src: [
 					'assets/css/*.min.css',
 					'assets/fonts/**/*',
 					'assets/img/**/*',
-					'libs/**/*',
+					// Bower libs needed for oldIEs. The rest is concatenated via the bower_concat task.
+					'libs/html5shiv/dist/html5shiv-printshiv.min.js',
+					'libs/respondJs/dest/respond.min.js',
 				],
 				dest: 'dist/'
+			},
+		},
+
+		bower_concat: {
+			dist: {
+				// These are minified afterwards with `cssmin:bower` and `uglify:bower`.
+				// Because Chrome Dev Tools will throw an 404 regarding the missing sourcemaps if
+				// we use the already minified versions. Yep, that’s ugly.
+				dest: 'dist/libs/libs.js',
+				cssDest: 'dist/libs/libs.css',
+				include: [
+					'jquery',
+					'bootstrap',
+					'jquery-placeholder'
+				],
+				mainFiles: {
+					'jquery': ['dist/jquery.js'],
+					'bootstrap': ['dist/js/bootstrap.js']
+				}
 			}
 		},
 
@@ -499,10 +548,13 @@ module.exports = function(grunt) {
 		'autoprefixer',
 		'clean:less',
 		'uncss',
-		'cssmin',
+		'cssmin:assets',
 		'imagemin',
 		'processhtml',
-		'copy:dist',
+		'copy',
+		'bower_concat',
+		'uglify:bower',
+		'cssmin:bower',
 		'clean:temp',
 		'plato',
 		'jsdoc'

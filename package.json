@@ -24,6 +24,7 @@
     "grunt-autoprefixer": "^2.0.0",
     "grunt-available-tasks": "^0.5.4",
     "grunt-bootlint": "^0.6.0",
+    "grunt-bower-concat": "^0.4.0",
     "grunt-browser-sync": "^1.5.3",
     "grunt-bump": "~0.0.16",
     "grunt-changelog": "^0.2.2",
