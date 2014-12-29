@@ -1,3 +1,21 @@
+## Version 1.2.0 (2014-12-29)
+
+- Use `grunt-banner` to bring back CSS banners
+- Concatenate and minify bower libs in production built.
+- Fix git hook
+- Grunt performance → Get rid of server directory and cachebusting
+- Update dev dependencies.
+- Use original Bootstrap JS modules in development …
+- Change uglifiying tasks
+- Prevent copying non minified CSS to dist directory
+- Prevent copying of html files.
+- Single quotes all over …
+- Update Readme.
+- Update Readme
+- Added cd to the git install instructions
+- Changed git-fork from ssh to https for non registered users
+- Release v1.1.3
+
 ## Version 1.1.3 (2014-11-26)
 
 - Fix cachebusting in conjunction with the dev server
