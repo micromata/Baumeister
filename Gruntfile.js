@@ -85,7 +85,7 @@ module.exports = function(grunt) {
 			options: {
 				banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
 						' * m.kuehnel@micromata.de\n' +
-						' * Copyright ©2014 Micromata GmbH\n' +
+						' * Copyright ©<%= grunt.template.today("yyyy") %> Micromata GmbH\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */',
 				sourceMap: true,
@@ -116,7 +116,7 @@ module.exports = function(grunt) {
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
 						' * m.kuehnel@micromata.de\n' +
 						' * – Contatenated libs –  \n' +
-						' * Copyright ©2014 Micromata GmbH\n' +
+						' * Copyright ©<%= grunt.template.today("yyyy") %> Micromata GmbH\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */',
 				},
@@ -234,7 +234,7 @@ module.exports = function(grunt) {
 				options: {
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
 						' * m.kuehnel@micromata.de\n' +
-						' * Copyright ©2014 Micromata GmbH\n' +
+						' * Copyright ©<%= grunt.template.today("yyyy") %> Micromata GmbH\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */'
 				},
@@ -250,7 +250,7 @@ module.exports = function(grunt) {
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
 						' * m.kuehnel@micromata.de\n' +
 						' * – Contatenated libs –  \n' +
-						' * Copyright ©2014 Micromata GmbH\n' +
+						' * Copyright ©<%= grunt.template.today("yyyy") %> Micromata GmbH\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */'
 				},
