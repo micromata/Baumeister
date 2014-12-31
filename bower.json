@@ -26,12 +26,12 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.1",
-    "jquery": "^1.11.1",
+    "jquery": "^1.11.2",
     "html5shiv": "^3.7.2",
     "respondJs": "~1.4.2",
-    "jquery-placeholder": "2.0.8"
+    "jquery-placeholder": "~2.1.0"
   },
   "resolutions": {
-    "jquery": "1.11.1"
+    "jquery": "1.11.2"
   }
 }
