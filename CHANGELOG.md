@@ -1,3 +1,11 @@
+## Version 1.3.0 (2014-12-31)
+
+- Add missing linebreak between banner and code
+- Make output paths configurable
+- Update jquery-placeholder
+- Get rid of hardcoded © year
+- Release v1.2.0
+
 ## Version 1.2.0 (2014-12-29)
 
 - Use `grunt-banner` to bring back CSS banners
