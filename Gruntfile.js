@@ -127,7 +127,7 @@ module.exports = function(grunt) {
 						' * – Contatenated libs –  \n' +
 						' * Copyright ©<%= grunt.template.today("yyyy") %> Micromata GmbH\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */',
+						' */\n',
 				},
 				files: {
 					'<%= config.dist %>/libs/libs.js': ['<%= config.dist %>/libs/libs.js']
