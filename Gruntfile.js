@@ -14,7 +14,16 @@ module.exports = function(grunt) {
 	// Config
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+
+		// Need a copy to handle release tasks
 		pkpCopy: grunt.file.readJSON('package.json'),
+
+		// Configurable paths
+		config: {
+			dist: 'dist',
+			reports: 'reports',
+			docs: 'docs'
+		},
 
 		// List available tasks
 		availabletasks: {
@@ -100,14 +109,14 @@ module.exports = function(grunt) {
 					expand: true,
 					cwd: 'assets/js',
 					src: ['**/*.js'],
-					dest: 'dist/assets/js',
+					dest: '<%= config.dist %>/assets/js',
 					ext: '.min.js',
 					extDot: 'last'
 				}]
 			},
 			concatenate: {
 				files: {
-					'dist/assets/js/built.min.js': ['assets/js/**/*.js']
+					'<%= config.dist %>/assets/js/built.min.js': ['assets/js/**/*.js']
 				}
 			},
 			bower: {
@@ -121,7 +130,7 @@ module.exports = function(grunt) {
 						' */',
 				},
 				files: {
-					'dist/libs/libs.js': ['dist/libs/libs.js']
+					'<%= config.dist %>/libs/libs.js': ['<%= config.dist %>/libs/libs.js']
 				}
 			}
 		},
@@ -163,7 +172,7 @@ module.exports = function(grunt) {
 		clean: {
 			less: ['assets/css/index_raw.*'],
 			js: ['assets/js/**/*min.js*'],
-			dist: ['dist', 'server'],
+			dist: ['<%= config.dist %>'],
 			temp: ['temp'],
 		},
 
@@ -189,7 +198,7 @@ module.exports = function(grunt) {
 				options: {
 					port: 9002,
 					hostname: 'localhost',
-					base: 'dist',
+					base: '<%= config.dist %>',
 					keepalive: true,
 					open: {
 						 target: 'http://<%= connect.dev.options.hostname %>:' +
@@ -215,8 +224,8 @@ module.exports = function(grunt) {
 					keepSpecialComments: 0
 				},
 				files: {
-					'dist/assets/css/index.uncss.min.css': ['temp/index.css'],
-					'dist/assets/css/index.min.css': ['assets/css/index.css'],
+					'<%= config.dist %>/assets/css/index.uncss.min.css': ['temp/index.css'],
+					'<%= config.dist %>/assets/css/index.min.css': ['assets/css/index.css'],
 				}
 			},
 			bower: {
@@ -224,7 +233,7 @@ module.exports = function(grunt) {
 					keepSpecialComments: 0
 				},
 				files: {
-					'dist/libs/libs.css': ['dist/libs/libs.css']
+					'<%= config.dist %>/libs/libs.css': ['<%= config.dist %>/libs/libs.css']
 				}
 			}
 		},
@@ -240,8 +249,8 @@ module.exports = function(grunt) {
 				},
 				files: {
 					src: [
-						'dist/assets/css/index.uncss.min.css',
-						'dist/assets/css/index.min.css'
+						'<%= config.dist %>/assets/css/index.uncss.min.css',
+						'<%= config.dist %>/assets/css/index.min.css'
 					]
 				}
 			},
@@ -255,7 +264,7 @@ module.exports = function(grunt) {
 						' */'
 				},
 				files: {
-					src: ['dist/libs/libs.css']
+					src: ['<%= config.dist %>/libs/libs.css']
 				}
 			}
 		},
@@ -267,7 +276,7 @@ module.exports = function(grunt) {
 					expand: true, // Enable dynamic expansion
 					cwd: 'assets/img', // Src matches are relative to this path
 					src: ['**/*.{png,jpg,gif}'], // Actual patterns to match
-					dest: 'dist/assets/img' // Destination path prefix
+					dest: '<%= config.dist %>/assets/img' // Destination path prefix
 				}]
 			}
 		},
@@ -280,7 +289,7 @@ module.exports = function(grunt) {
 						src: [
 							'*.html'
 						],
-						dest: 'dist/'
+						dest: '<%= config.dist %>/'
 					},
 				]
 			}
@@ -297,7 +306,7 @@ module.exports = function(grunt) {
 					'libs/html5shiv/dist/html5shiv-printshiv.min.js',
 					'libs/respondJs/dest/respond.min.js',
 				],
-				dest: 'dist/'
+				dest: '<%= config.dist %>/'
 			},
 		},
 
@@ -306,8 +315,8 @@ module.exports = function(grunt) {
 				// These are minified afterwards with `cssmin:bower` and `uglify:bower`.
 				// Because Chrome Dev Tools will throw an 404 regarding the missing sourcemaps if
 				// we use the already minified versions. Yep, that’s ugly.
-				dest: 'dist/libs/libs.js',
-				cssDest: 'dist/libs/libs.css',
+				dest: '<%= config.dist %>/libs/libs.js',
+				cssDest: '<%= config.dist %>/libs/libs.css',
 				include: [
 					'jquery',
 					'bootstrap',
@@ -328,7 +337,7 @@ module.exports = function(grunt) {
 					'test/**/*.js'
 				],
 				options: {
-					destination: 'docs'
+					destination: '<%= config.docs %>'
 				}
 			}
 		},
@@ -339,7 +348,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				files: {
-					'reports/': [
+					'<%= config.reports %>': [
 						'assets/js/**/*.js',
 						'!assets/js/**/*.min.js',
 						'test/**/*.js'
@@ -374,7 +383,7 @@ module.exports = function(grunt) {
 					archive: 'dist-v<%= pkg.version %>.zip'
 				},
 				files: [{
-					src: ['dist/**'],
+					src: ['<%= config.dist %>/**'],
 					dest: './'
 				}]
 			},
