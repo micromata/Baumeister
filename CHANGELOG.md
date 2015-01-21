@@ -1,3 +1,12 @@
+# Changelog
+
+## Version 1.3.1 (2015-01-22)
+
+- 87aaa8a - 2015-01-22: Update dependencies
+- 965978e - 2015-01-21: Add Twitter badge
+- ae03536 - 2015-01-20: Update Bootstrap from 3.3.1 to 3.3.2
+- bb8755d - 2014-12-31: Release v1.3.0
+
 ## Version 1.3.0 (2014-12-31)
 
 - Add missing linebreak between banner and code
