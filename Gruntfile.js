@@ -402,21 +402,23 @@ module.exports = function(grunt) {
 			options: {
 				files: ['package.json', 'bower.json'],
 				updateConfigs: ['pkg'],
-				// commit: false,
 				commitMessage: 'Release v%VERSION%',
 				commitFiles: ['package.json', 'bower.json', 'CHANGELOG.md'],
-				// createTag: false,
 				tagName: '%VERSION%',
-				tagMessage: 'Version v%VERSION%',
+				tagMessage: 'Release v%VERSION%',
 				push: false,
-				// pushTo: 'origin',
-				// gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
 			}
 		},
 
 		changelog: {
 			release: {
 				options: {
+					fileHeader: '# Changelog',
+					logArguments: [
+						'--pretty=%h - %ad: %s',
+						'--no-merges',
+						'--date=short'
+					],
 					after: '<%= pkpCopy.version %>',
 					dest : 'CHANGELOG.md',
 					insertType: 'prepend',
@@ -424,7 +426,7 @@ module.exports = function(grunt) {
 					featureRegex: /^(.*)$/gim,
 					partials: {
 						features: '{{#if features}}{{#each features}}{{> feature}}{{/each}}{{else}}{{> empty}}{{/if}}\n',
-						feature: '- {{{this}}}\n'
+						feature: '- {{{this}}} {{this.date}}\n'
 					}
 				}
 			}
