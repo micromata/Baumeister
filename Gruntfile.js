@@ -124,7 +124,7 @@ module.exports = function(grunt) {
 					sourceMap: false,
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
 						' * m.kuehnel@micromata.de\n' +
-						' * – Contatenated libs –  \n' +
+						' * – Concatenated libs –  \n' +
 						' * Copyright ©<%= grunt.template.today("yyyy") %> Micromata GmbH\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */\n',
@@ -258,7 +258,7 @@ module.exports = function(grunt) {
 				options: {
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
 						' * m.kuehnel@micromata.de\n' +
-						' * – Contatenated libs –  \n' +
+						' * – Concatenated libs –  \n' +
 						' * Copyright ©<%= grunt.template.today("yyyy") %> Micromata GmbH\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */'
