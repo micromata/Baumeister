@@ -108,7 +108,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: 'assets/js',
-					src: ['**/*.js'],
+					src: ['**/*.js', '!**/*.min.js'],
 					dest: '<%= config.dist %>/assets/js',
 					ext: '.min.js',
 					extDot: 'last'
