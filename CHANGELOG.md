@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 1.3.2 (2015-04-18)
+
+- fb3dd4b - 2015-04-18: Update dev dependencies
+- dd26125 - 2015-01-26: Prevent minifying of minified sources :persevere:
+- b41c075 - 2015-01-26: Fix typo
+- abc8542 - 2015-01-22: Release v1.3.1
+
 ## Version 1.3.1 (2015-01-22)
 
 - 87aaa8a - 2015-01-22: Update dependencies
