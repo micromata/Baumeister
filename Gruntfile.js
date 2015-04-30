@@ -93,8 +93,8 @@ module.exports = function(grunt) {
 		uglify: {
 			options: {
 				banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * m.kuehnel@micromata.de\n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> Micromata GmbH\n' +
+						' * <%= pkg.author.email %>\n' +
+						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */',
 				sourceMap: true,
@@ -123,9 +123,9 @@ module.exports = function(grunt) {
 				options: {
 					sourceMap: false,
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * m.kuehnel@micromata.de\n' +
+						' * <%= pkg.author.email %>\n' +
 						' * – Concatenated libs –  \n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> Micromata GmbH\n' +
+						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */\n',
 				},
@@ -242,8 +242,8 @@ module.exports = function(grunt) {
 			assets: {
 				options: {
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * m.kuehnel@micromata.de\n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> Micromata GmbH\n' +
+						' * <%= pkg.author.email %>\n' +
+						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */'
 				},
@@ -257,9 +257,9 @@ module.exports = function(grunt) {
 			bower: {
 				options: {
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * m.kuehnel@micromata.de\n' +
+						' * <%= pkg.author.email %>\n' +
 						' * – Concatenated libs –  \n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> Micromata GmbH\n' +
+						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
 						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */'
 				},
