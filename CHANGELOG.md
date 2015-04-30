@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.3.3 (2015-04-30)
+
+- 03d2c76 - 2015-04-30: replaced static copyright notice with variables from package.json
+- 8cfe136 - 2015-04-18: Release v1.3.2
+
 ## Version 1.3.2 (2015-04-18)
 
 - fb3dd4b - 2015-04-18: Update dev dependencies
