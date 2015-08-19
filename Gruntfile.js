@@ -296,12 +296,14 @@ module.exports = function(grunt) {
 		},
 
 		copy: {
-			assets: {
+			dist: {
 				expand: true,
 				src: [
 					'assets/css/*.min.css',
 					'assets/fonts/**/*',
 					'assets/img/**/*',
+					// Bootstrap fonts
+					'libs/bootstrap/fonts/*',
 					// Bower libs needed for oldIEs. The rest is concatenated via the bower_concat task.
 					'libs/html5shiv/dist/html5shiv-printshiv.min.js',
 					'libs/respondJs/dest/respond.min.js',
