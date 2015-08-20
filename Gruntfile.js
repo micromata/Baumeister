@@ -108,7 +108,11 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: 'assets/js',
-					src: ['**/*.js', '!**/*.min.js'],
+					src: [
+						'**/*.js',
+						'!moduleSkeleton.js',
+						'!**/*.min.js'
+					],
 					dest: '<%= config.dist %>/assets/js',
 					ext: '.min.js',
 					extDot: 'last'
@@ -116,7 +120,11 @@ module.exports = function(grunt) {
 			},
 			concatenate: {
 				files: {
-					'<%= config.dist %>/assets/js/built.min.js': ['assets/js/**/*.js']
+					'<%= config.dist %>/assets/js/built.min.js': [
+						'assets/js/**/*.js',
+						'!assets/js/moduleSkeleton.js',
+						'!assets/js/**/*.min.js'
+					]
 				}
 			},
 			bower: {
