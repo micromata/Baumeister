@@ -1,7 +1,7 @@
 /**
- * @file An example module extending the the functionality of Bootstraps »Foo«
- * module or an own module which has nothing to do with Bootstraps JavaScript
- * code.
+ * @file Just an example module which could be used to extend the functionality
+ * of a Bootstrap module or as an own module which has nothing to do with
+ * Bootstraps JavaScript code.
  * @author Michael Kühnel <m.kuehnel@micromata.de>
  */
 
