@@ -53,6 +53,6 @@
     "time-grunt": "^1.1.1"
   },
   "scripts": {
-    "postinstall": "bower install & grunt githooks"
+    "postinstall": "chmod u+x .postinstall.js && ./.postinstall.js"
   }
 }
