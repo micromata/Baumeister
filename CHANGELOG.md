@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 1.3.4 (2015-08-26)
+
+- b2a6825 - 2015-08-26: Rename `customerName` with `theme` 
+- a073b8c - 2015-08-26: Update variables from Bootstrap 3.3.5 
+- e8f611b - 2015-08-26: Update bower components 
+- 2d6088b - 2015-08-26: Make sure release tasks run properly via npm `postinstall` 
+- f60e0d7 - 2015-08-20: Release tasks now commit all changed files 
+- 56ef716 - 2015-08-20: Exclude moduleSkeleton.js from build 
+- fc0303d - 2015-08-20: Give module.js a more appropriate name 
+- fdf2dea - 2015-08-19: Copy Glyphicon fonts from Bootstrap to `dist` directory 
+- 34401e5 - 2015-08-19: Fix copy paste error in LESS modules comment 
+- a029ba9 - 2015-08-19: Add OS releated files to .gitignore 
+- a4af926 - 2015-05-08: Fixed reduced test case link 
+
+
 ## Version 1.3.3 (2015-04-30)
 
 - 03d2c76 - 2015-04-30: replaced static copyright notice with variables from package.json
