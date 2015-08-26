@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.3.5 (2015-08-26)
+
+- e1f404b - 2015-08-26: Update dev dependencies 
+
+
 ## Version 1.3.4 (2015-08-26)
 
 - b2a6825 - 2015-08-26: Rename `customerName` with `theme` 
