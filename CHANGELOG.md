@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.3.6 (2015-08-30)
+
+- 96b00d1 - 2015-08-30: Missed a few things in b2a6825f 
+
+
 ## Version 1.3.5 (2015-08-26)
 
 - e1f404b - 2015-08-26: Update dev dependencies 
