@@ -8,16 +8,16 @@ The aim of this repository is to help you with the creation of Bootstrap themes 
 
 - a file structure with focus on maintainibilty and upgradability
 - a Grunt workflow with the following »features«
-  - compile and minify our code
-  - add sourcemaps for JavaScript and CSS
-  - get rid of `console` output in production files
-  - add vendor prefixes
-  - optimize images (lossless)
-  - start a local server
-  - keep browsers in sync
-  - delete unused CSS (optional)
-  - release new versions
-  - and more.
+	- compile and minify our code
+	- add sourcemaps for JavaScript and CSS
+	- get rid of `console` output in production files
+	- add vendor prefixes
+	- optimize images (lossless)
+	- start a local server
+	- keep browsers in sync
+	- delete unused CSS (optional)
+	- release new versions
+	- and more.
 
 ## Quick install guide 
 
@@ -95,19 +95,19 @@ Like Bootstrap itself this project uses [Grunt](http://gruntjs.com/) for its bui
 
 Thanks do Node.js and npm installing the Grunt command line tools globally is just this simple one-liner:
 
-    npm install -g grunt-cli
-    
+	npm install -g grunt-cli
+		
 <a name="setup"></a>
 ## Setting up the project
 
 Navigate to the root of your checkout:
 
-    cd path/to/your/checkout/of/bootstrap-kickstart
+	cd path/to/your/checkout/of/bootstrap-kickstart
 
 and call:
 
-    npm install
-    
+	npm install
+		
 npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our grunt workflow to `\node_modules`.
 
 Afterwards it will call `bower install` which will look at `bower.json` and install the necessary frontend dependencies needed to build our Bootstrap theme to `\libs`.
@@ -120,7 +120,7 @@ When completed the setup, you'll be able to run the various Grunt tasks provided
 
 Just type the following to get an overview about the available Tasks:
  
-    grunt tasks
+	grunt tasks
 
 This will give you the main Grunt tasks which are ready for you to be fired from the terminal (grouped into »Dev« and »Production« Tasks):
 
@@ -222,13 +222,13 @@ It might be needed to call `bower install` after dependencies are added and used
 
 You can change the version of the external resources by editing the `bower.json` file within the root directory of the project.
 
-    "dependencies": {
-        "bootstrap": "~3.2.0",
-        "jquery": "^1.11.1",
-        "html5shiv": "^3.7.2",
-        "respondJs": "~1.4.2",
-        "jquery-placeholder": "2.0.8"
-    }
+	"dependencies": {
+	  "bootstrap": "~3.2.0",
+	  "jquery": "^1.11.1",
+	  "html5shiv": "^3.7.2",
+	  "respondJs": "~1.4.2",
+	  "jquery-placeholder": "2.0.8"
+	}
 
 The tilde `~` means: Install the latest version including patch-releases.
 The caret `^` means: Install the latest version including minor-releases.
@@ -245,25 +245,25 @@ Let’s assume you like to add even more responsiveness to your tables as provid
 
 This is how you get the files into your `/libs` directory and define the dependency  in the `bower.json` file. 
 
-    cd path/to/your/checkout/of/bootstrap-kickstart
-    bower search tablesaw
-    
-This leads to omething like:
+	cd path/to/your/checkout/of/bootstrap-kickstart
+	bower search tablesaw
+		
+This leads to something like:
 
 ````
 Search results:
 
-    overthrow git://github.com/filamentgroup/Overthrow
-    filament-fixed git://github.com/filamentgroup/fixed-fixed.git
-    filament-sticky git://github.com/filamentgroup/fixed-sticky.git
-    filament-dialog git://github.com/filamentgroup/dialog.git
-    tablesaw git://github.com/filamentgroup/tablesaw.git
-    social-count git://github.com/filamentgroup/SocialCount.git
+overthrow git://github.com/filamentgroup/Overthrow
+filament-fixed git://github.com/filamentgroup/fixed-fixed.git
+filament-sticky git://github.com/filamentgroup/fixed-sticky.git
+filament-dialog git://github.com/filamentgroup/dialog.git
+tablesaw git://github.com/filamentgroup/tablesaw.git
+social-count git://github.com/filamentgroup/SocialCount.git
 ````
 
 where the string before the url (`tablesaw `) is your key for installation. In our use case you would the do:
 
-    bower install tablesaw --save
+	bower install tablesaw --save
 
 which will:
 
@@ -274,13 +274,13 @@ which will:
 
 This is s short version of our conventions when it comes to create bootstrap themes.  Below you’ll find a screenshot from `/assets/less`
 
-![Screenshot](http://f.cl.ly/items/1e2B2v0P1Z0U2E2A3q2g/screenshot-less.png)
+![Screenshot](http://f.cl.ly/items/3y3V1z0n3S182A2P0I3Q/Bildschirmfoto%202015-08-30%20um%2021.04.33.png)
 
 Seems to be a pretty huge amount of files for such a little project. So here we go with an explanation.
 
 ### index.less  
 Our main LESS file which is the one which is creating our index.css file. This file is just about a few imports and setting the path to the icon fonts provided by bootstrap.
-  
+	
 ```css
 // Bootstrap Core
 // --------------------------------------------------
@@ -297,7 +297,7 @@ Our main LESS file which is the one which is creating our index.css file. This f
 
 // Corporate Design
 // --------------------------------------------------
-@import "customerName.less";
+@import "theme.less";
 
 ////////// Do NOT insert style-definitions here! //////////
 ```
@@ -320,24 +320,24 @@ Is used for shared definitions which makes sense when dealing with different the
 @viewport           { width: device-width; }
 ```
 
-### customerName.less
+### theme.less
 
-We used this file to import the modules/files which defines the actual theme. You could also use this to write down your styles and omit the use of the seperate files laying around in the corresponding folder `customerName`. But that’s not a recommendation. See content of `customerName.less`:
+We used this file to import the modules/files which defines the actual theme. You could also use this to write down your styles and omit the use of the seperate files laying around in the corresponding folder `theme`. But that’s not a recommendation. See content of `theme.less`:
 
 ```css
 // Override and extend Bootstrap stuff
 // --------------------------------------------------
 // Files, classes, mixins etc.
-@import "customerName/variables.less";
-@import "customerName/mixins.less";
-@import "customerName/scaffolding.less";
-@import "customerName/alerts.less";
+@import "theme/variables.less";
+@import "theme/mixins.less";
+@import "theme/scaffolding.less";
+@import "theme/alerts.less";
 
 // Own modules
 // --------------------------------------------------
-@import "customerName/demoElements.less";
-@import "customerName/footer.less";
-@import "customerName/ribbon.less";
+@import "theme/demoElements.less";
+@import "theme/footer.less";
+@import "theme/ribbon.less";
 
 // Important note //
 // You could also use this file to insert customer related style definitions
@@ -348,7 +348,7 @@ We used this file to import the modules/files which defines the actual theme. Yo
 
 ```
 
-### customerName folder
+### theme folder
 
 This folder holds the modules needed by the theme. The skeleton of such a module looks like the comments within `ribbon.less`
 
@@ -361,27 +361,27 @@ This folder holds the modules needed by the theme. The skeleton of such a module
 // Local variables
 //
 // Which are meant to be used only in this module. »Global« variables are stored
-// in /assets/less/customerName/variables.less
+// in /assets/less/theme/variables.less
 
 // Local mixins
 //
 // Which are meant to be used only in this module. »Global« variables are stored
-// in /assets/less/customerName/mixins.less
+// in /assets/less/theme/mixins.less
 
 // Styles
 //
 ```
 
-See [footer.less](assets/less/customerName/footer.less) for a »real life« example.
+See [footer.less](assets/less/theme/footer.less) for a »real life« example.
 
 There are three files which differ from the regular modules. Please have a look at comments within the following files to get an idea how to handle them:
 
-- [variables.less](assets/less/customerName/variables.less)  
-  Used to override bootstrap variables. Make sure to read the comments which describe how to handle this file which can save you lots of time when it comes to a Bootstrap update.
-- [mixins.less](assets/less/customerName/mixins.less)  
-  Holds additional global mixins which are meant to be used accross modules.
-- [scaffolding.less](assets/less/customerName/scaffolding.less)  
-  Used to define the most generic html elements. 
+- [variables.less](assets/less/theme/variables.less)  
+	Used to override bootstrap variables. Make sure to read the comments which describe how to handle this file which can save you lots of time when it comes to a Bootstrap update.
+- [mixins.less](assets/less/theme/mixins.less)  
+	Holds additional global mixins which are meant to be used accross modules.
+- [scaffolding.less](assets/less/theme/scaffolding.less)  
+	Used to define the most generic html elements. 
 
 ## Browser support
 
