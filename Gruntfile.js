@@ -406,6 +406,17 @@ module.exports = function(grunt) {
 			}
 		},
 
+		gitadd: {
+			task: {
+				files: {
+					// The following is only needed when your dist directory is under
+					// version control. In that case it’s useful to add unknown files to
+					// Git when running one of the release tasks.
+					// src: ['<%= config.dist %>/**']
+				}
+			}
+		},
+
 		changelog: {
 			release: {
 				options: {
@@ -600,15 +611,15 @@ module.exports = function(grunt) {
 	// Relase tasks
 	grunt.registerTask('releasePatch',
 		'`grunt releasePatch` builds the current sources, bumps version number (0.0.1) and creates zip.files.',
-		['bump-only:patch', 'build', 'clean:js', 'changelog', 'bump-commit', 'compress']
+		['bump-only:patch', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
 	);
 	grunt.registerTask('releaseMinor',
 		'`grunt releaseMinor` builds the current sources, bumps version number (0.1.0) and creates zip.files.',
-		['bump-only:minor', 'build', 'clean:js', 'changelog', 'bump-commit', 'compress']
+		['bump-only:minor', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
 	);
 	grunt.registerTask('releaseMajor',
 		'`grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
-		['bump-only:major', 'build', 'clean:js', 'changelog', 'bump-commit', 'compress']
+		['bump-only:major', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
 	);
 
 };
