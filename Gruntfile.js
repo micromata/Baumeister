@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 					tasks: [
 						'default',
 						'dev',
-						'server',
+						'serve',
 						'watch',
 						'build',
 						'checkBuild',
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
 							'`grunt plato` generates static code analysis charts with plato.'
 					},
 					groups: {
-						'Dev': ['default', 'dev', 'sync', 'server', 'watch','plato', 'jsdoc', 'lint'],
+						'Dev': ['default', 'dev', 'sync', 'serve', 'watch','plato', 'jsdoc', 'lint'],
 						'Production': ['build', 'checkBuild', 'releasePatch', 'releaseMinor', 'releaseMajor'],
 					},
 					sort: [
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
 						'sync',
 						'plato',
 						'jsdoc',
-						'server',
+						'serve',
 						'watch',
 						'build',
 						'checkBuild',
@@ -546,13 +546,16 @@ module.exports = function(grunt) {
 	);
 
 	// Start dev server and watching files
-	grunt.registerTask('server',
-		'`grunt server` starts a local dev server and runs `grunt watch`',
+	grunt.registerTask('serve',
+		'`grunt serve` starts a local dev server and runs `grunt watch`',
 		[
 			'connect:dev',
 			'watch'
 		]
 	);
+
+	// Alias `grunt server` to `grunt serve` for »backward compatability«.
+	grunt.registerTask('server', ['serve']);
 
 	// Start browser sync and watching files
 	grunt.registerTask('sync',
