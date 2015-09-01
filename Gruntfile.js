@@ -104,20 +104,6 @@ module.exports = function(grunt) {
 					drop_debugger: true
 				}
 			},
-			minify: {
-				files: [{
-					expand: true,
-					cwd: 'assets/js',
-					src: [
-						'**/*.js',
-						'!moduleSkeleton.js',
-						'!**/*.min.js'
-					],
-					dest: '<%= config.dist %>/assets/js',
-					ext: '.min.js',
-					extDot: 'last'
-				}]
-			},
 			concatenate: {
 				files: {
 					'<%= config.dist %>/assets/js/built.min.js': [
@@ -586,7 +572,6 @@ module.exports = function(grunt) {
 		'`grunt build` builds production ready sources to dist directory.', [
 		'clean:dist',
 		'lint',
-		'uglify:minify',
 		'uglify:concatenate',
 		'less:dev',
 		'autoprefixer',
