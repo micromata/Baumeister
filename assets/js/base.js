@@ -28,7 +28,7 @@ var kickstarter = window.kickstarter || {};
  * @namespace base
  * @memberof kickstarter
  */
-kickstarter.base = (function() {
+kickstarter.base = (function () {
 	'use strict';
 
 	/**
@@ -37,7 +37,7 @@ kickstarter.base = (function() {
 	 * @memberof kickstarter.base
 	 * @private
 	 */
-	var _fixViewportIssues = (function() {
+	(function () {
 		if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 			var msViewportStyle = document.createElement('style');
 			msViewportStyle.appendChild(
@@ -47,7 +47,7 @@ kickstarter.base = (function() {
 			);
 			document.querySelector('head').appendChild(msViewportStyle);
 		}
-	}());
+	})();
 
 	/**
 	 * Avoid `console` errors in browsers that lack a console.
@@ -55,9 +55,9 @@ kickstarter.base = (function() {
 	 * @memberof kickstarter.base
 	 * @private
 	 */
-	var _addConsoleMethods = (function() {
+	(function () {
 		var method;
-		var noop = function() {};
+		var noop = function () {};
 		var methods = [
 			'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
 			'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
@@ -75,6 +75,6 @@ kickstarter.base = (function() {
 				console[method] = noop;
 			}
 		}
-	}());
+	})();
 
-}());
+})();

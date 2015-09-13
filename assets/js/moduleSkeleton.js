@@ -24,7 +24,7 @@ var kickstarter = window.kickstarter || {};
  * @param 	{jQuery} $	passing the jQuery object to make $ available even when
  *                    	using jQuery.noConflict()
  */
-kickstarter.modulName = (function($) {
+kickstarter.modulName = (function ($) {
 	'use strict';
 
 	/**
@@ -35,7 +35,7 @@ kickstarter.modulName = (function($) {
 	 * @example
 	 * kickstarter.modulName.yourPublicMethod('Hi Public.');
 	 */
-	var yourPublicMethod = function(message) {
+	var yourPublicMethod = function (message) {
 		console.info(message);
 	};
 
@@ -46,7 +46,7 @@ kickstarter.modulName = (function($) {
 	 * @private
 	 * @param {string} message Message to write into the console.
 	 */
-	var _yourPrivateMethod = function(message) {
+	var _yourPrivateMethod = function (message) {
 		console.info(message);
 	};
 
@@ -54,7 +54,7 @@ kickstarter.modulName = (function($) {
 	 * Executed on DOM ready within the scope of this module.
 	 * @event
 	 */
-	$(function() {
+	$(function () {
 		_yourPrivateMethod('Hi Private.');
 	});
 
@@ -63,16 +63,14 @@ kickstarter.modulName = (function($) {
 		yourPublicMethod: yourPublicMethod
 	};
 
-}(jQuery));
+})(jQuery);
 
 /**
  * Executed on DOM ready within the global scope.
  * @event
  */
-$(function() {
+$(function () {
 	'use strict';
 
 	kickstarter.modulName.yourPublicMethod('Hi public.');
 });
-
-
