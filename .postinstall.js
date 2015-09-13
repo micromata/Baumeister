@@ -5,13 +5,13 @@ var fs = require('fs');
 
 var versionNumber = getVersionNumber();
 
-(function() {
+(function () {
 	console.log('Starting postinstall script.');
 	console.log('Needed to set up things to make sure the release tasks run properly:\n');
 	versionNumber = getVersionNumber();
 	console.log(' → Version number from `package.json`: ', versionNumber + '\n');
 	execBowerInstall();
-}());
+})();
 
 function getVersionNumber() {
 	// Get Version number from package.json
@@ -22,11 +22,10 @@ function getVersionNumber() {
 	return versionNumber;
 }
 
-
 function execBowerInstall() {
 	// Fire `bower install`
 	console.log(' → Firing `bower install`:');
-	var bowerInstall = exec('bower install', function(error, stdout, stderr) {
+	exec('bower install', function (error, stdout) {
 		if (stdout === '') {
 			console.log('   All Bower dependencies up to date and installed.');
 		}
@@ -39,11 +38,11 @@ function execBowerInstall() {
 	});
 }
 
-function checkChangelog () {
+function checkChangelog() {
 	var changelog = 'CHANGELOG.md';
 	console.log(' → Check if you have a ' + changelog);
-	fs.readFile(changelog, 'utf8', function(error, data) {
-		if (data == null) {
+	fs.readFile(changelog, 'utf8', function (error, data) {
+		if (data === undefined) {
 			console.log('   No ' + changelog + ' over here.');
 			console.log('   So we’re going to create one …');
 			fs.writeFileSync(changelog, '# Changelog\n', 'utf8');
@@ -60,11 +59,11 @@ function initGit(versionNumber) {
 	// Check if there is a Git Repo over here
 	console.log(' → Check if you have a Git repo intialized.');
 	var dir = '.git';
-	fs.readdir(dir, function(error, files) {
+	fs.readdir(dir, function (error) {
 		if (error) {
 			console.log('   No `.git` directory over here.');
 			console.log('   So we’re going to initialize git …\n');
-			var initGit = exec('git init && git add . && git commit -m "Initial commit" && git tag -a ' + versionNumber + ' -m "Initial release"', function(error, stdout, stderr) {
+			exec('git init && git add . && git commit -m "Initial commit" && git tag -a ' + versionNumber + ' -m "Initial release"', function (error, stdout) {
 				console.log(stdout);
 				if (error !== null) {
 					console.log('exec error: ' + error);
@@ -81,7 +80,7 @@ function installGitHook() {
 	// Install post merge Git hook
 	console.log(' → Installing the post merge Git hook.');
 	console.log('   It will take care of firing `bower install` after every merge (and pull).\n');
-	var gitHook = exec('grunt githooks', function(error, stdout, stderr) {
+	exec('grunt githooks', function (error, stdout) {
 		console.log(stdout);
 		if (error !== null) {
 			console.log('exec error: ' + error);
