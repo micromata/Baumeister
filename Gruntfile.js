@@ -1,5 +1,4 @@
-// JSHint settings
-/* jshint camelcase: false, es3: false */
+/* eslint camelcase:1 */
 
 'use strict';
 
@@ -76,14 +75,9 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// jsHint
-		jshint: {
-			options: {
-				reporter: require('jshint-stylish'),
-				jshintrc: '.jshintrc',
-				ignores: ['assets/js/*.min.js']
-			},
-			all: [
+		// ESLint
+		eslint: {
+			target: [
 				'Gruntfile.js',
 				'assets/js/*.js'
 			]
@@ -480,14 +474,14 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['newer:jshint'],
+				tasks: ['newer:eslint'],
 				options: {
 					spawn: false
 				}
 			},
 			gruntfile: {
 				files: ['Gruntfile.js'],
-				tasks: ['jshint'],
+				tasks: ['eslint'],
 				options: {
 					spawn: false
 				}
@@ -518,11 +512,11 @@ module.exports = function(grunt) {
 
 	// Lint files
 	grunt.registerTask('lint',
-		'`grunt lint` lints JavasScript (JSHint) and HTML files (validate and Bootlint)',
+		'`grunt lint` lints JavaScript (ESLint) and HTML files (validate and Bootlint)',
 		[
 			'htmllint',
 			'bootlint',
-			'jshint'
+			'eslint'
 		]
 	);
 
@@ -530,7 +524,7 @@ module.exports = function(grunt) {
 	 * A task for development
 	 */
 	grunt.registerTask('dev',
-		'`grunt dev` will hint your files, build sources within the ' +
+		'`grunt dev` will lint your files, build sources within the ' +
 		'assets directory and generating docs / reports.',
 		[
 			'lint',
