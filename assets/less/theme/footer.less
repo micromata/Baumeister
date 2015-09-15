@@ -7,7 +7,8 @@
 //
 // Which are meant to be used only in this module. »Global« variables are stored
 // in /assets/less/theme/variables.less
-@mm_footer-height: 40px;
+@mm_footer-height: 60px;
+@mm_footer-text-margin: 20px;
 @mm_footer-bg: #f5f5f5;
 
 // Local mixins
@@ -24,7 +25,7 @@
 // Called in scaffolding.less
 .mm_footer-bodyProps() {
 	// Margin bottom by footer height
-	margin-bottom: @mm_footer-height;
+	margin-bottom: (@mm_footer-height - @mm_footer-text-margin);
 }
 
 // Styles
@@ -35,11 +36,11 @@
 	bottom: 0;
 	width: 100%;
 	// Set the fixed height of the footer here
-	height: 60px;
+	height: @mm_footer-height;
 	background-color: #f5f5f5;
 	> .container {
 		padding-right: 15px;
 		padding-left: 15px;
 	}
-	.footer-text { margin: 20px 0; }
+	.footer-text { margin: @mm_footer-text-margin 0; }
 }
