@@ -475,8 +475,8 @@ module.exports = function (grunt) {
 		generator: {
 			dev: {
 				files: [{
-					cwd: 'pages',
-					src: ['**/*'],
+					cwd: '.',
+					src: ['*.hbs'],
 					dest: 'build'
 				}],
 				options: {
