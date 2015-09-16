@@ -472,6 +472,23 @@ module.exports = function (grunt) {
 			}
 		},
 
+		generator: {
+			dev: {
+				files: [{
+					cwd: 'pages',
+					src: ['**/*'],
+					dest: 'build'
+				}],
+				options: {
+					partialsGlob: 'partials/*.hbs',
+					templates: 'templates',
+					templateExt: 'hbs',
+					defaultTemplate: 'default',
+					frontmatterType: 'yaml'
+				}
+			}
+		},
+
 		// watch
 		watch: {
 			options: {
