@@ -3,9 +3,6 @@
  * @author Michael Kühnel <m.kuehnel@micromata.de>
  */
 
-// JSHint settings
-/* jshint unused: false */
-
 /**
  * The jQuery object or a jQuery set containing on or more DOM elements.
  * @typedef {Object} jQuery
