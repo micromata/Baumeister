@@ -575,8 +575,6 @@ module.exports = function (grunt) {
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
-			'plato',
-			'jsdoc',
 			'copy:server',
 			'generator',
 			'lint'
