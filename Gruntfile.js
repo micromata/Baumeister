@@ -12,6 +12,9 @@ module.exports = function (grunt) {
 	// Displays the execution time of grunt tasks
 	require('time-grunt')(grunt);
 
+	// Import helpers for the generator task
+	var templateHelpers = require('./templates/helpers/helpers.js');
+
 	// Config
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -82,6 +85,7 @@ module.exports = function (grunt) {
 		eslint: {
 			target: [
 				'.postinstall.js',
+				'templates/helpers/helpers.js',
 				'Gruntfile.js',
 				'assets/js/*.js'
 			]
@@ -497,6 +501,7 @@ module.exports = function (grunt) {
 					dest: '<%= config.server %>'
 				}],
 				options: {
+					helpers: templateHelpers,
 					partialsGlob: 'partials/*.hbs',
 					templates: 'templates',
 					templateExt: 'hbs',
@@ -518,8 +523,8 @@ module.exports = function (grunt) {
 					spawn: false
 				}
 			},
-			gruntfile: {
-				files: ['Gruntfile.js'],
+			otherJsFiles: {
+				files: ['Gruntfile.js', '.postinstall.js', 'templates/helpers/helpers.js'],
 				tasks: ['eslint'],
 				options: {
 					spawn: false
@@ -533,7 +538,7 @@ module.exports = function (grunt) {
 				}
 			},
 			html: {
-				files: ['*.hbs', 'templates/*.hbs', 'partials/*.hbs'],
+				files: ['*.hbs', 'templates/*.hbs', 'partials/*.hbs', 'templates/helpers/helpers.js'],
 				tasks: ['generator', 'newer:htmllint', 'newer:bootlint'],
 				options: {
 					// spawn: false
