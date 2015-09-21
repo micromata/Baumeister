@@ -14,7 +14,7 @@ The aim of this repository is to help you with the creation of Bootstrap themes 
 	- add vendor prefixes
 	- optimize images (lossless)
 	- start a local server
-	- keep browsers in sync
+	- keep browsers in sync for testing
 	- delete unused CSS (optional)
 	- release new versions
 	- and more.
@@ -165,7 +165,8 @@ bootstrap-kickstart/
 ├── docs/                      → JavaScript generated from DocBlock comments
 ├── libs/                      → External libraries and plugins installed by Bower
 ├── node_modules/              → Dev dependencies installed by npm
-└── reports/                   → JavaScript Source Analysis 
+├── reports/                   → JavaScript Source Analysis
+└── server/                    → Contains files for running a local dev server 
 ````
 
 See `/Gruntfile.js` to see what happens in Details.
@@ -203,7 +204,134 @@ I recommend setting up a project within in your editor if you don’t want to se
 }
 ``` 
 
-<a name="using-bower"></a>
+## Writing Markup (using pages, templates and partials)
+Using [grunt-generator](https://github.com/clavery/grunt-generator) we can simplify our templates and avoid markup duplications by using a combination of `pages`, `templates` and `partials` (optional). grunt-generator uses [Handlebars](http://handlebarsjs.com/) under the hood to make that possible.
+
+This is super easy to use even if you never used Handlebars before.
+Because every valid HTML page is a valid Handlebars template. But handlebars gives you some extra power. So you can:
+
+- write plain HTML
+- use [built-In helpers](http://handlebarsjs.com/builtin_helpers.html) provided by handlebars
+- go crazy with [custom helpers](http://handlebarsjs.com/block_helpers.html) :heart_eyes: 
+
+Let’s dive into it by describing a minimal example. Imagine that we have a simplified file/folder structure like the following in our project:
+
+```
+myProject
+├── index.hbs                  → A page 
+├── anotherPage.hbs            → Another page 
+├── partials                   → Place to store our partials (usage optional) 
+│   └── footer.hbs
+└── templates                  → Place to store our templates
+    ├── default.hbs            → Our default template
+    └── helpers
+        └── helpers.js         → Place to store our handlebars helpers (usage optional) 
+```
+
+As you can see our pages are stored in the root of the project and are rendered as `html` pages with a little help of Handlebars.
+
+Let’s take a look at the content of our files.
+
+`/templates/helpers/helpers.js`:
+
+```javascript
+/**
+ * Adds the current year to a string. Divides given string and year by a space.
+ * @example:
+ * {{addYear '©'}} --> © 2015
+ */
+var addYear = function (s) {
+	return s + ' ' + new Date().getFullYear();
+};
+
+module.exports = {
+	addYear: addYear
+};
+```
+
+`/partials/footer.hbs`:
+
+```html
+<footer>
+	{{addYear '©'}} MyCompany
+</footer>
+```
+
+`/index.hbs`:
+
+```html
+---
+title: Page title
+---
+<h1>My page</h1>
+
+<p>My content</p>
+
+{{> footer }}
+```
+
+`/templates/default.hbs `:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>My Project{{#if page.title}} - {{page.title}}{{/if}}</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	{{{body}}}
+</body>
+</html>
+```
+
+This combination will render to one html file.
+
+`index.html`:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>My Project - Page title</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<h1>My page</h1>
+
+	<p>My content</p>
+
+	<footer>
+		© 2015 MyCompany
+	</footer>
+</body>
+</html>
+```
+
+As you can see you can enrich your pages with data via so called frontmatters:
+
+```
+---
+title: Page title
+---
+```
+
+Frontmatters are basically a key/value storage you can access within your templates, pages and partials via Handlebars.  This enpowers you to do things like [handling active states](https://github.com/micromata/bootstrap-kickstart/blob/develop/partials/navbar.hbs#L16-L22) of your navigation and much more.
+
+There is one predefined key which let you choose a different template in case you’re using more than one:
+
+```
+---
+template: myOtherTemplate
+---
+```
+
+This would need the presence of a template named `myOtherTemplate.hbs` in the `templates` directory to work properly. You don’t need to define the template within your Frontmatter in case you would like to use  the default template.
+
 ## Installing and updating external resources with Bower
 
 The following isn’t needed after setting up the project because `bower install` is called with `npm install`. See [Setting up the project](#setup).
@@ -385,7 +513,7 @@ There are three files which differ from the regular modules. Please have a look 
 
 ## Browser support
 
-It depends on you and the CSS you are writing. We still have to support IE8 in a few projects so the HTML templates used in this repository are containing the following snippet taken from the [HTML5 Boilerplate](http://html5boilerplate.com/):
+It depends on you and the Markup, JS and CSS you are writing. We still have to support IE8 in a few projects so the HTML templates used in this repository are containing the following snippet taken from the [HTML5 Boilerplate](http://html5boilerplate.com/):
 
 ````
 <!--[if lt IE 8>
