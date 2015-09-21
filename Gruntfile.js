@@ -126,7 +126,7 @@ module.exports = function (grunt) {
 						' */\n'
 				},
 				files: {
-					'<%= config.dist %>/libs/libs.js': ['<%= config.dist %>/libs/libs.js']
+					'<%= config.dist %>/libs/libs.min.js': ['<%= config.dist %>/libs/libs.min.js']
 				}
 			}
 		},
@@ -231,7 +231,7 @@ module.exports = function (grunt) {
 					keepSpecialComments: 0
 				},
 				files: {
-					'<%= config.dist %>/libs/libs.css': ['<%= config.dist %>/libs/libs.css']
+					'<%= config.dist %>/libs/libs.min.css': ['<%= config.dist %>/libs/libs.min.css']
 				}
 			}
 		},
@@ -262,7 +262,7 @@ module.exports = function (grunt) {
 						' */'
 				},
 				files: {
-					src: ['<%= config.dist %>/libs/libs.css']
+					src: ['<%= config.dist %>/libs/libs.min.css']
 				}
 			}
 		},
@@ -329,8 +329,8 @@ module.exports = function (grunt) {
 				// These are minified afterwards with `cssmin:bower` and `uglify:bower`.
 				// Because Chrome Dev Tools will throw an 404 regarding the missing sourcemaps if
 				// we use the already minified versions. Yep, that’s ugly.
-				dest: '<%= config.dist %>/libs/libs.js',
-				cssDest: '<%= config.dist %>/libs/libs.css',
+				dest: '<%= config.dist %>/libs/libs.min.js',
+				cssDest: '<%= config.dist %>/libs/libs.min.css',
 				include: [
 					'jquery',
 					'bootstrap',
