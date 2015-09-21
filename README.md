@@ -241,7 +241,7 @@ myProject
 └── templates                  → Place to store our templates
     ├── default.hbs            → Our default template
     └── helpers
-        └── helpers.js         → Place to store our handlebars helpers (usage optional) 
+        └── helpers.js         → Place to store handlebars helpers (usage optional) 
 ```
 
 As you can see our pages are stored in the root of the project and are rendered as `html` pages with a little help of Handlebars.
