@@ -19,6 +19,20 @@ The aim of this repository is to help you with the creation of Bootstrap themes 
 	- release new versions
 	- and more.
 
+## Table of Contents
+
+- [Quick install guide](#quick-install-guide)
+- [Dependencies](#dependencies)
+- [Setting up the project](#setting-up-the-project)
+- [Grunt Workflow and tasks](#grunt-workflow-and-tasks)
+- [Setting up your Editor (optional)](#setting-up-your-editor-optional)
+- [Writing Markup (using pages, templates and partials)](#writing-markup-using-pages-templates-and-partials)
+- [File and folder structure of LESS files](#file-and-folder-structure-of-less-files)
+- [Installing and updating external resources with Bower](#installing-and-updating-external-resources-with-bower)
+- [Browser support](#browser-support)
+- [Contributing to this project](#contributing-to-this-project)
+- [License](#license)
+
 ## Quick install guide 
 
 For those already using Node, Grunt, Bower and stuff.
@@ -173,7 +187,7 @@ See `/Gruntfile.js` to see what happens in Details.
 
 ### Setting up your Editor (optional)
 
-We strongly advise to install an [EditorConfig plugin](http://editorconfig.org/#download) and take a look at the `.editorconfig` file in the root of this project.
+We strongly advise to install an [EditorConfig plugin](http://editorconfig.org/#download) and take a look at the `.editorconfig` file in the root of this project. 
 
 Beside that we recommend setting up a project within in your editor if you don’t want to see these generated files cluttered all over your project. In case of Sublime Text it’s as easy as hitting »Project« → »Save Project As …« and adding the following to `projectName.sublime-project`.
 
