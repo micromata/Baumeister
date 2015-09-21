@@ -171,9 +171,11 @@ bootstrap-kickstart/
 
 See `/Gruntfile.js` to see what happens in Details.
 
-### Setting up your Editor (optionally)
+### Setting up your Editor (optional)
 
-I recommend setting up a project within in your editor if you don’t want to see these generated files cluttered all over your project. In case of Sublime Text it’s as easy as hitting »Project« → »Save Project As …« and adding the following to `projectName.sublime-project`.
+We strongly advise to install an [EditorConfig plugin](http://editorconfig.org/#download) and take a look at the `.editorconfig` file in the root of this project.
+
+Beside that we recommend setting up a project within in your editor if you don’t want to see these generated files cluttered all over your project. In case of Sublime Text it’s as easy as hitting »Project« → »Save Project As …« and adding the following to `projectName.sublime-project`.
 
 ```json
 {
