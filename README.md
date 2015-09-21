@@ -332,72 +332,6 @@ template: myOtherTemplate
 
 This would need the presence of a template named `myOtherTemplate.hbs` in the `templates` directory to work properly. You don’t need to define the template within your Frontmatter in case you would like to use  the default template.
 
-## Installing and updating external resources with Bower
-
-The following isn’t needed after setting up the project because `bower install` is called with `npm install`. See [Setting up the project](#setup).
-
-But it’s good to know that you can always install the dependencies needed for your theme by entering the following in the terminal:
-
-	cd path/to/your/checkout/of/bootstrap-kickstart
-	bower install
-
-This places a `/lib` directory (if not already existing) containing the dependencies defined in the `bower.json` in your root directory of the project as mentioned before.
-
-**Important**  
-It might be needed to call `bower install` after dependencies are added and used on a remote repository. Because when doing a `git pull` you won’t get the new dependencies since the `lib` directory is not under version control. This will be adressed with issue [#10](https://github.com/micromata/bootstrap-kickstart/issues/10).
-
-### Changing versions of external resources
-
-You can change the version of the external resources by editing the `bower.json` file within the root directory of the project.
-
-	"dependencies": {
-	  "bootstrap": "~3.2.0",
-	  "jquery": "^1.11.1",
-	  "html5shiv": "^3.7.2",
-	  "respondJs": "~1.4.2",
-	  "jquery-placeholder": "2.0.8"
-	}
-
-The tilde `~` means: Install the latest version including patch-releases.
-The caret `^` means: Install the latest version including minor-releases.
-
-So `~3.2.0` installed the latest 3.2.x release which is version v3.2.0 in case of Bootstrap right now. So  Bootstrap 3.2.1 will be fetched as soon as it is released when you call `bower update` or `bower install`. But Bower won’t install Bootstrap 3.3.x or later.
-
-Where `^1.11.1` installed the latest 1.x.x release which is version 1.11.1 in case of jQuery right now. So jQuery 1.11.2 as well as jQuery 1.12.0 will be fetched as soon as it is released when you call `bower update` or `bower install`. But Bower won’t install jQuery 2.x.x or later.
-
-Check <http://semver-ftw.org> for more information about »Semantic Versioning«.
-
-### Adding new dependencies
-
-Let’s assume you like to add even more responsiveness to your tables as provided by bootstraps `table-responsive` class. This could be accomplished with the awesome [Tablesaw plugins](https://github.com/filamentgroup/tablesaw) by the Filament Group.
-
-This is how you get the files into your `/libs` directory and define the dependency  in the `bower.json` file. 
-
-	cd path/to/your/checkout/of/bootstrap-kickstart
-	bower search tablesaw
-		
-This leads to something like:
-
-````
-Search results:
-
-overthrow git://github.com/filamentgroup/Overthrow
-filament-fixed git://github.com/filamentgroup/fixed-fixed.git
-filament-sticky git://github.com/filamentgroup/fixed-sticky.git
-filament-dialog git://github.com/filamentgroup/dialog.git
-tablesaw git://github.com/filamentgroup/tablesaw.git
-social-count git://github.com/filamentgroup/SocialCount.git
-````
-
-where the string before the url (`tablesaw `) is your key for installation. In our use case you would the do:
-
-	bower install tablesaw --save
-
-which will:
-
-- download the latest and greatest version to your `libs` directory
-- Add `"tablesaw": "~0.1.6"` to your `bower.json` 
-
 ## File and folder structure of LESS files
 
 This is s short version of our conventions when it comes to create bootstrap themes.  Below you’ll find a screenshot from `/assets/less`
@@ -510,6 +444,72 @@ There are three files which differ from the regular modules. Please have a look 
 	Holds additional global mixins which are meant to be used accross modules.
 - [scaffolding.less](assets/less/theme/scaffolding.less)  
 	Used to define the most generic html elements. 
+
+## Installing and updating external resources with Bower
+
+The following isn’t needed after setting up the project because `bower install` is called with `npm install`. See [Setting up the project](#setup).
+
+But it’s good to know that you can always install the dependencies needed for your theme by entering the following in the terminal:
+
+	cd path/to/your/checkout/of/bootstrap-kickstart
+	bower install
+
+This places a `/lib` directory (if not already existing) containing the dependencies defined in the `bower.json` in your root directory of the project as mentioned before.
+
+**Important**  
+It might be needed to call `bower install` after dependencies are added and used on a remote repository. Because when doing a `git pull` you won’t get the new dependencies since the `lib` directory is not under version control. This will be adressed with issue [#10](https://github.com/micromata/bootstrap-kickstart/issues/10).
+
+### Changing versions of external resources
+
+You can change the version of the external resources by editing the `bower.json` file within the root directory of the project.
+
+	"dependencies": {
+	  "bootstrap": "~3.2.0",
+	  "jquery": "^1.11.1",
+	  "html5shiv": "^3.7.2",
+	  "respondJs": "~1.4.2",
+	  "jquery-placeholder": "2.0.8"
+	}
+
+The tilde `~` means: Install the latest version including patch-releases.
+The caret `^` means: Install the latest version including minor-releases.
+
+So `~3.2.0` installed the latest 3.2.x release which is version v3.2.0 in case of Bootstrap right now. So  Bootstrap 3.2.1 will be fetched as soon as it is released when you call `bower update` or `bower install`. But Bower won’t install Bootstrap 3.3.x or later.
+
+Where `^1.11.1` installed the latest 1.x.x release which is version 1.11.1 in case of jQuery right now. So jQuery 1.11.2 as well as jQuery 1.12.0 will be fetched as soon as it is released when you call `bower update` or `bower install`. But Bower won’t install jQuery 2.x.x or later.
+
+Check <http://semver-ftw.org> for more information about »Semantic Versioning«.
+
+### Adding new dependencies
+
+Let’s assume you like to add even more responsiveness to your tables as provided by bootstraps `table-responsive` class. This could be accomplished with the awesome [Tablesaw plugins](https://github.com/filamentgroup/tablesaw) by the Filament Group.
+
+This is how you get the files into your `/libs` directory and define the dependency  in the `bower.json` file. 
+
+	cd path/to/your/checkout/of/bootstrap-kickstart
+	bower search tablesaw
+		
+This leads to something like:
+
+````
+Search results:
+
+overthrow git://github.com/filamentgroup/Overthrow
+filament-fixed git://github.com/filamentgroup/fixed-fixed.git
+filament-sticky git://github.com/filamentgroup/fixed-sticky.git
+filament-dialog git://github.com/filamentgroup/dialog.git
+tablesaw git://github.com/filamentgroup/tablesaw.git
+social-count git://github.com/filamentgroup/SocialCount.git
+````
+
+where the string before the url (`tablesaw `) is your key for installation. In our use case you would the do:
+
+	bower install tablesaw --save
+
+which will:
+
+- download the latest and greatest version to your `libs` directory
+- Add `"tablesaw": "~0.1.6"` to your `bower.json` 
 
 ## Browser support
 
