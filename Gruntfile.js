@@ -541,7 +541,7 @@ module.exports = function (grunt) {
 				files: ['*.hbs', 'templates/*.hbs', 'partials/*.hbs', 'templates/helpers/helpers.js'],
 				tasks: ['generator', 'newer:htmllint', 'newer:bootlint'],
 				options: {
-					// spawn: false
+					spawn: false
 				}
 			}
 		}
