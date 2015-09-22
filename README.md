@@ -74,9 +74,9 @@ Please enter the following in your terminal if your aren’t sure about the avai
 
 	npm --version
 
-This should return the something like the following in case Node.js and npm is already installed:
+This should return something like the following in case Node.js and npm is already installed:
 
-	1.4.24
+	3.3.3
 
 If that isn’t the case you have to install Node.js first. On OS X I strongly recommend installing Node via [Homebrew](http://brew.sh). Not just because it’s easier to switch versions with Homebrew but also because you prevent potential permission problems when running npm.
 
@@ -89,7 +89,7 @@ Bootstrap, jQuery and other plugins are installed via [Bower](http://bower.io) (
 
 Your terminal should response with the version number of Bower, if Bower is installed properly. Something like:
 
-	1.3.9
+	1.5.2
 
 Otherwise you have to install Bower first.
 
@@ -99,7 +99,7 @@ Thanks to Node.js and npm installing Bower globally is just this simple one-line
 
 	npm install -g bower
 
-Also make sure that git is installed as some bower packages require it to be fetched and installed.
+Also make sure that Git is installed as some bower packages require it to be fetched and installed.
 
 ### Grunt
 
@@ -463,7 +463,7 @@ There are three files which differ from the regular modules. Please have a look 
 
 ## Installing and updating external resources with Bower
 
-The following isn’t needed after setting up the project because `bower install` is called with `npm install`. See [Setting up the project](#setup).
+The following isn’t needed after setting up the project because `bower install` is executed with `npm install`. See [Setting up the project](#setup).
 
 But it’s good to know that you can always install the dependencies needed for your theme by entering the following in the terminal:
 
