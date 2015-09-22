@@ -1,5 +1,37 @@
 # Changelog
 
+## Version 2.0.0 (2015-09-22)
+
+- e2552dc - 2015-09-22: Minor tweaks in README 
+- a10729e - 2015-09-21: Make use of libs/libs.min.css in default template 
+- e2502c3 - 2015-09-21: Rename libs.js/libs.css to libs.min.js/libs.min.css 
+- da55de8 - 2015-09-21: Try to prevent horizontal scrollbar for markup example tree 
+- 394631b - 2015-09-21: Add »Table of Contents« to README 
+- 34c3a7c - 2015-09-21: Update section »Setting up your Editor« in README 
+- b650811 - 2015-09-21: Move up »File and folder structure of LESS files« in README 
+- 780ccf2 - 2015-09-21: Remove unneeded `template: default` from Frontmatters 
+- 325e609 - 2015-09-21: Add info about pages, templates and partials to README 
+- b199a20 - 2015-09-21: Make watching handlbars templates more performant 
+- 11a74e6 - 2015-09-21: DocBlock comment for our example helper 
+- 39150d3 - 2015-09-20: Remove plato and jsdoc tasks from dev task 
+- 9a3ad3a - 2015-09-20: cleanup base.js 
+- c5ba5cd - 2015-09-20: Highlight current page in navbar 
+- 93e8428 - 2015-09-20: Add file for custom helpers 
+- 13c1754 - 2015-09-18: Render handlebars template to the correct location 
+- 16fb7bf - 2015-09-17: [WIP] Replace HTML files with handlebars templates, partials and pages 
+- 644d395 - 2015-09-17: [WIP] Give grunt-generator a try for handling includes 
+- 4ffe264 - 2015-09-15: Improve use of variables in footer example 
+- b8d546a - 2015-09-13: Lint .postinstall.js and fix linting errors 
+- 37ec1ca - 2015-09-13: Redisable »padded-blocks« rule :sunglasses: 
+- 9569653 - 2015-09-13: Split up .eslintrc into two files to get more specific 
+- c0d9f29 - 2015-09-13: Fix ESLint errors. 
+- 44c4b93 - 2015-09-13: Replace JSHint wit ESLint 
+- c9fe1aa - 2015-09-01: Add files to version control in release tasks 
+- 6e5afc7 - 2015-09-01: Get rid separate minified JS files in `dist` 
+- 96670bb - 2015-09-01: Rename `grunt server` to `grunt serve` 
+- 8260bd8 - 2015-08-30: Update sublime settings example in readme 
+
+
 ## Version 1.3.6 (2015-08-30)
 
 - 96b00d1 - 2015-08-30: Missed a few things in b2a6825f 
