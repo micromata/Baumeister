@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 2.0.1 (2015-10-03)
+
+- 48adedb - 2015-10-03: Bump dev dependencies 
+- 1a967a0 - 2015-10-02: chore(package): pin dependencies 
+- 5eecf26 - 2015-09-30: Fixed typographical error, changed accross to across in README. 
+
+
 ## Version 2.0.0 (2015-09-22)
 
 - e2552dc - 2015-09-22: Minor tweaks in README 
