@@ -24,7 +24,7 @@
     "eslint-config-xo": "0.6.0",
     "grunt": "0.4.5",
     "grunt-autoprefixer": "3.0.3",
-    "grunt-available-tasks": "0.6.0",
+    "grunt-available-tasks": "0.6.1",
     "grunt-banner": "0.6.0",
     "grunt-bootlint": "0.9.1",
     "grunt-bower-concat": "0.5.0",
