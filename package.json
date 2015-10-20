@@ -55,7 +55,7 @@
     "grunt-uncss": "0.4.3",
     "jshint-stylish": "2.0.1",
     "load-grunt-tasks": "3.3.0",
-    "time-grunt": "1.2.1"
+    "time-grunt": "1.2.2"
   },
   "scripts": {
     "postinstall": "chmod u+x .postinstall.js && ./.postinstall.js"
