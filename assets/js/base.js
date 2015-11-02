@@ -10,7 +10,7 @@
 
 /**
  * Namespace of the app.
- * This should be only variable the app should store in the global scope.
+ * This should be the only variable the app stores in the global scope.
  * @namespace kickstarter
  * @todo Rename the global variable throughout the whole file according to your needs.
  * @example
