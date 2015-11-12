@@ -48,7 +48,7 @@
     "grunt-html": "5.0.1",
     "grunt-jsdoc": "1.0.0",
     "grunt-newer": "1.1.1",
-    "grunt-notify": "0.4.1",
+    "grunt-notify": "0.4.3",
     "grunt-plato": "1.2.1",
     "grunt-processhtml": "0.3.8",
     "grunt-shell": "1.1.2",
