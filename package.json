@@ -53,7 +53,7 @@
     "grunt-processhtml": "0.3.8",
     "grunt-shell": "1.1.2",
     "grunt-uncss": "0.4.3",
-    "jshint-stylish": "2.0.1",
+    "jshint-stylish": "2.1.0",
     "load-grunt-tasks": "3.3.0",
     "time-grunt": "1.2.1"
   },
