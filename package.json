@@ -52,7 +52,7 @@
     "grunt-plato": "1.2.1",
     "grunt-processhtml": "0.3.8",
     "grunt-shell": "1.1.2",
-    "grunt-uncss": "0.4.3",
+    "grunt-uncss": "0.4.4",
     "jshint-stylish": "2.0.1",
     "load-grunt-tasks": "3.3.0",
     "time-grunt": "1.2.1"
