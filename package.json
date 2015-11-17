@@ -42,7 +42,7 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-eslint": "17.3.1",
     "grunt-generator": "0.4.1",
-    "grunt-git": "0.3.5",
+    "grunt-git": "0.3.6",
     "grunt-githooks": "0.3.1",
     "grunt-html": "5.0.1",
     "grunt-jsdoc": "1.0.0",
