@@ -1,5 +1,18 @@
 # Changelog
 
+## Version 2.0.2 (2015-11-17)
+
+- 78f8ed4 - 2015-11-17: Fix path to server for browser sync task 
+- 730abcd - 2015-11-17: Fix linting errors 
+- 926b120 - 2015-11-17: Update Bower dependencies 
+- 0db322e - 2015-11-17: Pin Bower dependencies 
+- 3c3b11c - 2015-11-17: Update dev dependencies 
+- 1cd01b0 - 2015-11-17: Fix whitespace »issue« 
+- a453b67 - 2015-11-02: fix typo 
+- 67f275f - 2015-10-16: Fix whitespace »issue« 
+- cbc65b4 - 2015-10-03: Remove JSHint leftovers :bowtie: 
+
+
 ## Version 2.0.1 (2015-10-03)
 
 - 48adedb - 2015-10-03: Bump dev dependencies 
