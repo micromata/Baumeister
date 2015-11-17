@@ -1,19 +1,18 @@
-/* eslint camelcase:1 */
-
 'use strict';
+
+var getTasks = require('load-grunt-tasks');
+var displayTime = require('time-grunt');
+var templateHelpers = require('./templates/helpers/helpers.js');
 
 module.exports = function (grunt) {
 
 	// Get devDependencies
-	require('load-grunt-tasks')(grunt, {
+	getTasks(grunt, {
 		scope: 'devDependencies'
 	});
 
 	// Displays the execution time of grunt tasks
-	require('time-grunt')(grunt);
-
-	// Import helpers for the generator task
-	var templateHelpers = require('./templates/helpers/helpers.js');
+	displayTime(grunt);
 
 	// Config
 	grunt.initConfig({
@@ -102,8 +101,8 @@ module.exports = function (grunt) {
 				sourceMap: true,
 				sourceMapIncludeSources: true,
 				compress: {
-					drop_console: true,
-					drop_debugger: true
+					drop_console: true, // eslint-disable-line camelcase
+					drop_debugger: true // eslint-disable-line camelcase
 				}
 			},
 			concatenate: {
@@ -324,7 +323,7 @@ module.exports = function (grunt) {
 			}
 		},
 
-		bower_concat: {
+		bower_concat: { // eslint-disable-line camelcase
 			dist: {
 				// These are minified afterwards with `cssmin:bower` and `uglify:bower`.
 				// Because Chrome Dev Tools will throw an 404 regarding the missing sourcemaps if

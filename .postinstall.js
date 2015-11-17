@@ -82,10 +82,10 @@ function installGitHook() {
 	console.log('   It will take care of firing `bower install` after every merge (and pull).\n');
 	exec('grunt githooks', function (error, stdout) {
 		console.log(stdout);
-		if (error !== null) {
-			console.log('exec error: ' + error);
-		} else {
+		if (error === null) {
 			console.log(' → Thanks for your patience. You’re all set ｡◕‿◕｡');
+		} else {
+			console.log('exec error: ' + error);
 		}
 	});
 }
