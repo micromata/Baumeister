@@ -4,6 +4,8 @@ node_js:
   - '0.12'
   - '4'
   - 'stable'
+before_install:
+  - npm install -g bower
 before_script:
   - npm install -g grunt-cli
 script:
