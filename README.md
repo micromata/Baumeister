@@ -1,4 +1,5 @@
-[![devDependency Status](https://david-dm.org/micromata/bootstrap-kickstart/dev-status.svg)](https://david-dm.org/micromata/bootstrap-kickstart#info=devDependencies) [![Twitter](https://img.shields.io/badge/Twitter-%40BootstrapKick%20-blue.svg?style=flat)](https://twitter.com/BootstrapKick) [![Unicorn](https://img.shields.io/badge/unicorn-approved-ff69b4.svg?style=flat)](https://www.youtube.com/watch?v=Sm368W0OsHo)
+[![Build Status](https://travis-ci.org/micromata/bootstrap-kickstart.svg?branch=master)](https://travis-ci.org/micromata/bootstrap-kickstart)
+[![devDependency Status](https://david-dm.org/micromata/bootstrap-kickstart/dev-status.svg)](https://david-dm.org/micromata/bootstrap-kickstart#info=devDependencies) [![Twitter](https://img.shields.io/badge/Twitter-%40BootstrapKick%20-blue.svg?style=flat)](https://twitter.com/BootstrapKick) [![Unicorn](https://img.shields.io/badge/unicorn-approved-ff69b4.svg?style=flat)](https://www.youtube.com/watch?v=qRC4Vk6kisY)
 
 #Kickstarter for Bootstrap themes
 
@@ -33,7 +34,7 @@ The aim of this repository is to help you with the creation of Bootstrap themes 
 - [Contributing to this project](#contributing-to-this-project)
 - [License](#license)
 
-## Quick install guide 
+## Quick install guide
 
 For those already using Node, Grunt, Bower and stuff.
 
@@ -42,7 +43,7 @@ For those already using Node, Grunt, Bower and stuff.
 	$ npm install -g yo
 	$ npm install -g generator-bootstrap-kickstart
 	$ yo bootstrap-kickstart
-	
+
 See: <https://github.com/micromata/generator-bootstrap-kickstart>
 
 ### via Git
@@ -53,7 +54,7 @@ See: <https://github.com/micromata/generator-bootstrap-kickstart>
 	$ grunt tasks
 
 ### via Bower
-	
+
 	$ bower install bootstrap-kickstart
 	$ mv bower_components/bootstrap-kickstart/* ./
 	$ rm -rf bower_components
@@ -110,7 +111,7 @@ Like Bootstrap itself this project uses [Grunt](http://gruntjs.com/) for its bui
 Thanks do Node.js and npm installing the Grunt command line tools globally is just this simple one-liner:
 
 	npm install -g grunt-cli
-		
+
 <a name="setup"></a>
 ## Setting up the project
 
@@ -121,7 +122,7 @@ Navigate to the root of your checkout:
 and call:
 
 	npm install
-		
+
 npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our grunt workflow to `\node_modules`.
 
 Afterwards it will call `bower install` which will look at `bower.json` and install the necessary frontend dependencies needed to build our Bootstrap theme to `\libs`.
@@ -133,7 +134,7 @@ See [Installing and updating external ressources with bower](#using-bower) if yo
 When completed the setup, you'll be able to run the various Grunt tasks provided from the command line.
 
 Just type the following to get an overview about the available Tasks:
- 
+
 	grunt tasks
 
 This will give you the main Grunt tasks which are ready for you to be fired from the terminal (grouped into »Dev« and »Production« Tasks):
@@ -159,14 +160,14 @@ Running those tasks will create a bunch of directories and files which aren’t 
 
 ````
 bootstrap-kickstart/
-├── assets/ 
+├── assets/
 │   ├── css/
 │   │   ├── index.css          → Compiled and autoprefixed from LESS files
 │   │   └── index.css.map      → Sourcemap which maps to LESS files
 │   └── js/
 │       ├── file.min.js        → Minified JavaScript file
 │       └── file.min.js.map    → Sourcemap which maps to original js file
-├── dist/                      → Contains the files ready for production 
+├── dist/                      → Contains the files ready for production
 │   ├── assets/
 │   │   ├── css/
 │   │   │   ├── index.css      → Compiled and autoprefixed from LESS files
@@ -180,14 +181,14 @@ bootstrap-kickstart/
 ├── libs/                      → External libraries and plugins installed by Bower
 ├── node_modules/              → Dev dependencies installed by npm
 ├── reports/                   → JavaScript Source Analysis
-└── server/                    → Contains files for running a local dev server 
+└── server/                    → Contains files for running a local dev server
 ````
 
 See `/Gruntfile.js` to see what happens in Details.
 
 ### Setting up your Editor (optional)
 
-We strongly advise to install an [EditorConfig plugin](http://editorconfig.org/#download) and take a look at the `.editorconfig` file in the root of this project. 
+We strongly advise to install an [EditorConfig plugin](http://editorconfig.org/#download) and take a look at the `.editorconfig` file in the root of this project.
 
 Beside that we recommend setting up a project within in your editor if you don’t want to see these generated files cluttered all over your project. In case of Sublime Text it’s as easy as hitting »Project« → »Save Project As …« and adding the following to `projectName.sublime-project`.
 
@@ -218,7 +219,7 @@ Beside that we recommend setting up a project within in your editor if you don�
     ]
   }]
 }
-``` 
+```
 
 ## Writing Markup (using pages, templates and partials)
 Using [grunt-generator](https://github.com/clavery/grunt-generator) we can simplify our templates and avoid markup duplications by using a combination of `pages`, `templates` and `partials` (optional). grunt-generator uses [Handlebars](http://handlebarsjs.com/) under the hood to make that possible.
@@ -228,20 +229,20 @@ Because every valid HTML page is a valid Handlebars template. But handlebars giv
 
 - write plain HTML
 - use [built-In helpers](http://handlebarsjs.com/builtin_helpers.html) provided by handlebars
-- go crazy with [custom helpers](http://handlebarsjs.com/block_helpers.html) :heart_eyes: 
+- go crazy with [custom helpers](http://handlebarsjs.com/block_helpers.html) :heart_eyes:
 
 Let’s dive into it by describing a minimal example. Imagine that we have a simplified file/folder structure like the following in our project:
 
 ```
 myProject
-├── index.hbs                  → A page 
-├── anotherPage.hbs            → Another page 
-├── partials                   → Place to store our partials (usage optional) 
+├── index.hbs                  → A page
+├── anotherPage.hbs            → Another page
+├── partials                   → Place to store our partials (usage optional)
 │   └── footer.hbs
 └── templates                  → Place to store our templates
     ├── default.hbs            → Our default template
     └── helpers
-        └── helpers.js         → Place to store handlebars helpers (usage optional) 
+        └── helpers.js         → Place to store handlebars helpers (usage optional)
 ```
 
 As you can see our pages are stored in the root of the project and are rendered as `html` pages with a little help of Handlebars.
@@ -356,9 +357,9 @@ This is s short version of our conventions when it comes to create bootstrap the
 
 Seems to be a pretty huge amount of files for such a little project. So here we go with an explanation.
 
-### index.less  
+### index.less
 Our main LESS file which is the one which is creating our index.css file. This file is just about a few imports and setting the path to the icon fonts provided by bootstrap.
-	
+
 ```css
 // Bootstrap Core
 // --------------------------------------------------
@@ -454,12 +455,12 @@ See [footer.less](assets/less/theme/footer.less) for a »real life« example.
 
 There are three files which differ from the regular modules. Please have a look at comments within the following files to get an idea how to handle them:
 
-- [variables.less](assets/less/theme/variables.less)  
+- [variables.less](assets/less/theme/variables.less)
 	Used to override bootstrap variables. Make sure to read the comments which describe how to handle this file which can save you lots of time when it comes to a Bootstrap update.
-- [mixins.less](assets/less/theme/mixins.less)  
+- [mixins.less](assets/less/theme/mixins.less)
 	Holds additional global mixins which are meant to be used across modules.
-- [scaffolding.less](assets/less/theme/scaffolding.less)  
-	Used to define the most generic html elements. 
+- [scaffolding.less](assets/less/theme/scaffolding.less)
+	Used to define the most generic html elements.
 
 ## Installing and updating external resources with Bower
 
@@ -472,7 +473,7 @@ But it’s good to know that you can always install the dependencies needed for 
 
 This places a `/lib` directory (if not already existing) containing the dependencies defined in the `bower.json` in your root directory of the project as mentioned before.
 
-**Important**  
+**Important**
 It might be needed to call `bower install` after dependencies are added and used on a remote repository. Because when doing a `git pull` you won’t get the new dependencies since the `lib` directory is not under version control. This will be adressed with issue [#10](https://github.com/micromata/bootstrap-kickstart/issues/10).
 
 ### Changing versions of external resources
@@ -500,11 +501,11 @@ Check <http://semver-ftw.org> for more information about »Semantic Versioning«
 
 Let’s assume you like to add even more responsiveness to your tables as provided by bootstraps `table-responsive` class. This could be accomplished with the awesome [Tablesaw plugins](https://github.com/filamentgroup/tablesaw) by the Filament Group.
 
-This is how you get the files into your `/libs` directory and define the dependency  in the `bower.json` file. 
+This is how you get the files into your `/libs` directory and define the dependency  in the `bower.json` file.
 
 	cd path/to/your/checkout/of/bootstrap-kickstart
 	bower search tablesaw
-		
+
 This leads to something like:
 
 ````
@@ -525,7 +526,7 @@ where the string before the url (`tablesaw `) is your key for installation. In o
 which will:
 
 - download the latest and greatest version to your `libs` directory
-- Add `"tablesaw": "~0.1.6"` to your `bower.json` 
+- Add `"tablesaw": "~0.1.6"` to your `bower.json`
 
 ## Browser support
 
