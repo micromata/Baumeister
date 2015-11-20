@@ -5,5 +5,6 @@ node_js:
   - '4'
   - 'stable'
 script:
+  npm install grunt-cli -g
   grunt dev
   grunt build
