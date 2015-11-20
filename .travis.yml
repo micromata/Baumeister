@@ -4,7 +4,8 @@ node_js:
   - '0.12'
   - '4'
   - 'stable'
+before_script:
+  - npm install -g grunt-cli
 script:
-  npm install grunt-cli -g
-  grunt dev
-  grunt build
+  - grunt dev
+  - grunt build
