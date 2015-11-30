@@ -375,12 +375,12 @@ module.exports = function (grunt) {
 			dev: {
 				bsFiles: {
 					src: [
-						'assets/css/*.css',
-						'assets/img/**/*.jpg',
-						'assets/img/**/*.png',
-						'assets/img/**/*.gif',
-						'assets/js/**/*.js',
-						'*.html'
+						'<%= config.server %>/assets/css/*.css',
+						'<%= config.server %>/assets/img/**/*.jpg',
+						'<%= config.server %>/assets/img/**/*.png',
+						'<%= config.server %>/assets/img/**/*.gif',
+						'<%= config.server %>/assets/js/**/*.js',
+						'<%= config.server %>/*.html'
 					]
 				},
 				options: {
