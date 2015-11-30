@@ -5,6 +5,8 @@ node_js:
   - '4'
   - 'stable'
 before_install:
+  - git config --global user.email "you@example.com"
+  - git config --global user.name "Your Name"
   - npm install -g bower
 before_script:
   - npm install -g grunt-cli
