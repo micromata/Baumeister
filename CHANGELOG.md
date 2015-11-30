@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 2.0.3 (2015-11-30)
+
+- 5832c2a - 2015-11-30: Fix updating html files for browser sync 
+- e49e6a2 - 2015-11-20: Another attempt to run grunt tasks on Travis 
+- 469d1fe - 2015-11-20: Fix .travis.yml :neckbeard: 
+- 78d857e - 2015-11-20: Install grunt cli for travis build 
+- e7c42f5 - 2015-11-20: Fix .travis.yml and add travis badge 
+- b97baa5 - 2015-11-20: Use Travis to check if grunt tasks run properly … 
+- bd9e3fb - 2015-11-18: Update dev dependencies 
+
+
 ## Version 2.0.2 (2015-11-17)
 
 - 78f8ed4 - 2015-11-17: Fix path to server for browser sync task 
