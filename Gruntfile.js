@@ -208,7 +208,20 @@ module.exports = function (grunt) {
 
 		uncss: {
 			options: {
-				ignoreSheets: [/fonts.googleapis/]
+				ignoreSheets: [/fonts.googleapis/],
+				timeout: 2000,
+				ignore: [
+					/\w\.in/,
+					/(#|\.)navbar(\-[a-zA-Z]+)?/,
+					/(#|\.)modal(\-[a-zA-Z]+)?/,
+					/(#|\.)dropdown(\-[a-zA-Z]+)?/,
+					/(#|\.)carousel(\-[a-zA-Z]+)?/,
+					/(#|\.)(open)/,
+					'.fade',
+					'.collapse',
+					'.collapsing',
+					'.in'
+				]
 			},
 			dist: {
 				src: '<%= config.server %>/*.html',
