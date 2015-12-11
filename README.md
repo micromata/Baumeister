@@ -3,6 +3,8 @@
 
 #Kickstarter for Bootstrap themes
 
+[![Join the chat at https://gitter.im/micromata/bootstrap-kickstart](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/micromata/bootstrap-kickstart?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ![Logo](assets/img/bootstrap-kickstart-logo.png)
 
 The aim of this repository is to help you with the creation of Bootstrap themes and sites by providing:
