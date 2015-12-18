@@ -313,7 +313,6 @@ module.exports = function (grunt) {
 				src: [
 					'assets/css/*.min.css',
 					'assets/fonts/**/*',
-					'assets/img/**/*',
 					// Bootstrap fonts
 					'libs/bootstrap/fonts/*',
 					// Bower libs needed for oldIEs. The rest is concatenated via the bower_concat task.
