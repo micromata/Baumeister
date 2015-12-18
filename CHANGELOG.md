@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 2.1.0 (2015-12-18)
+
+- 654af98 - 2015-12-18: Remove comments from html files in dist directory 
+- 85d14b4 - 2015-12-18: Fix imagemin task 
+- 4a81787 - 2015-12-17: Add SVG files to imagemin task 
+- 900f957 - 2015-12-11: Extend default options of uncss task 
+- f79dbc7 - 2015-12-11: Add Gitter badge 
+- d4755ed - 2015-12-11: Add gitter webhook to travis config 
+- a906c60 - 2015-11-30: Prevent errors on travis build 
+
+
 ## Version 2.0.3 (2015-11-30)
 
 - 5832c2a - 2015-11-30: Fix updating html files for browser sync 
