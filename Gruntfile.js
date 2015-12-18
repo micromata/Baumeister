@@ -523,6 +523,20 @@ module.exports = function (grunt) {
 			}
 		},
 
+		htmlmin: {
+			dist: {
+				options: {
+					removeComments: true
+				},
+				files: [{
+					expand: true,
+					cwd: '<%= config.dist %>',
+					src: ['*.html'],
+					dest: '<%= config.dist %>'
+				}]
+			}
+		},
+
 		// watch
 		watch: {
 			options: {
@@ -643,6 +657,7 @@ module.exports = function (grunt) {
 			'imagemin',
 			'generator',
 			'processhtml',
+			'htmlmin',
 			'copy',
 			'bower_concat',
 			'uglify:bower',
