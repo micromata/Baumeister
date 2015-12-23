@@ -575,6 +575,12 @@ module.exports = function (grunt) {
 
 		nsp: {
 			package: grunt.file.readJSON('package.json')
+		},
+
+		david: {
+			all: {
+				ignore: ['grunt']
+			}
 		}
 
 	});
@@ -694,4 +700,9 @@ module.exports = function (grunt) {
 		['bump-only:major', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
 	);
 
+	// Security checks
+	grunt.registerTask('security',
+		'`grunt security` checks the node dependencies for known vulnerabilities.',
+		['nsp', 'david']
+	);
 };
