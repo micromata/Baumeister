@@ -571,6 +571,10 @@ module.exports = function (grunt) {
 					spawn: false
 				}
 			}
+		},
+
+		nsp: {
+			package: grunt.file.readJSON('package.json')
 		}
 
 	});
