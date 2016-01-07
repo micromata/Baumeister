@@ -292,6 +292,20 @@ module.exports = function (grunt) {
 				}]
 			}
 		},
+		
+		
+
+		svgmin: {
+			dist: {
+				options: {},
+				files: [{
+					expand: true,
+					cwd: 'assets/img',
+					src: ['*.svg'],
+					dest: '<%= config.dist %>/assets/img'
+				}]
+			}
+    		},
 
 		processhtml: {
 			dist: {
@@ -656,6 +670,7 @@ module.exports = function (grunt) {
 			'uncss',
 			'cssmin:assets',
 			'imagemin',
+			'svgmin',
 			'generator',
 			'processhtml',
 			'htmlmin',
