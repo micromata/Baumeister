@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 2.1.1 (2015-12-20)
+
+- 589bc61 - 2015-12-20: ignore tooltip css in uncss 
+
+
 ## Version 2.1.0 (2015-12-18)
 
 - 654af98 - 2015-12-18: Remove comments from html files in dist directory 

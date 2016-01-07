@@ -216,6 +216,7 @@ module.exports = function (grunt) {
 					/(#|\.)modal(\-[a-zA-Z]+)?/,
 					/(#|\.)dropdown(\-[a-zA-Z]+)?/,
 					/(#|\.)carousel(\-[a-zA-Z]+)?/,
+					/(#|\.)tooltip(\-[a-zA-Z]+)?/,
 					/(#|\.)(open)/,
 					'.fade',
 					'.collapse',
