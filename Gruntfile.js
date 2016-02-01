@@ -4,9 +4,7 @@ var getTasks = require('load-grunt-tasks');
 var displayTime = require('time-grunt');
 var templateHelpers = require('./templates/helpers/helpers.js');
 
-// Idea: exclude this stuff completely out of the Gruntfile, so that there's no need to change the Gruntfile to add dependencies.
-// This should be placed into a separate file. The gruntfile could be very generic.
-// Dependencies are added with a very simple api....
+// Define dependencies and it's files with a simple api.
 var dependencyConfiguration = require('./dependencyConfiguration.js');
 dependencyConfiguration.addDependency('jquery', [
 	'dist/jquery.js'
@@ -142,27 +140,19 @@ module.exports = function (grunt) {
 				}
 			},
 			npm: {
+				options: {
+					sourceMaps: false,
+					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+						' * <%= pkg.author.email %>\n' +
+						' * – Concatenated libs –  \n' +
+						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+						' */\n'
+				},
 				files: {
 					'<%= config.dist %>/node_modules/libs.min.js': dependencyConfiguration.getDependenciesFileList()
 				}
 			}
-			// ############ Use an alternative for npm.....  #########################
-			//
-			//
-			// bower: {
-			// 	options: {
-			// 		sourceMap: false,
-			// 		banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-			// 			' * <%= pkg.author.email %>\n' +
-			// 			' * – Concatenated libs –  \n' +
-			// 			' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-			// 			' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-			// 			' */\n'
-			// 	},
-			// 	files: {
-			// 		'<%= config.dist %>/node_modules/libs.min.js': ['<%= config.dist %>/node_modules/libs.min.js']
-			// 	}
-			// }
 		},
 
 		// less
@@ -283,15 +273,6 @@ module.exports = function (grunt) {
 					'<%= config.dist %>/node_modules/libs.min.css': dependencyConfiguration.getDependenciesFileList('.css')
 				}
 			}
-			// #### we need an alternative for using with npm modules
-			// bower: {
-			// 	options: {
-			// 		keepSpecialComments: 0
-			// 	},
-			// 	files: {
-			// 		'<%= config.dist %>/libs/libs.min.css': ['<%= config.dist %>/libs/libs.min.css']
-			// 	}
-			// }
 		},
 
 		usebanner: {
@@ -310,20 +291,6 @@ module.exports = function (grunt) {
 					]
 				}
 			}
-			// ######## It's not necessary anymore. ##########
-			// bower: {
-			// 	options: {
-			// 		banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-			// 			' * <%= pkg.author.email %>\n' +
-			// 			' * – Concatenated libs –  \n' +
-			// 			' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-			// 			' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-			// 			' */'
-			// 	},
-			// 	files: {
-			// 		src: ['<%= config.dist %>/libs/libs.min.css']
-			// 	}
-			// }
 		},
 
 		imagemin: {
@@ -385,27 +352,6 @@ module.exports = function (grunt) {
 				dest: '<%= config.dist %>/handlebarsSources'
 			}
 		},
-
-		// ##################### It's not necessary anymore. ##########################
-
-		// bower_concat: { // eslint-disable-line camelcase
-		// 	dist: {
-		// 		// These are minified afterwards with `cssmin:bower` and `uglify:bower`.
-		// 		// Because Chrome Dev Tools will throw an 404 regarding the missing sourcemaps if
-		// 		// we use the already minified versions. Yep, that’s ugly.
-		// 		dest: '<%= config.dist %>/node_modules/libs.min.js',
-		// 		cssDest: '<%= config.dist %>/node_modules/libs.min.css',
-		// 		include: [
-		// 			'jquery',
-		// 			'bootstrap'
-		// 		],
-		// 		mainFiles: {
-		// 			jquery: ['dist/jquery.js'],
-		// 			bootstrap: ['dist/js/bootstrap.js']
-		// 		}
-		// 	}
-		// },
-
 		jsdoc: {
 			dist: {
 				src: [
@@ -720,10 +666,7 @@ module.exports = function (grunt) {
 			'processhtml',
 			'htmlmin',
 			'copy',
-			// 'bower_concat',
-			// 'uglify:bower',
 			'uglify:npm',
-			// 'cssmin:bower',
 			'cssmin:npm',
 			'usebanner',
 			'clean:temp',
