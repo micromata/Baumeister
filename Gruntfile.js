@@ -141,7 +141,7 @@ module.exports = function (grunt) {
 			},
 			npm: {
 				options: {
-					sourceMaps: false,
+					sourceMap: false,
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
 						' * <%= pkg.author.email %>\n' +
 						' * – Concatenated libs –  \n' +
