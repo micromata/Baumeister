@@ -26,6 +26,7 @@
     "respond.js": "^1.4.2"
   },
   "devDependencies": {
+    "babelify": "^7.2.0",
     "eslint": "1.10.3",
     "eslint-config-xo": "0.9.1",
     "grunt": "0.4.5",
@@ -35,6 +36,7 @@
     "grunt-bootlint": "0.10.0",
     "grunt-bower-concat": "0.6.0",
     "grunt-browser-sync": "2.2.0",
+    "grunt-browserify": "^4.0.1",
     "grunt-bump": "0.7.0",
     "grunt-changelog": "0.3.1",
     "grunt-contrib-clean": "0.7.0",
