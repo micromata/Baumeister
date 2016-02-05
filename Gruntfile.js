@@ -671,7 +671,8 @@ module.exports = function (grunt) {
 			'usebanner',
 			'clean:temp',
 			'plato',
-			'jsdoc'
+			'jsdoc',
+			'security'
 		]
 	);
 
