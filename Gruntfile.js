@@ -130,15 +130,6 @@ module.exports = function (grunt) {
 					drop_debugger: true // eslint-disable-line camelcase
 				}
 			},
-			// concatenate: {
-			// 	files: {
-			// 		'<%= config.dist %>/assets/js/built.min.js': [
-			// 			'assets/js/**/*.js',
-			// 			'!assets/js/moduleSkeleton.js',
-			// 			'!assets/js/**/*.min.js'
-			// 		]
-			// 	}
-			// },
 			browserifyOutput: {
 				options: {
 					sourceMap: false
