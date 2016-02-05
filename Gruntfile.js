@@ -130,12 +130,24 @@ module.exports = function (grunt) {
 					drop_debugger: true // eslint-disable-line camelcase
 				}
 			},
-			concatenate: {
+			// concatenate: {
+			// 	files: {
+			// 		'<%= config.dist %>/assets/js/built.min.js': [
+			// 			'assets/js/**/*.js',
+			// 			'!assets/js/moduleSkeleton.js',
+			// 			'!assets/js/**/*.min.js'
+			// 		]
+			// 	}
+			// },
+			browserifyOutput: {
+				options: {
+					sourceMap: false
+				},
 				files: {
 					'<%= config.dist %>/assets/js/built.min.js': [
-						'assets/js/**/*.js',
-						'!assets/js/moduleSkeleton.js',
-						'!assets/js/**/*.min.js'
+						'server/assets/js/vendor.js',
+						// same as client.js but without sourceMaps
+						'server/assets/js/client.min.js'
 					]
 				}
 			},
@@ -588,7 +600,7 @@ module.exports = function (grunt) {
 					require: ['react', 'react-dom']
 				}
 			},
-			client: {
+			clientDevelopment: {
 				src: ['assets/js/**/*.js'],
 				dest: 'server/assets/js/client.js',
 				options: {
@@ -598,6 +610,23 @@ module.exports = function (grunt) {
 					transform: [
 						['babelify', {
 							sourceMaps: true,
+							presets: ['es2015', 'react']
+						}]
+					],
+					// maybe we could automize this by using dependencies from package.json
+					external: ['react', 'react-dom']
+				}
+			},
+			clientProduction: {
+				src: ['assets/js/**/*.js'],
+				dest: 'server/assets/js/client.min.js',
+				options: {
+					browserifyOptions: {
+						debug: false
+					},
+					transform: [
+						['babelify', {
+							sourceMaps: false,
 							presets: ['es2015', 'react']
 						}]
 					],
@@ -637,7 +666,8 @@ module.exports = function (grunt) {
 			'autoprefixer',
 			'clean:less',
 			'copy:server',
-			'browserify',
+			'browserify:vendor',
+			'browserify:clientDevelopment',
 			'generator',
 			'lint'
 		]
@@ -684,7 +714,7 @@ module.exports = function (grunt) {
 		'`grunt build` builds production ready sources to dist directory.', [
 			'clean:dist',
 			'lint',
-			'uglify:concatenate',
+			// 'uglify:concatenate',
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
@@ -694,12 +724,15 @@ module.exports = function (grunt) {
 			'generator',
 			'processhtml',
 			'htmlmin',
+			'browserify:vendor',
+			'browserify:clientProduction',
 			'copy',
 			'uglify:npm',
+			'uglify:browserifyOutput',
 			'cssmin:npm',
 			'usebanner',
 			'clean:temp',
-			'plato',
+			// 'plato',  Doesn't work with es6 per default. Transpile all files to a separate directory or use another plugin!?
 			'jsdoc',
 			'security'
 		]
