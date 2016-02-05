@@ -334,7 +334,7 @@ module.exports = function (grunt) {
 				expand: true,
 				src: [
 					'assets/css/**/*',
-					'assets/js/**/*',
+					// 'assets/js/**/*',
 					'assets/fonts/**/*',
 					'assets/img/**/*',
 					'node_modules/bootstrap/fonts/**/*'
@@ -577,6 +577,34 @@ module.exports = function (grunt) {
 			all: {
 				ignore: ['grunt']
 			}
+		},
+
+		browserify: {
+			vendor: {
+				src: [],
+				dest: 'server/assets/js/vendor.js',
+				options: {
+					// maybe we could automize this by using dependencies from package.json
+					require: ['react', 'react-dom']
+				}
+			},
+			client: {
+				src: ['assets/js/**/*.js'],
+				dest: 'server/assets/js/client.js',
+				options: {
+					browserifyOptions: {
+						debug: true
+					},
+					transform: [
+						['babelify', {
+							sourceMaps: true,
+							presets: ['es2015', 'react']
+						}]
+					],
+					// maybe we could automize this by using dependencies from package.json
+					external: ['react', 'react-dom']
+				}
+			}
 		}
 
 	});
@@ -609,6 +637,7 @@ module.exports = function (grunt) {
 			'autoprefixer',
 			'clean:less',
 			'copy:server',
+			'browserify',
 			'generator',
 			'lint'
 		]
