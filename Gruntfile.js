@@ -541,7 +541,7 @@ module.exports = function (grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['newer:eslint', 'newer:copy:server'],
+				tasks: ['newer:eslint', 'newer:copy:server', 'newer:browserify:client'],
 				options: {
 					spawn: false
 				}
