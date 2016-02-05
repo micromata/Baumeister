@@ -16,7 +16,7 @@ const Component = React.createClass({ // eslint-disable-line no-unused-vars
 
 	render() {
 		return <div onClick={this.handleOnClick}>
-			Hello, React! {this.state.counter}
+			Hello, React YaY! {this.state.counter}
 		</div>;
 	}
 });
