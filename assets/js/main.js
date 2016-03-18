@@ -7,7 +7,7 @@ const SimpleComponentWithoutLogic = React.createClass({ // eslint-disable-line n
 	}
 });
 
-const getInitialData = () => Array(2000).fill(0).map((item, index) => 'Item ' + index);
+const getInitialData = () => Array(5000).fill(0).map((item, index) => 'Item ' + index);
 
 const SimpleFilter = React.createClass({ // eslint-disable-line no-unused-vars
 	getInitialState() {
@@ -36,7 +36,7 @@ const SimpleFilter = React.createClass({ // eslint-disable-line no-unused-vars
 
 const Component = React.createClass({ // eslint-disable-line no-unused-vars
 	getInitialState() {
-		return {counter: 0, text: 'Data-binding is very hard to implement ^^'};
+		return {counter: 0, text: 'Data-binding'};
 	},
 
 	handleIncrement() {
@@ -62,7 +62,7 @@ const Component = React.createClass({ // eslint-disable-line no-unused-vars
 			<br/>
 			<h1>{this.state.text}</h1>
 			<input className="form-control" onChange={this.onInputChanged} value={this.state.text} ref="textInput"/>
-			<SimpleComponentWithoutLogic name="René Viering"/>
+			<SimpleComponentWithoutLogic name="Max Mustermann"/>
 			<SimpleFilter/>
 		</div>;
 	}
