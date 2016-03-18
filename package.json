@@ -18,7 +18,13 @@
     "url": "https://github.com/micromata/bootstrap-kickstart/issues"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "html5shiv": "^3.7.3",
+    "jquery": "^2.1.4",
+    "jquery-placeholder": "^2.1.1",
+    "respond.js": "^1.4.2"
+  },
   "devDependencies": {
     "eslint": "1.10.3",
     "eslint-config-xo": "0.9.1",
@@ -41,6 +47,7 @@
     "grunt-contrib-less": "1.1.0",
     "grunt-contrib-uglify": "0.11.0",
     "grunt-contrib-watch": "0.6.1",
+    "grunt-david": "^0.7.0",
     "grunt-eslint": "17.3.1",
     "grunt-generator": "0.4.1",
     "grunt-git": "0.3.7",
@@ -49,6 +56,7 @@
     "grunt-jsdoc": "1.1.0",
     "grunt-newer": "1.1.1",
     "grunt-notify": "0.4.3",
+    "grunt-nsp": "^2.1.2",
     "grunt-plato": "1.2.1",
     "grunt-processhtml": "0.3.8",
     "grunt-shell": "1.1.2",

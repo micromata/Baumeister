@@ -4,6 +4,31 @@ var getTasks = require('load-grunt-tasks');
 var displayTime = require('time-grunt');
 var templateHelpers = require('./templates/helpers/helpers.js');
 
+// Define dependencies and it's files with a simple api.
+var dependencyConfiguration = require('./dependencyConfiguration.js');
+dependencyConfiguration.addDependency('jquery', [
+	'dist/jquery.js'
+]);
+dependencyConfiguration.addDependency('bootstrap', [
+	'js/affix.js',
+	'js/alert.js',
+	'js/button.js',
+	'js/carousel.js',
+	'js/carousel.js',
+	'js/collapse.js',
+	'js/dropdown.js',
+	'js/modal.js',
+	'js/tooltip.js',
+	'js/popover.js',
+	'js/scrollspy.js',
+	'js/tab.js',
+	'js/transition.js'
+]);
+
+dependencyConfiguration.addDependency('jquery-placeholder', [
+	'jquery.placeholder.js'
+]);
+
 module.exports = function (grunt) {
 
 	// Get devDependencies
@@ -114,7 +139,7 @@ module.exports = function (grunt) {
 					]
 				}
 			},
-			bower: {
+			npm: {
 				options: {
 					sourceMap: false,
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
@@ -125,7 +150,7 @@ module.exports = function (grunt) {
 						' */\n'
 				},
 				files: {
-					'<%= config.dist %>/libs/libs.min.js': ['<%= config.dist %>/libs/libs.min.js']
+					'<%= config.dist %>/node_modules/libs.min.js': dependencyConfiguration.getDependenciesFileList()
 				}
 			}
 		},
@@ -240,12 +265,12 @@ module.exports = function (grunt) {
 					'<%= config.dist %>/assets/css/index.min.css': ['assets/css/index.css']
 				}
 			},
-			bower: {
+			npm: {
 				options: {
 					keepSpecialComments: 0
 				},
 				files: {
-					'<%= config.dist %>/libs/libs.min.css': ['<%= config.dist %>/libs/libs.min.css']
+					'<%= config.dist %>/node_modules/libs.min.css': dependencyConfiguration.getDependenciesFileList('.css')
 				}
 			}
 		},
@@ -264,19 +289,6 @@ module.exports = function (grunt) {
 						'<%= config.dist %>/assets/css/index.uncss.min.css',
 						'<%= config.dist %>/assets/css/index.min.css'
 					]
-				}
-			},
-			bower: {
-				options: {
-					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
-						' * – Concatenated libs –  \n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */'
-				},
-				files: {
-					src: ['<%= config.dist %>/libs/libs.min.css']
 				}
 			}
 		},
@@ -314,11 +326,7 @@ module.exports = function (grunt) {
 				src: [
 					'assets/css/*.min.css',
 					'assets/fonts/**/*',
-					// Bootstrap fonts
-					'libs/bootstrap/fonts/*',
-					// Bower libs needed for oldIEs. The rest is concatenated via the bower_concat task.
-					'libs/html5shiv/dist/html5shiv-printshiv.min.js',
-					'libs/respondJs/dest/respond.min.js'
+					'node_modules/bootstrap/fonts/**/*'
 				],
 				dest: '<%= config.dist %>/'
 			},
@@ -329,33 +337,21 @@ module.exports = function (grunt) {
 					'assets/js/**/*',
 					'assets/fonts/**/*',
 					'assets/img/**/*',
-					'libs/**/*.js',
-					'libs/**/*.css',
-					'libs/bootstrap/fonts/*'
-				],
+					'node_modules/bootstrap/fonts/**/*'
+				].concat(dependencyConfiguration.getDependenciesFileList()),
 				dest: '<%= config.server %>/'
-			}
-		},
-
-		bower_concat: { // eslint-disable-line camelcase
-			dist: {
-				// These are minified afterwards with `cssmin:bower` and `uglify:bower`.
-				// Because Chrome Dev Tools will throw an 404 regarding the missing sourcemaps if
-				// we use the already minified versions. Yep, that’s ugly.
-				dest: '<%= config.dist %>/libs/libs.min.js',
-				cssDest: '<%= config.dist %>/libs/libs.min.css',
-				include: [
-					'jquery',
-					'bootstrap',
-					'jquery-placeholder'
+			},
+			handlebars: {
+				expand: true,
+				src: [
+					'*.hbs',
+					'templates/*.hbs',
+					'partials/**/*.hbs',
+					'templates/helpers/helpers.js'
 				],
-				mainFiles: {
-					jquery: ['dist/jquery.js'],
-					bootstrap: ['dist/js/bootstrap.js']
-				}
+				dest: '<%= config.dist %>/handlebarsSources'
 			}
 		},
-
 		jsdoc: {
 			dist: {
 				src: [
@@ -515,7 +511,7 @@ module.exports = function (grunt) {
 				}],
 				options: {
 					helpers: templateHelpers,
-					partialsGlob: 'partials/*.hbs',
+					partialsGlob: 'partials/**/*.hbs',
 					templates: 'templates',
 					templateExt: 'hbs',
 					defaultTemplate: 'default',
@@ -570,6 +566,16 @@ module.exports = function (grunt) {
 				options: {
 					spawn: false
 				}
+			}
+		},
+
+		nsp: {
+			package: grunt.file.readJSON('package.json')
+		},
+
+		david: {
+			all: {
+				ignore: ['grunt']
 			}
 		}
 
@@ -660,13 +666,13 @@ module.exports = function (grunt) {
 			'processhtml',
 			'htmlmin',
 			'copy',
-			'bower_concat',
-			'uglify:bower',
-			'cssmin:bower',
+			'uglify:npm',
+			'cssmin:npm',
 			'usebanner',
 			'clean:temp',
 			'plato',
-			'jsdoc'
+			'jsdoc',
+			'security'
 		]
 	);
 
@@ -690,4 +696,9 @@ module.exports = function (grunt) {
 		['bump-only:major', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
 	);
 
+	// Security checks
+	grunt.registerTask('security',
+		'`grunt security` checks the node dependencies for known vulnerabilities.',
+		['nsp', 'david']
+	);
 };
