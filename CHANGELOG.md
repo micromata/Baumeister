@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 2.1.2 (2016-03-20)
+
+- c3be486 - 2016-03-20: Fix travis error regarding Java version 
+- e1117ec - 2016-03-20: Update jQuery to the latest 1.x 
+- e2ce134 - 2016-03-20: Run `.postinstall.js`explicitly with node 
+- bfdbdfa - 2016-03-20: Upgrade dev dependencies 
+- c2a45b3 - 2016-02-05: Add René Viering 
+- 0ec2ae9 - 2016-01-09: Update dev dependencies 
+- 32e6bcb - 2016-01-09: Update Bower dependencies 
+
+
 ## Version 2.1.1 (2015-12-20)
 
 - 589bc61 - 2015-12-20: ignore tooltip css in uncss 
