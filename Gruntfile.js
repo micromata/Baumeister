@@ -4,31 +4,6 @@ var getTasks = require('load-grunt-tasks');
 var displayTime = require('time-grunt');
 var templateHelpers = require('./templates/helpers/helpers.js');
 
-// Define dependencies and it's files with a simple api.
-var dependencyConfiguration = require('./dependencyConfiguration.js');
-dependencyConfiguration.addDependency('jquery', [
-	'dist/jquery.js'
-]);
-dependencyConfiguration.addDependency('bootstrap', [
-	'js/affix.js',
-	'js/alert.js',
-	'js/button.js',
-	'js/carousel.js',
-	'js/carousel.js',
-	'js/collapse.js',
-	'js/dropdown.js',
-	'js/modal.js',
-	'js/tooltip.js',
-	'js/popover.js',
-	'js/scrollspy.js',
-	'js/tab.js',
-	'js/transition.js'
-]);
-
-dependencyConfiguration.addDependency('jquery-placeholder', [
-	'jquery.placeholder.js'
-]);
-
 module.exports = function (grunt) {
 
 	// Get devDependencies
@@ -126,7 +101,7 @@ module.exports = function (grunt) {
 				sourceMap: true,
 				sourceMapIncludeSources: true,
 				compress: {
-					drop_console: true, // eslint-disable-line camelcase
+					drop_console: false, // eslint-disable-line camelcase
 					drop_debugger: true // eslint-disable-line camelcase
 				}
 			},
@@ -141,21 +116,21 @@ module.exports = function (grunt) {
 						'server/assets/js/client.min.js'
 					]
 				}
-			},
-			npm: {
-				options: {
-					sourceMap: false,
-					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
-						' * – Concatenated libs –  \n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */\n'
-				},
-				files: {
-					'<%= config.dist %>/node_modules/libs.min.js': dependencyConfiguration.getDependenciesFileList()
-				}
 			}
+			// npm: {
+			// 	options: {
+			// 		sourceMap: false,
+			// 		banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+			// 			' * <%= pkg.author.email %>\n' +
+			// 			' * – Concatenated libs –  \n' +
+			// 			' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+			// 			' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+			// 			' */\n'
+			// 	},
+			// 	files: {
+			// 		'<%= config.dist %>/node_modules/libs.min.js': dependencyConfiguration.getDependenciesFileList()
+			// 	}
+			// }
 		},
 
 		// less
@@ -267,15 +242,15 @@ module.exports = function (grunt) {
 					'<%= config.dist %>/assets/css/index.uncss.min.css': ['temp/index.css'],
 					'<%= config.dist %>/assets/css/index.min.css': ['assets/css/index.css']
 				}
-			},
-			npm: {
-				options: {
-					keepSpecialComments: 0
-				},
-				files: {
-					'<%= config.dist %>/node_modules/libs.min.css': dependencyConfiguration.getDependenciesFileList('.css')
-				}
 			}
+			// npm: {
+			// 	options: {
+			// 		keepSpecialComments: 0
+			// 	},
+			// 	files: {
+			// 		'<%= config.dist %>/node_modules/libs.min.css': dependencyConfiguration.getDependenciesFileList('.css')
+			// 	}
+			// }
 		},
 
 		usebanner: {
@@ -341,7 +316,8 @@ module.exports = function (grunt) {
 					'assets/fonts/**/*',
 					'assets/img/**/*',
 					'node_modules/bootstrap/fonts/**/*'
-				].concat(dependencyConfiguration.getDependenciesFileList()),
+				],
+				// ].concat(dependencyConfiguration.getDependenciesFileList()),
 				dest: '<%= config.server %>/'
 			},
 			handlebars: {
@@ -480,7 +456,7 @@ module.exports = function (grunt) {
 
 		bootlint: {
 			options: {
-				stoponerror: true
+				stoponerror: false
 			},
 			files: ['<%= config.server %>/*.html']
 		},
@@ -588,7 +564,7 @@ module.exports = function (grunt) {
 				dest: 'server/assets/js/vendor.js',
 				options: {
 					// maybe we could automize this by using dependencies from package.json
-					require: ['react', 'react-dom']
+					require: ['jquery']
 				}
 			},
 			clientDevelopment: {
@@ -605,7 +581,7 @@ module.exports = function (grunt) {
 						}]
 					],
 					// maybe we could automize this by using dependencies from package.json
-					external: ['react', 'react-dom']
+					external: ['jquery']
 				}
 			},
 			clientProduction: {
@@ -622,7 +598,7 @@ module.exports = function (grunt) {
 						}]
 					],
 					// maybe we could automize this by using dependencies from package.json
-					external: ['react', 'react-dom']
+					external: ['jquery']
 				}
 			}
 		}
@@ -718,9 +694,9 @@ module.exports = function (grunt) {
 			'browserify:vendor',
 			'browserify:clientProduction',
 			'copy',
-			'uglify:npm',
+			// 'uglify:npm',
 			'uglify:browserifyOutput',
-			'cssmin:npm',
+			// 'cssmin:npm',
 			'usebanner',
 			'clean:temp',
 			// 'plato',  Doesn't work with es6 per default. Transpile all files to a separate directory or use another plugin!?
