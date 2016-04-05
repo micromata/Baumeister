@@ -456,7 +456,7 @@ module.exports = function (grunt) {
 
 		bootlint: {
 			options: {
-				stoponerror: false,
+				stoponerror: true,
 				relaxerror: ['W005']
 			},
 			files: ['<%= config.server %>/*.html']
