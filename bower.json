@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-kickstart",
   "description": "This is a boilerplate for scaffolding Bootstrap themes.",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "authors": [
     "Michael Kühnel <m.kuehnel@micromata.de>"
   ],
@@ -26,12 +26,12 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.6",
-    "jquery": "1.12.0",
+    "jquery": "1.12.2",
     "html5shiv": "3.7.3",
     "respondJs": "1.4.2",
     "jquery-placeholder": "2.3.1"
   },
   "resolutions": {
-    "jquery": "1.12.0"
+    "jquery": "1.12.2"
   }
 }

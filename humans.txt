@@ -4,8 +4,8 @@ Twitter:            @mkuehnel
 Site:               http://www.micromata.de
 Location:           Kassel, Germany
 
-Support:            Micromata UX-Team (Moritz Fröhner, Julian Mengel, Ulrich Schmidt)
-Twitter:            @nuzy_, @vitamin_J
+Support:            Micromata UX-Team (Moritz Fröhner, Julian Mengel, Ulrich Schmidt, René Viering)
+Twitter:            @nuzy_, @vitamin_J, @citizenschmidt, @rvrng
 
 
 /* THANKS */
