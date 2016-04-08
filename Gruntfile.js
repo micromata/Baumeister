@@ -584,7 +584,6 @@ module.exports = function (grunt) {
 					],
 					// maybe we could automize this by using dependencies from package.json
 					external: ['jquery']
-					// plugin: [['parcelify', {o: 'bundle42.css'}]]
 				}
 			},
 			clientProduction: {
