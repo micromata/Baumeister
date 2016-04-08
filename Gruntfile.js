@@ -3,8 +3,15 @@
 var getTasks = require('load-grunt-tasks');
 var displayTime = require('time-grunt');
 var templateHelpers = require('./templates/helpers/helpers.js');
+var dependencyConfiguration = require('./dependencyConfiguration.js');
 
 module.exports = function (grunt) {
+
+	// Add frontend dependencies from package.json for adding its css files
+	var packageJson = grunt.file.readJSON('package.json');
+	Object.keys(packageJson.frontendDependenciesCSS).forEach(function (dependencyKey) {
+		dependencyConfiguration.addDependency(dependencyKey, packageJson.frontendDependenciesCSS[dependencyKey]);
+	});
 
 	// Get devDependencies
 	getTasks(grunt, {
@@ -117,20 +124,6 @@ module.exports = function (grunt) {
 					]
 				}
 			}
-			// npm: {
-			// 	options: {
-			// 		sourceMap: false,
-			// 		banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-			// 			' * <%= pkg.author.email %>\n' +
-			// 			' * – Concatenated libs –  \n' +
-			// 			' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-			// 			' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-			// 			' */\n'
-			// 	},
-			// 	files: {
-			// 		'<%= config.dist %>/node_modules/libs.min.js': dependencyConfiguration.getDependenciesFileList()
-			// 	}
-			// }
 		},
 
 		// less
@@ -242,15 +235,23 @@ module.exports = function (grunt) {
 					'<%= config.dist %>/assets/css/index.uncss.min.css': ['temp/index.css'],
 					'<%= config.dist %>/assets/css/index.min.css': ['assets/css/index.css']
 				}
+			},
+			npmLibsProduction: {
+				options: {
+					keepSpecialComments: 0
+				},
+				files: {
+					'<%= config.dist %>/node_modules/libs.min.css': dependencyConfiguration.getDependenciesFileList('.css')
+				}
+			},
+			npmLibsDevelopment: {
+				options: {
+					keepSpecialComments: 0
+				},
+				files: {
+					'<%= config.server %>/assets/css/libs.min.css': dependencyConfiguration.getDependenciesFileList('.css')
+				}
 			}
-			// npm: {
-			// 	options: {
-			// 		keepSpecialComments: 0
-			// 	},
-			// 	files: {
-			// 		'<%= config.dist %>/node_modules/libs.min.css': dependencyConfiguration.getDependenciesFileList('.css')
-			// 	}
-			// }
 		},
 
 		usebanner: {
@@ -583,6 +584,7 @@ module.exports = function (grunt) {
 					],
 					// maybe we could automize this by using dependencies from package.json
 					external: ['jquery']
+					// plugin: [['parcelify', {o: 'bundle42.css'}]]
 				}
 			},
 			clientProduction: {
@@ -637,6 +639,7 @@ module.exports = function (grunt) {
 			'browserify:vendor',
 			'browserify:clientDevelopment',
 			'generator',
+			'cssmin:npmLibsDevelopment',
 			'lint'
 		]
 	);
@@ -697,7 +700,7 @@ module.exports = function (grunt) {
 			'copy',
 			// 'uglify:npm',
 			'uglify:browserifyOutput',
-			// 'cssmin:npm',
+			'cssmin:npmLibsProduction',
 			'usebanner',
 			'clean:temp',
 			// 'plato',  Doesn't work with es6 per default. Transpile all files to a separate directory or use another plugin!?
