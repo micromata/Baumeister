@@ -3,15 +3,23 @@
 var getTasks = require('load-grunt-tasks');
 var displayTime = require('time-grunt');
 var templateHelpers = require('./templates/helpers/helpers.js');
-var dependencyConfiguration = require('./dependencyConfiguration.js');
+
+// Returns a list of all css files defined in the property bundleCSS of package.json
+function getBundleCSSFiles(packageJson) {
+	var basePath = 'node_modules/';
+	return Object.keys(packageJson.bundleCSS).map(function (dependencyKey) {
+		return packageJson.bundleCSS[dependencyKey].map(function (relativeCSSFilePath) {
+			return basePath + dependencyKey + '/' + relativeCSSFilePath;
+		});
+	}).reduce(function (left, right) {
+		return left.concat(right);
+	}, []);
+}
 
 module.exports = function (grunt) {
-
 	// Add frontend dependencies from package.json for adding its css files
 	var packageJson = grunt.file.readJSON('package.json');
-	Object.keys(packageJson.frontendDependenciesCSS).forEach(function (dependencyKey) {
-		dependencyConfiguration.addDependency(dependencyKey, packageJson.frontendDependenciesCSS[dependencyKey]);
-	});
+	var bundleCSSFiles = getBundleCSSFiles(packageJson);
 
 	// Get devDependencies
 	getTasks(grunt, {
@@ -241,7 +249,7 @@ module.exports = function (grunt) {
 					keepSpecialComments: 0
 				},
 				files: {
-					'<%= config.dist %>/node_modules/libs.min.css': dependencyConfiguration.getDependenciesFileList('.css')
+					'<%= config.dist %>/node_modules/libs.min.css': bundleCSSFiles
 				}
 			},
 			npmLibsDevelopment: {
@@ -249,7 +257,7 @@ module.exports = function (grunt) {
 					keepSpecialComments: 0
 				},
 				files: {
-					'<%= config.server %>/assets/css/libs.min.css': dependencyConfiguration.getDependenciesFileList('.css')
+					'<%= config.server %>/assets/css/libs.min.css': bundleCSSFiles
 				}
 			}
 		},

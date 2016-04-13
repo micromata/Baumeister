@@ -73,7 +73,6 @@
   "scripts": {
     "postinstall": "chmod u+x .postinstall.js && node ./.postinstall.js"
   },
-  "frontendDependenciesCSS": {
-    "bootstrap": ["dist/css/test.css"]
+  "bundleCSS": {
   }
 }
