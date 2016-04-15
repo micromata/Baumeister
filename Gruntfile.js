@@ -538,6 +538,12 @@ module.exports = function (grunt) {
 			}
 		},
 
+		newer: {
+			options: {
+				tolerance: 1000
+			}
+		},
+
 		// watch
 		watch: {
 			options: {
