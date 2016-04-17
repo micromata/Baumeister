@@ -25,13 +25,13 @@
     "workflow"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.6",
-    "jquery": "1.12.2",
+    "bootstrap": "3.3.6",
+    "jquery": "1.12.3",
     "html5shiv": "3.7.3",
     "respondJs": "1.4.2",
     "jquery-placeholder": "2.3.1"
   },
   "resolutions": {
-    "jquery": "1.12.2"
+    "jquery": "1.12.3"
   }
 }
