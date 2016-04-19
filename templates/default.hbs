@@ -20,9 +20,12 @@
 	<!-- /build -->
 
 	<!-- Libs -->
-	<!-- build:css:dist libs/libs.min.css -->
+	<!-- TODO: We need a way to integrate css-files from the libs with browserify -->
 
+	<!-- build:css:dist node_modules/libs.min.css -->
+	<link href="assets/css/libs.min.css" rel="stylesheet" />
 	<!-- /build -->
+
 
 	<!--
 	Replace "no-js" class with "js" in case JavaScript is available.
@@ -52,6 +55,8 @@
 
 	{{{body}}}
 
+	<div id="content"></div>
+
 	<!--
 	JavaScript
 	=======================================================
@@ -60,32 +65,13 @@
 	replaced in the production ready build.
 	-->
 
-	<!-- Libs -->
-	<!-- build:js:dist libs/libs.min.js -->
-	<script src="libs/jquery/dist/jquery.js"></script>
-	<script src="libs/jquery-placeholder/jquery.placeholder.js"></script>
-	<script src="libs/bootstrap/js/affix.js"></script>
-	<script src="libs/bootstrap/js/alert.js"></script>
-	<script src="libs/bootstrap/js/button.js"></script>
-	<script src="libs/bootstrap/js/carousel.js"></script>
-	<script src="libs/bootstrap/js/collapse.js"></script>
-	<script src="libs/bootstrap/js/dropdown.js"></script>
-	<script src="libs/bootstrap/js/modal.js"></script>
-	<script src="libs/bootstrap/js/tooltip.js"></script>
-	<script src="libs/bootstrap/js/popover.js"></script>
-	<script src="libs/bootstrap/js/scrollspy.js"></script>
-	<script src="libs/bootstrap/js/tab.js"></script>
-	<script src="libs/bootstrap/js/transition.js"></script>
-	<!-- /build -->
-
 	<!-- Own JS -->
 	<!-- build:js:dist assets/js/built.min.js -->
-	<script src="assets/js/base.js"></script>
-	<script src="assets/js/moduleSkeleton.js"></script>
+	<script src="assets/js/vendor.js"></script>
+	<script src="assets/js/client.js"></script>
 	<!-- /build -->
 
 	<!-- External scripts (eg. analytics) should be placed here -->
-
 </body>
 
 </html>

@@ -4,7 +4,22 @@ var getTasks = require('load-grunt-tasks');
 var displayTime = require('time-grunt');
 var templateHelpers = require('./templates/helpers/helpers.js');
 
+// Returns a list of all css files defined in the property bundleCSS of package.json
+function getBundleCSSFiles(packageJson) {
+	var basePath = 'node_modules/';
+	return Object.keys(packageJson.bundleCSS).map(function (dependencyKey) {
+		return packageJson.bundleCSS[dependencyKey].map(function (relativeCSSFilePath) {
+			return basePath + dependencyKey + '/' + relativeCSSFilePath;
+		});
+	}).reduce(function (left, right) {
+		return left.concat(right);
+	}, []);
+}
+
 module.exports = function (grunt) {
+	// Add frontend dependencies from package.json for adding its css files
+	var packageJson = grunt.file.readJSON('package.json');
+	var bundleCSSFiles = getBundleCSSFiles(packageJson);
 
 	// Get devDependencies
 	getTasks(grunt, {
@@ -116,31 +131,20 @@ module.exports = function (grunt) {
 				sourceMap: true,
 				sourceMapIncludeSources: true,
 				compress: {
-					drop_console: true, // eslint-disable-line camelcase
+					drop_console: false, // eslint-disable-line camelcase
 					drop_debugger: true // eslint-disable-line camelcase
 				}
 			},
-			concatenate: {
-				files: {
-					'<%= config.dist %>/assets/js/built.min.js': [
-						'assets/js/**/*.js',
-						'!assets/js/moduleSkeleton.js',
-						'!assets/js/**/*.min.js'
-					]
-				}
-			},
-			bower: {
+			browserifyOutput: {
 				options: {
-					sourceMap: false,
-					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
-						' * – Concatenated libs –  \n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */\n'
+					sourceMap: false
 				},
 				files: {
-					'<%= config.dist %>/libs/libs.min.js': ['<%= config.dist %>/libs/libs.min.js']
+					'<%= config.dist %>/assets/js/built.min.js': [
+						'server/assets/js/vendor.js',
+						// same as client.js but without sourceMaps
+						'server/assets/js/client.min.js'
+					]
 				}
 			}
 		},
@@ -255,12 +259,20 @@ module.exports = function (grunt) {
 					'<%= config.dist %>/assets/css/index.min.css': ['assets/css/index.css']
 				}
 			},
-			bower: {
+			npmLibsProduction: {
 				options: {
 					keepSpecialComments: 0
 				},
 				files: {
-					'<%= config.dist %>/libs/libs.min.css': ['<%= config.dist %>/libs/libs.min.css']
+					'<%= config.dist %>/node_modules/libs.min.css': bundleCSSFiles
+				}
+			},
+			npmLibsDevelopment: {
+				options: {
+					keepSpecialComments: 0
+				},
+				files: {
+					'<%= config.server %>/assets/css/libs.min.css': bundleCSSFiles
 				}
 			}
 		},
@@ -279,19 +291,6 @@ module.exports = function (grunt) {
 						'<%= config.dist %>/assets/css/index.uncss.min.css',
 						'<%= config.dist %>/assets/css/index.min.css'
 					]
-				}
-			},
-			bower: {
-				options: {
-					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
-						' * – Concatenated libs –  \n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */'
-				},
-				files: {
-					src: ['<%= config.dist %>/libs/libs.min.css']
 				}
 			}
 		},
@@ -329,11 +328,7 @@ module.exports = function (grunt) {
 				src: [
 					'assets/css/*.min.css',
 					'assets/fonts/**/*',
-					// Bootstrap fonts
-					'libs/bootstrap/fonts/*',
-					// Bower libs needed for oldIEs. The rest is concatenated via the bower_concat task.
-					'libs/html5shiv/dist/html5shiv-printshiv.min.js',
-					'libs/respondJs/dest/respond.min.js'
+					'node_modules/bootstrap/fonts/**/*'
 				],
 				dest: '<%= config.dist %>/'
 			},
@@ -341,36 +336,25 @@ module.exports = function (grunt) {
 				expand: true,
 				src: [
 					'assets/css/**/*',
-					'assets/js/**/*',
+					// 'assets/js/**/*',
 					'assets/fonts/**/*',
 					'assets/img/**/*',
-					'libs/**/*.js',
-					'libs/**/*.css',
-					'libs/bootstrap/fonts/*'
+					'node_modules/bootstrap/fonts/**/*'
 				],
+				// ].concat(dependencyConfiguration.getDependenciesFileList()),
 				dest: '<%= config.server %>/'
-			}
-		},
-
-		bower_concat: { // eslint-disable-line camelcase
-			dist: {
-				// These are minified afterwards with `cssmin:bower` and `uglify:bower`.
-				// Because Chrome Dev Tools will throw an 404 regarding the missing sourcemaps if
-				// we use the already minified versions. Yep, that’s ugly.
-				dest: '<%= config.dist %>/libs/libs.min.js',
-				cssDest: '<%= config.dist %>/libs/libs.min.css',
-				include: [
-					'jquery',
-					'bootstrap',
-					'jquery-placeholder'
+			},
+			handlebars: {
+				expand: true,
+				src: [
+					'*.hbs',
+					'templates/*.hbs',
+					'partials/**/*.hbs',
+					'templates/helpers/helpers.js'
 				],
-				mainFiles: {
-					jquery: ['dist/jquery.js'],
-					bootstrap: ['dist/js/bootstrap.js']
-				}
+				dest: '<%= config.dist %>/handlebarsSources'
 			}
 		},
-
 		jsdoc: {
 			dist: {
 				src: [
@@ -496,7 +480,8 @@ module.exports = function (grunt) {
 
 		bootlint: {
 			options: {
-				stoponerror: true
+				stoponerror: true,
+				relaxerror: ['W005']
 			},
 			files: ['<%= config.server %>/*.html']
 		},
@@ -530,7 +515,7 @@ module.exports = function (grunt) {
 				}],
 				options: {
 					helpers: templateHelpers,
-					partialsGlob: 'partials/*.hbs',
+					partialsGlob: 'partials/**/*.hbs',
 					templates: 'templates',
 					templateExt: 'hbs',
 					defaultTemplate: 'default',
@@ -566,7 +551,7 @@ module.exports = function (grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['newer:eslint:fix', 'newer:copy:server'],
+				tasks: ['newer:eslint:fix', 'newer:copy:server', 'newer:browserify:clientDevelopment'],
 				options: {
 					spawn: false
 				}
@@ -590,6 +575,61 @@ module.exports = function (grunt) {
 				tasks: ['generator', 'newer:htmllint', 'newer:bootlint'],
 				options: {
 					spawn: false
+				}
+			}
+		},
+
+		nsp: {
+			package: grunt.file.readJSON('package.json')
+		},
+
+		david: {
+			all: {
+				ignore: ['grunt']
+			}
+		},
+
+		browserify: {
+			vendor: {
+				src: [],
+				dest: 'server/assets/js/vendor.js',
+				options: {
+					// maybe we could automize this by using dependencies from package.json
+					require: ['jquery']
+				}
+			},
+			clientDevelopment: {
+				src: ['assets/js/**/*.js'],
+				dest: 'server/assets/js/client.js',
+				options: {
+					browserifyOptions: {
+						debug: true
+					},
+					transform: [
+						['babelify', {
+							sourceMaps: true,
+							presets: ['es2015', 'react']
+						}]
+					],
+					// maybe we could automize this by using dependencies from package.json
+					external: ['jquery']
+				}
+			},
+			clientProduction: {
+				src: ['assets/js/**/*.js'],
+				dest: 'server/assets/js/client.min.js',
+				options: {
+					browserifyOptions: {
+						debug: false
+					},
+					transform: [
+						['babelify', {
+							sourceMaps: false,
+							presets: ['es2015', 'react']
+						}]
+					],
+					// maybe we could automize this by using dependencies from package.json
+					external: ['jquery']
 				}
 			}
 		}
@@ -630,7 +670,10 @@ module.exports = function (grunt) {
 			'autoprefixer',
 			'clean:less',
 			'copy:server',
+			'browserify:vendor',
+			'browserify:clientDevelopment',
 			'generator',
+			'cssmin:npmLibsDevelopment',
 			'lint'
 		]
 	);
@@ -676,7 +719,7 @@ module.exports = function (grunt) {
 		'`grunt build` builds production ready sources to dist directory.', [
 			'clean:dist',
 			'lint',
-			'uglify:concatenate',
+			// 'uglify:concatenate',
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
@@ -686,14 +729,17 @@ module.exports = function (grunt) {
 			'generator',
 			'processhtml',
 			'htmlmin',
+			'browserify:vendor',
+			'browserify:clientProduction',
 			'copy',
-			'bower_concat',
-			'uglify:bower',
-			'cssmin:bower',
+			// 'uglify:npm',
+			'uglify:browserifyOutput',
+			'cssmin:npmLibsProduction',
 			'usebanner',
 			'clean:temp',
-			'plato',
-			'jsdoc'
+			// 'plato',  Doesn't work with es6 per default. Transpile all files to a separate directory or use another plugin!?
+			'jsdoc',
+			'security'
 		]
 	);
 
@@ -717,4 +763,9 @@ module.exports = function (grunt) {
 		['bump-only:major', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
 	);
 
+	// Security checks
+	grunt.registerTask('security',
+		'`grunt security` checks the node dependencies for known vulnerabilities.',
+		['nsp', 'david']
+	);
 };
