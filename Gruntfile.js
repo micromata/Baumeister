@@ -62,7 +62,8 @@ module.exports = function (grunt) {
 						'releasePatch',
 						'releaseMinor',
 						'releaseMajor',
-						'lint'
+						'lint',
+						'lint:fix'
 					],
 					descriptions: {
 						watch:
@@ -74,7 +75,7 @@ module.exports = function (grunt) {
 							'`grunt plato` generates static code analysis charts with plato.'
 					},
 					groups: {
-						Dev: ['default', 'dev', 'sync', 'serve', 'watch', 'plato', 'jsdoc', 'lint'],
+						Dev: ['default', 'dev', 'sync', 'serve', 'watch', 'plato', 'jsdoc', 'lint', 'lint:fix'],
 						Production: ['build', 'checkBuild', 'releasePatch', 'releaseMinor', 'releaseMajor']
 					},
 					sort: [
@@ -85,6 +86,8 @@ module.exports = function (grunt) {
 						'jsdoc',
 						'serve',
 						'watch',
+						'lint',
+						'eslint:fix',
 						'build',
 						'checkBuild',
 						'releasePatch',
@@ -97,12 +100,24 @@ module.exports = function (grunt) {
 
 		// ESLint
 		eslint: {
-			target: [
-				'.postinstall.js',
-				'templates/helpers/helpers.js',
-				'Gruntfile.js',
-				'assets/js/*.js'
-			]
+			check: {
+				files: {
+					src: [
+						'.postinstall.js',
+						'templates/helpers/helpers.js',
+						'Gruntfile.js',
+						'assets/js/*.js'
+					]
+				}
+			},
+			fix: {
+				options: {
+					fix: true
+				},
+				files: {
+					src: '<%= eslint.check.files.src %>'
+				}
+			}
 		},
 
 		// uglify
@@ -523,6 +538,12 @@ module.exports = function (grunt) {
 			}
 		},
 
+		newer: {
+			options: {
+				tolerance: 1000
+			}
+		},
+
 		// watch
 		watch: {
 			options: {
@@ -530,14 +551,14 @@ module.exports = function (grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['newer:eslint', 'newer:copy:server', 'newer:browserify:clientDevelopment'],
+				tasks: ['newer:eslint:fix', 'newer:copy:server', 'newer:browserify:clientDevelopment'],
 				options: {
 					spawn: false
 				}
 			},
 			otherJsFiles: {
 				files: ['Gruntfile.js', '.postinstall.js', 'templates/helpers/helpers.js'],
-				tasks: ['eslint'],
+				tasks: ['eslint:fix'],
 				options: {
 					spawn: false
 				}
@@ -623,12 +644,18 @@ module.exports = function (grunt) {
 
 	// Lint files
 	grunt.registerTask('lint',
-		'`grunt lint` lints JavaScript (ESLint) and HTML files (validate and Bootlint)',
+		'`grunt lint` lints JavaScript (ESLint) and HTML files (W3C validation and Bootlint)',
 		[
 			'htmllint',
 			'bootlint',
-			'eslint'
+			'eslint:check'
 		]
+	);
+
+	// Fix ESLint
+	grunt.registerTask('lint:fix',
+		'`grunt lint:fix` tries to fix your ESLint errors.',
+		['eslint:fix']
 	);
 
 	/**

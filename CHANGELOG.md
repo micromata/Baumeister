@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 2.2.0 (2016-04-17)
+
+- 42291af - 2016-04-17: Add eslint:fix task and use it in watch tasks 
+- de32903 - 2016-04-17: Update bower dependencies 
+- 62093f7 - 2016-04-17: Update dev dependencies 
+- 16c039b - 2016-04-15: Add tolerance option for grunt newer 
+- 8a20487 - 2016-04-15: Fix broken travis node v0.12 and v4 builds 
+- c74cfd5 - 2016-04-15: Update dev dependencies 
+- 47bf5c6 - 2016-04-15: Update ESLint config (#90) 
+
+
 ## Version 2.1.2 (2016-03-20)
 
 - c3be486 - 2016-03-20: Fix travis error regarding Java version 
