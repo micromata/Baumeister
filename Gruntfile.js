@@ -85,6 +85,9 @@ module.exports = function (grunt) {
 
 		// ESLint
 		eslint: {
+			options: {
+				ignorePattern: '!.postinstall.js'
+			},
 			check: {
 				files: {
 					src: [
