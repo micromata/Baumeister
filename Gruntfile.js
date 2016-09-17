@@ -85,6 +85,9 @@ module.exports = function (grunt) {
 
 		// ESLint
 		eslint: {
+			options: {
+				ignorePattern: '!.postinstall.js'
+			},
 			check: {
 				files: {
 					src: [
@@ -357,8 +360,10 @@ module.exports = function (grunt) {
 				// These are minified afterwards with `cssmin:bower` and `uglify:bower`.
 				// Because Chrome Dev Tools will throw an 404 regarding the missing sourcemaps if
 				// we use the already minified versions. Yep, that’s ugly.
-				dest: '<%= config.dist %>/libs/libs.min.js',
-				cssDest: '<%= config.dist %>/libs/libs.min.css',
+				dest: {
+					js: '<%= config.dist %>/libs/libs.min.js',
+					css: '<%= config.dist %>/libs/libs.min.css'
+				},
 				include: [
 					'jquery',
 					'bootstrap',
