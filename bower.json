@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-kickstart",
   "description": "This is a boilerplate for scaffolding Bootstrap themes.",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "authors": [
     "Michael Kühnel <m.kuehnel@micromata.de>"
   ],

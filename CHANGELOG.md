@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 2.2.1 (2016-09-17)
+
+- ba01634 - 2016-09-17: Update bower dependencies 
+- 588a6e4 - 2016-09-17: Remove node 0.12 from travis config 
+- 783efe5 - 2016-09-17: Lint .postinstall.js 
+- ee64d76 - 2016-09-17: Update dev dependenencies 
+- c8723e8 - 2016-08-31: Update travis config 
+- 4728a9e - 2016-08-31: Fix bundling vendor css 
+
+
 ## Version 2.2.0 (2016-04-17)
 
 - 42291af - 2016-04-17: Add eslint:fix task and use it in watch tasks 
