@@ -130,7 +130,7 @@ npm will look at the `package.json` file and automatically fetch and install the
 
 Afterwards it will call `bower install` which will look at `bower.json` and install the necessary frontend dependencies needed to build our Bootstrap theme to `\libs`.
 
-See [Installing and updating external ressources with bower](#using-bower) if you’re new to Bower.
+See [Installing and updating external ressources with bower](#installing-and-updating-external-resources-with-bower) if you’re new to Bower.
 
 ## Grunt Workflow and tasks
 
