@@ -41,7 +41,12 @@ module.exports = function (grunt) {
 			dist: 'dist',
 			reports: 'reports',
 			docs: 'docs',
-			server: 'server'
+			server: 'server',
+			banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+				' * <%= pkg.author.email %>\n' +
+				' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+				' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+				' */'
 		},
 
 		// List available tasks
@@ -122,11 +127,7 @@ module.exports = function (grunt) {
 		// Uglify
 		uglify: {
 			options: {
-				banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */',
+				banner: '<%= config.banner %>',
 				sourceMap: true,
 				sourceMapIncludeSources: true,
 				compress: {
@@ -278,11 +279,7 @@ module.exports = function (grunt) {
 		usebanner: {
 			assets: {
 				options: {
-					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */'
+					banner: '<%= config.banner %>'
 				},
 				files: {
 					src: [
