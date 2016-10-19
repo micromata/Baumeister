@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 2.3.0 (2016-10-19)
+
+- e1cd58b - 2016-10-19: Add config to make usage of sourcemaps in production files optional (#100) 
+- ab5ee14 - 2016-10-18: Add config to set the banner content of production files 
+- d11a614 - 2016-10-07: Fixed an internal Link (#96) 
+
+
 ## Version 2.2.1 (2016-09-17)
 
 - ba01634 - 2016-09-17: Update bower dependencies 
