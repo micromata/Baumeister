@@ -27,7 +27,11 @@ module.exports = function (grunt) {
 			reports: 'reports',
 			docs: 'docs',
 			server: 'server',
-			banner: '',
+			banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+					' * <%= pkg.author.email %>\n' +
+					' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+					' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+					' */',
 			includeSourcemaps: false
 		},
 
