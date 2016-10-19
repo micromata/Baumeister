@@ -27,11 +27,8 @@ module.exports = function (grunt) {
 			reports: 'reports',
 			docs: 'docs',
 			server: 'server',
-			banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-				' * <%= pkg.author.email %>\n' +
-				' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-				' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-				' */'
+			banner: '',
+			includeSourcemaps: false
 		},
 
 		// List available tasks
@@ -117,7 +114,7 @@ module.exports = function (grunt) {
 		uglify: {
 			options: {
 				banner: '<%= config.banner %>',
-				sourceMap: true,
+				sourceMap: '<%= config.includeSourcemaps %>',
 				sourceMapIncludeSources: true,
 				compress: {
 					drop_console: true, // eslint-disable-line camelcase
@@ -135,8 +132,8 @@ module.exports = function (grunt) {
 			},
 			bower: {
 				options: {
-					sourceMap: false,
-					banner: '<%= config.banner %>\n'
+					sourceMap: '<%= config.includeSourcemaps %>',
+					banner: '<%= config.banner %>'
 				},
 				files: {
 					'<%= config.dist %>/libs/libs.min.js': ['<%= config.dist %>/libs/libs.min.js']
