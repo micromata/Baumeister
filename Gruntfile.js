@@ -31,7 +31,7 @@ module.exports = function (grunt) {
 					' * <%= pkg.author.email %>\n' +
 					' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
 					' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-					' */',
+					' */\n',
 			includeSourceMaps: false
 		},
 
