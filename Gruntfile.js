@@ -43,10 +43,10 @@ module.exports = function (grunt) {
 			docs: 'docs',
 			server: 'server',
 			banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-				' * <%= pkg.author.email %>\n' +
-				' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-				' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-				' */'
+					' * <%= pkg.author.email %>\n' +
+					' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+					' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+					' */'
 		},
 
 		// List available tasks
@@ -127,7 +127,7 @@ module.exports = function (grunt) {
 		// Uglify
 		uglify: {
 			options: {
-				banner: '<%= config.banner %>',
+				banner: '<%= config.banner %>\n',
 				sourceMap: true,
 				sourceMapIncludeSources: true,
 				compress: {
