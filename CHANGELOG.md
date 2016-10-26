@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 2.3.1 (2016-10-26)
+
+- 9b7051b - 2016-10-26: Edit the banner 
+
+
 ## Version 2.3.0 (2016-10-19)
 
 - e1cd58b - 2016-10-19: Add config to make usage of sourcemaps in production files optional (#100) 
