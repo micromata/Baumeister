@@ -7,7 +7,6 @@
 /**
  * Fix viewport issues with IE 10.
  * @see {@link http://getbootstrap.com/getting-started/#support-ie10-width}
- * @memberof kickstarter.base
  * @private
  */
 function ieViewportFix() {
@@ -25,7 +24,6 @@ function ieViewportFix() {
 /**
  * Avoid `console` errors in browsers that lack a console.
  * @see {@link https://github.com/h5bp/html5-boilerplate/blob/master/js/plugins.js}
- * @memberof kickstarter.base
  * @private
  */
 function consoleErrorFix() {
