@@ -40,7 +40,6 @@
     "grunt-available-tasks": "0.6.2",
     "grunt-banner": "0.6.0",
     "grunt-bootlint": "0.10.1",
-    "grunt-bower-concat": "1.0.0",
     "grunt-browser-sync": "2.2.0",
     "grunt-browserify": "^4.0.1",
     "grunt-bump": "0.7.2",

@@ -25,5 +25,5 @@ Standards:          HTML5, CSS3
 Components:         Bootstrap, jQuery, HTML5 Shiv, HTML5 Placeholder jQuery
                     Plugin, Respond.js, Normalize.css
 Build tool:         Grunt
-Package Manager:    Bower
+Package Manager:    npm
 Software:           Sublime Text, MacDown, Terminal, SourceTree, Tower, Kaleidoscope
