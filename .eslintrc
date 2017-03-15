@@ -1,0 +1,10 @@
+{
+  "extends": "xo",
+  "rules": {
+    "padded-blocks": ["off"],
+    "operator-assignment": ["off"],
+    "eqeqeq": ["error", "allow-null"],
+    "no-eq-null": ["off"],
+    "quote-props": ["error", "as-needed"]
+  }
+}

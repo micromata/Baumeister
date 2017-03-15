@@ -1,3 +1,198 @@
+# Changelog
+
+## Version 2.3.1 (2016-10-26)
+
+- 9b7051b - 2016-10-26: Edit the banner 
+
+
+## Version 2.3.0 (2016-10-19)
+
+- e1cd58b - 2016-10-19: Add config to make usage of sourcemaps in production files optional (#100) 
+- ab5ee14 - 2016-10-18: Add config to set the banner content of production files 
+- d11a614 - 2016-10-07: Fixed an internal Link (#96) 
+
+
+## Version 2.2.1 (2016-09-17)
+
+- ba01634 - 2016-09-17: Update bower dependencies 
+- 588a6e4 - 2016-09-17: Remove node 0.12 from travis config 
+- 783efe5 - 2016-09-17: Lint .postinstall.js 
+- ee64d76 - 2016-09-17: Update dev dependenencies 
+- c8723e8 - 2016-08-31: Update travis config 
+- 4728a9e - 2016-08-31: Fix bundling vendor css 
+
+
+## Version 2.2.0 (2016-04-17)
+
+- 42291af - 2016-04-17: Add eslint:fix task and use it in watch tasks 
+- de32903 - 2016-04-17: Update bower dependencies 
+- 62093f7 - 2016-04-17: Update dev dependencies 
+- 16c039b - 2016-04-15: Add tolerance option for grunt newer 
+- 8a20487 - 2016-04-15: Fix broken travis node v0.12 and v4 builds 
+- c74cfd5 - 2016-04-15: Update dev dependencies 
+- 47bf5c6 - 2016-04-15: Update ESLint config (#90) 
+
+
+## Version 2.1.2 (2016-03-20)
+
+- c3be486 - 2016-03-20: Fix travis error regarding Java version 
+- e1117ec - 2016-03-20: Update jQuery to the latest 1.x 
+- e2ce134 - 2016-03-20: Run `.postinstall.js`explicitly with node 
+- bfdbdfa - 2016-03-20: Upgrade dev dependencies 
+- c2a45b3 - 2016-02-05: Add René Viering 
+- 0ec2ae9 - 2016-01-09: Update dev dependencies 
+- 32e6bcb - 2016-01-09: Update Bower dependencies 
+
+
+## Version 2.1.1 (2015-12-20)
+
+- 589bc61 - 2015-12-20: ignore tooltip css in uncss 
+
+
+## Version 2.1.0 (2015-12-18)
+
+- 654af98 - 2015-12-18: Remove comments from html files in dist directory 
+- 85d14b4 - 2015-12-18: Fix imagemin task 
+- 4a81787 - 2015-12-17: Add SVG files to imagemin task 
+- 900f957 - 2015-12-11: Extend default options of uncss task 
+- f79dbc7 - 2015-12-11: Add Gitter badge 
+- d4755ed - 2015-12-11: Add gitter webhook to travis config 
+- a906c60 - 2015-11-30: Prevent errors on travis build 
+
+
+## Version 2.0.3 (2015-11-30)
+
+- 5832c2a - 2015-11-30: Fix updating html files for browser sync 
+- e49e6a2 - 2015-11-20: Another attempt to run grunt tasks on Travis 
+- 469d1fe - 2015-11-20: Fix .travis.yml :neckbeard: 
+- 78d857e - 2015-11-20: Install grunt cli for travis build 
+- e7c42f5 - 2015-11-20: Fix .travis.yml and add travis badge 
+- b97baa5 - 2015-11-20: Use Travis to check if grunt tasks run properly … 
+- bd9e3fb - 2015-11-18: Update dev dependencies 
+
+
+## Version 2.0.2 (2015-11-17)
+
+- 78f8ed4 - 2015-11-17: Fix path to server for browser sync task 
+- 730abcd - 2015-11-17: Fix linting errors 
+- 926b120 - 2015-11-17: Update Bower dependencies 
+- 0db322e - 2015-11-17: Pin Bower dependencies 
+- 3c3b11c - 2015-11-17: Update dev dependencies 
+- 1cd01b0 - 2015-11-17: Fix whitespace »issue« 
+- a453b67 - 2015-11-02: fix typo 
+- 67f275f - 2015-10-16: Fix whitespace »issue« 
+- cbc65b4 - 2015-10-03: Remove JSHint leftovers :bowtie: 
+
+
+## Version 2.0.1 (2015-10-03)
+
+- 48adedb - 2015-10-03: Bump dev dependencies 
+- 1a967a0 - 2015-10-02: chore(package): pin dependencies 
+- 5eecf26 - 2015-09-30: Fixed typographical error, changed accross to across in README. 
+
+
+## Version 2.0.0 (2015-09-22)
+
+- e2552dc - 2015-09-22: Minor tweaks in README 
+- a10729e - 2015-09-21: Make use of libs/libs.min.css in default template 
+- e2502c3 - 2015-09-21: Rename libs.js/libs.css to libs.min.js/libs.min.css 
+- da55de8 - 2015-09-21: Try to prevent horizontal scrollbar for markup example tree 
+- 394631b - 2015-09-21: Add »Table of Contents« to README 
+- 34c3a7c - 2015-09-21: Update section »Setting up your Editor« in README 
+- b650811 - 2015-09-21: Move up »File and folder structure of LESS files« in README 
+- 780ccf2 - 2015-09-21: Remove unneeded `template: default` from Frontmatters 
+- 325e609 - 2015-09-21: Add info about pages, templates and partials to README 
+- b199a20 - 2015-09-21: Make watching handlbars templates more performant 
+- 11a74e6 - 2015-09-21: DocBlock comment for our example helper 
+- 39150d3 - 2015-09-20: Remove plato and jsdoc tasks from dev task 
+- 9a3ad3a - 2015-09-20: cleanup base.js 
+- c5ba5cd - 2015-09-20: Highlight current page in navbar 
+- 93e8428 - 2015-09-20: Add file for custom helpers 
+- 13c1754 - 2015-09-18: Render handlebars template to the correct location 
+- 16fb7bf - 2015-09-17: [WIP] Replace HTML files with handlebars templates, partials and pages 
+- 644d395 - 2015-09-17: [WIP] Give grunt-generator a try for handling includes 
+- 4ffe264 - 2015-09-15: Improve use of variables in footer example 
+- b8d546a - 2015-09-13: Lint .postinstall.js and fix linting errors 
+- 37ec1ca - 2015-09-13: Redisable »padded-blocks« rule :sunglasses: 
+- 9569653 - 2015-09-13: Split up .eslintrc into two files to get more specific 
+- c0d9f29 - 2015-09-13: Fix ESLint errors. 
+- 44c4b93 - 2015-09-13: Replace JSHint wit ESLint 
+- c9fe1aa - 2015-09-01: Add files to version control in release tasks 
+- 6e5afc7 - 2015-09-01: Get rid separate minified JS files in `dist` 
+- 96670bb - 2015-09-01: Rename `grunt server` to `grunt serve` 
+- 8260bd8 - 2015-08-30: Update sublime settings example in readme 
+
+
+## Version 1.3.6 (2015-08-30)
+
+- 96b00d1 - 2015-08-30: Missed a few things in b2a6825f 
+
+
+## Version 1.3.5 (2015-08-26)
+
+- e1f404b - 2015-08-26: Update dev dependencies 
+
+
+## Version 1.3.4 (2015-08-26)
+
+- b2a6825 - 2015-08-26: Rename `customerName` with `theme` 
+- a073b8c - 2015-08-26: Update variables from Bootstrap 3.3.5 
+- e8f611b - 2015-08-26: Update bower components 
+- 2d6088b - 2015-08-26: Make sure release tasks run properly via npm `postinstall` 
+- f60e0d7 - 2015-08-20: Release tasks now commit all changed files 
+- 56ef716 - 2015-08-20: Exclude moduleSkeleton.js from build 
+- fc0303d - 2015-08-20: Give module.js a more appropriate name 
+- fdf2dea - 2015-08-19: Copy Glyphicon fonts from Bootstrap to `dist` directory 
+- 34401e5 - 2015-08-19: Fix copy paste error in LESS modules comment 
+- a029ba9 - 2015-08-19: Add OS releated files to .gitignore 
+- a4af926 - 2015-05-08: Fixed reduced test case link 
+
+
+## Version 1.3.3 (2015-04-30)
+
+- 03d2c76 - 2015-04-30: replaced static copyright notice with variables from package.json
+- 8cfe136 - 2015-04-18: Release v1.3.2
+
+## Version 1.3.2 (2015-04-18)
+
+- fb3dd4b - 2015-04-18: Update dev dependencies
+- dd26125 - 2015-01-26: Prevent minifying of minified sources :persevere:
+- b41c075 - 2015-01-26: Fix typo
+- abc8542 - 2015-01-22: Release v1.3.1
+
+## Version 1.3.1 (2015-01-22)
+
+- 87aaa8a - 2015-01-22: Update dependencies
+- 965978e - 2015-01-21: Add Twitter badge
+- ae03536 - 2015-01-20: Update Bootstrap from 3.3.1 to 3.3.2
+- bb8755d - 2014-12-31: Release v1.3.0
+
+## Version 1.3.0 (2014-12-31)
+
+- Add missing linebreak between banner and code
+- Make output paths configurable
+- Update jquery-placeholder
+- Get rid of hardcoded © year
+- Release v1.2.0
+
+## Version 1.2.0 (2014-12-29)
+
+- Use `grunt-banner` to bring back CSS banners
+- Concatenate and minify bower libs in production built.
+- Fix git hook
+- Grunt performance → Get rid of server directory and cachebusting
+- Update dev dependencies.
+- Use original Bootstrap JS modules in development …
+- Change uglifiying tasks
+- Prevent copying non minified CSS to dist directory
+- Prevent copying of html files.
+- Single quotes all over …
+- Update Readme.
+- Update Readme
+- Added cd to the git install instructions
+- Changed git-fork from ssh to https for non registered users
+- Release v1.1.3
+
 ## Version 1.1.3 (2014-11-26)
 
 - Fix cachebusting in conjunction with the dev server
