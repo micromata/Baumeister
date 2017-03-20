@@ -1,7 +1,5 @@
 /**
  * @file  Base JavaScript needed independent of the project
- * @author Michael Kühnel <m.kuehnel@micromata.de>
- * @author Nicolai Süper <n.sueper@micromata.de>
  */
 
 /**
