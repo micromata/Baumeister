@@ -1,5 +1,5 @@
-import $ from "jquery";
-import * as Base from "./base";
+import $ from 'jquery';
+import * as Base from './base';
 
 // this is necessary because bootstrap itself checks the existence of jQuery with window.jQuery.
 window.jQuery = $;
