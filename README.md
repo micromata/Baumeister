@@ -32,6 +32,7 @@ The aim of this repository is to help you with the creation of Bootstrap themes 
 - [Setting up your Editor (optional)](#setting-up-your-editor-optional)
 - [Writing Markup (using pages, templates and partials)](#writing-markup-using-pages-templates-and-partials)
 - [File and folder structure of LESS files](#file-and-folder-structure-of-less-files)
+- [Using external libraries](#using-external-libraries)
 - [Installing and updating external resources with Bower](#installing-and-updating-external-resources-with-bower)
 - [Browser support](#browser-support)
 - [Contributing to this project](#contributing-to-this-project)
@@ -464,6 +465,48 @@ There are three files which differ from the regular modules. Please have a look 
 	Holds additional global mixins which are meant to be used across modules.
 - [scaffolding.less](assets/less/theme/scaffolding.less)
 	Used to define the most generic html elements.
+	
+## Using external libraries
+
+To add an external library, like select2 for example, install it using npm.
+
+`npm install --save select2`
+
+If your lib ships its own CSS, create a property for your lib in the `bundleCSS` section of your `package.json` where the key is equivalent to the npm package name and the value a string array containing all paths to css files relative to its module folder.
+```
+"bundleCSS": {
+    "select2": [
+      "dist/css/select2.css"
+    ],
+    "select2-bootstrap-css": [
+      "select2-bootstrap.css"
+    ]
+  }
+```
+
+Finally add your library to the `browserify` section of `Gruntfile.js`.
+
+```
+browserify: {
+	vendor: {
+		...
+		options: {
+			require: ['jquery', 'select2'] 
+		}
+	},
+	clientDevelopment: {
+		options: {
+			...
+			external: ['jquery', 'select2']
+		}
+	},
+	clientProduction: {
+			...
+			external: ['jquery', 'select2']
+		}
+	}
+}
+```
 
 ## Installing and updating external resources with Bower
 
