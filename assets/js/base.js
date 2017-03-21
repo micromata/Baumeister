@@ -46,8 +46,3 @@ export function consoleErrorFix() {
 		}
 	}
 }
-
-export default function () {
-	ieViewportFix();
-	consoleErrorFix();
-}
