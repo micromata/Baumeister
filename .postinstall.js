@@ -10,7 +10,7 @@ var versionNumber = getVersionNumber();
 	console.log('Needed to set up things to make sure the release tasks run properly:\n');
 	versionNumber = getVersionNumber();
 	console.log(' → Version number from `package.json`: ', versionNumber + '\n');
-	execBowerInstall();
+	checkChangelog();
 })();
 
 function getVersionNumber() {
@@ -20,22 +20,6 @@ function getVersionNumber() {
 	var regex = /"version": "(\d+\.\d+.\d+)",/;
 	var versionNumber = fileContent.match(regex)[1];
 	return versionNumber;
-}
-
-function execBowerInstall() {
-	// Fire `bower install`
-	console.log(' → Firing `bower install`:');
-	exec('bower install', function (error, stdout) {
-		if (stdout === '') {
-			console.log('   All Bower dependencies up to date and installed.');
-		}
-		console.log(stdout);
-		checkChangelog();
-
-		if (error !== null) {
-			console.log('exec error: ' + error);
-		}
-	});
 }
 
 function checkChangelog() {
@@ -79,7 +63,7 @@ function initGit(versionNumber) {
 function installGitHook() {
 	// Install post merge Git hook
 	console.log(' → Installing the post merge Git hook.');
-	console.log('   It will take care of firing `bower install` after every merge (and pull).\n');
+	console.log('   It will take care of firing `npm install` after every merge (and pull).\n');
 	exec('grunt githooks', function (error, stdout) {
 		console.log(stdout);
 		if (error === null) {

@@ -427,7 +427,7 @@ module.exports = function (grunt) {
 
 		bump: {
 			options: {
-				files: ['package.json', 'bower.json'],
+				files: ['package.json'],
 				updateConfigs: ['pkg'],
 				commitMessage: 'Release v%VERSION%',
 				commitFiles: ['-a'],
@@ -495,13 +495,13 @@ module.exports = function (grunt) {
 				args: '--no-color'
 			},
 			install: {
-				'post-merge': 'shell:bowerinstall'
+				'post-merge': 'shell:npminstall'
 			}
 		},
 
 		shell: {
-			bowerinstall: {
-				command: 'bower install'
+			npminstall: {
+				command: 'npm install'
 			}
 		},
 
