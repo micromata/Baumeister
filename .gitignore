@@ -3,9 +3,6 @@
 thumbs.db
 desktop.ini
 
-### Bower ###
-/libs
-
 ### npm ###
 /node_modules
 

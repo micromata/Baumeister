@@ -56,7 +56,6 @@ module.exports = function (grunt) {
 						'watch',
 						'build',
 						'checkBuild',
-						'plato',
 						'jsdoc',
 						'sync',
 						'releasePatch',
@@ -70,19 +69,16 @@ module.exports = function (grunt) {
 							'`grunt watch` run dev tasks whenever watched files change and ' +
 							'Reloads the browser with »LiveReload« plugin.',
 						jsdoc:
-							'`grunt jsdoc` generates source documentation using jsdoc.',
-						plato:
-							'`grunt plato` generates static code analysis charts with plato.'
+							'`grunt jsdoc` generates source documentation using jsdoc.'
 					},
 					groups: {
-						Dev: ['default', 'dev', 'sync', 'serve', 'watch', 'plato', 'jsdoc', 'lint', 'lint:fix'],
+						Dev: ['default', 'dev', 'sync', 'serve', 'watch', 'jsdoc', 'lint', 'lint:fix'],
 						Production: ['build', 'checkBuild', 'releasePatch', 'releaseMinor', 'releaseMajor']
 					},
 					sort: [
 						'default',
 						'dev',
 						'sync',
-						'plato',
 						'jsdoc',
 						'serve',
 						'watch',
@@ -120,7 +116,7 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// uglify
+		// Uglify
 		uglify: {
 			options: {
 				banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
@@ -142,14 +138,14 @@ module.exports = function (grunt) {
 				files: {
 					'<%= config.dist %>/assets/js/built.min.js': [
 						'server/assets/js/vendor.js',
-						// same as client.js but without sourceMaps
+						// Same as client.js but without sourceMaps
 						'server/assets/js/client.min.js'
 					]
 				}
 			}
 		},
 
-		// less
+		// Less
 		less: {
 			dev: {
 				options: {
@@ -174,7 +170,6 @@ module.exports = function (grunt) {
 					'Firefox ESR',
 					'Opera 12.1'
 				],
-				// diff: true, // or 'custom/path/to/file.css.patch',
 				map: true
 			},
 			dev: {
@@ -231,11 +226,11 @@ module.exports = function (grunt) {
 				timeout: 2000,
 				ignore: [
 					/\w\.in/,
-					/(#|\.)navbar(\-[a-zA-Z]+)?/,
-					/(#|\.)modal(\-[a-zA-Z]+)?/,
-					/(#|\.)dropdown(\-[a-zA-Z]+)?/,
-					/(#|\.)carousel(\-[a-zA-Z]+)?/,
-					/(#|\.)tooltip(\-[a-zA-Z]+)?/,
+					/(#|\.)navbar(-[a-zA-Z]+)?/,
+					/(#|\.)modal(-[a-zA-Z]+)?/,
+					/(#|\.)dropdown(-[a-zA-Z]+)?/,
+					/(#|\.)carousel(-[a-zA-Z]+)?/,
+					/(#|\.)tooltip(-[a-zA-Z]+)?/,
 					/(#|\.)(open)/,
 					'.fade',
 					'.collapse',
@@ -368,21 +363,6 @@ module.exports = function (grunt) {
 			}
 		},
 
-		plato: {
-			options: {
-				jshint: grunt.file.readJSON('.jshintrc')
-			},
-			dist: {
-				files: {
-					'<%= config.reports %>': [
-						'assets/js/**/*.js',
-						'!assets/js/**/*.min.js',
-						'test/**/*.js'
-					]
-				}
-			}
-		},
-
 		browserSync: {
 			dev: {
 				bsFiles: {
@@ -418,9 +398,9 @@ module.exports = function (grunt) {
 					archive: 'src-v<%= pkg.version %>.zip'
 				},
 				files: [
-					// includes files in path
+					// Includes files in path
 					{src: ['./*', '!./*.zip', '!./*.sublime*'], dest: './', filter: 'isFile'},
-					// includes files in path and its subdirs
+					// Includes files in path and its subdirs
 					{src: ['assets/**', '!assets/css/**'], dest: './'}
 				]
 			}
@@ -428,7 +408,7 @@ module.exports = function (grunt) {
 
 		bump: {
 			options: {
-				files: ['package.json', 'bower.json'],
+				files: ['package.json'],
 				updateConfigs: ['pkg'],
 				commitMessage: 'Release v%VERSION%',
 				commitFiles: ['-a'],
@@ -496,13 +476,13 @@ module.exports = function (grunt) {
 				args: '--no-color'
 			},
 			install: {
-				'post-merge': 'shell:bowerinstall'
+				'post-merge': 'shell:npminstall'
 			}
 		},
 
 		shell: {
-			bowerinstall: {
-				command: 'bower install'
+			npminstall: {
+				command: 'npm install'
 			}
 		},
 
@@ -544,7 +524,7 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// watch
+		// Watch
 		watch: {
 			options: {
 				livereload: true
@@ -583,18 +563,12 @@ module.exports = function (grunt) {
 			package: grunt.file.readJSON('package.json')
 		},
 
-		david: {
-			all: {
-				ignore: ['grunt']
-			}
-		},
-
 		browserify: {
 			vendor: {
 				src: [],
 				dest: 'server/assets/js/vendor.js',
 				options: {
-					// maybe we could automize this by using dependencies from package.json
+					// Maybe we could automize this by using dependencies from package.json
 					require: ['jquery']
 				}
 			},
@@ -611,7 +585,7 @@ module.exports = function (grunt) {
 							presets: ['es2015', 'react']
 						}]
 					],
-					// maybe we could automize this by using dependencies from package.json
+					// Maybe we could automize this by using dependencies from package.json
 					external: ['jquery']
 				}
 			},
@@ -628,7 +602,7 @@ module.exports = function (grunt) {
 							presets: ['es2015', 'react']
 						}]
 					],
-					// maybe we could automize this by using dependencies from package.json
+					// Maybe we could automize this by using dependencies from package.json
 					external: ['jquery']
 				}
 			}
@@ -751,7 +725,6 @@ module.exports = function (grunt) {
 		'`grunt build` builds production ready sources to dist directory.', [
 			'clean:dist',
 			'lint',
-			// 'uglify:concatenate',
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
@@ -764,12 +737,10 @@ module.exports = function (grunt) {
 			'browserify:vendor',
 			'browserify:clientProduction',
 			'copy',
-			// 'uglify:npm',
 			'uglify:browserifyOutput',
 			'cssmin:npmLibsProduction',
 			'usebanner',
 			'clean:temp',
-			// 'plato',  Doesn't work with es6 per default. Transpile all files to a separate directory or use another plugin!?
 			'jsdoc',
 			'security',
 			'cacheBust:build'
@@ -798,7 +769,7 @@ module.exports = function (grunt) {
 
 	// Security checks
 	grunt.registerTask('security',
-		'`grunt security` checks the node dependencies for known vulnerabilities.',
-		['nsp', 'david']
+		'`grunt security` checks the dependencies for known vulnerabilities.',
+		['nsp']
 	);
 };

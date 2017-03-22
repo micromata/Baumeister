@@ -1,14 +1,13 @@
 dist: trusty
 language: node_js
 node_js:
-  - '0.12'
-  - '4'
-  - 'stable'
+  - 4
+  - 6
+  - node
 before_install:
   - git config --global user.email "you@example.com"
   - git config --global user.name "Your Name"
   - npm install -g npm
-  - npm install -g bower
 before_script:
   - npm install -g grunt-cli
 script:

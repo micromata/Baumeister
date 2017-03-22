@@ -1,12 +1,14 @@
 import $ from 'jquery';
-// this is necessary because bootstrap itself checks the existence of jQuery with window.jQuery.
+import {consoleErrorFix, ieViewportFix} from './base';
+
+// This is necessary because bootstrap itself checks the existence of jQuery with window.jQuery.
 window.jQuery = $;
 
-// Because of bootstrap is not an UMD Module, we cannot import it with es6 syntax.
+// Because of bootstrap is not an UMD Module, we can’t import it with ES6 syntax.
 require('bootstrap');
-require('select2');
 
 $(() => {
+	consoleErrorFix();
+	ieViewportFix();
 	console.log('YaY, my first ES6-Module !!!!');
-	$('select').select2();
 });
