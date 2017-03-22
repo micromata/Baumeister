@@ -56,7 +56,6 @@ module.exports = function (grunt) {
 						'watch',
 						'build',
 						'checkBuild',
-						'plato',
 						'jsdoc',
 						'sync',
 						'releasePatch',
@@ -70,19 +69,16 @@ module.exports = function (grunt) {
 							'`grunt watch` run dev tasks whenever watched files change and ' +
 							'Reloads the browser with »LiveReload« plugin.',
 						jsdoc:
-							'`grunt jsdoc` generates source documentation using jsdoc.',
-						plato:
-							'`grunt plato` generates static code analysis charts with plato.'
+							'`grunt jsdoc` generates source documentation using jsdoc.'
 					},
 					groups: {
-						Dev: ['default', 'dev', 'sync', 'serve', 'watch', 'plato', 'jsdoc', 'lint', 'lint:fix'],
+						Dev: ['default', 'dev', 'sync', 'serve', 'watch', 'jsdoc', 'lint', 'lint:fix'],
 						Production: ['build', 'checkBuild', 'releasePatch', 'releaseMinor', 'releaseMajor']
 					},
 					sort: [
 						'default',
 						'dev',
 						'sync',
-						'plato',
 						'jsdoc',
 						'serve',
 						'watch',
@@ -367,21 +363,6 @@ module.exports = function (grunt) {
 			}
 		},
 
-		plato: {
-			options: {
-				jshint: grunt.file.readJSON('.jshintrc')
-			},
-			dist: {
-				files: {
-					'<%= config.reports %>': [
-						'assets/js/**/*.js',
-						'!assets/js/**/*.min.js',
-						'test/**/*.js'
-					]
-				}
-			}
-		},
-
 		browserSync: {
 			dev: {
 				bsFiles: {
@@ -582,12 +563,6 @@ module.exports = function (grunt) {
 			package: grunt.file.readJSON('package.json')
 		},
 
-		david: {
-			all: {
-				ignore: ['grunt']
-			}
-		},
-
 		browserify: {
 			vendor: {
 				src: [],
@@ -718,7 +693,6 @@ module.exports = function (grunt) {
 		'`grunt build` builds production ready sources to dist directory.', [
 			'clean:dist',
 			'lint',
-			// 'uglify:concatenate',
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
@@ -731,12 +705,10 @@ module.exports = function (grunt) {
 			'browserify:vendor',
 			'browserify:clientProduction',
 			'copy',
-			// 'uglify:npm',
 			'uglify:browserifyOutput',
 			'cssmin:npmLibsProduction',
 			'usebanner',
 			'clean:temp',
-			// 'plato',  Doesn't work with es6 per default. Transpile all files to a separate directory or use another plugin!?
 			'jsdoc',
 			'security'
 		]
@@ -764,7 +736,7 @@ module.exports = function (grunt) {
 
 	// Security checks
 	grunt.registerTask('security',
-		'`grunt security` checks the node dependencies for known vulnerabilities.',
-		['nsp', 'david']
+		'`grunt security` checks the dependencies for known vulnerabilities.',
+		['nsp']
 	);
 };
