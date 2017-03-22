@@ -35,7 +35,7 @@ export function consoleErrorFix() {
 		'timeStamp', 'trace', 'warn'
 	];
 	let length = methods.length;
-	const console = (window.console = window.console || {});
+	const console = window.console || {};
 
 	while (length--) {
 		method = methods[length];
