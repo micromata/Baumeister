@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import {consoleErrorFix, ieViewportFix} from './base';
+
 // This is necessary because bootstrap itself checks the existence of jQuery with window.jQuery.
 window.jQuery = $;
 
@@ -6,5 +8,7 @@ window.jQuery = $;
 require('bootstrap');
 
 $(() => {
+	consoleErrorFix();
+	ieViewportFix();
 	console.log('YaY, my first ES6-Module !!!!');
 });
