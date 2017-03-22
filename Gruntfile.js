@@ -120,7 +120,7 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// uglify
+		// Uglify
 		uglify: {
 			options: {
 				banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
@@ -142,14 +142,14 @@ module.exports = function (grunt) {
 				files: {
 					'<%= config.dist %>/assets/js/built.min.js': [
 						'server/assets/js/vendor.js',
-						// same as client.js but without sourceMaps
+						// Same as client.js but without sourceMaps
 						'server/assets/js/client.min.js'
 					]
 				}
 			}
 		},
 
-		// less
+		// Less
 		less: {
 			dev: {
 				options: {
@@ -174,7 +174,6 @@ module.exports = function (grunt) {
 					'Firefox ESR',
 					'Opera 12.1'
 				],
-				// diff: true, // or 'custom/path/to/file.css.patch',
 				map: true
 			},
 			dev: {
@@ -231,11 +230,11 @@ module.exports = function (grunt) {
 				timeout: 2000,
 				ignore: [
 					/\w\.in/,
-					/(#|\.)navbar(\-[a-zA-Z]+)?/,
-					/(#|\.)modal(\-[a-zA-Z]+)?/,
-					/(#|\.)dropdown(\-[a-zA-Z]+)?/,
-					/(#|\.)carousel(\-[a-zA-Z]+)?/,
-					/(#|\.)tooltip(\-[a-zA-Z]+)?/,
+					/(#|\.)navbar(-[a-zA-Z]+)?/,
+					/(#|\.)modal(-[a-zA-Z]+)?/,
+					/(#|\.)dropdown(-[a-zA-Z]+)?/,
+					/(#|\.)carousel(-[a-zA-Z]+)?/,
+					/(#|\.)tooltip(-[a-zA-Z]+)?/,
 					/(#|\.)(open)/,
 					'.fade',
 					'.collapse',
@@ -418,9 +417,9 @@ module.exports = function (grunt) {
 					archive: 'src-v<%= pkg.version %>.zip'
 				},
 				files: [
-					// includes files in path
+					// Includes files in path
 					{src: ['./*', '!./*.zip', '!./*.sublime*'], dest: './', filter: 'isFile'},
-					// includes files in path and its subdirs
+					// Includes files in path and its subdirs
 					{src: ['assets/**', '!assets/css/**'], dest: './'}
 				]
 			}
@@ -544,7 +543,7 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// watch
+		// Watch
 		watch: {
 			options: {
 				livereload: true
@@ -594,7 +593,7 @@ module.exports = function (grunt) {
 				src: [],
 				dest: 'server/assets/js/vendor.js',
 				options: {
-					// maybe we could automize this by using dependencies from package.json
+					// Maybe we could automize this by using dependencies from package.json
 					require: ['jquery']
 				}
 			},
@@ -611,7 +610,7 @@ module.exports = function (grunt) {
 							presets: ['es2015', 'react']
 						}]
 					],
-					// maybe we could automize this by using dependencies from package.json
+					// Maybe we could automize this by using dependencies from package.json
 					external: ['jquery']
 				}
 			},
@@ -628,7 +627,7 @@ module.exports = function (grunt) {
 							presets: ['es2015', 'react']
 						}]
 					],
-					// maybe we could automize this by using dependencies from package.json
+					// Maybe we could automize this by using dependencies from package.json
 					external: ['jquery']
 				}
 			}
