@@ -580,8 +580,7 @@ module.exports = function (grunt) {
 					},
 					transform: [
 						['babelify', {
-							sourceMaps: true,
-							presets: ['latest']
+							sourceMaps: true
 						}]
 					],
 					external: packageJson.bundleExternalJS
@@ -596,8 +595,7 @@ module.exports = function (grunt) {
 					},
 					transform: [
 						['babelify', {
-							sourceMaps: false,
-							presets: ['latest']
+							sourceMaps: false
 						}]
 					],
 					external: packageJson.bundleExternalJS
