@@ -748,24 +748,53 @@ module.exports = function (grunt) {
 	);
 
 	// Start server to check production build
-	grunt.registerTask('checkBuild',
+	grunt.registerTask('build:check',
 		'`grunt checkBuild` starts a local server to make it possible to check ' +
 		'the build in the browser.',
 		['connect:dist']
 	);
+
+	// Alias `checkBuild` to `grunt build:check` for »backward compatability«.
+	grunt.registerTask('checkBuild', ['build:check']);
+
 	// Relase tasks
-	grunt.registerTask('releasePatch',
-		'`grunt releasePatch` builds the current sources, bumps version number (0.0.1) and creates zip.files.',
-		['bump-only:patch', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
+	grunt.registerTask('release:patch',
+		'`grunt release:patch` builds the current sources, bumps version number (0.0.1) and creates zip.files.',
+		[
+			'bump-only:patch',
+			'build',
+			'clean:js',
+			'changelog',
+			'gitadd',
+			'bump-commit'
+		]
 	);
-	grunt.registerTask('releaseMinor',
-		'`grunt releaseMinor` builds the current sources, bumps version number (0.1.0) and creates zip.files.',
-		['bump-only:minor', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
+	grunt.registerTask('release:minor',
+		'`grunt release:minor` builds the current sources, bumps version number (0.1.0) and creates zip.files.',
+		[
+			'bump-only:minor',
+			'build',
+			'clean:js',
+			'changelog',
+			'gitadd',
+			'bump-commit'
+		]
 	);
-	grunt.registerTask('releaseMajor',
-		'`grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
-		['bump-only:major', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
+	grunt.registerTask('release:major',
+		'`grunt release:major` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
+		[
+			'bump-only:major',
+			'build',
+			'clean:js',
+			'changelog',
+			'gitadd',
+			'bump-commit'
+		]
 	);
+	// Aliases for »backward compatability«.
+	grunt.registerTask('releasePatch', ['release:patch']);
+	grunt.registerTask('releaseMinor', ['release:minor']);
+	grunt.registerTask('releaseMajor', ['release:major']);
 
 	// Security checks
 	grunt.registerTask('security',
