@@ -39,6 +39,7 @@
     "grunt-browser-sync": "2.2.0",
     "grunt-browserify": "^5.0.0",
     "grunt-bump": "0.8.0",
+    "grunt-cache-bust": "^1.5.0",
     "grunt-changelog": "0.3.2",
     "grunt-contrib-clean": "1.0.0",
     "grunt-contrib-compress": "1.4.1",

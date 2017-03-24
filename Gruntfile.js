@@ -606,8 +606,39 @@ module.exports = function (grunt) {
 					external: ['jquery']
 				}
 			}
-		}
+		},
 
+		cacheBust: {
+			dev: {
+				options: {
+					algorithm: 'sha512',
+					length: 8,
+					baseDir: 'server/',
+					assets: ['**/*.js', '**/*.css'],
+					queryString: true
+				},
+				files: [{
+					expand: true,
+					cwd: 'server/',
+					src: ['*.html']
+				}]
+			},
+
+			build: {
+				options: {
+					algorithm: 'sha512',
+					length: 8,
+					baseDir: 'dist/',
+					assets: ['**/*.js', '**/*.css'],
+					queryString: true
+				},
+				files: [{
+					expand: true,
+					cwd: 'dist/',
+					src: ['*.html']
+				}]
+			}
+		}
 	});
 
 	// List available Tasks
@@ -648,7 +679,8 @@ module.exports = function (grunt) {
 			'browserify:clientDevelopment',
 			'generator',
 			'cssmin:npmLibsDevelopment',
-			'lint'
+			'lint',
+			'cacheBust:dev'
 		]
 	);
 
@@ -710,7 +742,8 @@ module.exports = function (grunt) {
 			'usebanner',
 			'clean:temp',
 			'jsdoc',
-			'security'
+			'security',
+			'cacheBust:build'
 		]
 	);
 
