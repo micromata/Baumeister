@@ -581,10 +581,9 @@ module.exports = function (grunt) {
 					transform: [
 						['babelify', {
 							sourceMaps: true,
-							presets: ['es2015']
+							presets: ['latest']
 						}]
 					],
-					// Maybe we could automize this by using dependencies from package.json
 					external: packageJson.bundleExternalJS
 				}
 			},
@@ -598,10 +597,9 @@ module.exports = function (grunt) {
 					transform: [
 						['babelify', {
 							sourceMaps: false,
-							presets: ['es2015']
+							presets: ['latest']
 						}]
 					],
-					// Maybe we could automize this by using dependencies from package.json
 					external: packageJson.bundleExternalJS
 				}
 			}
