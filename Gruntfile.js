@@ -568,8 +568,7 @@ module.exports = function (grunt) {
 				src: [],
 				dest: 'server/assets/js/vendor.js',
 				options: {
-					// Maybe we could automize this by using dependencies from package.json
-					require: ['jquery']
+					require: packageJson.bundleExternalJS
 				}
 			},
 			clientDevelopment: {
@@ -582,11 +581,11 @@ module.exports = function (grunt) {
 					transform: [
 						['babelify', {
 							sourceMaps: true,
-							presets: ['es2015', 'react']
+							presets: ['es2015']
 						}]
 					],
 					// Maybe we could automize this by using dependencies from package.json
-					external: ['jquery']
+					external: packageJson.bundleExternalJS
 				}
 			},
 			clientProduction: {
@@ -599,11 +598,11 @@ module.exports = function (grunt) {
 					transform: [
 						['babelify', {
 							sourceMaps: false,
-							presets: ['es2015', 'react']
+							presets: ['es2015']
 						}]
 					],
 					// Maybe we could automize this by using dependencies from package.json
-					external: ['jquery']
+					external: packageJson.bundleExternalJS
 				}
 			}
 		},

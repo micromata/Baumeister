@@ -69,5 +69,6 @@
   "scripts": {
     "postinstall": "chmod u+x .postinstall.js && node ./.postinstall.js"
   },
-  "bundleCSS": {}
+  "bundleCSS": {},
+  "bundleExternalJS": ["jquery", "bootstrap"]
 }

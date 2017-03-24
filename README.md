@@ -475,28 +475,10 @@ require('bootstrap');
 require('select2');
 ```
 
-Finally add the library to the `browserify` section of `Gruntfile.js` to add the sources the `vendor.js` bundle.
+Finally add the library to the `bundleExternalJS` section of `package.json` to add the sources the `vendor.js` bundle.
 
 ```
-browserify: {
-	vendor: {
-		...
-		options: {
-			require: ['jquery', 'bootstrap', 'select2']
-		}
-	},
-	clientDevelopment: {
-		options: {
-			...
-			external: ['jquery', 'bootstrap', 'select2']
-		}
-	},
-	clientProduction: {
-			...
-			external: ['jquery', 'bootstrap', 'select2']
-		}
-	}
-}
+bundleExternalJS": ["jquery", "bootstrap", "select2"]
 ```
 
 ### Bundling CSS from dependencies
