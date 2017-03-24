@@ -60,12 +60,12 @@ module.exports = function (grunt) {
 						'serve',
 						'watch',
 						'build',
-						'checkBuild',
+						'build:check',
 						'jsdoc',
 						'sync',
-						'releasePatch',
-						'releaseMinor',
-						'releaseMajor',
+						'release:patch',
+						'release:minor',
+						'release:major',
 						'lint',
 						'lint:fix'
 					],
@@ -78,7 +78,7 @@ module.exports = function (grunt) {
 					},
 					groups: {
 						Dev: ['default', 'dev', 'sync', 'serve', 'watch', 'jsdoc', 'lint', 'lint:fix'],
-						Production: ['build', 'checkBuild', 'releasePatch', 'releaseMinor', 'releaseMajor']
+						Production: ['build', 'build:check', 'release:patch', 'release:minor', 'release:major']
 					},
 					sort: [
 						'default',
@@ -90,10 +90,10 @@ module.exports = function (grunt) {
 						'lint',
 						'eslint:fix',
 						'build',
-						'checkBuild',
-						'releasePatch',
-						'releaseMinor',
-						'releaseMajor'
+						'build:check',
+						'release:patch',
+						'release:minor',
+						'release:major'
 					]
 				}
 			}
@@ -749,7 +749,7 @@ module.exports = function (grunt) {
 
 	// Start server to check production build
 	grunt.registerTask('build:check',
-		'`grunt checkBuild` starts a local server to make it possible to check ' +
+		'`grunt build:check` starts a local server to make it possible to check ' +
 		'the build in the browser.',
 		['connect:dist']
 	);
