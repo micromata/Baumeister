@@ -126,7 +126,7 @@ module.exports = function (grunt) {
 						'.postinstall.js',
 						'src/templates/helpers/helpers.js',
 						'Gruntfile.js',
-						'src/assets/js/*.js'
+						'src/app/*.js'
 					]
 				}
 			},
@@ -156,10 +156,10 @@ module.exports = function (grunt) {
 					sourceMap: false
 				},
 				files: {
-					'<%= config.dist %>/assets/js/built.min.js': [
-						'<%= config.server %>/assets/js/vendor.js',
+					'<%= config.dist %>/app/built.min.js': [
+						'<%= config.server %>/app/vendor.js',
 						// Same as client.js but without sourceMaps
-						'<%= config.server %>/assets/js/client.min.js'
+						'<%= config.server %>/app/client.min.js'
 					]
 				}
 			}
@@ -200,7 +200,7 @@ module.exports = function (grunt) {
 
 		clean: {
 			less: ['src/assets/css/index_raw.*'],
-			js: ['src/assets/js/**/*min.js*'],
+			js: ['src/app/**/*min.js*'],
 			dist: ['<%= config.dist %>'],
 			server: ['<%= config.server %>'],
 			temp: ['temp']
@@ -378,8 +378,8 @@ module.exports = function (grunt) {
 		jsdoc: {
 			dist: {
 				src: [
-					'src/assets/js/**/*.js',
-					'!src/assets/js/**/*.min.js',
+					'src/app/**/*.js',
+					'!src/app/**/*.min.js',
 					'test/**/*.js'
 				],
 				options: {
@@ -396,7 +396,7 @@ module.exports = function (grunt) {
 						'<%= config.server %>/assets/img/**/*.jpg',
 						'<%= config.server %>/assets/img/**/*.png',
 						'<%= config.server %>/assets/img/**/*.gif',
-						'<%= config.server %>/assets/js/**/*.js',
+						'<%= config.server %>/app/**/*.js',
 						'<%= config.server %>/*.html'
 					]
 				},
@@ -555,7 +555,7 @@ module.exports = function (grunt) {
 				livereload: true
 			},
 			scripts: {
-				files: ['src/assets/js/**/*.js'],
+				files: ['src/app/**/*.js'],
 				tasks: ['newer:eslint:fix', 'newer:copy:server', 'newer:browserify:clientDevelopment'],
 				options: {
 					spawn: false
@@ -591,14 +591,14 @@ module.exports = function (grunt) {
 		browserify: {
 			vendor: {
 				src: [],
-				dest: '<%= config.server %>/assets/js/vendor.js',
+				dest: '<%= config.server %>/app/vendor.js',
 				options: {
 					require: packageJson.bootstrapKickstart.bundleExternalJS
 				}
 			},
 			clientDevelopment: {
-				src: ['src/assets/js/**/*.js'],
-				dest: '<%= config.server %>/assets/js/client.js',
+				src: ['src/app/**/*.js'],
+				dest: '<%= config.server %>/app/client.js',
 				options: {
 					browserifyOptions: {
 						debug: true
@@ -612,8 +612,8 @@ module.exports = function (grunt) {
 				}
 			},
 			clientProduction: {
-				src: ['src/assets/js/**/*.js'],
-				dest: '<%= config.server %>/assets/js/client.min.js',
+				src: ['src/app/**/*.js'],
+				dest: '<%= config.server %>/app/client.min.js',
 				options: {
 					browserifyOptions: {
 						debug: false
