@@ -2,7 +2,7 @@
 
 var getTasks = require('load-grunt-tasks');
 var displayTime = require('time-grunt');
-var templateHelpers = require('./templates/helpers/helpers.js');
+var templateHelpers = require('./src/templates/helpers/helpers.js');
 
 // Returns a list of all css files defined in the property bundleCSS of package.json
 function getBundleCSSFiles(packageJson) {
@@ -108,9 +108,9 @@ module.exports = function (grunt) {
 				files: {
 					src: [
 						'.postinstall.js',
-						'templates/helpers/helpers.js',
+						'src/templates/helpers/helpers.js',
 						'Gruntfile.js',
-						'assets/js/*.js'
+						'src/assets/js/*.js'
 					]
 				}
 			},
@@ -141,9 +141,9 @@ module.exports = function (grunt) {
 				},
 				files: {
 					'<%= config.dist %>/assets/js/built.min.js': [
-						'server/assets/js/vendor.js',
+						'<%= config.server %>/assets/js/vendor.js',
 						// Same as client.js but without sourceMaps
-						'server/assets/js/client.min.js'
+						'<%= config.server %>/assets/js/client.min.js'
 					]
 				}
 			}
@@ -154,12 +154,12 @@ module.exports = function (grunt) {
 			dev: {
 				options: {
 					sourceMap: true,
-					sourceMapFilename: 'assets/css/index_raw.css.map',
+					sourceMapFilename: 'src/assets/css/index_raw.css.map',
 					sourceMapURL: 'index_raw.css.map',
 					sourceMapRootpath: '../../'
 				},
 				files: {
-					'assets/css/index_raw.css': 'assets/less/index.less'
+					'src/assets/css/index_raw.css': 'src/assets/less/index.less'
 				}
 			}
 		},
@@ -177,14 +177,14 @@ module.exports = function (grunt) {
 				map: true
 			},
 			dev: {
-				src: 'assets/css/index_raw.css',
-				dest: 'assets/css/index.css'
+				src: 'src/assets/css/index_raw.css',
+				dest: 'src/assets/css/index.css'
 			}
 		},
 
 		clean: {
-			less: ['assets/css/index_raw.*'],
-			js: ['assets/js/**/*min.js*'],
+			less: ['src/assets/css/index_raw.*'],
+			js: ['src/assets/js/**/*min.js*'],
 			dist: ['<%= config.dist %>'],
 			server: ['<%= config.server %>'],
 			temp: ['temp']
@@ -255,7 +255,7 @@ module.exports = function (grunt) {
 				},
 				files: {
 					'<%= config.dist %>/assets/css/index.uncss.min.css': ['temp/index.css'],
-					'<%= config.dist %>/assets/css/index.min.css': ['assets/css/index.css']
+					'<%= config.dist %>/assets/css/index.min.css': ['src/assets/css/index.css']
 				}
 			},
 			npmLibsProduction: {
@@ -295,7 +295,7 @@ module.exports = function (grunt) {
 				options: {},
 				files: [{
 					expand: true,
-					cwd: 'assets/img',
+					cwd: 'src/assets/img',
 					src: ['**/*.{png,jpg,gif,svg}'],
 					dest: '<%= config.dist %>/assets/img'
 				}]
@@ -320,27 +320,40 @@ module.exports = function (grunt) {
 		copy: {
 			dist: {
 				expand: true,
+				cwd: 'src',
 				src: [
 					'assets/css/*.min.css',
-					'assets/fonts/**/*',
+					'assets/fonts/**/*'
+				],
+				dest: '<%= config.dist %>/'
+			},
+			distFilesFromLibs: {
+				expand: true,
+				src: [
 					'node_modules/bootstrap/fonts/**/*'
 				],
 				dest: '<%= config.dist %>/'
 			},
 			server: {
 				expand: true,
+				cwd: 'src',
 				src: [
 					'assets/css/**/*',
-					// 'assets/js/**/*',
 					'assets/fonts/**/*',
-					'assets/img/**/*',
+					'assets/img/**/*'
+				],
+				dest: '<%= config.server %>/'
+			},
+			serverFilesFromLibs: {
+				expand: true,
+				src: [
 					'node_modules/bootstrap/fonts/**/*'
 				],
-				// ].concat(dependencyConfiguration.getDependenciesFileList()),
 				dest: '<%= config.server %>/'
 			},
 			handlebars: {
 				expand: true,
+				cwd: 'src',
 				src: [
 					'*.hbs',
 					'templates/*.hbs',
@@ -353,8 +366,8 @@ module.exports = function (grunt) {
 		jsdoc: {
 			dist: {
 				src: [
-					'assets/js/**/*.js',
-					'!assets/js/**/*.min.js',
+					'src/assets/js/**/*.js',
+					'!src/assets/js/**/*.min.js',
 					'test/**/*.js'
 				],
 				options: {
@@ -401,7 +414,7 @@ module.exports = function (grunt) {
 					// Includes files in path
 					{src: ['./*', '!./*.zip', '!./*.sublime*'], dest: './', filter: 'isFile'},
 					// Includes files in path and its subdirs
-					{src: ['assets/**', '!assets/css/**'], dest: './'}
+					{src: ['src/assets/**', '!src/assets/css/**'], dest: './'}
 				]
 			}
 		},
@@ -489,14 +502,14 @@ module.exports = function (grunt) {
 		generator: {
 			dev: {
 				files: [{
-					cwd: '.',
+					cwd: './src',
 					src: ['*.hbs'],
 					dest: '<%= config.server %>'
 				}],
 				options: {
 					helpers: templateHelpers,
-					partialsGlob: 'partials/**/*.hbs',
-					templates: 'templates',
+					partialsGlob: 'src/partials/**/*.hbs',
+					templates: 'src/templates',
 					templateExt: 'hbs',
 					defaultTemplate: 'default',
 					frontmatterType: 'yaml'
@@ -530,28 +543,28 @@ module.exports = function (grunt) {
 				livereload: true
 			},
 			scripts: {
-				files: ['assets/js/**/*.js'],
+				files: ['src/assets/js/**/*.js'],
 				tasks: ['newer:eslint:fix', 'newer:copy:server', 'newer:browserify:clientDevelopment'],
 				options: {
 					spawn: false
 				}
 			},
 			otherJsFiles: {
-				files: ['Gruntfile.js', '.postinstall.js', 'templates/helpers/helpers.js'],
+				files: ['Gruntfile.js', '.postinstall.js', 'src/templates/helpers/helpers.js'],
 				tasks: ['eslint:fix'],
 				options: {
 					spawn: false
 				}
 			},
 			css: {
-				files: ['assets/less/**/*.less'],
+				files: ['src/assets/less/**/*.less'],
 				tasks: ['less:dev', 'autoprefixer', 'clean:less', 'newer:copy:server'],
 				options: {
 					spawn: false
 				}
 			},
 			html: {
-				files: ['*.hbs', 'templates/*.hbs', 'partials/*.hbs', 'templates/helpers/helpers.js'],
+				files: ['src/*.hbs', 'src/templates/*.hbs', 'src/partials/*.hbs', 'src/templates/helpers/helpers.js'],
 				tasks: ['generator', 'newer:htmllint', 'newer:bootlint'],
 				options: {
 					spawn: false
@@ -566,14 +579,14 @@ module.exports = function (grunt) {
 		browserify: {
 			vendor: {
 				src: [],
-				dest: 'server/assets/js/vendor.js',
+				dest: '<%= config.server %>/assets/js/vendor.js',
 				options: {
 					require: packageJson.bootstrapKickstart.bundleExternalJS
 				}
 			},
 			clientDevelopment: {
-				src: ['assets/js/**/*.js'],
-				dest: 'server/assets/js/client.js',
+				src: ['src/assets/js/**/*.js'],
+				dest: '<%= config.server %>/assets/js/client.js',
 				options: {
 					browserifyOptions: {
 						debug: true
@@ -587,8 +600,8 @@ module.exports = function (grunt) {
 				}
 			},
 			clientProduction: {
-				src: ['assets/js/**/*.js'],
-				dest: 'server/assets/js/client.min.js',
+				src: ['src/assets/js/**/*.js'],
+				dest: '<%= config.server %>/assets/js/client.min.js',
 				options: {
 					browserifyOptions: {
 						debug: false
@@ -608,13 +621,13 @@ module.exports = function (grunt) {
 				options: {
 					algorithm: 'sha512',
 					length: 8,
-					baseDir: 'server/',
-					assets: ['**/*.js', '**/*.css'],
+					baseDir: '<%= config.server %>/',
+					assets: ['src/**/*.js', 'src/**/*.css'],
 					queryString: true
 				},
 				files: [{
 					expand: true,
-					cwd: 'server/',
+					cwd: '<%= config.server %>/',
 					src: ['*.html']
 				}]
 			},
@@ -624,7 +637,7 @@ module.exports = function (grunt) {
 					algorithm: 'sha512',
 					length: 8,
 					baseDir: 'dist/',
-					assets: ['**/*.js', '**/*.css'],
+					assets: ['src/**/*.js', 'src/**/*.css'],
 					queryString: true
 				},
 				files: [{
@@ -670,6 +683,7 @@ module.exports = function (grunt) {
 			'autoprefixer',
 			'clean:less',
 			'copy:server',
+			'copy:serverFilesFromLibs',
 			'browserify:vendor',
 			'browserify:clientDevelopment',
 			'generator',
