@@ -41,7 +41,12 @@ module.exports = function (grunt) {
 			dist: 'dist',
 			reports: 'reports',
 			docs: 'docs',
-			server: 'server'
+			server: 'server',
+			banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+					' * <%= pkg.author.email %>\n' +
+					' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+					' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+					' */'
 		},
 
 		// List available tasks
@@ -55,12 +60,12 @@ module.exports = function (grunt) {
 						'serve',
 						'watch',
 						'build',
-						'checkBuild',
+						'build:check',
 						'jsdoc',
 						'sync',
-						'releasePatch',
-						'releaseMinor',
-						'releaseMajor',
+						'release:patch',
+						'release:minor',
+						'release:major',
 						'lint',
 						'lint:fix'
 					],
@@ -73,7 +78,7 @@ module.exports = function (grunt) {
 					},
 					groups: {
 						Dev: ['default', 'dev', 'sync', 'serve', 'watch', 'jsdoc', 'lint', 'lint:fix'],
-						Production: ['build', 'checkBuild', 'releasePatch', 'releaseMinor', 'releaseMajor']
+						Production: ['build', 'build:check', 'release:patch', 'release:minor', 'release:major']
 					},
 					sort: [
 						'default',
@@ -85,10 +90,10 @@ module.exports = function (grunt) {
 						'lint',
 						'eslint:fix',
 						'build',
-						'checkBuild',
-						'releasePatch',
-						'releaseMinor',
-						'releaseMajor'
+						'build:check',
+						'release:patch',
+						'release:minor',
+						'release:major'
 					]
 				}
 			}
@@ -96,6 +101,9 @@ module.exports = function (grunt) {
 
 		// ESLint
 		eslint: {
+			options: {
+				ignorePattern: '!.postinstall.js'
+			},
 			check: {
 				files: {
 					src: [
@@ -119,11 +127,7 @@ module.exports = function (grunt) {
 		// Uglify
 		uglify: {
 			options: {
-				banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */',
+				banner: '<%= config.banner %>\n',
 				sourceMap: true,
 				sourceMapIncludeSources: true,
 				compress: {
@@ -275,11 +279,7 @@ module.exports = function (grunt) {
 		usebanner: {
 			assets: {
 				options: {
-					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
-						' * Copyright ©<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */'
+					banner: '<%= config.banner %>'
 				},
 				files: {
 					src: [
@@ -743,24 +743,53 @@ module.exports = function (grunt) {
 	);
 
 	// Start server to check production build
-	grunt.registerTask('checkBuild',
-		'`grunt checkBuild` starts a local server to make it possible to check ' +
+	grunt.registerTask('build:check',
+		'`grunt build:check` starts a local server to make it possible to check ' +
 		'the build in the browser.',
 		['connect:dist']
 	);
+
+	// Alias `checkBuild` to `grunt build:check` for »backward compatability«.
+	grunt.registerTask('checkBuild', ['build:check']);
+
 	// Relase tasks
-	grunt.registerTask('releasePatch',
-		'`grunt releasePatch` builds the current sources, bumps version number (0.0.1) and creates zip.files.',
-		['bump-only:patch', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
+	grunt.registerTask('release:patch',
+		'`grunt release:patch` builds the current sources, bumps version number (0.0.1) and creates zip.files.',
+		[
+			'bump-only:patch',
+			'build',
+			'clean:js',
+			'changelog',
+			'gitadd',
+			'bump-commit'
+		]
 	);
-	grunt.registerTask('releaseMinor',
-		'`grunt releaseMinor` builds the current sources, bumps version number (0.1.0) and creates zip.files.',
-		['bump-only:minor', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
+	grunt.registerTask('release:minor',
+		'`grunt release:minor` builds the current sources, bumps version number (0.1.0) and creates zip.files.',
+		[
+			'bump-only:minor',
+			'build',
+			'clean:js',
+			'changelog',
+			'gitadd',
+			'bump-commit'
+		]
 	);
-	grunt.registerTask('releaseMajor',
-		'`grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
-		['bump-only:major', 'build', 'clean:js', 'changelog', 'gitadd', 'bump-commit', 'compress']
+	grunt.registerTask('release:major',
+		'`grunt release:major` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
+		[
+			'bump-only:major',
+			'build',
+			'clean:js',
+			'changelog',
+			'gitadd',
+			'bump-commit'
+		]
 	);
+	// Aliases for »backward compatability«.
+	grunt.registerTask('releasePatch', ['release:patch']);
+	grunt.registerTask('releaseMinor', ['release:minor']);
+	grunt.registerTask('releaseMajor', ['release:major']);
 
 	// Security checks
 	grunt.registerTask('security',
