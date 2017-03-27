@@ -67,6 +67,8 @@
   },
   "scripts": {
     "postinstall": "chmod u+x .postinstall.js && node ./.postinstall.js",
+    "test": "grunt lint",
+    "start": "grunt sync",
     "dev": "grunt dev",
     "serve": "grunt serve",
     "dev:watch": "grunt",
