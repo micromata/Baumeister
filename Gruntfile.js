@@ -7,8 +7,8 @@ var templateHelpers = require('./templates/helpers/helpers.js');
 // Returns a list of all css files defined in the property bundleCSS of package.json
 function getBundleCSSFiles(packageJson) {
 	var basePath = 'node_modules/';
-	return Object.keys(packageJson.bundleCSS).map(function (dependencyKey) {
-		return packageJson.bundleCSS[dependencyKey].map(function (relativeCSSFilePath) {
+	return Object.keys(packageJson.bootstrapKickstart.bundleCSS).map(function (dependencyKey) {
+		return packageJson.bootstrapKickstart.bundleCSS[dependencyKey].map(function (relativeCSSFilePath) {
 			return basePath + dependencyKey + '/' + relativeCSSFilePath;
 		});
 	}).reduce(function (left, right) {
@@ -568,7 +568,7 @@ module.exports = function (grunt) {
 				src: [],
 				dest: 'server/assets/js/vendor.js',
 				options: {
-					require: packageJson.bundleExternalJS
+					require: packageJson.bootstrapKickstart.bundleExternalJS
 				}
 			},
 			clientDevelopment: {
@@ -583,7 +583,7 @@ module.exports = function (grunt) {
 							sourceMaps: true
 						}]
 					],
-					external: packageJson.bundleExternalJS
+					external: packageJson.bootstrapKickstart.bundleExternalJS
 				}
 			},
 			clientProduction: {
@@ -598,7 +598,7 @@ module.exports = function (grunt) {
 							sourceMaps: false
 						}]
 					],
-					external: packageJson.bundleExternalJS
+					external: packageJson.bootstrapKickstart.bundleExternalJS
 				}
 			}
 		},
