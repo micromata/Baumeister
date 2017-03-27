@@ -66,7 +66,22 @@
     "time-grunt": "1.4.0"
   },
   "scripts": {
-    "postinstall": "chmod u+x .postinstall.js && node ./.postinstall.js"
+    "postinstall": "chmod u+x .postinstall.js && node ./.postinstall.js",
+    "test": "grunt lint",
+    "start": "grunt sync",
+    "dev": "grunt dev",
+    "serve": "grunt serve",
+    "dev:watch": "grunt",
+    "dev:sync": "grunt sync",
+    "watch": "grunt watch",
+    "docs": "grunt jsdoc",
+    "lint": "grunt lint",
+    "lint:fix": "grunt lint:fix",
+    "build": "grunt build",
+    "build:check": "grunt build:check",
+    "release:patch": "grunt release:patch",
+    "release:minor": "grunt release:minor",
+    "release:major": "grunt release:major"
   },
   "bootstrapKickstart": {
     "bundleCSS": {},
