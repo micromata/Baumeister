@@ -4,7 +4,11 @@ var getTasks = require('load-grunt-tasks');
 var displayTime = require('time-grunt');
 var templateHelpers = require('./src/templates/helpers/helpers.js');
 
-// Returns a list of all css files defined in the property bundleCSS of package.json
+/*
+ * Returns a list of all css files defined in the property bundleCSS of package.json
+ * Use to bundle and minify them and use them for the development server and
+ * for the production build.
+ */
 function getBundleCSSFiles(packageJson) {
 	var basePath = 'node_modules/';
 	return Object.keys(packageJson.bootstrapKickstart.bundleCSS).map(function (dependencyKey) {
@@ -16,10 +20,22 @@ function getBundleCSSFiles(packageJson) {
 	}, []);
 }
 
+/*
+ * Returns a list of all globs defined in the property `includeStaticFiles` of package.json
+ * Used to copy files to development server and to the production build.
+ */
+function getStaticFiles(packageJson) {
+	var basePath = 'node_modules/';
+	return packageJson.bootstrapKickstart.includeStaticFiles.map(function (glob) {
+		return basePath + glob;
+	});
+}
+
 module.exports = function (grunt) {
 	// Add frontend dependencies from package.json for adding its css files
 	var packageJson = grunt.file.readJSON('package.json');
 	var bundleCSSFiles = getBundleCSSFiles(packageJson);
+	var staticFiles = getStaticFiles(packageJson);
 
 	// Get devDependencies
 	getTasks(grunt, {
@@ -329,9 +345,7 @@ module.exports = function (grunt) {
 			},
 			distFilesFromLibs: {
 				expand: true,
-				src: [
-					'node_modules/bootstrap/fonts/**/*'
-				],
+				src: staticFiles,
 				dest: '<%= config.dist %>/'
 			},
 			server: {
@@ -346,9 +360,7 @@ module.exports = function (grunt) {
 			},
 			serverFilesFromLibs: {
 				expand: true,
-				src: [
-					'node_modules/bootstrap/fonts/**/*'
-				],
+				src: staticFiles,
 				dest: '<%= config.server %>/'
 			},
 			handlebars: {

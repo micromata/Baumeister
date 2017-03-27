@@ -85,6 +85,7 @@
   },
   "bootstrapKickstart": {
     "bundleCSS": {},
-    "bundleExternalJS": ["jquery", "bootstrap"]
+    "bundleExternalJS": ["jquery", "bootstrap"],
+    "includeStaticFiles": ["bootstrap/fonts/**/*"]
   }
 }
