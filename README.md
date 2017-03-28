@@ -112,7 +112,7 @@ This will give you the main Grunt tasks which are ready for you to be fired from
 ````
 Dev
 default        =>  Default Task. Just type `grunt` for this one. Calls `grunt dev` first and `grunt server` afterwards.
-dev            =>  `grunt dev` will lint your files, build sources within the assets directory and generating docs / reports.
+dev            =>  `grunt dev` will lint your files, build sources within the server directory.
 sync           =>  `grunt sync` starts a local dev server, sync browsers and runs `grunt watch`
 jsdoc          ->  `grunt jsdoc` generates source documentation using jsdoc.
 serve          =>  `grunt serve` starts a local dev server and runs `grunt watch`
@@ -127,30 +127,23 @@ release:patch  =>  `grunt release:patch` builds the current sources and bumps ve
 release:minor  =>  `grunt release:minor` builds the current sources and bumps version number (0.1.0).
 release:major  =>  `grunt release:major` builds the current sources and bumps version number (1.0.0).
 ````
-Running those tasks will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following ressources are created after setting up the project:
+Running those tasks will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following resources are created after setting up and working with the project:
 
 ````
-bootstrap-kickstart/
-├── assets/
-│   ├── css/
-│   │   ├── index.css          → Compiled and autoprefixed from LESS files
-│   │   └── index.css.map      → Sourcemap which maps to LESS files
-│   └── js/
-│       ├── file.min.js        → Minified JavaScript file
-│       └── file.min.js.map    → Sourcemap which maps to original js file
-├── dist/                      → Contains the files ready for production
-│   ├── assets/
-│   │   ├── css/
-│   │   │   ├── index.css      → Compiled and autoprefixed from LESS files
-│   │   │   └── index.css.map  → Sourcemap which maps to LESS files
-│   │   ├── fonts/             → Fonts copied from /assets/fonts
-│   │   ├── img/               → Optimized images from /assets/img
-│   │   └── js/
-│   │       └── file.min.js    → Minified JavaScript file (without console output)
-│   └── libs/                  → Relevant files copied from /libs
-├── docs/                      → JavaScript generated from DocBlock comments
+myProject
+├── dist                       → Contains the files ready for production
+│   ├── app
+│   ├── assets
+│   └── libs                   → Relevant files copied from /node_modules
+├── docs                       → JavaScript Docs generated from DocBlock comments
 ├── node_modules/              → Dependencies installed by npm
-└── server/                    → Contains files for running a local dev server
+├── server                     → Contains the files for the development server
+│   ├── app
+│   ├── assets
+│   └── libs                   → Relevant files copied from /node_modules
+└── src
+    └── assets
+        └── css                → Transpiled and autoprefixed from LESS files
 ````
 
 See `/Gruntfile.js` to see what happens in Details.
@@ -472,10 +465,22 @@ Finally add the library to the `bundleExternalJS` section of `package.json` to a
 ```
 bundleExternalJS": ["jquery", "bootstrap", "select2"]
 ```
+The bundled JavaScript is stored in the `libs` directory during the build process:
+
+```
+myProject
+├── server
+│   └── libs
+│       └── vendor.js
+└── dist
+    └── libs
+        └── vendor.min.js
+```
 
 ### Bundling CSS from dependencies
 
 If your lib ships its own CSS, create a property for your lib in the `bundleCSS` section of your `package.json` where the key is equivalent to the npm package name and the value a string array containing all paths to css files relative to its module folder.
+
 ```
 "bundleCSS": {
     "select2": [
@@ -485,6 +490,67 @@ If your lib ships its own CSS, create a property for your lib in the `bundleCSS`
       "select2-bootstrap.css"
     ]
   }
+```
+
+The bundled CSS is stored in the `libs` directory during the build process:
+
+```
+myProject
+├── server
+│   └── libs
+│       └── libs.css
+└── dist
+    └── libs
+        └── libs.min.css
+```
+
+### Including static files from dependencies
+
+Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a seperate `<script>` tag.
+To handle that you just have to include the files in the `includeStaticFiles` section of your `package.json`. Please not that glob pattern macthing is supported over here.
+
+```
+"includeStaticFiles": [
+    "bootstrap/fonts/**/*",
+    "html5shiv/dist/html5shiv-printshiv.min.js",
+    "respond.js/dest/respond.min.js"
+]
+```
+
+These files are stored in the `libs` directory during the build process:
+
+```
+myProject
+├── server
+│   └── libs
+│       ├── bootstrap
+│       │   └── fonts
+│       │       ├── glyphicons-halflings-regular.eot
+│       │       ├── glyphicons-halflings-regular.svg
+│       │       ├── glyphicons-halflings-regular.ttf
+│       │       ├── glyphicons-halflings-regular.woff
+│       │       └── glyphicons-halflings-regular.woff2
+│       ├── html5shiv
+│       │   └── dist
+│       │       └── html5shiv-printshiv.min.js
+│       └── respond.js
+│           └── dest
+│               └── respond.min.js
+└── dist
+    └── libs
+        ├── bootstrap
+        │   └── fonts
+        │       ├── glyphicons-halflings-regular.eot
+        │       ├── glyphicons-halflings-regular.svg
+        │       ├── glyphicons-halflings-regular.ttf
+        │       ├── glyphicons-halflings-regular.woff
+        │       └── glyphicons-halflings-regular.woff2
+        ├── html5shiv
+        │   └── dist
+        │       └── html5shiv-printshiv.min.js
+        └── respond.js
+            └── dest
+                └── respond.min.js
 ```
 
 ### Changing versions of external resources
