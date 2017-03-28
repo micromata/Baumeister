@@ -287,7 +287,7 @@ module.exports = function (grunt) {
 					keepSpecialComments: 0
 				},
 				files: {
-					'<%= config.server %>/assets/css/libs.min.css': bundleCSSFiles
+					'<%= config.server %>/node_modules/libs.min.css': bundleCSSFiles
 				}
 			}
 		},
@@ -749,8 +749,8 @@ module.exports = function (grunt) {
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
-			'uncss',
-			'cssmin:assets',
+			'copy:server',
+			'cssmin',
 			'imagemin',
 			'generator',
 			'processhtml',
@@ -759,7 +759,7 @@ module.exports = function (grunt) {
 			'browserify:clientProduction',
 			'copy',
 			'uglify:browserifyOutput',
-			'cssmin:npmLibsProduction',
+			'uncss',
 			'usebanner',
 			'clean:temp',
 			'jsdoc',
