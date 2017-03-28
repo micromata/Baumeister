@@ -26,7 +26,7 @@
     "respond.js": "^1.4.2"
   },
   "devDependencies": {
-    "babel-preset-latest": "^6.24.0",
+    "babel-preset-env": "^1.2.2",
     "babelify": "^7.3.0",
     "eslint": "3.18.0",
     "eslint-config-xo": "0.18.1",

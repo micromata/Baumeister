@@ -1,1 +1,1 @@
-{ "presets": ["latest"] }
+{ "presets": ["env"] }
