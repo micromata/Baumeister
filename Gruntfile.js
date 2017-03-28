@@ -20,22 +20,10 @@ function getBundleCSSFiles(packageJson) {
 	}, []);
 }
 
-/*
- * Returns a list of all globs defined in the property `includeStaticFiles` of package.json
- * Used to copy files to development server and to the production build.
- */
-function getStaticFiles(packageJson) {
-	var basePath = 'node_modules/';
-	return packageJson.bootstrapKickstart.includeStaticFiles.map(function (glob) {
-		return basePath + glob;
-	});
-}
-
 module.exports = function (grunt) {
 	// Add frontend dependencies from package.json for adding its css files
 	var packageJson = grunt.file.readJSON('package.json');
 	var bundleCSSFiles = getBundleCSSFiles(packageJson);
-	var staticFiles = getStaticFiles(packageJson);
 
 	// Get devDependencies
 	getTasks(grunt, {
@@ -278,7 +266,7 @@ module.exports = function (grunt) {
 					keepSpecialComments: 0
 				},
 				files: {
-					'<%= config.dist %>/node_modules/libs.min.css': bundleCSSFiles
+					'<%= config.dist %>/libs/libs.min.css': bundleCSSFiles
 				}
 			},
 			npmLibsDevelopment: {
@@ -286,7 +274,7 @@ module.exports = function (grunt) {
 					keepSpecialComments: 0
 				},
 				files: {
-					'<%= config.server %>/node_modules/libs.min.css': bundleCSSFiles
+					'<%= config.server %>/libs/libs.min.css': bundleCSSFiles
 				}
 			}
 		},
@@ -344,8 +332,9 @@ module.exports = function (grunt) {
 			},
 			distFilesFromLibs: {
 				expand: true,
-				src: staticFiles,
-				dest: '<%= config.dist %>/'
+				cwd: 'node_modules',
+				src: packageJson.bootstrapKickstart.includeStaticFiles,
+				dest: '<%= config.dist %>/libs'
 			},
 			server: {
 				expand: true,
@@ -359,8 +348,9 @@ module.exports = function (grunt) {
 			},
 			serverFilesFromLibs: {
 				expand: true,
-				src: staticFiles,
-				dest: '<%= config.server %>/'
+				cwd: 'node_modules',
+				src: packageJson.bootstrapKickstart.includeStaticFiles,
+				dest: '<%= config.server %>/libs'
 			}
 		},
 		jsdoc: {
