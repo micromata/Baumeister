@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/micromata/bootstrap-kickstart.svg?branch=master)](https://travis-ci.org/micromata/bootstrap-kickstart)
+[![Dependency Status](https://david-dm.org/micromata/bootstrap-kickstart.svg)](https://david-dm.org/micromata/bootstrap-kickstart)
 [![devDependency Status](https://david-dm.org/micromata/bootstrap-kickstart/dev-status.svg)](https://david-dm.org/micromata/bootstrap-kickstart#info=devDependencies)
 [![Join the chat at https://gitter.im/micromata/bootstrap-kickstart](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/micromata/bootstrap-kickstart?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Twitter](https://img.shields.io/badge/Twitter-%40BootstrapKick%20-blue.svg?style=flat)](https://twitter.com/BootstrapKick)
