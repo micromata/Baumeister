@@ -12,6 +12,7 @@ before_script:
   - npm install -g grunt-cli
 script:
   - grunt dev
+  - rm -rf server
   - grunt build
 notifications:
   webhooks:
