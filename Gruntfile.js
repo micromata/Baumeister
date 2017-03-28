@@ -396,29 +396,6 @@ module.exports = function (grunt) {
 			}
 		},
 
-		compress: {
-			dist: {
-				options: {
-					archive: 'dist-v<%= pkg.version %>.zip'
-				},
-				files: [{
-					src: ['<%= config.dist %>/**'],
-					dest: './'
-				}]
-			},
-			src: {
-				options: {
-					archive: 'src-v<%= pkg.version %>.zip'
-				},
-				files: [
-					// Includes files in path
-					{src: ['./*', '!./*.zip', '!./*.sublime*'], dest: './', filter: 'isFile'},
-					// Includes files in path and its subdirs
-					{src: ['src/assets/**', '!src/assets/css/**'], dest: './'}
-				]
-			}
-		},
-
 		bump: {
 			options: {
 				files: ['package.json'],
@@ -768,7 +745,7 @@ module.exports = function (grunt) {
 
 	// Relase tasks
 	grunt.registerTask('release:patch',
-		'`grunt release:patch` builds the current sources, bumps version number (0.0.1) and creates zip.files.',
+		'`grunt release:patch` builds the current sources and bumps version number (0.0.1).',
 		[
 			'bump-only:patch',
 			'build',
@@ -779,7 +756,7 @@ module.exports = function (grunt) {
 		]
 	);
 	grunt.registerTask('release:minor',
-		'`grunt release:minor` builds the current sources, bumps version number (0.1.0) and creates zip.files.',
+		'`grunt release:minor` builds the current sources and bumps version number (0.1.0).',
 		[
 			'bump-only:minor',
 			'build',
@@ -790,7 +767,7 @@ module.exports = function (grunt) {
 		]
 	);
 	grunt.registerTask('release:major',
-		'`grunt release:major` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
+		'`grunt release:major` builds the current sources and bumps version number (1.0.0).',
 		[
 			'bump-only:major',
 			'build',

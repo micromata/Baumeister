@@ -41,7 +41,6 @@
     "grunt-cache-bust": "^1.5.0",
     "grunt-changelog": "0.3.2",
     "grunt-contrib-clean": "1.0.0",
-    "grunt-contrib-compress": "1.4.1",
     "grunt-contrib-connect": "1.0.2",
     "grunt-contrib-copy": "1.0.0",
     "grunt-contrib-cssmin": "2.0.0",

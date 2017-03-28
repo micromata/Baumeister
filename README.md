@@ -110,20 +110,21 @@ This will give you the main Grunt tasks which are ready for you to be fired from
 
 ````
 Dev
-default      => Default Task. Just type `grunt` for this one. Calls `grunt dev` first and `grunt server` afterwards.
-dev          => `grunt dev` will hint your JS, building sources within the assets directory and generating docs / reports.
-sync         => `grunt sync` starts a local dev server, sync browsers and runs `grunt watch`
-plato        -> `grunt plato` generates static code analysis charts with plato.
-jsdoc        -> `grunt jsdoc` generates source documentation using jsdoc.
-server       => `grunt server` starts a local dev server and runs `grunt watch`
-watch         > `grunt watch` run dev tasks whenever watched files change and Reloads the browser with »LiveReload« plugin.
+default        =>  Default Task. Just type `grunt` for this one. Calls `grunt dev` first and `grunt server` afterwards.
+dev            =>  `grunt dev` will lint your files, build sources within the assets directory and generating docs / reports.
+sync           =>  `grunt sync` starts a local dev server, sync browsers and runs `grunt watch`
+jsdoc          ->  `grunt jsdoc` generates source documentation using jsdoc.
+serve          =>  `grunt serve` starts a local dev server and runs `grunt watch`
+watch          >   `grunt watch` run dev tasks whenever watched files change and Reloads the browser with »LiveReload« plugin.
+lint           =>  `grunt lint` lints JavaScript (ESLint) and HTML files (W3C validation and Bootlint)
+lint:fix       =>  `grunt lint:fix` tries to fix your ESLint errors.
 
 Production
-build        => `grunt build` builds production ready sources to dist directory.
-checkBuild   => `grunt checkBuild` starts a local server to make it possible to check the build in the browser.
-releasePatch => `grunt releasePatch` builds the current sources, bumps version number (0.0.1) and creates zip.files.
-releaseMinor => `grunt releaseMinor` builds the current sources, bumps version number (0.1.0) and creates zip.files.
-releaseMajor => `grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.
+build          =>  `grunt build` builds production ready sources to dist directory.
+build:check    =>  `grunt build:check` starts a local server to make it possible to check the build in the browser.
+release:patch  =>  `grunt release:patch` builds the current sources and bumps version number (0.0.1).
+release:minor  =>  `grunt release:minor` builds the current sources and bumps version number (0.1.0).
+release:major  =>  `grunt release:major` builds the current sources and bumps version number (1.0.0).
 ````
 Running those tasks will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following ressources are created after setting up the project:
 
