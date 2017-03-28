@@ -5,6 +5,7 @@
     "operator-assignment": ["off"],
     "eqeqeq": ["error", "allow-null"],
     "no-eq-null": ["off"],
-    "quote-props": ["error", "as-needed"]
+    "quote-props": ["error", "as-needed"],
+    "capitalized-comments": ["warn"]
   }
 }
