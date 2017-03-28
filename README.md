@@ -71,9 +71,9 @@ Please enter the following in your terminal if your aren’t sure about the avai
 
 This should return something like the following in case Node.js and npm is already installed:
 
-	3.3.3
+	4.4.4
 
-If that isn’t the case you have to install Node.js first. On OS X I strongly recommend installing Node via [Homebrew](http://brew.sh). Not just because it’s easier to switch versions with Homebrew but also because you prevent potential permission problems when running npm.
+If that isn’t the case you have to install Node.js first. On OS X we strongly recommend installing Node via [Homebrew](https://brew.sh/) or [Node Version Manager](https://github.com/creationix/nvm). Not just because it’s easier to switch versions but also because you prevent potential permission problems when running npm.
 
 ### Grunt
 
@@ -149,7 +149,6 @@ bootstrap-kickstart/
 │   └── libs/                  → Relevant files copied from /libs
 ├── docs/                      → JavaScript generated from DocBlock comments
 ├── node_modules/              → Dependencies installed by npm
-├── reports/                   → JavaScript Source Analysis
 └── server/                    → Contains files for running a local dev server
 ````
 
@@ -171,20 +170,11 @@ Beside that we recommend setting up a project within in your editor if you don�
       "dist",
       "reports",
       "docs",
-      "assets/css",
-      "libs"
+      "src/assets/css"
     ],
     "file_exclude_patterns": [
-      "assets/js/*.min.js",
-      "assets/js/*.min.js.map",
-      ".*rc",
       ".editorconfig",
-      ".gitignore",
-      "*.zip",
-      "*.md",
-      "LICENSE",
-      "*.json",
-      "Gruntfile.js"
+      ".travis.yml"
     ]
   }]
 }
