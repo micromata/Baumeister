@@ -65,11 +65,16 @@
 	replaced in the production ready build.
 	-->
 
+	<!-- Vendor JS -->
+	<!-- build:js:dist libs/vendor.min.js -->
+	<script src="libs/vendor.js"></script>
+	<!-- /build -->
+
 	<!-- Own JS -->
-	<!-- build:js:dist app/built.min.js -->
-	<script src="app/vendor.js"></script>
+	<!-- build:js:dist app/client.min.js -->
 	<script src="app/client.js"></script>
 	<!-- /build -->
+
 
 	<!-- External scripts (eg. analytics) should be placed here -->
 </body>

@@ -132,22 +132,20 @@ module.exports = function (grunt) {
 		uglify: {
 			options: {
 				banner: '<%= config.banner %>\n',
-				sourceMap: true,
-				sourceMapIncludeSources: true,
+				sourceMap: false,
 				compress: {
 					drop_console: false, // eslint-disable-line camelcase
 					drop_debugger: true // eslint-disable-line camelcase
 				}
 			},
-			browserifyOutput: {
-				options: {
-					sourceMap: false
-				},
+			client: {
 				files: {
-					'<%= config.dist %>/app/built.min.js': [
-						'<%= config.server %>/app/vendor.js',
-						'<%= config.server %>/app/client.js'
-					]
+					'<%= config.dist %>/app/client.min.js': ['<%= config.server %>/app/client.js']
+				}
+			},
+			vendor: {
+				files: {
+					'<%= config.dist %>/libs/vendor.min.js': ['<%= config.server %>/libs/vendor.js']
 				}
 			}
 		},
@@ -546,7 +544,7 @@ module.exports = function (grunt) {
 		browserify: {
 			vendor: {
 				src: [],
-				dest: '<%= config.server %>/app/vendor.js',
+				dest: '<%= config.server %>/libs/vendor.js',
 				options: {
 					require: packageJson.bootstrapKickstart.bundleExternalJS
 				}
@@ -713,7 +711,7 @@ module.exports = function (grunt) {
 			'browserify:vendor',
 			'browserify:clientProduction',
 			'copy',
-			'uglify:browserifyOutput',
+			'uglify',
 			'uncss',
 			'usebanner',
 			'clean:temp',
