@@ -158,8 +158,7 @@ module.exports = function (grunt) {
 				files: {
 					'<%= config.dist %>/app/built.min.js': [
 						'<%= config.server %>/app/vendor.js',
-						// Same as client.js but without sourceMaps
-						'<%= config.server %>/app/client.min.js'
+						'<%= config.server %>/app/client.js'
 					]
 				}
 			}
@@ -602,7 +601,7 @@ module.exports = function (grunt) {
 			},
 			clientProduction: {
 				src: ['src/app/**/*.js'],
-				dest: '<%= config.server %>/app/client.min.js',
+				dest: '<%= config.server %>/app/client.js',
 				options: {
 					browserifyOptions: {
 						debug: false
