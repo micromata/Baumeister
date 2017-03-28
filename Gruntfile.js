@@ -362,17 +362,6 @@ module.exports = function (grunt) {
 				expand: true,
 				src: staticFiles,
 				dest: '<%= config.server %>/'
-			},
-			handlebars: {
-				expand: true,
-				cwd: 'src',
-				src: [
-					'*.hbs',
-					'templates/*.hbs',
-					'partials/**/*.hbs',
-					'templates/helpers/helpers.js'
-				],
-				dest: '<%= config.dist %>/handlebarsSources'
 			}
 		},
 		jsdoc: {
