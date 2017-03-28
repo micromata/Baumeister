@@ -1,5 +1,8 @@
 {
   "extends": "xo",
+  "plugins": [
+    "security"
+  ],
   "rules": {
     "padded-blocks": ["off"],
     "operator-assignment": ["off"],
