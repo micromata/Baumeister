@@ -7,7 +7,7 @@
 
 # Build workflow for your web development needs
 
-![Logo](assets/img/bootstrap-kickstart-logo.png)
+![Logo](src/assets/img/bootstrap-kickstart-logo.png)
 
 The aim of this project is to help you with the creation of Bootstrap themes and websites as well as single page applications by providing:
 
