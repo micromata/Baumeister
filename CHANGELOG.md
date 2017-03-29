@@ -1,5 +1,91 @@
 # Changelog
 
+## Version 3.0.0 (2017-03-29)
+
+- c644ffb - 2017-03-29: Last readme tweaks before 3.0.0 
+- 2d3469c - 2017-03-28: Update docs regarding libs 
+- 08d4283 - 2017-03-28: Fix path to Bootstraps fonts 
+- 923492a - 2017-03-28: Store client.js and vendor.js in different directories 
+- 6f6ea52 - 2017-03-28: Rename `node_modules` to `libs` for dev and production build 
+- a104e08 - 2017-03-29: Add Yarn lock file 
+- ddd9b9d - 2017-03-29: Replace `babel-preset-latest´ with `babel-preset-env 
+- 211b350 - 2017-03-29: Add ESLint security plugin 
+- b5eb3b3 - 2017-03-28: Add dependency status badge 
+- 261cc2a - 2017-03-28: Cleanup README and remove .jshintrc 
+- 275786e - 2017-03-28: Bump version to latest release from master branch 
+- 8a855f0 - 2017-03-28: Remove rests of compress tasks 
+- 09fca74 - 2017-03-28: Configure ESlint rule capitalized-comments as warning 
+- 7c1071e - 2017-03-28: Remove client.min.js 
+- 06629f7 - 2017-03-28: Remove handlebars sources from build 
+- f6852f3 - 2017-03-28: Fix build task without running dev task previously (#123) 
+- 75085ed - 2017-03-27: Fix delivering polyfills for oldIEs 
+- 1e1afea - 2017-03-27: Move JS files from `src/assets/js` to `src/app` 
+- f8e1f69 - 2017-03-27: Define static files to get copied in package.json 
+- 6b303c2 - 2017-03-27: Use `src` directory to store source files 
+- 0d031b4 - 2017-03-27: Alias most important Grunt tasks to npm run scripts (#120) 
+- db17d5f - 2017-03-27: Reduce bundle file size (#118) 
+- 7bcdaf9 - 2017-03-25: Fix output of `grunt tasks` 
+- 8d8241f - 2017-03-25: Rename release tasks and checkBuild task 
+- 6812a38 - 2017-03-22: Optimize font rendering on High resolution displays (#103) 
+- aed841a - 2016-10-26: Edit the banner 
+- bd70d20 - 2016-10-18: Add config to set the banner content of production files 
+- 897b0a1 - 2016-09-17: Lint .postinstall.js 
+- e07400c - 2017-03-24: Add cache bust plugin and config for dev and prod build (#104) 
+- 7c79fbe - 2017-03-22: Optimize font rendering on High resolution displays (#103) 
+- 3ab633a - 2017-03-22: Remove Grunt tasks: `plato` as well as `david` 
+- 616ed53 - 2017-03-22: Fix linting error 
+- 558c9f1 - 2017-03-22: Remove bower related files and contents (#109) 
+- 934f2ff - 2017-03-22: Bring back base.js (#110) 
+- 2b99b11 - 2017-03-22: Update travis config 
+- e7a3757 - 2017-03-22: Fix linting errors introcuded by dependency updates 
+- 0c97be1 - 2017-03-22: Update dev dependencies 
+- 6a7cd59 - 2017-03-22: Update frontend dependencies 
+- 015b25d - 2017-03-20: Remove temporary dependencies 
+- f5e40ff - 2017-03-22: Update description of handling and bundling external libraries (#114) 
+- da03b4a - 2016-04-17: Release v2.2.0 
+- 552b192 - 2016-04-17: Add eslint:fix task and use it in watch tasks 
+- 6c48a2e - 2016-04-17: Update bower dependencies 
+- 3e216fb - 2016-04-17: Update dev dependencies 
+- 0cf92d6 - 2016-04-15: Add tolerance option for grunt newer 
+- 55a6938 - 2016-04-15: Fix broken travis node v0.12 and v4 builds 
+- 7e504ee - 2016-04-15: Update dev dependencies 
+- 71c8c1a - 2016-04-15: Update ESLint config (#90) 
+- d87d54b - 2016-04-13: Save select2-bootstrap-css dependency inside package.json. 
+- 29eb717 - 2016-04-13: Add select2 as example for additional frontend dependency css. 
+- c2bf4f5 - 2016-04-13: Refactor the integration of additional css dependencies. 
+- 138ece6 - 2016-04-08: Remove parcelify. 
+- d8d66b6 - 2016-04-08: Add the ability to define css of frontend dependencies inside the package.json 
+- a45288d - 2016-04-08: Remove unused modules for more clarity. 
+- 0f0459b - 2016-04-06: Add parcelify as dev-dependency. 
+- bb431f8 - 2016-03-20: Release v2.1.2 
+- 20671b7 - 2016-03-20: Fix travis error regarding Java version 
+- 3b2d8ca - 2016-03-20: Update jQuery to the latest 1.x 
+- 32cacee - 2016-03-20: Run `.postinstall.js`explicitly with node 
+- 9377ee1 - 2016-03-20: Upgrade dev dependencies 
+- bd4f8eb - 2016-02-05: Add René Viering 
+- d175fac - 2016-04-05: Stop on bootlint error. 
+- 2649ed0 - 2016-04-05:  Relax bootlint error »Unable to locate jquery«. 
+- 93d4c06 - 2016-04-05: Remove react, use minimal dependencies required by bootstrap. 
+- e4c2629 - 2016-04-05: Require jquery and bootstrap inside the module. 
+- 7382faf - 2016-04-05: Remove dependencyConfiguration, all frontend dependencies are loaded via browserify. 
+- 287de0c - 2016-03-18: Watch client changes in development mode. 
+- a4fa326 - 2016-02-05: Minify and concatenate all browserify outputs on »grunt build«. 
+- 0e1255c - 2016-02-05: Add some test modules. 
+- 190fd9a - 2016-02-05: rebundle all js in assets with browserify on change. 
+- c849f2a - 2016-02-05: Add some npm modules for testing purpose. 
+- 0947365 - 2016-02-05: Remove old js modules inside assets. 
+- f1b7065 - 2016-02-05: Add browserify task configuration. 
+- f1f6347 - 2016-02-05: Add dependencies grunt-browserify and babelify. 
+- 5da708a - 2016-02-05: Use correct sourceMap property. 
+- ee1723e - 2016-02-05: Run security task inside »grunt build«. 
+- 15158a3 - 2016-02-01: Add some documentation. 
+- 85d287a - 2016-02-01: Use npm instead of bower for frontend dependencies. 
+- 25a3784 - 2016-02-01: Extract dependencyConfiguration, to easily add dependencies. 
+- a0d1e67 - 2015-12-23: Load all »bower-dependencies« from npm. 
+- 97a7162 - 2015-12-23: Add david-dm as grunt-task. 
+- b2af335 - 2015-12-23: Integrate nsp to check node modules for vulnerabilities. 
+
+
 ## Version 2.3.1 (2016-10-26)
 
 - 9b7051b - 2016-10-26: Edit the banner 
