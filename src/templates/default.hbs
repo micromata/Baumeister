@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js ie lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js ie lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js ie lt-ie10 lt-ie9"> <![endif]-->
-<!--[if IE 9]>         <html class="no-js ie lt-ie10"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="en" class="no-js ie lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" class="no-js ie lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" class="no-js ie lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html lang="en" class="no-js ie lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 
 <head>
 	<!-- Meta, title, CSS, favicons, etc. -->
@@ -20,9 +20,12 @@
 	<!-- /build -->
 
 	<!-- Libs -->
-	<!-- build:css:dist libs/libs.min.css -->
+	<!-- TODO: We need a way to integrate css-files from the libs with browserify -->
 
+	<!-- build:css:dist libs/libs.min.css -->
+	<link href="libs/libs.min.css" rel="stylesheet" />
 	<!-- /build -->
+
 
 	<!--
 	Replace "no-js" class with "js" in case JavaScript is available.
@@ -33,7 +36,7 @@
 	<!-- HTML5 shim and Respond.js IE8 support for HTML5 elements and media queries. -->
 	<!--[if lt IE 9]>
 		<script src="libs/html5shiv/dist/html5shiv-printshiv.min.js"></script>
-		<script src="libs/respondJs/dest/respond.min.js"></script>
+		<script src="libs/respond.js/dest/respond.min.js"></script>
 	<![endif]-->
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory. -->
@@ -52,6 +55,8 @@
 
 	{{{body}}}
 
+	<div id="content"></div>
+
 	<!--
 	JavaScript
 	=======================================================
@@ -60,32 +65,18 @@
 	replaced in the production ready build.
 	-->
 
-	<!-- Libs -->
-	<!-- build:js:dist libs/libs.min.js -->
-	<script src="libs/jquery/dist/jquery.js"></script>
-	<script src="libs/jquery-placeholder/jquery.placeholder.js"></script>
-	<script src="libs/bootstrap/js/affix.js"></script>
-	<script src="libs/bootstrap/js/alert.js"></script>
-	<script src="libs/bootstrap/js/button.js"></script>
-	<script src="libs/bootstrap/js/carousel.js"></script>
-	<script src="libs/bootstrap/js/collapse.js"></script>
-	<script src="libs/bootstrap/js/dropdown.js"></script>
-	<script src="libs/bootstrap/js/modal.js"></script>
-	<script src="libs/bootstrap/js/tooltip.js"></script>
-	<script src="libs/bootstrap/js/popover.js"></script>
-	<script src="libs/bootstrap/js/scrollspy.js"></script>
-	<script src="libs/bootstrap/js/tab.js"></script>
-	<script src="libs/bootstrap/js/transition.js"></script>
+	<!-- Vendor JS -->
+	<!-- build:js:dist libs/vendor.min.js -->
+	<script src="libs/vendor.js"></script>
 	<!-- /build -->
 
 	<!-- Own JS -->
-	<!-- build:js:dist assets/js/built.min.js -->
-	<script src="assets/js/base.js"></script>
-	<script src="assets/js/moduleSkeleton.js"></script>
+	<!-- build:js:dist app/client.min.js -->
+	<script src="app/client.js"></script>
 	<!-- /build -->
 
-	<!-- External scripts (eg. analytics) should be placed here -->
 
+	<!-- External scripts (eg. analytics) should be placed here -->
 </body>
 
 </html>

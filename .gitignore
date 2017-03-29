@@ -3,9 +3,6 @@
 thumbs.db
 desktop.ini
 
-### Bower ###
-/libs
-
 ### npm ###
 /node_modules
 
@@ -19,9 +16,9 @@ desktop.ini
 /docs
 /server
 /reports
-/assets/css
-/assets/js/*.min.js
-/assets/js/*.map
+/src/assets/css
+/src/assets/js/*.min.js
+/src/assets/js/*.map
 
 ### Dev ###
 config.codekit
