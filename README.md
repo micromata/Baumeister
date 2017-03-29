@@ -5,18 +5,20 @@
 [![Twitter](https://img.shields.io/badge/Twitter-%40BootstrapKick%20-blue.svg?style=flat)](https://twitter.com/BootstrapKick)
 [![Unicorn](https://img.shields.io/badge/unicorn-approved-ff69b4.svg?style=flat)](https://www.youtube.com/watch?v=qRC4Vk6kisY)
 
-#Kickstarter for Bootstrap themes
+# Build workflow for your web development needs
 
 ![Logo](assets/img/bootstrap-kickstart-logo.png)
 
-The aim of this repository is to help you with the creation of Bootstrap themes and sites by providing:
+The aim of this project is to help you with the creation of Bootstrap themes and websites as well as single page applications by providing:
 
 - a file structure with focus on maintainibilty and upgradability
 - a Grunt workflow with the following »features«
-	- compile and minify our code
-	- add sourcemaps for JavaScript and CSS
+	- generating static sites with the use of handlebars templates
+	- transpile and minify our code
+		- ES6 as well as LESS
 	- get rid of `console` output in production files
 	- add vendor prefixes
+	- Lint JavaScript and HTML
 	- optimize images (lossless)
 	- start a local server
 	- keep browsers in sync for testing
