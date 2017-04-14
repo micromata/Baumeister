@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 3.0.1 (2017-04-14)
+
+- 620c367 - 2017-04-14: Use jQuery placeholder plugin for oldIEs 
+- 2077df4 - 2017-03-29: Fix path to logo in readme 
+
+
 ## Version 3.0.0 (2017-03-29)
 
 - c644ffb - 2017-03-29: Last readme tweaks before 3.0.0 
