@@ -92,7 +92,8 @@
     "includeStaticFiles": [
       "bootstrap/fonts/**/*",
       "html5shiv/dist/html5shiv-printshiv.min.js",
-      "respond.js/dest/respond.min.js"
+      "respond.js/dest/respond.min.js",
+      "jquery-placeholder/jquery.placeholder.js"
     ]
   }
 }

@@ -20,12 +20,9 @@
 	<!-- /build -->
 
 	<!-- Libs -->
-	<!-- TODO: We need a way to integrate css-files from the libs with browserify -->
-
 	<!-- build:css:dist libs/libs.min.css -->
 	<link href="libs/libs.min.css" rel="stylesheet" />
 	<!-- /build -->
-
 
 	<!--
 	Replace "no-js" class with "js" in case JavaScript is available.
@@ -37,6 +34,10 @@
 	<!--[if lt IE 9]>
 		<script src="libs/html5shiv/dist/html5shiv-printshiv.min.js"></script>
 		<script src="libs/respond.js/dest/respond.min.js"></script>
+	<![endif]-->
+
+	<!--[if lte IE 9]>
+		<script src="libs/jquery-placeholder/jquery.placeholder.js"></script>
 	<![endif]-->
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory. -->
