@@ -9,7 +9,7 @@
  */
 export function ieViewportFix() {
 	if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-		let msViewportStyle = document.createElement('style');
+		const msViewportStyle = document.createElement('style');
 		msViewportStyle.appendChild(
 			document.createTextNode(
 				'@-ms-viewport{width:auto!important}'

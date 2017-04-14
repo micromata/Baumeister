@@ -8,13 +8,13 @@
  * @param {String} s The string which should be suffixed with the current year.
  * @returns {String} The given string suffixed with the current year.
  * @example:
- * {{addYear '©'}} --> © 2015
+ * {{addYear '©'}} --> © 2017
  *
  */
-var addYear = function (s) {
+const addYear = function (s) {
 	return s + ' ' + new Date().getFullYear();
 };
 
 module.exports = {
-	addYear: addYear
+	addYear
 };

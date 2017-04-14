@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-var exec = require('child_process').exec;
-var fs = require('fs');
+const exec = require('child_process').exec;
+const fs = require('fs');
 
-var versionNumber = getVersionNumber();
+let versionNumber = getVersionNumber();
 
 (function () {
 	console.log('Starting postinstall script.');
@@ -15,17 +15,17 @@ var versionNumber = getVersionNumber();
 
 function getVersionNumber() {
 	// Get Version number from package.json
-	var fileName = 'package.json';
-	var fileContent = fs.readFileSync(fileName, 'utf8');
-	var regex = /"version": "(\d+\.\d+.\d+)",/;
-	var versionNumber = fileContent.match(regex)[1];
+	const fileName = 'package.json';
+	const fileContent = fs.readFileSync(fileName, 'utf8');
+	const regex = /"version": "(\d+\.\d+.\d+)",/;
+	const versionNumber = fileContent.match(regex)[1];
 	return versionNumber;
 }
 
 function checkChangelog() {
-	var changelog = 'CHANGELOG.md';
+	const changelog = 'CHANGELOG.md';
 	console.log(' → Check if you have a ' + changelog);
-	fs.readFile(changelog, 'utf8', function (error, data) {
+	fs.readFile(changelog, 'utf8', (error, data) => {
 		if (data === undefined) {
 			console.log('   No ' + changelog + ' over here.');
 			console.log('   So we’re going to create one …');
@@ -42,12 +42,12 @@ function checkChangelog() {
 function initGit(versionNumber) {
 	// Check if there is a Git Repo over here
 	console.log(' → Check if you have a Git repo intialized.');
-	var dir = '.git';
-	fs.readdir(dir, function (error) {
+	const dir = '.git';
+	fs.readdir(dir, error => {
 		if (error) {
 			console.log('   No `.git` directory over here.');
 			console.log('   So we’re going to initialize git …\n');
-			exec('git init && git add . && git commit -m "Initial commit" && git tag -a ' + versionNumber + ' -m "Initial release"', function (error, stdout) {
+			exec('git init && git add . && git commit -m "Initial commit" && git tag -a ' + versionNumber + ' -m "Initial release"', (error, stdout) => {
 				console.log(stdout);
 				if (error !== null) {
 					console.log('exec error: ' + error);
@@ -64,7 +64,7 @@ function installGitHook() {
 	// Install post merge Git hook
 	console.log(' → Installing the post merge Git hook.');
 	console.log('   It will take care of firing `npm install` after every merge (and pull).\n');
-	exec('grunt githooks', function (error, stdout) {
+	exec('grunt githooks', (error, stdout) => {
 		console.log(stdout);
 		if (error === null) {
 			console.log(' → Thanks for your patience. You’re all set ｡◕‿◕｡');

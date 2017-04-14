@@ -1,5 +1,5 @@
 {
-  "extends": "xo",
+  "extends": "xo/esnext",
   "plugins": [
     "security"
   ],

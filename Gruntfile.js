@@ -1,8 +1,8 @@
 'use strict';
 
-var getTasks = require('load-grunt-tasks');
-var displayTime = require('time-grunt');
-var templateHelpers = require('./src/templates/helpers/helpers.js');
+const getTasks = require('load-grunt-tasks');
+const displayTime = require('time-grunt');
+const templateHelpers = require('./src/templates/helpers/helpers.js');
 
 /*
  * Returns a list of all css files defined in the property bundleCSS of package.json
@@ -10,20 +10,20 @@ var templateHelpers = require('./src/templates/helpers/helpers.js');
  * for the production build.
  */
 function getBundleCSSFiles(packageJson) {
-	var basePath = 'node_modules/';
-	return Object.keys(packageJson.bootstrapKickstart.bundleCSS).map(function (dependencyKey) {
-		return packageJson.bootstrapKickstart.bundleCSS[dependencyKey].map(function (relativeCSSFilePath) {
+	const basePath = 'node_modules/';
+	return Object.keys(packageJson.bootstrapKickstart.bundleCSS).map(dependencyKey => {
+		return packageJson.bootstrapKickstart.bundleCSS[dependencyKey].map(relativeCSSFilePath => {
 			return basePath + dependencyKey + '/' + relativeCSSFilePath;
 		});
-	}).reduce(function (left, right) {
+	}).reduce((left, right) => {
 		return left.concat(right);
 	}, []);
 }
 
 module.exports = function (grunt) {
 	// Add frontend dependencies from package.json for adding its css files
-	var packageJson = grunt.file.readJSON('package.json');
-	var bundleCSSFiles = getBundleCSSFiles(packageJson);
+	const packageJson = grunt.file.readJSON('package.json');
+	const bundleCSSFiles = getBundleCSSFiles(packageJson);
 
 	// Get devDependencies
 	getTasks(grunt, {

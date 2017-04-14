@@ -8,6 +8,9 @@
     "email": "m.kuehnel@micromata.de",
     "url": "http://www.micromata.de"
   },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "license": "MIT",
   "version": "3.0.1",
   "repository": {
