@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 3.1.1 (2017-04-14)
+
+- ad2ac12 - 2017-04-14: Fix postinstall for Node 4 
+- df13479 - 2017-04-14: Remove unneeded property in .editorconfig 
+
+
 ## Version 3.1.0 (2017-04-14)
 
 - 603cb4d - 2017-04-14: Force ESNext syntax via ESLint 
