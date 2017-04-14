@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 3.1.0 (2017-04-14)
+
+- 603cb4d - 2017-04-14: Force ESNext syntax via ESLint 
+
+
 ## Version 3.0.1 (2017-04-14)
 
 - 620c367 - 2017-04-14: Use jQuery placeholder plugin for oldIEs 
