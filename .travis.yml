@@ -4,12 +4,8 @@ node_js:
   - 4
   - 6
   - node
-before_install:
-  - git config --global user.email "you@example.com"
-  - git config --global user.name "Your Name"
-  - npm install -g npm
 before_script:
-  - npm install -g grunt-cli
+  - yarn global add grunt-cli
 script:
   - grunt dev
   - rm -rf server
