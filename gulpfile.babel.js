@@ -27,7 +27,7 @@ const sources = {
 const destinations = {
 	dev: {
 		styles: './server/assets/css/',
-		scripts: '',
+		scripts: './server/app/',
 		images: './server/assets/img/'
 	},
 	prod: {
