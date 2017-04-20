@@ -16,6 +16,23 @@ import * as path from 'path';
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
 
 const settings = {
+	sources: {
+		styles: './src/assets/less/index.less',
+		scripts: './src/app/**/*.js',
+		images: './src/assets/img/**/*.{png,jpg,gif,svg}'
+	},
+	destinations: {
+		dev: {
+			styles: './server/assets/css/',
+			scripts: './server/app/',
+			images: './server/assets/img/'
+		},
+		prod: {
+			styles: './dist/assets/css/',
+			scripts: './dist/app/',
+			images: './dist/assets/img/'
+		}
+	},
 	autoPrefix: [
 		'> 1%',
 		'last 3 version',
@@ -24,25 +41,6 @@ const settings = {
 		'Firefox ESR',
 		'Opera 12.1'
 	]
-};
-
-const sources = {
-	styles: './src/assets/less/index.less',
-	scripts: './src/app/**/*.js',
-	images: './src/assets/img/**/*.{png,jpg,gif,svg}'
-};
-
-const destinations = {
-	dev: {
-		styles: './server/assets/css/',
-		scripts: './server/app/',
-		images: './server/assets/img/'
-	},
-	prod: {
-		styles: './dist/assets/css/',
-		scripts: './dist/app/',
-		images: './dist/assets/img/'
-	}
 };
 
 export function clean() {
@@ -54,7 +52,7 @@ export function clean() {
 
 export function styles() {
 	if (isProdBuild()) {
-		return gulp.src(sources.styles)
+		return gulp.src(settings.sources.styles)
 			.pipe(less({
 				plugins: [new Autoprefix({
 					browsers: settings.autoPrefix
@@ -64,9 +62,9 @@ export function styles() {
 			.pipe(rename({
 				suffix: '.min'
 			}))
-			.pipe(gulp.dest(destinations.prod.styles));
+			.pipe(gulp.dest(settings.destinations.prod.styles));
 	}
-	return gulp.src(sources.styles)
+	return gulp.src(settings.sources.styles)
 		.pipe(sourcemaps.init())
 		.pipe(less({
 			plugins: [new Autoprefix({
@@ -74,22 +72,22 @@ export function styles() {
 			})]
 		}))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(destinations.dev.styles));
+		.pipe(gulp.dest(settings.destinations.dev.styles));
 }
 
 export function images() {
 	if (isProdBuild()) {
-		return gulp.src(sources.images)
+		return gulp.src(settings.sources.images)
 			.pipe(imagemin())
-			.pipe(gulp.dest(destinations.prod.images));
+			.pipe(gulp.dest(settings.destinations.prod.images));
 	}
-	return gulp.src(sources.images)
-		.pipe(gulp.dest(destinations.dev.images));
+	return gulp.src(settings.sources.images)
+		.pipe(gulp.dest(settings.destinations.dev.images));
 }
 
 export function clientScripts() {
 	if (isProdBuild()) {
-		return gulp.src(sources.scripts)
+		return gulp.src(settings.sources.scripts)
 			.pipe(rollup({
 				entry: './src/app/index.js'
 			}))
@@ -99,24 +97,24 @@ export function clientScripts() {
 				baseName: 'client',
 				suffix: '.min'
 			}))
-			.pipe(gulp.dest(destinations.prod.scripts));
+			.pipe(gulp.dest(settings.destinations.prod.scripts));
 	}
-	return gulp.src(sources.scripts)
+	return gulp.src(settings.sources.scripts)
 		.pipe(rollup({
 			entry: './src/app/index.js'
 		}))
 		.pipe(babel())
-		.pipe(gulp.dest(destinations.dev.scripts));
+		.pipe(gulp.dest(settings.destinations.dev.scripts));
 }
 
 export function lint() {
 	if (isProdBuild()) {
-		return gulp.src([sources.scripts, './*.js'])
+		return gulp.src([settings.sources.scripts, './*.js'])
 			.pipe(eslint())
 			.pipe(eslint.format())
 			.pipe(eslint.failAfterError());
 	}
-	return gulp.src([sources.scripts, './*.js'])
+	return gulp.src([settings.sources.scripts, './*.js'])
 		.pipe(eslint({fix: true}))
 		.pipe(eslint.format());
 }
