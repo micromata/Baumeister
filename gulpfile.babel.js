@@ -4,6 +4,8 @@ import less from 'gulp-less';
 import cleanCss from 'gulp-clean-css';
 import sourcemaps from 'gulp-sourcemaps';
 import Autoprefix from 'less-plugin-autoprefix';
+// Image processing
+import imagemin from 'gulp-imagemin';
 // Util
 import rename from 'gulp-rename';
 import del from 'del';
@@ -13,28 +15,27 @@ const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('
 const sources = {
 	styles: './src/assets/less/index.less',
 	scripts: '',
-	images: ''
+	images: './src/assets/img/**/*.{png,jpg,gif,svg}'
 };
 
 const destinations = {
 	dev: {
 		styles: './server/assets/css/',
 		scripts: '',
-		images: ''
+		images: './server/assets/img/'
 	},
 	prod: {
-		styles: './dist/assets/css',
+		styles: './dist/assets/css/',
 		scripts: '',
-		images: ''
+		images: './dist/assets/img/'
 	}
 };
 
 export function clean() {
 	if (isProdBuild()) {
 		return del(['dist']);
-	} else {
-		return del(['server']);
 	}
+	return del(['server']);
 }
 
 export function styles() {
@@ -56,4 +57,14 @@ export function styles() {
 		}))
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest(destinations.dev.styles));
+}
+
+export function images() {
+	if (isProdBuild()) {
+		return gulp.src(sources.images)
+			.pipe(imagemin())
+			.pipe(gulp.dest(destinations.prod.images));
+	}
+	return gulp.src(sources.images)
+		.pipe(gulp.dest(destinations.dev.images));
 }
