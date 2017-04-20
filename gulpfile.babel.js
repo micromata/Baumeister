@@ -10,6 +10,8 @@ import uglify from 'gulp-uglify';
 import babel from 'gulp-babel';
 import rename from 'gulp-rename';
 import del from 'del';
+import nsp from 'gulp-nsp';
+import * as path from 'path';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
 
@@ -119,4 +121,12 @@ export function lint() {
 		.pipe(eslint.format());
 }
 
-export const build = gulp.series(clean, gulp.parallel(lint, images, clientScripts, styles));
+export function security(cb) {
+	if (isProdBuild()) {
+		nsp({package: path.join(__dirname, '/package.json')}, cb);
+	} else {
+		cb();
+	}
+}
+
+export const build = gulp.series(clean, gulp.parallel(lint, images, clientScripts, styles, security));

@@ -43,6 +43,7 @@
     "gulp-eslint": "^3.0.1",
     "gulp-imagemin": "^3.2.0",
     "gulp-less": "^3.3.0",
+    "gulp-nsp": "^2.4.2",
     "gulp-rename": "^1.2.2",
     "gulp-rollup": "^2.11.0",
     "gulp-sourcemaps": "^2.6.0",
