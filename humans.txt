@@ -24,6 +24,6 @@ Nicolas Gallagher:  For writing those lovely contributing guidelines
 Standards:          HTML5, CSS3
 Components:         Bootstrap, jQuery, HTML5 Shiv, HTML5 Placeholder jQuery
                     Plugin, Respond.js, Normalize.css
-Build tool:         Grunt
+Build tool:         gulp
 Package Manager:    npm
 Software:           Sublime Text, MacDown, Terminal, SourceTree, Tower, Kaleidoscope

@@ -58,7 +58,7 @@ function initGit(versionNumber) {
 		} else {
 			console.log('   You already have a Git Repo over here. Everything is fine.\n');
 		}
-		installGitHook();
+		// installGitHook();
 	});
 }
 
@@ -66,7 +66,7 @@ function installGitHook() {
 	// Install post merge Git hook
 	console.log(' → Installing the post merge Git hook.');
 	console.log('   It will take care of firing `npm install` after every merge (and pull).\n');
-	exec('grunt githooks', (error, stdout) => {
+	exec('grunt githooks', (error, stdout) => { //TODO gulp equivalent
 		console.log(stdout);
 		if (error === null) {
 			console.log(' → Thanks for your patience. You’re all set ｡◕‿◕｡');

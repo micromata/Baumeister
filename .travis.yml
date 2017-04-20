@@ -9,11 +9,11 @@ before_install:
   - git config --global user.name "Your Name"
   - npm install -g npm
 before_script:
-  - npm install -g grunt-cli
+  - npm install -g "gulpjs/gulp#4.0"
 script:
-  - grunt dev
+  - gulp dev
   - rm -rf server
-  - grunt build
+  - gulp build
 notifications:
   webhooks:
     urls:
