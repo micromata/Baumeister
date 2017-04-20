@@ -4,6 +4,8 @@ import less from 'gulp-less';
 import cleanCss from 'gulp-clean-css';
 import sourcemaps from 'gulp-sourcemaps';
 import Autoprefix from 'less-plugin-autoprefix';
+// JS processing
+import eslint from 'gulp-eslint';
 // Image processing
 import imagemin from 'gulp-imagemin';
 // JS Bundling
@@ -111,4 +113,16 @@ export function clientScripts() {
 		}))
 		.pipe(babel())
 		.pipe(gulp.dest(destinations.dev.scripts));
+}
+
+export function lint() {
+	if (isProdBuild()) {
+		return gulp.src([sources.scripts, './*.js'])
+			.pipe(eslint())
+			.pipe(eslint.format())
+			.pipe(eslint.failAfterError());
+	}
+	return gulp.src([sources.scripts, './*.js'])
+		.pipe(eslint({fix: true}))
+		.pipe(eslint.format());
 }
