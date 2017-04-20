@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="author" content="Micromata GmbH" />
-	<title>Bootstrap Kickstart{{#if page.title}} - {{page.title}}{{/if}}</title>
+	<title>Bootstrap Kickstart</title>
 
 	<!-- Our compiled and merged LESS files -->
 	<!-- build:css:dist assets/css/index.min.css -->
@@ -32,12 +32,12 @@
 
 	<!-- HTML5 shim and Respond.js IE8 support for HTML5 elements and media queries. -->
 	<!--[if lt IE 9]>
-		<script src="libs/html5shiv/dist/html5shiv-printshiv.min.js"></script>
-		<script src="libs/respond.js/dest/respond.min.js"></script>
+	<script src="libs/html5shiv/dist/html5shiv-printshiv.min.js"></script>
+	<script src="libs/respond.js/dest/respond.min.js"></script>
 	<![endif]-->
 
 	<!--[if lte IE 9]>
-		<script src="libs/jquery-placeholder/jquery.placeholder.js"></script>
+	<script src="libs/jquery-placeholder/jquery.placeholder.js"></script>
 	<![endif]-->
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory. -->
@@ -46,38 +46,52 @@
 </head>
 
 <body>
-	<!--[if lt IE 8>
-		<p class="browsehappy">
-			You are using an <strong>outdated</strong> browser.
-			Please <a href="http://browsehappy.com/">upgrade your browser</a>
-			to improve your experience.
+<!--[if lt IE 8]>
+    <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a>
+        to improve your experience.
+    </p>
+<![endif]-->
+
+<div id="content">
+	<!-- begin: content container -->
+	<div class="container">
+
+		<!-- begin: content -->
+		<h1>Bootstrap starter template</h1>
+		<p class="lead">
+			Use this document as a way to quickly start any new project.
+			<br>All you get is this text and a mostly barebones HTML document.
 		</p>
-	<![endif]-->
+		<p>
+			Borrowed from the <a href="http://getbootstrap.com/examples/starter-template/">Bootstrap starter template</a>.
+		</p>
+		<!-- end: content -->
 
-	{{{body}}}
+	</div>
+	<!-- end: content container -->
+</div>
 
-	<div id="content"></div>
+<!--
+JavaScript
+=======================================================
+Placed at the end of the document. Performance reasons.
+Non minified/merged versions for debugging purposes are
+replaced in the production ready build.
+-->
 
-	<!--
-	JavaScript
-	=======================================================
-	Placed at the end of the document. Performance reasons.
-	Non minified/merged versions for debugging purposes are
-	replaced in the production ready build.
-	-->
+<!-- Vendor JS -->
+<!-- build:js:dist libs/vendor.min.js -->
+<script src="libs/vendor.js"></script>
+<!-- /build -->
 
-	<!-- Vendor JS -->
-	<!-- build:js:dist libs/vendor.min.js -->
-	<script src="libs/vendor.js"></script>
-	<!-- /build -->
-
-	<!-- Own JS -->
-	<!-- build:js:dist app/client.min.js -->
-	<script src="app/client.js"></script>
-	<!-- /build -->
+<!-- Own JS -->
+<!-- build:js:dist app/client.min.js -->
+<script src="app/client.js"></script>
+<!-- /build -->
 
 
-	<!-- External scripts (eg. analytics) should be placed here -->
+<!-- External scripts (eg. analytics) should be placed here -->
 </body>
-
 </html>
