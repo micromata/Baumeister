@@ -12,6 +12,7 @@ import rename from 'gulp-rename';
 import del from 'del';
 import nsp from 'gulp-nsp';
 import * as path from 'path';
+import changed from 'gulp-changed';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
 
@@ -65,6 +66,7 @@ export function styles() {
 			.pipe(gulp.dest(settings.destinations.prod.styles));
 	}
 	return gulp.src(settings.sources.styles)
+		.pipe(changed(settings.destinations.dev.styles, {extension: '.css'}))
 		.pipe(sourcemaps.init())
 		.pipe(less({
 			plugins: [new Autoprefix({
