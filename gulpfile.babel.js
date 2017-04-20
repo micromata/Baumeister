@@ -126,3 +126,5 @@ export function lint() {
 		.pipe(eslint({fix: true}))
 		.pipe(eslint.format());
 }
+
+export const build = gulp.series(clean, gulp.parallel(lint, images, clientScripts, styles));
