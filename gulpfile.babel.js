@@ -4,6 +4,8 @@ import less from 'gulp-less';
 import cleanCss from 'gulp-clean-css';
 import sourcemaps from 'gulp-sourcemaps';
 import Autoprefix from 'less-plugin-autoprefix';
+// JS processing
+import eslint from 'gulp-eslint';
 // Image processing
 import imagemin from 'gulp-imagemin';
 // Util
@@ -14,7 +16,7 @@ const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('
 
 const sources = {
 	styles: './src/assets/less/index.less',
-	scripts: '',
+	scripts: '.src/app/**/*.js',
 	images: './src/assets/img/**/*.{png,jpg,gif,svg}'
 };
 
@@ -85,4 +87,16 @@ export function images() {
 	}
 	return gulp.src(sources.images)
 		.pipe(gulp.dest(destinations.dev.images));
+}
+
+export function lint() {
+	if (isProdBuild()) {
+		return gulp.src([sources.scripts, './*.js'])
+			.pipe(eslint())
+			.pipe(eslint.format())
+			.pipe(eslint.failAfterError());
+	}
+	return gulp.src([sources.scripts, './*.js'])
+		.pipe(eslint({fix: true}))
+		.pipe(eslint.format());
 }
