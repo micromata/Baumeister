@@ -6,6 +6,10 @@ import sourcemaps from 'gulp-sourcemaps';
 import Autoprefix from 'less-plugin-autoprefix';
 // Image processing
 import imagemin from 'gulp-imagemin';
+// JS Bundling
+import rollup from 'gulp-rollup';
+import uglify from 'gulp-uglify';
+import babel from 'gulp-babel';
 // Util
 import rename from 'gulp-rename';
 import del from 'del';
@@ -14,7 +18,7 @@ const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('
 
 const sources = {
 	styles: './src/assets/less/index.less',
-	scripts: '',
+	scripts: './src/app/**/*.js',
 	images: './src/assets/img/**/*.{png,jpg,gif,svg}'
 };
 
@@ -26,7 +30,7 @@ const destinations = {
 	},
 	prod: {
 		styles: './dist/assets/css/',
-		scripts: '',
+		scripts: './dist/app/',
 		images: './dist/assets/img/'
 	}
 };
@@ -85,4 +89,26 @@ export function images() {
 	}
 	return gulp.src(sources.images)
 		.pipe(gulp.dest(destinations.dev.images));
+}
+
+export function clientScripts() {
+	if (isProdBuild()) {
+		return gulp.src(sources.scripts)
+			.pipe(rollup({
+				entry: './src/app/index.js'
+			}))
+			.pipe(babel())
+			.pipe(uglify())
+			.pipe(rename({
+				baseName: 'client',
+				suffix: '.min'
+			}))
+			.pipe(gulp.dest(destinations.prod.scripts));
+	}
+	return gulp.src(sources.scripts)
+		.pipe(rollup({
+			entry: './src/app/index.js'
+		}))
+		.pipe(babel())
+		.pipe(gulp.dest(destinations.dev.scripts));
 }
