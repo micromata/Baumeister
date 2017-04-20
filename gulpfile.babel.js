@@ -1,22 +1,28 @@
 import gulp from 'gulp';
-// Style processing
 import less from 'gulp-less';
 import cleanCss from 'gulp-clean-css';
 import sourcemaps from 'gulp-sourcemaps';
 import Autoprefix from 'less-plugin-autoprefix';
-// JS processing
 import eslint from 'gulp-eslint';
-// Image processing
 import imagemin from 'gulp-imagemin';
-// JS Bundling
 import rollup from 'gulp-rollup';
 import uglify from 'gulp-uglify';
 import babel from 'gulp-babel';
-// Util
 import rename from 'gulp-rename';
 import del from 'del';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
+
+const settings = {
+	autoPrefix: [
+		'> 1%',
+		'last 3 version',
+		'ie 8',
+		'ie 9',
+		'Firefox ESR',
+		'Opera 12.1'
+	]
+};
 
 const sources = {
 	styles: './src/assets/less/index.less',
@@ -49,14 +55,7 @@ export function styles() {
 		return gulp.src(sources.styles)
 			.pipe(less({
 				plugins: [new Autoprefix({
-					browsers: [
-						'> 1%',
-						'last 3 version',
-						'ie 8',
-						'ie 9',
-						'Firefox ESR',
-						'Opera 12.1'
-					]
+					browsers: settings.autoPrefix
 				})]
 			}))
 			.pipe(cleanCss())
@@ -69,14 +68,7 @@ export function styles() {
 		.pipe(sourcemaps.init())
 		.pipe(less({
 			plugins: [new Autoprefix({
-				browsers: [
-					'> 1%',
-					'last 3 version',
-					'ie 8',
-					'ie 9',
-					'Firefox ESR',
-					'Opera 12.1'
-				]
+				browsers: settings.autoPrefix
 			})]
 		}))
 		.pipe(sourcemaps.write('./'))
