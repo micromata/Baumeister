@@ -13,8 +13,14 @@ import del from 'del';
 import nsp from 'gulp-nsp';
 import * as path from 'path';
 import changed from 'gulp-changed';
+import browserSync from 'browser-sync';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
+
+const mainDirectories = {
+	dev: './server/',
+	dist: './dist/'
+};
 
 const settings = {
 	sources: {
@@ -24,14 +30,14 @@ const settings = {
 	},
 	destinations: {
 		dev: {
-			styles: './server/assets/css/',
-			scripts: './server/app/',
-			images: './server/assets/img/'
+			styles: `${mainDirectories.dev}assets/css/`,
+			scripts: `${mainDirectories.dev}app/`,
+			images: `${mainDirectories.dev}assets/img/`
 		},
 		prod: {
-			styles: './dist/assets/css/',
-			scripts: './dist/app/',
-			images: './dist/assets/img/'
+			styles: `${mainDirectories.dist}assets/css/`,
+			scripts: `${mainDirectories.dist}app/`,
+			images: `${mainDirectories.dist}assets/img/`
 		}
 	},
 	autoPrefix: [
@@ -127,6 +133,18 @@ export function security(cb) {
 	} else {
 		cb();
 	}
+}
+
+export function serve() {
+	let baseDir = mainDirectories.dev;
+	if (isProdBuild()) {
+		baseDir = mainDirectories.dist;
+	}
+	browserSync.init({
+		server: {
+			baseDir
+		}
+	});
 }
 
 export const build = gulp.series(clean, gulp.parallel(lint, images, clientScripts, styles, security));
