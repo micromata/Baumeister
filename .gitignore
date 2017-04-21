@@ -19,6 +19,7 @@ desktop.ini
 /src/assets/css
 /src/assets/js/*.min.js
 /src/assets/js/*.map
+.browserify-cache.json
 
 ### Dev ###
 config.codekit

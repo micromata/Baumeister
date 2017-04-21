@@ -15,6 +15,7 @@ import * as path from 'path';
 import changed from 'gulp-changed';
 import browserSync from 'browser-sync';
 import browserify from 'browserify';
+import browserifyInc from 'browserify-incremental';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 
@@ -121,8 +122,10 @@ export function clientScripts() {
 }
 
 export function vendorScripts() {
-	const b = browserify();
+	const b = browserify(Object.assign({}, browserifyInc.args));
 	require('./package.json').bootstrapKickstart.bundleExternalJS.forEach(dep => b.require(dep));
+	browserifyInc(b, {cacheFile: './.browserify-cache.json'});
+
 	if (isProdBuild()) {
 		return b.bundle()
 			.pipe(source('vendor.min.js'))
