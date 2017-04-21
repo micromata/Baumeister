@@ -18,6 +18,8 @@ import browserify from 'browserify';
 import browserifyInc from 'browserify-incremental';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
+import notify from 'gulp-notify';
+import plumber from 'gulp-plumber';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
 
@@ -56,6 +58,18 @@ const settings = {
 	]
 };
 
+function onError(err) {
+	notify({
+		title: 'Gulp Task Error',
+		subtitle: 'Plugin: <%= error.plugin %>',
+		message: 'Check the console.'}
+	).write(err);
+
+	console.log(err.toString());
+
+	this.emit('end');
+}
+
 export function clean() {
 	if (isProdBuild()) {
 		return del(['dist']);
@@ -66,6 +80,7 @@ export function clean() {
 export function styles() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.styles)
+			.pipe(plumber({errorHandler: onError}))
 			.pipe(less({
 				plugins: [new Autoprefix({
 					browsers: settings.autoPrefix
@@ -78,6 +93,7 @@ export function styles() {
 			.pipe(gulp.dest(settings.destinations.prod.styles));
 	}
 	return gulp.src(settings.sources.styles)
+		.pipe(plumber({errorHandler: onError}))
 		.pipe(changed(settings.destinations.dev.styles, {extension: '.css'}))
 		.pipe(sourcemaps.init())
 		.pipe(less({
