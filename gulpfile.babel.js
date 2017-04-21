@@ -14,6 +14,9 @@ import nsp from 'gulp-nsp';
 import * as path from 'path';
 import changed from 'gulp-changed';
 import browserSync from 'browser-sync';
+import browserify from 'browserify';
+import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
 
@@ -32,12 +35,14 @@ const settings = {
 		dev: {
 			styles: `${mainDirectories.dev}assets/css/`,
 			scripts: `${mainDirectories.dev}app/`,
-			images: `${mainDirectories.dev}assets/img/`
+			images: `${mainDirectories.dev}assets/img/`,
+			libs: `${mainDirectories.dev}libs/`
 		},
 		prod: {
 			styles: `${mainDirectories.dist}assets/css/`,
 			scripts: `${mainDirectories.dist}app/`,
-			images: `${mainDirectories.dist}assets/img/`
+			images: `${mainDirectories.dist}assets/img/`,
+			libs: `${mainDirectories.dist}libs/`
 		}
 	},
 	autoPrefix: [
@@ -115,6 +120,22 @@ export function clientScripts() {
 		.pipe(gulp.dest(settings.destinations.dev.scripts));
 }
 
+export function vendorScripts() {
+	const b = browserify();
+	require('./package.json').bootstrapKickstart.bundleExternalJS.forEach(dep => b.require(dep));
+	if (isProdBuild()) {
+		return b.bundle()
+			.pipe(source('vendor.min.js'))
+			.pipe(buffer())
+			.pipe(uglify())
+			.pipe(gulp.dest(settings.destinations.prod.libs));
+	}
+	return b.bundle()
+		.pipe(source('vendor.js'))
+		.pipe(buffer())
+		.pipe(gulp.dest(settings.destinations.dev.libs));
+}
+
 export function lint() {
 	if (isProdBuild()) {
 		return gulp.src([settings.sources.scripts, './*.js'])
@@ -147,4 +168,4 @@ export function serve() {
 	});
 }
 
-export const build = gulp.series(clean, gulp.parallel(lint, images, clientScripts, styles, security));
+export const build = gulp.series(clean, gulp.parallel(lint, images, clientScripts, vendorScripts, styles, security));

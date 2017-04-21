@@ -34,6 +34,7 @@
     "babel-register": "^6.24.1",
     "babelify": "^7.3.0",
     "browser-sync": "^2.18.8",
+    "browserify": "^14.3.0",
     "del": "^2.2.2",
     "eslint": "3.18.0",
     "eslint-config-xo": "0.18.1",
@@ -42,6 +43,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-changed": "^2.0.0",
     "gulp-clean-css": "^3.0.4",
+    "gulp-concat": "^2.6.1",
     "gulp-eslint": "^3.0.1",
     "gulp-imagemin": "^3.2.0",
     "gulp-less": "^3.3.0",
@@ -50,7 +52,9 @@
     "gulp-rollup": "^2.11.0",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^2.1.2",
-    "less-plugin-autoprefix": "^1.5.1"
+    "less-plugin-autoprefix": "^1.5.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
     "postinstall": "chmod u+x .postinstall.js && node ./.postinstall.js",
