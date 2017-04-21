@@ -33,6 +33,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.24.1",
     "babelify": "^7.3.0",
+    "browser-sync": "^2.18.8",
     "del": "^2.2.2",
     "eslint": "3.18.0",
     "eslint-config-xo": "0.18.1",
@@ -54,9 +55,9 @@
   "scripts": {
     "postinstall": "chmod u+x .postinstall.js && node ./.postinstall.js",
     "test": "",
-    "start": "",
+    "start": "gulp build && gulp serve",
     "dev": "gulp build",
-    "serve": "",
+    "serve": "gulp serve",
     "dev:watch": "",
     "dev:sync": "",
     "watch": "",
@@ -64,7 +65,7 @@
     "lint": "gulp lint -prod",
     "lint:fix": "gulp lint",
     "build": "gulp build -prod",
-    "build:check": "",
+    "build:check": "gulp serve -prod",
     "release:patch": "",
     "release:minor": "",
     "release:major": ""
