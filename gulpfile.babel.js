@@ -163,7 +163,7 @@ export function lint() {
 			.pipe(eslint.failAfterError());
 	}
 	return gulp.src([settings.sources.scripts, './*.js'])
-		.pipe(eslint({fix: true}))
+		.pipe(eslint())
 		.pipe(eslint.format());
 }
 
