@@ -61,10 +61,9 @@
   "scripts": {
     "postinstall": "chmod u+x .postinstall.js && node ./.postinstall.js",
     "test": "",
-    "start": "gulp build && gulp serve",
+    "start": "gulp",
     "dev": "gulp build",
     "serve": "gulp serve",
-    "dev:watch": "",
     "watch": "gulp watch",
     "docs": "",
     "lint": "gulp lint -prod",

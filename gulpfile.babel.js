@@ -22,7 +22,7 @@ import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
-
+const server = browserSync.create();
 const mainDirectories = {
 	dev: './server/',
 	dist: './dist/'
@@ -178,24 +178,39 @@ export function security(cb) {
 	}
 }
 
-export function serve() {
+export function serve(done) {
 	let baseDir = mainDirectories.dev;
 	if (isProdBuild()) {
 		baseDir = mainDirectories.dist;
 	}
-	browserSync.init({
+	server.init({
 		server: {
 			baseDir
 		}
 	});
+	done();
+}
+
+function reload(done) {
+	server.reload();
+	done();
 }
 
 export function watch() {
-	gulp.watch(settings.sources.scripts, gulp.parallel(clientScripts, lint));
+	gulp.watch(settings.sources.scripts,
+		gulp.parallel(
+			gulp.series(clientScripts, reload),
+			lint
+		)
+	);
 	gulp.watch('./*.js', lint);
-	gulp.watch(settings.sources.styles, styles);
+	gulp.watch(settings.sources.styles, gulp.series(styles, reload));
 }
 
-export const build = gulp.series(clean,
+export const build = gulp.series(
+	clean,
 	gulp.parallel(lint, images, clientScripts, vendorScripts, styles, security)
 );
+
+const dev = gulp.series(build, serve, watch);
+export default dev;
