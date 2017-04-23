@@ -30,7 +30,8 @@ const mainDirectories = {
 
 const settings = {
 	sources: {
-		styles: './src/assets/less/index.less',
+		styles: './src/assets/less/**/*.less',
+		stylesEntryPoint: './src/assets/less/index.less',
 		scripts: './src/app/**/*.js',
 		images: './src/assets/img/**/*.{png,jpg,gif,svg}'
 	},
@@ -79,7 +80,7 @@ export function clean() {
 
 export function styles() {
 	if (isProdBuild()) {
-		return gulp.src(settings.sources.styles)
+		return gulp.src(settings.sources.stylesEntryPoint)
 			.pipe(plumber({errorHandler: onError}))
 			.pipe(less({
 				plugins: [new Autoprefix({
@@ -92,7 +93,7 @@ export function styles() {
 			}))
 			.pipe(gulp.dest(settings.destinations.prod.styles));
 	}
-	return gulp.src(settings.sources.styles)
+	return gulp.src(settings.sources.stylesEntryPoint)
 		.pipe(plumber({errorHandler: onError}))
 		.pipe(changed(settings.destinations.dev.styles, {extension: '.css'}))
 		.pipe(sourcemaps.init())
@@ -164,7 +165,9 @@ export function lint() {
 	}
 	return gulp.src([settings.sources.scripts, './*.js'])
 		.pipe(eslint())
-		.pipe(eslint.format());
+		.pipe(eslint.format())
+		.pipe(eslint.failAfterError())
+		.on('error', onError);
 }
 
 export function security(cb) {
@@ -187,4 +190,12 @@ export function serve() {
 	});
 }
 
-export const build = gulp.series(clean, gulp.parallel(lint, images, clientScripts, vendorScripts, styles, security));
+export function watch() {
+	gulp.watch(settings.sources.scripts, gulp.parallel(clientScripts, lint));
+	gulp.watch('./*.js', lint);
+	gulp.watch(settings.sources.styles, styles);
+}
+
+export const build = gulp.series(clean,
+	gulp.parallel(lint, images, clientScripts, vendorScripts, styles, security)
+);
