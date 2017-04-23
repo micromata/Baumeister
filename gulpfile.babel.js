@@ -20,9 +20,10 @@ import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
+import processhtml from 'gulp-processhtml';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
-
+const server = browserSync.create();
 const mainDirectories = {
 	dev: './server/',
 	dist: './dist/'
@@ -30,18 +31,22 @@ const mainDirectories = {
 
 const settings = {
 	sources: {
-		styles: './src/assets/less/index.less',
+		markup: './src/*.html',
+		styles: './src/assets/less/**/*.less',
+		stylesEntryPoint: './src/assets/less/index.less',
 		scripts: './src/app/**/*.js',
 		images: './src/assets/img/**/*.{png,jpg,gif,svg}'
 	},
 	destinations: {
 		dev: {
+			markup: `${mainDirectories.dev}`,
 			styles: `${mainDirectories.dev}assets/css/`,
 			scripts: `${mainDirectories.dev}app/`,
 			images: `${mainDirectories.dev}assets/img/`,
 			libs: `${mainDirectories.dev}libs/`
 		},
 		prod: {
+			markup: `${mainDirectories.dist}`,
 			styles: `${mainDirectories.dist}assets/css/`,
 			scripts: `${mainDirectories.dist}app/`,
 			images: `${mainDirectories.dist}assets/img/`,
@@ -79,7 +84,7 @@ export function clean() {
 
 export function styles() {
 	if (isProdBuild()) {
-		return gulp.src(settings.sources.styles)
+		return gulp.src(settings.sources.stylesEntryPoint)
 			.pipe(plumber({errorHandler: onError}))
 			.pipe(less({
 				plugins: [new Autoprefix({
@@ -92,9 +97,8 @@ export function styles() {
 			}))
 			.pipe(gulp.dest(settings.destinations.prod.styles));
 	}
-	return gulp.src(settings.sources.styles)
+	return gulp.src(settings.sources.stylesEntryPoint)
 		.pipe(plumber({errorHandler: onError}))
-		.pipe(changed(settings.destinations.dev.styles, {extension: '.css'}))
 		.pipe(sourcemaps.init())
 		.pipe(less({
 			plugins: [new Autoprefix({
@@ -164,7 +168,9 @@ export function lint() {
 	}
 	return gulp.src([settings.sources.scripts, './*.js'])
 		.pipe(eslint())
-		.pipe(eslint.format());
+		.pipe(eslint.format())
+		.pipe(eslint.failAfterError())
+		.on('error', onError);
 }
 
 export function security(cb) {
@@ -175,16 +181,51 @@ export function security(cb) {
 	}
 }
 
-export function serve() {
+export function html() {
+	if (isProdBuild()) {
+		return gulp.src(settings.sources.markup)
+			.pipe(processhtml())
+			.pipe(gulp.dest(settings.destinations.prod.markup));
+	}
+	return gulp.src(settings.sources.markup)
+		.pipe(changed(settings.destinations.dev.markup))
+		.pipe(gulp.dest(settings.destinations.dev.markup));
+}
+
+export function serve(done) {
 	let baseDir = mainDirectories.dev;
 	if (isProdBuild()) {
 		baseDir = mainDirectories.dist;
 	}
-	browserSync.init({
+	server.init({
 		server: {
 			baseDir
 		}
 	});
+	done();
 }
 
-export const build = gulp.series(clean, gulp.parallel(lint, images, clientScripts, vendorScripts, styles, security));
+function reload(done) {
+	server.reload();
+	done();
+}
+
+export function watch() {
+	gulp.watch(settings.sources.scripts,
+		gulp.parallel(
+			gulp.series(clientScripts, reload),
+			lint
+		)
+	);
+	gulp.watch('./*.js', lint);
+	gulp.watch(settings.sources.styles, gulp.series(styles, reload));
+	gulp.watch(settings.sources.markup, gulp.series(html, reload));
+}
+
+export const build = gulp.series(
+	clean,
+	gulp.parallel(html, lint, images, clientScripts, vendorScripts, styles, security)
+);
+
+const dev = gulp.series(build, serve, watch);
+export default dev;
