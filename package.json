@@ -61,7 +61,6 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "postinstall": "chmod u+x .postinstall.js && node ./.postinstall.js",
     "test": "",
     "start": "gulp",
     "dev": "gulp build",
