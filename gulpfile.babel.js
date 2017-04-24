@@ -69,8 +69,7 @@ function onError(err) {
 		title: 'Gulp Task Error',
 		subtitle: 'Plugin: <%= error.plugin %>',
 		message: 'Check the console.'
-	}
-	).write(err);
+	}).write(err);
 
 	console.log(err.toString());
 
@@ -167,6 +166,20 @@ export function vendorScripts() {
 		.pipe(gulp.dest(settings.destinations.dev.libs));
 }
 
+export function bundleExternalCSS(done) {
+	const files = require('./package.json').bootstrapKickstart.bundleCSS;
+	if (files.length < 1) {
+		return done();
+	}
+	return gulp.src(files)
+		.pipe(cleanCss())
+		.pipe(rename({
+			baseName: 'libs',
+			suffix: '.min'
+		}))
+		.pipe(gulp.dest('./libs'));
+}
+
 export function copyStaticFiles() {
 	const files = require('./package.json').bootstrapKickstart.includeStaticFiles
 		.map(path => 'node_modules/' + path);
@@ -239,7 +252,7 @@ export function watch() {
 
 export const build = gulp.series(
 	clean,
-	gulp.parallel(html, lint, images, clientScripts, vendorScripts, styles, copyStaticFiles, security)
+	gulp.parallel(html, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, security)
 );
 
 const dev = gulp.series(build, serve, watch);
