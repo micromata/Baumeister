@@ -182,7 +182,7 @@ export function bundleExternalCSS(done) {
 
 export function copyStaticFiles() {
 	return gulp.src(settings.sources.staticFiles.map(path => 'node_modules/' + path), {base: 'node_modules/'})
-		.pipe(gulp.dest('./libs'));
+		.pipe(gulp.dest(isProdBuild() ? settings.destinations.prod.libs : settings.destinations.dev.libs));
 }
 
 export function lint() {
