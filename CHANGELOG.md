@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 3.1.2 (2017-04-18)
+
+- e79edfc - 2017-04-18: Tweak Travis config (#126) 
+- 11a385b - 2017-04-18: Fix doc block comment 
+
+
 ## Version 3.1.1 (2017-04-14)
 
 - ad2ac12 - 2017-04-14: Fix postinstall for Node 4 
