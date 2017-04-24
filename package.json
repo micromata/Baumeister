@@ -77,7 +77,7 @@
     "postmerge": "npm install"
   },
   "bootstrapKickstart": {
-    "bundleCSS": {},
+    "bundleCSS": [],
     "bundleExternalJS": [
       "jquery",
       "bootstrap"
