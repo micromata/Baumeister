@@ -56,6 +56,7 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^2.1.2",
     "husky": "^0.13.3",
+    "gulp-uncss": "^1.0.6",
     "less-plugin-autoprefix": "^1.5.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"

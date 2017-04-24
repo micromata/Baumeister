@@ -21,6 +21,7 @@ import buffer from 'vinyl-buffer';
 import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
 import processhtml from 'gulp-processhtml';
+import uncss from 'gulp-uncss';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
 const server = browserSync.create();
@@ -94,7 +95,13 @@ export function styles() {
 			}))
 			.pipe(cleanCss())
 			.pipe(rename({
+				baseName: 'index',
 				suffix: '.min'
+			}))
+			.pipe(gulp.dest(settings.destinations.prod.styles))
+			.pipe(rename('index.uncss.min.css'))
+			.pipe(uncss({
+				html: [settings.sources.markup]
 			}))
 			.pipe(gulp.dest(settings.destinations.prod.styles));
 	}
