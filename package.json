@@ -78,10 +78,7 @@
     "postmerge": "npm install"
   },
   "bootstrapKickstart": {
-    "bundleCSS": [
-      "select2/dist/css/select2.css",
-      "select2-bootstrap-css/select2-bootstrap.css"
-    ],
+    "bundleCSS": [],
     "bundleExternalJS": [
       "jquery",
       "bootstrap"
