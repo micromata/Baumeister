@@ -171,7 +171,7 @@ export function bundleExternalCSS(done) {
 			baseName: 'libs',
 			suffix: '.min'
 		}))
-    .pipe(gulp.dest('./libs));
+    .pipe(gulp.dest('./libs'));
 }
 
 export function copyStaticFiles() {
