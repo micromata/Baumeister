@@ -13,6 +13,7 @@ import del from 'del';
 import nsp from 'gulp-nsp';
 import * as path from 'path';
 import changed from 'gulp-changed';
+import concat from 'gulp-concat';
 import browserSync from 'browser-sync';
 import browserify from 'browserify';
 import browserifyInc from 'browserify-incremental';
@@ -24,6 +25,7 @@ import processhtml from 'gulp-processhtml';
 import uncss from 'gulp-uncss';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
+const pkgJson = require('./package.json');
 const server = browserSync.create();
 const mainDirectories = {
 	dev: './server/',
@@ -36,7 +38,10 @@ const settings = {
 		styles: './src/assets/less/**/*.less',
 		stylesEntryPoint: './src/assets/less/index.less',
 		scripts: './src/app/**/*.js',
-		images: './src/assets/img/**/*.{png,jpg,gif,svg}'
+		images: './src/assets/img/**/*.{png,jpg,gif,svg}',
+		externalCss: pkgJson.bootstrapKickstart.bundleCSS,
+		externalJs: pkgJson.bootstrapKickstart.bundleExternalJS,
+		staticFiles: pkgJson.bootstrapKickstart.includeStaticFiles
 	},
 	destinations: {
 		dev: {
@@ -69,8 +74,7 @@ function onError(err) {
 		title: 'Gulp Task Error',
 		subtitle: 'Plugin: <%= error.plugin %>',
 		message: 'Check the console.'
-	}
-	).write(err);
+	}).write(err);
 
 	console.log(err.toString());
 
@@ -151,7 +155,7 @@ export function clientScripts() {
 
 export function vendorScripts() {
 	const b = browserify(Object.assign({}, browserifyInc.args));
-	require('./package.json').bootstrapKickstart.bundleExternalJS.forEach(dep => b.require(dep));
+	settings.sources.externalJs.forEach(dep => b.require(dep));
 	browserifyInc(b, {cacheFile: './.browserify-cache.json'});
 
 	if (isProdBuild()) {
@@ -167,11 +171,25 @@ export function vendorScripts() {
 		.pipe(gulp.dest(settings.destinations.dev.libs));
 }
 
+export function bundleExternalCSS(done) {
+	const files = require('./package.json').bootstrapKickstart.bundleCSS;
+	if (files.length < 1) {
+		return done();
+	}
+	if (isProdBuild()) {
+		return gulp.src(files.map(path => 'node_modules/' + path))
+			.pipe(cleanCss())
+			.pipe(concat('libs.min.css'))
+			.pipe(gulp.dest(settings.destinations.prod.libs));
+	}
+	return gulp.src(files.map(path => 'node_modules/' + path))
+		.pipe(concat('libs.css'))
+		.pipe(gulp.dest(settings.destinations.dev.libs));
+}
+
 export function copyStaticFiles() {
-	const files = require('./package.json').bootstrapKickstart.includeStaticFiles
-		.map(path => 'node_modules/' + path);
-	return gulp.src(files, {base: 'node_modules/'})
-		.pipe(gulp.dest('./libs'));
+	return gulp.src(settings.sources.staticFiles.map(path => 'node_modules/' + path), {base: 'node_modules/'})
+		.pipe(gulp.dest(isProdBuild() ? settings.destinations.prod.libs : settings.destinations.dev.libs));
 }
 
 export function lint() {
@@ -239,7 +257,7 @@ export function watch() {
 
 export const build = gulp.series(
 	clean,
-	gulp.parallel(html, lint, images, clientScripts, vendorScripts, styles, copyStaticFiles, security)
+	gulp.parallel(html, lint, images, clientScripts, vendorScripts, styles, copyStaticFiles, bundleExternalCSS, security)
 );
 
 const dev = gulp.series(build, serve, watch);
