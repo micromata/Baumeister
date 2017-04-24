@@ -23,6 +23,7 @@ import plumber from 'gulp-plumber';
 import processhtml from 'gulp-processhtml';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
+const pkgJson = require('./package.json');
 const server = browserSync.create();
 const mainDirectories = {
 	dev: './server/',
@@ -35,7 +36,10 @@ const settings = {
 		styles: './src/assets/less/**/*.less',
 		stylesEntryPoint: './src/assets/less/index.less',
 		scripts: './src/app/**/*.js',
-		images: './src/assets/img/**/*.{png,jpg,gif,svg}'
+		images: './src/assets/img/**/*.{png,jpg,gif,svg}',
+		externalCss: pkgJson.bootstrapKickstart.bundleCSS,
+		externalJs: pkgJson.bootstrapKickstart.bundleExternalJS,
+		staticFiles: pkgJson.bootstrapKickstart.includeStaticFiles
 	},
 	destinations: {
 		dev: {
@@ -143,7 +147,7 @@ export function clientScripts() {
 
 export function vendorScripts() {
 	const b = browserify(Object.assign({}, browserifyInc.args));
-	require('./package.json').bootstrapKickstart.bundleExternalJS.forEach(dep => b.require(dep));
+	settings.sources.externalJs.forEach(dep => b.require(dep));
 	browserifyInc(b, {cacheFile: './.browserify-cache.json'});
 
 	if (isProdBuild()) {
@@ -174,9 +178,7 @@ export function bundleExternalCSS(done) {
 }
 
 export function copyStaticFiles() {
-	const files = require('./package.json').bootstrapKickstart.includeStaticFiles
-		.map(path => 'node_modules/' + path);
-	return gulp.src(files, {base: 'node_modules/'})
+	return gulp.src(settings.sources.staticFiles.map(path => 'node_modules/' + path), {base: 'node_modules/'})
 		.pipe(gulp.dest('./libs'));
 }
 
