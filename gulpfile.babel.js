@@ -65,10 +65,10 @@ const settings = {
 
 function onError(err) {
 	notify({
-			title: 'Gulp Task Error',
-			subtitle: 'Plugin: <%= error.plugin %>',
-			message: 'Check the console.'
-		}
+		title: 'Gulp Task Error',
+		subtitle: 'Plugin: <%= error.plugin %>',
+		message: 'Check the console.'
+	}
 	).write(err);
 
 	console.log(err.toString());
