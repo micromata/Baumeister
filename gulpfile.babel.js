@@ -178,13 +178,6 @@ export function bundleExternalCSS(done) {
 }
 
 export function copyStaticFiles() {
-	const files = require('./package.json').bootstrapKickstart.includeStaticFiles
-		.map(path => 'node_modules/' + path);
-	return gulp.src(files, {base: 'node_modules/'})
-		.pipe(gulp.dest('./libs'));
-}
-
-export function copyStaticFiles() {
 	return gulp.src(settings.sources.staticFiles.map(path => 'node_modules/' + path), {base: 'node_modules/'})
 		.pipe(gulp.dest('./libs'));
 }
