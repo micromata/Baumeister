@@ -171,6 +171,13 @@ export function bundleExternalCSS(done) {
 			baseName: 'libs',
 			suffix: '.min'
 		}))
+    .pipe(gulp.dest('./libs));
+}
+
+export function copyStaticFiles() {
+	const files = require('./package.json').bootstrapKickstart.includeStaticFiles
+		.map(path => 'node_modules/' + path);
+	return gulp.src(files, {base: 'node_modules/'})
 		.pipe(gulp.dest('./libs'));
 }
 
@@ -239,7 +246,7 @@ export function watch() {
 
 export const build = gulp.series(
 	clean,
-	gulp.parallel(html, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, security)
+	gulp.parallel(html, lint, images, clientScripts, vendorScripts, styles, copyStaticFiles, bundleExternalCSS, security)
 );
 
 const dev = gulp.series(build, serve, watch);
