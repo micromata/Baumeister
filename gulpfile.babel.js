@@ -13,6 +13,7 @@ import del from 'del';
 import nsp from 'gulp-nsp';
 import * as path from 'path';
 import changed from 'gulp-changed';
+import concat from 'gulp-concat';
 import browserSync from 'browser-sync';
 import browserify from 'browserify';
 import browserifyInc from 'browserify-incremental';
@@ -168,13 +169,15 @@ export function bundleExternalCSS(done) {
 	if (files.length < 1) {
 		return done();
 	}
-	return gulp.src(files)
-		.pipe(cleanCss())
-		.pipe(rename({
-			baseName: 'libs',
-			suffix: '.min'
-		}))
-		.pipe(gulp.dest('./libs'));
+	if (isProdBuild()) {
+		return gulp.src(files.map(path => 'node_modules/' + path))
+			.pipe(cleanCss())
+			.pipe(concat('libs.min.css'))
+			.pipe(gulp.dest(settings.destinations.prod.libs));
+	}
+	return gulp.src(files.map(path => 'node_modules/' + path))
+		.pipe(concat('libs.css'))
+		.pipe(gulp.dest(settings.destinations.dev.libs));
 }
 
 export function copyStaticFiles() {
