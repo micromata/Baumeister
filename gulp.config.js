@@ -43,7 +43,6 @@ export const settings = {
 		]
 	},
 	bootlint: {
-		stoponerror: true,
 		disabledIds: ['W005'],
 		reportFn(file, lint, isError, errorLocation) {
 			let message = (isError) ? 'ERROR! - ' : 'WARN! - ';
