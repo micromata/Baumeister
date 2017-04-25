@@ -102,6 +102,7 @@ export function clientScripts() {
 			.pipe(gulp.dest(settings.destinations.prod.scripts));
 	}
 	return b.bundle()
+		.on('error', onError)
 		.pipe(source('client.js'))
 		.pipe(buffer())
 		.pipe(gulp.dest(settings.destinations.dev.scripts));
