@@ -60,6 +60,8 @@ export const settings = {
 			} else {
 				console.log('No problems found in ' + file.path);
 			}
-		}
-	}
+		},
+	  htmlmin: {
+		  removeComments: true
+	  }
 };
