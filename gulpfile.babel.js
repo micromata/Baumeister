@@ -109,7 +109,7 @@ export function clientScripts() {
 }
 
 export function vendorScripts() {
-	const b = browserify(Object.assign({}, browserifyInc.args));
+	const b = browserify({...browserifyInc.args});
 	settings.sources.externalJs.forEach(dep => b.require(dep));
 	browserifyInc(b, {cacheFile: './.browserify-cache.json'});
 
