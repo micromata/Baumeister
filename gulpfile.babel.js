@@ -160,11 +160,11 @@ export function lint() {
 		.on('error', onError);
 }
 
-export function security(cb) {
+export function security(done) {
 	if (isProdBuild()) {
-		nsp({package: path.join(__dirname, '/package.json')}, cb);
+		nsp({package: path.join(__dirname, '/package.json')}, done);
 	} else {
-		cb();
+		done();
 	}
 }
 
