@@ -183,12 +183,8 @@ export function html() {
 }
 
 export function lintBootstrap() {
-	if (isProdBuild()) {
-		return gulp.src(settings.sources.markup)
-			.pipe(bootlint({stoponerror: true, ...settings.bootlint}));
-	}
 	return gulp.src(settings.sources.markup)
-		.pipe(bootlint({stoponerror: false, ...settings.bootlint}));
+		.pipe(bootlint({stoponerror: isProdBuild(), ...settings.bootlint}));
 }
 
 export function serve(done) {
