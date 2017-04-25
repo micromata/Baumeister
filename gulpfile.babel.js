@@ -11,7 +11,7 @@ import babel from 'gulp-babel';
 import rename from 'gulp-rename';
 import del from 'del';
 import nsp from 'gulp-nsp';
-import * as path from 'path';
+import path from 'path';
 import changed from 'gulp-changed';
 import concat from 'gulp-concat';
 import browserSync from 'browser-sync';
@@ -172,23 +172,22 @@ export function vendorScripts() {
 }
 
 export function bundleExternalCSS(done) {
-	const files = require('./package.json').bootstrapKickstart.bundleCSS;
-	if (files.length < 1) {
-		return done();
-	}
+	const files = pkgJson.bootstrapKickstart.bundleCSS.map(sourcePath => path.join('node_modules/', sourcePath));
+	if (!files.length) return done();
 	if (isProdBuild()) {
-		return gulp.src(files.map(path => 'node_modules/' + path))
+
+		return gulp.src(files)
 			.pipe(cleanCss())
 			.pipe(concat('libs.min.css'))
 			.pipe(gulp.dest(settings.destinations.prod.libs));
 	}
-	return gulp.src(files.map(path => 'node_modules/' + path))
+	return gulp.src(files)
 		.pipe(concat('libs.css'))
 		.pipe(gulp.dest(settings.destinations.dev.libs));
 }
 
 export function copyStaticFiles() {
-	return gulp.src(settings.sources.staticFiles.map(path => 'node_modules/' + path), {base: 'node_modules/'})
+	return gulp.src(settings.sources.staticFiles.map(sourcePath => path.join('node_modules/', sourcePath)), {base: 'node_modules/'})
 		.pipe(gulp.dest(isProdBuild() ? settings.destinations.prod.libs : settings.destinations.dev.libs));
 }
 
