@@ -42,9 +42,9 @@ function onError(err) {
 
 export function clean() {
 	if (isProdBuild()) {
-		return del(['dist']);
+		return del(mainDirectories.dist);
 	}
-	return del(['server']);
+	return del(mainDirectories.dev);
 }
 
 export function styles() {
