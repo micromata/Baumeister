@@ -34,11 +34,11 @@ const mainDirectories = {
 
 const settings = {
 	sources: {
-		markup: './src/*.html',
-		styles: './src/assets/less/**/*.less',
+		markup: ['./src/*.html'],
+		styles: ['./src/assets/less/**/*.less'],
 		stylesEntryPoint: './src/assets/less/index.less',
-		scripts: './src/app/**/*.js',
-		images: './src/assets/img/**/*.{png,jpg,gif,svg}',
+		scripts: ['./src/app/**/*.js'],
+		images: ['./src/assets/img/**/*.{png,jpg,gif,svg}'],
 		externalCss: pkgJson.bootstrapKickstart.bundleCSS,
 		externalJs: pkgJson.bootstrapKickstart.bundleExternalJS,
 		staticFiles: pkgJson.bootstrapKickstart.includeStaticFiles
@@ -194,12 +194,12 @@ export function copyStaticFiles() {
 
 export function lint() {
 	if (isProdBuild()) {
-		return gulp.src([settings.sources.scripts, './*.js'])
+		return gulp.src([...settings.sources.scripts, './*.js'])
 			.pipe(eslint())
 			.pipe(eslint.format())
 			.pipe(eslint.failAfterError());
 	}
-	return gulp.src([settings.sources.scripts, './*.js'])
+	return gulp.src([...settings.sources.scripts, './*.js'])
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError())
@@ -244,13 +244,8 @@ function reload(done) {
 }
 
 export function watch() {
-	gulp.watch(settings.sources.scripts,
-		gulp.parallel(
-			gulp.series(clientScripts, reload),
-			lint
-		)
-	);
-	gulp.watch('./*.js', lint);
+	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, reload));
+	gulp.watch([...settings.sources.scripts, './*.js'], lint);
 	gulp.watch(settings.sources.styles, gulp.series(styles, reload));
 	gulp.watch(settings.sources.markup, gulp.series(html, reload));
 }
