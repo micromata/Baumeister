@@ -41,5 +41,8 @@ export const settings = {
 			'Firefox ESR',
 			'Opera 12.1'
 		]
+	},
+	htmlmin: {
+		removeComments: true
 	}
 };
