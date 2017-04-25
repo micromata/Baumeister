@@ -35,7 +35,7 @@ function onError(err) {
 		message: 'Check the console.'
 	}).write(err);
 
-	console.log(err.toString());
+	console.error(err.toString());
 
 	this.emit('end');
 }
