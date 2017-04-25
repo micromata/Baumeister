@@ -191,7 +191,10 @@ export function lintBootstrap() {
 
 export function test(done) {
 	if (isProdBuild()) {
-		jest.runCLI({config: pkgJson.jest}, '.', () => {
+		jest.runCLI({config: pkgJson.jest}, '.', result => {
+			if (!result.success) {
+				process.exit(1);
+			}
 			done();
 		});
 	} else {
