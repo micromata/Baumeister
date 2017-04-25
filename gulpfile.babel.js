@@ -64,7 +64,7 @@ export function styles() {
 			.pipe(gulp.dest(settings.destinations.prod.styles))
 			.pipe(rename('index.uncss.min.css'))
 			.pipe(uncss({
-				html: [settings.sources.markup]
+				html: settings.sources.markup
 			}))
 			.pipe(gulp.dest(settings.destinations.prod.styles));
 	}
@@ -174,7 +174,7 @@ export function html() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.markup)
 			.pipe(processhtml())
-			.pipe(htmlmin(settings.htmlmin))
+			.pipe(htmlmin({removeComments: true, preserveLineBreaks: true, collapseWhitespace: true}))
 			.pipe(gulp.dest(settings.destinations.prod.markup));
 	}
 	return gulp.src(settings.sources.markup)
@@ -184,7 +184,10 @@ export function html() {
 
 export function lintBootstrap() {
 	return gulp.src(settings.sources.markup)
-		.pipe(bootlint({stoponerror: isProdBuild(), ...settings.bootlint}));
+		.pipe(bootlint({
+			stoponerror: isProdBuild(),
+			disabledIds: ['W005']
+		}));
 }
 
 export function serve(done) {

@@ -41,11 +41,5 @@ export const settings = {
 			'Firefox ESR',
 			'Opera 12.1'
 		]
-	},
-	bootlint: {
-		disabledIds: ['W005']
-	},
-	htmlmin: {
-		removeComments: true
 	}
 };
