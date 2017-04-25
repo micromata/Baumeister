@@ -170,7 +170,7 @@ export function security(done) {
 	}
 }
 
-export function html() {
+export function processHtml() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.markup)
 			.pipe(processhtml())
@@ -212,12 +212,12 @@ export function watch() {
 	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, reload));
 	gulp.watch([...settings.sources.scripts, './*.js'], lint);
 	gulp.watch(settings.sources.styles, gulp.series(styles, reload));
-	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, gulp.series(html, reload)));
+	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, gulp.series(processHtml, reload)));
 }
 
 export const build = gulp.series(
 	clean,
-	gulp.parallel(html, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security)
+	gulp.parallel(processHtml, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security)
 );
 
 const dev = gulp.series(build, serve, watch);
