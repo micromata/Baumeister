@@ -23,6 +23,7 @@ import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
 import processhtml from 'gulp-processhtml';
 import uncss from 'gulp-uncss';
+import htmlmin from 'gulp-htmlmin';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
@@ -172,6 +173,7 @@ export function html() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.markup)
 			.pipe(processhtml())
+			.pipe(htmlmin(settings.htmlmin))
 			.pipe(gulp.dest(settings.destinations.prod.markup));
 	}
 	return gulp.src(settings.sources.markup)
