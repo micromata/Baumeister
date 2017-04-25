@@ -42,6 +42,9 @@ export const settings = {
 			'Opera 12.1'
 		]
 	},
+	bootlint: {
+		disabledIds: ['W005']
+	},
 	htmlmin: {
 		removeComments: true
 	}
