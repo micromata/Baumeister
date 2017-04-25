@@ -58,12 +58,13 @@
     "gulp-uglify": "^2.1.2",
     "gulp-uncss": "^1.0.6",
     "husky": "^0.13.3",
+    "jest-cli": "^19.0.2",
     "less-plugin-autoprefix": "^1.5.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "test": "",
+    "test": "gulp test -prod",
     "start": "gulp",
     "dev": "gulp build",
     "serve": "gulp serve",
@@ -90,5 +91,11 @@
       "respond.js/dest/respond.min.js",
       "jquery-placeholder/jquery.placeholder.js"
     ]
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom" : ["src/app/**/*.{js,jsx}", "!**/node_modules/**"],
+    "coverageReporters": ["lcov", "text", "text-summary"]
   }
 }
