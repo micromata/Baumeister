@@ -5,9 +5,8 @@ import sourcemaps from 'gulp-sourcemaps';
 import Autoprefix from 'less-plugin-autoprefix';
 import eslint from 'gulp-eslint';
 import imagemin from 'gulp-imagemin';
-import rollup from 'gulp-rollup';
 import uglify from 'gulp-uglify';
-import babel from 'gulp-babel';
+import babelify from 'babelify';
 import rename from 'gulp-rename';
 import del from 'del';
 import nsp from 'gulp-nsp';
@@ -89,31 +88,29 @@ export function images() {
 }
 
 export function clientScripts() {
+	const b = browserify('./src/app/index.js', {...browserifyInc.args, debug: true})
+		.transform(babelify, {sourceMaps: true})
+		.external(settings.sources.externalJs);
+	browserifyInc(b, {cacheFile: './.browserify-cache-client.json'});
+
 	if (isProdBuild()) {
-		return gulp.src(settings.sources.scripts)
-			.pipe(rollup({
-				entry: './src/app/index.js'
-			}))
-			.pipe(babel())
+		return b.bundle()
+			.pipe(source('client.js'))
+			.pipe(buffer())
+			.pipe(rename('client.min.js'))
 			.pipe(uglify())
-			.pipe(rename({
-				baseName: 'client',
-				suffix: '.min'
-			}))
 			.pipe(gulp.dest(settings.destinations.prod.scripts));
 	}
-	return gulp.src(settings.sources.scripts)
-		.pipe(rollup({
-			entry: './src/app/index.js'
-		}))
-		.pipe(babel())
+	return b.bundle()
+		.pipe(source('client.js'))
+		.pipe(buffer())
 		.pipe(gulp.dest(settings.destinations.dev.scripts));
 }
 
 export function vendorScripts() {
 	const b = browserify({...browserifyInc.args});
 	settings.sources.externalJs.forEach(dep => b.require(dep));
-	browserifyInc(b, {cacheFile: './.browserify-cache.json'});
+	browserifyInc(b, {cacheFile: './.browserify-cache-vendor.json'});
 
 	if (isProdBuild()) {
 		return b.bundle()
