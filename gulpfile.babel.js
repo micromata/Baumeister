@@ -23,6 +23,7 @@ import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
 import processhtml from 'gulp-processhtml';
 import uncss from 'gulp-uncss';
+import bootlint from 'gulp-bootlint';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
@@ -179,6 +180,11 @@ export function html() {
 		.pipe(gulp.dest(settings.destinations.dev.markup));
 }
 
+export function lintBootstrap() {
+	return gulp.src(settings.sources.markup)
+		.pipe(bootlint(settings.bootlint));
+}
+
 export function serve(done) {
 	let baseDir = mainDirectories.dev;
 	if (isProdBuild()) {
@@ -201,12 +207,12 @@ export function watch() {
 	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, reload));
 	gulp.watch([...settings.sources.scripts, './*.js'], lint);
 	gulp.watch(settings.sources.styles, gulp.series(styles, reload));
-	gulp.watch(settings.sources.markup, gulp.series(html, reload));
+	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, gulp.series(html, reload)));
 }
 
 export const build = gulp.series(
 	clean,
-	gulp.parallel(html, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, security)
+	gulp.parallel(html, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security)
 );
 
 const dev = gulp.series(build, serve, watch);
