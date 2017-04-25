@@ -43,23 +43,7 @@ export const settings = {
 		]
 	},
 	bootlint: {
-		disabledIds: ['W005'],
-		reportFn(file, lint, isError, errorLocation) {
-			let message = (isError) ? 'ERROR! - ' : 'WARN! - ';
-			if (errorLocation) {
-				message += file.path + ' (line:' + (errorLocation.line + 1) + ', col:' + (errorLocation.column + 1) + ') [' + lint.id + '] ' + lint.message;
-			} else {
-				message += file.path + ': ' + lint.id + ' ' + lint.message;
-			}
-			console.log(message);
-		},
-		summaryReportFn(file, errorCount, warningCount) {
-			if (errorCount > 0 || warningCount > 0) {
-				console.log(errorCount + ' errors and ' + warningCount + ' warnings found in ' + file.path);
-			} else {
-				console.log('No problems found in ' + file.path);
-			}
-		}
+		disabledIds: ['W005']
 	},
 	htmlmin: {
 		removeComments: true
