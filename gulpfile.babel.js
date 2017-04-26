@@ -348,7 +348,7 @@ build.flags = {
 
 function bumpVersion() {
 	if (!hasBumpType()) {
-		onError('Please specify release type --bump (major|minor|patch)');
+		onError(new Error(chalk.red('Please specify release type: gulp release --bump (major|minor|patch)')));
 	}
 
 	return gulp.src('./package.json')
