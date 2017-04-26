@@ -307,7 +307,7 @@ export function watch() {
 	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, gulp.series(processHtml, reload))).on('change', informOnChange);
 
 	function informOnChange(path) {
-		gutil.log(`File ${chalk.blue(path)} has changed`);
+		gutil.log(`File ${chalk.yellow(path)} has changed`);
 	}
 }
 watch.description = '`gulp watch` watches for changes and runs tasks automatically';
