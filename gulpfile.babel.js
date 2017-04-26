@@ -10,7 +10,7 @@ import Autoprefix from 'less-plugin-autoprefix';
 import jest from 'jest-cli';
 import buffer from 'vinyl-buffer';
 import source from 'vinyl-source-stream';
-
+import touch from 'gulp-touch';
 import gulp from 'gulp';
 import bootlint from 'gulp-bootlint';
 import changed from 'gulp-changed';
@@ -354,7 +354,8 @@ function bumpVersion() {
 	return gulp.src('./package.json')
 		.pipe(bump({type: args.bump}))
 		.on('error', onError)
-		.pipe(gulp.dest('.'));
+		.pipe(gulp.dest('./'))
+		.pipe(touch());
 }
 
 function createChangelog() {

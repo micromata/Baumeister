@@ -59,6 +59,7 @@
     "gulp-processhtml": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^2.6.0",
+    "gulp-touch": "^1.0.1",
     "gulp-uglify": "^2.1.2",
     "gulp-uncss": "^1.0.6",
     "gulp-util": "^3.0.8",
