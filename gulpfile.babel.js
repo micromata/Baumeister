@@ -1,30 +1,34 @@
-import gulp from 'gulp';
-import less from 'gulp-less';
-import cleanCss from 'gulp-clean-css';
-import sourcemaps from 'gulp-sourcemaps';
-import Autoprefix from 'less-plugin-autoprefix';
-import eslint from 'gulp-eslint';
-import imagemin from 'gulp-imagemin';
-import uglify from 'gulp-uglify';
-import babelify from 'babelify';
-import rename from 'gulp-rename';
-import del from 'del';
-import nsp from 'gulp-nsp';
 import path from 'path';
-import changed from 'gulp-changed';
-import concat from 'gulp-concat';
+import del from 'del';
+import chalk from 'chalk';
 import browserSync from 'browser-sync';
 import browserify from 'browserify';
 import browserifyInc from 'browserify-incremental';
-import source from 'vinyl-source-stream';
+import babelify from 'babelify';
+import Autoprefix from 'less-plugin-autoprefix';
+import jest from 'jest-cli';
 import buffer from 'vinyl-buffer';
+import source from 'vinyl-source-stream';
+
+import gulp from 'gulp';
+import bootlint from 'gulp-bootlint';
+import changed from 'gulp-changed';
+import cleanCss from 'gulp-clean-css';
+import concat from 'gulp-concat';
+import eslint from 'gulp-eslint';
+import htmlmin from 'gulp-htmlmin';
+import imagemin from 'gulp-imagemin';
+import less from 'gulp-less';
 import notify from 'gulp-notify';
+import nsp from 'gulp-nsp';
 import plumber from 'gulp-plumber';
 import processhtml from 'gulp-processhtml';
+import sourcemaps from 'gulp-sourcemaps';
+import uglify from 'gulp-uglify';
 import uncss from 'gulp-uncss';
-import bootlint from 'gulp-bootlint';
-import htmlmin from 'gulp-htmlmin';
-import jest from 'jest-cli';
+import gutil from 'gulp-util';
+import rename from 'gulp-rename';
+
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
@@ -298,10 +302,13 @@ function reload(done) {
  * Run `gulp watch` respectively `gulp watch -prod`
  */
 export function watch() {
-	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, reload));
-	gulp.watch([...settings.sources.scripts, './*.js'], lint);
-	gulp.watch(settings.sources.styles, gulp.series(styles, reload));
-	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, gulp.series(processHtml, reload)));
+	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, gulp.parallel(lint, reload))).on('change', informOnChange);
+	gulp.watch(settings.sources.styles, gulp.series(styles, reload)).on('change', informOnChange);
+	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, gulp.series(processHtml, reload))).on('change', informOnChange);
+
+	function informOnChange(path) {
+		gutil.log(`File ${chalk.blue(path)} has changed`);
+	}
 }
 watch.description = '`gulp watch` watches for changes and runs tasks automatically';
 
