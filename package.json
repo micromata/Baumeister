@@ -96,7 +96,6 @@
   },
   "jest": {
     "collectCoverage": true,
-    "coverageDirectory": "coverage",
     "collectCoverageFrom" : ["src/app/**/*.{js,jsx}", "!**/node_modules/**"],
     "coverageReporters": ["lcov", "text", "text-summary"]
   }
