@@ -1,3 +1,4 @@
+import fs from 'fs';
 import gulp from 'gulp';
 import less from 'gulp-less';
 import cleanCss from 'gulp-clean-css';
@@ -259,7 +260,15 @@ function commitChanges() {
 		.pipe(git.commit('[Pre-Release] Bumped version number'));
 }
 
-export const release = gulp.series(bumpVersion, createChangelog, gulp.parallel(build, commitChanges));
+function createTag(done) {
+	const version = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
+	git.tag(`v${version}`, 'Created tag for version: ' + version, error => {
+		if (error) return onError(error);
+		done();
+	});
+}
+
+export const release = gulp.series(bumpVersion, createChangelog, gulp.parallel(build, commitChanges, createTag));
 
 const dev = gulp.series(build, serve, watch);
 export default dev;
