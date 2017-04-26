@@ -34,7 +34,7 @@ import {settings, mainDirectories, pkgJson} from './gulp.config';
 const server = browserSync.create();
 
 function hasFlag(name) {
-	return process.argv.filter(val => val.toLowerCase().indexOf(name.toLowerCase()) !== -1).length !== -1;
+	return process.argv.filter(val => val.toLowerCase().indexOf(name.toLowerCase()) !== -1).length > 0;
 }
 
 function isProdBuild() {
@@ -262,7 +262,7 @@ function commitChanges() {
 
 function createTag(done) {
 	const version = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
-	git.tag(`v${version}`, 'Created tag for version: ' + version, error => {
+	git.tag(`${version}`, 'Created tag for version: ' + version, error => {
 		if (error) return onError(error);
 		done();
 	});
