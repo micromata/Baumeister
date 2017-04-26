@@ -26,6 +26,7 @@ import uncss from 'gulp-uncss';
 import bootlint from 'gulp-bootlint';
 import htmlmin from 'gulp-htmlmin';
 import bump from 'gulp-bump';
+import changelog from 'gulp-conventional-changelog';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const server = browserSync.create();
@@ -245,7 +246,13 @@ function bumpVersion() {
 		.pipe(gulp.dest('.'));
 }
 
-export const release = gulp.parallel(build, bumpVersion);
+function createChangelog() {
+	return gulp.src('./CHANGELOG.md', {buffer: false})
+		.pipe(changelog({preset: 'angular'}))
+		.pipe(gulp.dest('./'));
+}
+
+export const release = gulp.series(bumpVersion, gulp.parallel(build, createChangelog));
 
 const dev = gulp.series(build, serve, watch);
 export default dev;
