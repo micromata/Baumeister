@@ -64,6 +64,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
+    "pretest": "gulp lint -prod",
     "test": "gulp test -prod",
     "start": "gulp",
     "dev": "gulp build",
