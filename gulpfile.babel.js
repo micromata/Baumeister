@@ -24,6 +24,7 @@ import processhtml from 'gulp-processhtml';
 import uncss from 'gulp-uncss';
 import bootlint from 'gulp-bootlint';
 import htmlmin from 'gulp-htmlmin';
+import jest from 'jest-cli';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
@@ -188,6 +189,21 @@ export function lintBootstrap() {
 		}));
 }
 
+export function test(done) {
+	jest.runCLI({config: pkgJson.jest}, '.', result => {
+		if (isProdBuild() && !result.success) {
+			done();
+			process.exit(1);
+		}
+		done();
+	});
+}
+
+export function testWatch(done) {
+	jest.runCLI({watch: true, config: pkgJson.jest}, '.', () => {});
+	done();
+}
+
 export function serve(done) {
 	let baseDir = mainDirectories.dev;
 	if (isProdBuild()) {
@@ -215,7 +231,7 @@ export function watch() {
 
 export const build = gulp.series(
 	clean,
-	gulp.parallel(processHtml, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security)
+	gulp.parallel(processHtml, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security, test)
 );
 
 const dev = gulp.series(build, serve, watch);

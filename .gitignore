@@ -21,6 +21,7 @@ desktop.ini
 /src/assets/js/*.map
 .browserify-cache-client.json
 .browserify-cache-vendor.json
+coverage
 
 ### Dev ###
 config.codekit
