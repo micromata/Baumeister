@@ -27,6 +27,7 @@ import bootlint from 'gulp-bootlint';
 import htmlmin from 'gulp-htmlmin';
 import bump from 'gulp-bump';
 import changelog from 'gulp-conventional-changelog';
+import git from 'gulp-git';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const server = browserSync.create();
@@ -252,7 +253,13 @@ function createChangelog() {
 		.pipe(gulp.dest('./'));
 }
 
-export const release = gulp.series(bumpVersion, gulp.parallel(build, createChangelog));
+function commitChanges() {
+	return gulp.src('.')
+		.pipe(git.add())
+		.pipe(git.commit('[Pre-Release] Bumped version number'));
+}
+
+export const release = gulp.series(bumpVersion, createChangelog, gulp.parallel(build, commitChanges));
 
 const dev = gulp.series(build, serve, watch);
 export default dev;
