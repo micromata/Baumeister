@@ -30,6 +30,10 @@ import {settings, mainDirectories, pkgJson} from './gulp.config';
 const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
 const server = browserSync.create();
 
+/**
+ * Configure notify error reporting.
+ * Can be used in tasks.
+ */
 function onError(err) {
 	notify({
 		title: 'Gulp Task Error',
@@ -42,14 +46,22 @@ function onError(err) {
 	this.emit('end');
 }
 
-export function clean() {
+/**
+ * Delete output directories
+ */
+function clean() {
 	if (isProdBuild()) {
 		return del(mainDirectories.dist);
 	}
 	return del(mainDirectories.dev);
 }
 
-export function styles() {
+/**
+ * CSS task:
+ * Run `gulp styles` respectively `gulp styles -prod`.
+ * Handles LESS transpiling, auto prefixing, minifying and UnCSS.
+ */
+function styles() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.stylesEntryPoint)
 			.pipe(plumber({errorHandler: onError}))
@@ -78,7 +90,10 @@ export function styles() {
 		.pipe(gulp.dest(settings.destinations.dev.styles));
 }
 
-export function images() {
+/**
+ * Minify PNG, JPEG, GIF and SVG images with imagemin
+ */
+function images() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.images)
 			.pipe(imagemin())
@@ -88,7 +103,10 @@ export function images() {
 		.pipe(gulp.dest(settings.destinations.dev.images));
 }
 
-export function clientScripts() {
+/**
+ * Bundle own JavaScript excluding libs defined in package.json → bootstrapKickstart.bundleExternalJS
+ */
+function clientScripts() {
 	const b = browserify('./src/app/index.js', {...browserifyInc.args, debug: true})
 		.transform(babelify, {sourceMaps: true})
 		.external(settings.sources.externalJs);
@@ -109,7 +127,10 @@ export function clientScripts() {
 		.pipe(gulp.dest(settings.destinations.dev.scripts));
 }
 
-export function vendorScripts() {
+/**
+ * Bundle JavaScript libs defined in package.json → bootstrapKickstart.bundleExternalJS
+ */
+function vendorScripts() {
 	const b = browserify({...browserifyInc.args});
 	settings.sources.externalJs.forEach(dep => b.require(dep));
 	browserifyInc(b, {cacheFile: './.browserify-cache-vendor.json'});
@@ -127,7 +148,10 @@ export function vendorScripts() {
 		.pipe(gulp.dest(settings.destinations.dev.libs));
 }
 
-export function bundleExternalCSS(done) {
+/**
+ * Bundle CSS files defined in package.json → bootstrapKickstart.bundleCSS
+ */
+function bundleExternalCSS(done) {
 	const files = pkgJson.bootstrapKickstart.bundleCSS.map(sourcePath => path.join('node_modules/', sourcePath));
 	if (!files.length) return done();
 	if (isProdBuild()) {
@@ -142,11 +166,18 @@ export function bundleExternalCSS(done) {
 		.pipe(gulp.dest(settings.destinations.dev.libs));
 }
 
-export function copyStaticFiles() {
+/**
+ * Copy files defined in package.json → bootstrapKickstart.includeStaticFiles
+ */
+function copyStaticFiles() {
 	return gulp.src(settings.sources.staticFiles.map(sourcePath => path.join('node_modules/', sourcePath)), {base: 'node_modules/'})
 		.pipe(gulp.dest(isProdBuild() ? settings.destinations.prod.libs : settings.destinations.dev.libs));
 }
 
+/**
+ * ESLint task:
+ * Run `gulp lint` respectively `gulp lint -prod`
+ */
 export function lint() {
 	if (isProdBuild()) {
 		return gulp.src([...settings.sources.scripts, './*.js'])
@@ -154,14 +185,23 @@ export function lint() {
 			.pipe(eslint.format())
 			.pipe(eslint.failAfterError());
 	}
+	/**
+	 * TODO: Run ESLint with --fix for dev build
+	 * Seems that isn’t possible to fix files in place with multiple inputs. See example.
+	 * Looks like we would need to use https://github.com/robrich/gulp-exec to execute ESLint (or xo) with the fix option.
+	 */
 	return gulp.src([...settings.sources.scripts, './*.js'])
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError())
 		.on('error', onError);
 }
+lint.description = '`gulp lint` lints JavaScript via ESLint';
 
-export function security(done) {
+/**
+ * Check dependencies with help of the node security platform
+ */
+function security(done) {
 	if (isProdBuild()) {
 		nsp({package: path.join(__dirname, '/package.json')}, done);
 	} else {
@@ -169,7 +209,13 @@ export function security(done) {
 	}
 }
 
-export function processHtml() {
+/**
+ * Process HTML:
+ * - Replaces references to JS and CSS for production build
+ * - Remove comments for production build
+ * - Simply copy HTML for dev build
+ */
+function processHtml() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.markup)
 			.pipe(processhtml())
@@ -181,7 +227,10 @@ export function processHtml() {
 		.pipe(gulp.dest(settings.destinations.dev.markup));
 }
 
-export function lintBootstrap() {
+/**
+ * Lint HTML with Bootlint
+ */
+function lintBootstrap() {
 	return gulp.src(settings.sources.markup)
 		.pipe(bootlint({
 			stoponerror: isProdBuild(),
@@ -189,6 +238,10 @@ export function lintBootstrap() {
 		}));
 }
 
+/**
+ * Test task:
+ * Run `gulp test` respectively `gulp test -prod`
+ */
 export function test(done) {
 	jest.runCLI({config: pkgJson.jest}, '.', result => {
 		if (isProdBuild() && !result.success) {
@@ -198,12 +251,25 @@ export function test(done) {
 		done();
 	});
 }
+test.description = '`gulp test` runs unit test via Jest CLI';
+test.flags = {
+	'-prod': ' exits with exit code 1 when tests are failing'
+};
 
+/**
+ * Test watch task:
+ * Run `gulp testWatch`
+ */
 export function testWatch(done) {
 	jest.runCLI({watch: true, config: pkgJson.jest}, '.', () => {});
 	done();
 }
+testWatch.description = '`gulp testWatch` runs unit test with Jests native watch option';
 
+/**
+ * Serve task:
+ * Run `gulp serve` respectively `gulp serve -prod`
+ */
 export function serve(done) {
 	let baseDir = mainDirectories.dev;
 	if (isProdBuild()) {
@@ -216,23 +282,46 @@ export function serve(done) {
 	});
 	done();
 }
+serve.description = '`gulp serve` serves the build (`server` directory)';
+serve.flags = {
+	'-prod': ' serves production build (`dist` directory)'
+};
 
+//  Helper function to reload server
 function reload(done) {
 	server.reload();
 	done();
 }
 
+/**
+ * Watch task:
+ * Run `gulp watch` respectively `gulp watch -prod`
+ */
 export function watch() {
 	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, reload));
 	gulp.watch([...settings.sources.scripts, './*.js'], lint);
 	gulp.watch(settings.sources.styles, gulp.series(styles, reload));
 	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, gulp.series(processHtml, reload)));
 }
+watch.description = '`gulp watch` watches for changes and runs tasks automatically';
 
+/**
+ * Main buildtask:
+ * Run `gulp build` respectively `gulp build -prod`
+ */
 export const build = gulp.series(
 	clean,
 	gulp.parallel(processHtml, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security, test)
 );
+build.description = '`gulp build` is the main build task';
+build.flags = {
+	'-prod': ' builds for production to `dist` directory.'
+};
 
+/**
+ * Default task:
+ * Run `gulp` respectively `gulp -prod`
+ */
 const dev = gulp.series(build, serve, watch);
+dev.description = '`gulp` will build, serve, watch for changes and reload server';
 export default dev;
