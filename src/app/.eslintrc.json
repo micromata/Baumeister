@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
-    "jquery": true
+    "jquery": true,
+    "jest": true
   }
 }

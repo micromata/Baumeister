@@ -19,7 +19,9 @@ desktop.ini
 /src/assets/css
 /src/assets/js/*.min.js
 /src/assets/js/*.map
-.browserify-cache.json
+.browserify-cache-client.json
+.browserify-cache-vendor.json
+coverage
 
 ### Dev ###
 config.codekit

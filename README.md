@@ -57,7 +57,7 @@ See: <https://github.com/micromata/generator-bootstrap-kickstart>
 	$ git clone https://github.com/micromata/bootstrap-kickstart.git
 	$ cd bootstrap-kickstart
 	$ npm install
-	$ grunt tasks
+	$ gulp --tasks
 
 ## Dependencies
 
@@ -101,33 +101,59 @@ and call:
 
 npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our grunt workflow as well as the needed frontend dependencies to `\node_modules`.
 
-## Grunt Workflow and tasks
+## Gulp Workflow and tasks
 
 When completed the setup, you'll be able to run the various Grunt tasks provided from the command line.
 
 Just type the following to get an overview about the available Tasks:
 
-	grunt tasks
+	gulp --tasks
 
-This will give you the main Grunt tasks which are ready for you to be fired from the terminal (grouped into »Dev« and »Production« Tasks):
+This will give you the main Gulp tasks which are ready for you to be fired from the terminal.:
 
 ````
-Dev
-default        =>  Default Task. Just type `grunt` for this one. Calls `grunt dev` first and `grunt server` afterwards.
-dev            =>  `grunt dev` will lint your files, build sources within the server directory.
-sync           =>  `grunt sync` starts a local dev server, sync browsers and runs `grunt watch`
-jsdoc          ->  `grunt jsdoc` generates source documentation using jsdoc.
-serve          =>  `grunt serve` starts a local dev server and runs `grunt watch`
-watch          >   `grunt watch` run dev tasks whenever watched files change and Reloads the browser with »LiveReload« plugin.
-lint           =>  `grunt lint` lints JavaScript (ESLint) and HTML files (W3C validation and Bootlint)
-lint:fix       =>  `grunt lint:fix` tries to fix your ESLint errors.
-
-Production
-build          =>  `grunt build` builds production ready sources to dist directory.
-build:check    =>  `grunt build:check` starts a local server to make it possible to check the build in the browser.
-release:patch  =>  `grunt release:patch` builds the current sources and bumps version number (0.0.1).
-release:minor  =>  `grunt release:minor` builds the current sources and bumps version number (0.1.0).
-release:major  =>  `grunt release:major` builds the current sources and bumps version number (1.0.0).
+Tasks for ~/Documents/Projects/bootstrap-kickstart/gulpfile.babel.js
+├─┬ build      `gulp build` is the main build task
+│ │ -prod      … builds for production to `dist` directory.
+│ └─┬ <series>
+│   ├── clean
+│   └─┬ <parallel>
+│     ├── processHtml
+│     ├── lint
+│     ├── images
+│     ├── clientScripts
+│     ├── vendorScripts
+│     ├── styles
+│     ├── bundleExternalCSS
+│     ├── copyStaticFiles
+│     ├── lintBootstrap
+│     ├── security
+│     └── test
+├─┬ default    `gulp` will build, serve, watch for changes and reload server
+│ └─┬ <series>
+│   ├─┬ <series>
+│   │ ├── clean
+│   │ └─┬ <parallel>
+│   │   ├── processHtml
+│   │   ├── lint
+│   │   ├── images
+│   │   ├── clientScripts
+│   │   ├── vendorScripts
+│   │   ├── styles
+│   │   ├── bundleExternalCSS
+│   │   ├── copyStaticFiles
+│   │   ├── lintBootstrap
+│   │   ├── security
+│   │   └── test
+│   ├── serve
+│   └── watch
+├── lint
+├── serve      `gulp serve` serves the build (`server` directory)
+│   -prod      … serves production build (`dist` directory)
+├── test       `gulp test` runs unit test via Jest CLI
+│   -prod      … exits with exit code 1 when tests are failing
+├── testWatch  `gulp testWatch` runs unit test with Jests native watch option
+└── watch      `gulp watch` watches for changes and runs tasks automatically
 ````
 Running those tasks will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following resources are created after setting up and working with the project:
 
@@ -148,7 +174,7 @@ myProject
         └── css                → Transpiled and autoprefixed from LESS files
 ````
 
-See `/Gruntfile.js` to see what happens in Details.
+See `/gulpfile.babel.js` to see what happens in Details.
 
 ### Setting up your Editor (optional)
 
