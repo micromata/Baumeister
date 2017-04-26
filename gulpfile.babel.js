@@ -42,14 +42,14 @@ function onError(err) {
 	this.emit('end');
 }
 
-export function clean() {
+function clean() {
 	if (isProdBuild()) {
 		return del(mainDirectories.dist);
 	}
 	return del(mainDirectories.dev);
 }
 
-export function styles() {
+function styles() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.stylesEntryPoint)
 			.pipe(plumber({errorHandler: onError}))
@@ -78,7 +78,7 @@ export function styles() {
 		.pipe(gulp.dest(settings.destinations.dev.styles));
 }
 
-export function images() {
+function images() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.images)
 			.pipe(imagemin())
@@ -88,7 +88,7 @@ export function images() {
 		.pipe(gulp.dest(settings.destinations.dev.images));
 }
 
-export function clientScripts() {
+function clientScripts() {
 	const b = browserify('./src/app/index.js', {...browserifyInc.args, debug: true})
 		.transform(babelify, {sourceMaps: true})
 		.external(settings.sources.externalJs);
@@ -109,7 +109,7 @@ export function clientScripts() {
 		.pipe(gulp.dest(settings.destinations.dev.scripts));
 }
 
-export function vendorScripts() {
+function vendorScripts() {
 	const b = browserify({...browserifyInc.args});
 	settings.sources.externalJs.forEach(dep => b.require(dep));
 	browserifyInc(b, {cacheFile: './.browserify-cache-vendor.json'});
@@ -127,7 +127,7 @@ export function vendorScripts() {
 		.pipe(gulp.dest(settings.destinations.dev.libs));
 }
 
-export function bundleExternalCSS(done) {
+function bundleExternalCSS(done) {
 	const files = pkgJson.bootstrapKickstart.bundleCSS.map(sourcePath => path.join('node_modules/', sourcePath));
 	if (!files.length) return done();
 	if (isProdBuild()) {
@@ -142,7 +142,7 @@ export function bundleExternalCSS(done) {
 		.pipe(gulp.dest(settings.destinations.dev.libs));
 }
 
-export function copyStaticFiles() {
+function copyStaticFiles() {
 	return gulp.src(settings.sources.staticFiles.map(sourcePath => path.join('node_modules/', sourcePath)), {base: 'node_modules/'})
 		.pipe(gulp.dest(isProdBuild() ? settings.destinations.prod.libs : settings.destinations.dev.libs));
 }
@@ -161,7 +161,7 @@ export function lint() {
 		.on('error', onError);
 }
 
-export function security(done) {
+function security(done) {
 	if (isProdBuild()) {
 		nsp({package: path.join(__dirname, '/package.json')}, done);
 	} else {
@@ -169,7 +169,7 @@ export function security(done) {
 	}
 }
 
-export function processHtml() {
+function processHtml() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.markup)
 			.pipe(processhtml())
@@ -181,7 +181,7 @@ export function processHtml() {
 		.pipe(gulp.dest(settings.destinations.dev.markup));
 }
 
-export function lintBootstrap() {
+function lintBootstrap() {
 	return gulp.src(settings.sources.markup)
 		.pipe(bootlint({
 			stoponerror: isProdBuild(),
