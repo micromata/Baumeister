@@ -190,16 +190,13 @@ export function lintBootstrap() {
 }
 
 export function test(done) {
-	if (isProdBuild()) {
-		jest.runCLI({config: pkgJson.jest}, '.', result => {
-			if (!result.success) {
-				process.exit(1);
-			}
+	jest.runCLI({config: pkgJson.jest}, '.', result => {
+		if (isProdBuild() && !result.success) {
 			done();
-		});
-	} else {
+			process.exit(1);
+		}
 		done();
-	}
+	});
 }
 
 export function serve(done) {
