@@ -64,6 +64,7 @@
     "gulp-uncss": "^1.0.6",
     "husky": "^0.13.3",
     "less-plugin-autoprefix": "^1.5.1",
+    "minimist": "^1.2.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },

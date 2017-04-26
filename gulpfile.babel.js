@@ -29,16 +29,14 @@ import htmlmin from 'gulp-htmlmin';
 import bump from 'gulp-bump';
 import changelog from 'gulp-conventional-changelog';
 import git from 'gulp-git';
+import minimist from 'minimist';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const server = browserSync.create();
-
-function hasFlag(name) {
-	return process.argv.filter(val => val.toLowerCase().indexOf(name.toLowerCase()) !== -1).length > 0;
-}
+const args = minimist(process.argv.slice(2));
 
 function isProdBuild() {
-	return hasFlag('-prod') || hasFlag('-major') || hasFlag('-minor') || hasFlag('-patch');
+	return args.prod || args.major || args.minor || args.patch;
 }
 
 function onError(err) {
@@ -233,14 +231,14 @@ export const build = gulp.series(
 
 function bumpVersion() {
 	let type;
-	if (hasFlag('-major')) {
+	if (args.major) {
 		type = 'major';
-	} else if (hasFlag('-minor')) {
+	} else if (args.minor) {
 		type = 'minor';
-	} else if (hasFlag('-patch')) {
+	} else if (args.patch) {
 		type = 'patch';
 	} else {
-		onError('Please specify release type -(major|minor|patch)');
+		onError('Please specify release type --(major|minor|patch)');
 	}
 	return gulp.src('./package.json')
 		.pipe(bump({type}))
