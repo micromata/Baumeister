@@ -370,7 +370,7 @@ function createTag(done) {
 	});
 }
 
-export const release = gulp.series(bumpVersion, createChangelog, gulp.parallel(build, commitChanges, createTag));
+export const release = gulp.series(build, bumpVersion, createChangelog, commitChanges, createTag);
 
 /**
  * Default task:
