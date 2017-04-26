@@ -33,7 +33,7 @@ import {settings, mainDirectories, pkgJson} from './gulp.config';
 const server = browserSync.create();
 
 function hasFlag(name) {
-	return process.argv.filter(val => val.toLowerCase().indexOf(name.toLowerCase()) !== -1).length > -1;
+	return process.argv.filter(val => val.toLowerCase().indexOf(name.toLowerCase()) !== -1).length !== -1;
 }
 
 function isProdBuild() {
