@@ -160,6 +160,7 @@ export function lint() {
 		.pipe(eslint.failAfterError())
 		.on('error', onError);
 }
+lint.description = '`gulp lint` lints JavaScript via ESLint';
 
 function security(done) {
 	if (isProdBuild()) {
@@ -198,11 +199,16 @@ export function test(done) {
 		done();
 	});
 }
+test.description = '`gulp test` runs unit test via Jest CLI';
+test.flags = {
+	'-prod': ' exits with exit code 1 when tests are failing'
+};
 
 export function testWatch(done) {
 	jest.runCLI({watch: true, config: pkgJson.jest}, '.', () => {});
 	done();
 }
+testWatch.description = '`gulp testWatch` runs unit test with Jests native watch option';
 
 export function serve(done) {
 	let baseDir = mainDirectories.dev;
@@ -216,6 +222,10 @@ export function serve(done) {
 	});
 	done();
 }
+serve.description = '`gulp serve` serves the build (`server` directory)';
+serve.flags = {
+	'-prod': ' serves production build (`dist` directory)'
+};
 
 function reload(done) {
 	server.reload();
@@ -228,11 +238,17 @@ export function watch() {
 	gulp.watch(settings.sources.styles, gulp.series(styles, reload));
 	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, gulp.series(processHtml, reload)));
 }
+watch.description = '`gulp watch` watches for changes and runs tasks automatically';
 
 export const build = gulp.series(
 	clean,
 	gulp.parallel(processHtml, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security, test)
 );
+build.description = '`gulp build` is the main build task';
+build.flags = {
+	'-prod': ' builds for production to `dist` directory.'
+};
 
 const dev = gulp.series(build, serve, watch);
+dev.description = '`gulp` will build, serve, watch for changes and reload server';
 export default dev;
