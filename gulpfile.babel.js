@@ -33,6 +33,7 @@ import bump from 'gulp-bump';
 import changelog from 'gulp-conventional-changelog';
 import git from 'gulp-git';
 import minimist from 'minimist';
+import semver from 'semver';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const server = browserSync.create();
@@ -367,7 +368,7 @@ function createChangelog() {
 function commitChanges() {
 	return gulp.src('.')
 		.pipe(git.add())
-		.pipe(git.commit('[Pre-Release] Bumped version number'));
+		.pipe(git.commit(`Release ${semver.inc(pkgJson.version, args.bump)}`));
 }
 
 function createTag(done) {
