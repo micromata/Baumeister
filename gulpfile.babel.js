@@ -25,10 +25,18 @@ import processhtml from 'gulp-processhtml';
 import uncss from 'gulp-uncss';
 import bootlint from 'gulp-bootlint';
 import htmlmin from 'gulp-htmlmin';
+import bump from 'gulp-bump';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
-const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
 const server = browserSync.create();
+
+function hasFlag(name) {
+	return process.argv.filter(val => val.toLowerCase().indexOf(name.toLowerCase()) !== -1).length > -1;
+}
+
+function isProdBuild() {
+	return hasFlag('-prod') || hasFlag('-major') || hasFlag('-minor') || hasFlag('-patch');
+}
 
 function onError(err) {
 	notify({
@@ -219,6 +227,25 @@ export const build = gulp.series(
 	clean,
 	gulp.parallel(processHtml, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security)
 );
+
+function bumpVersion() {
+	let type;
+	if (hasFlag('-major')) {
+		type = 'major';
+	} else if (hasFlag('-minor')) {
+		type = 'minor';
+	} else if (hasFlag('-patch')) {
+		type = 'patch';
+	} else {
+		onError('Please specify release type -(major|minor|patch)');
+	}
+	return gulp.src('./package.json')
+		.pipe(bump({type}))
+		.on('error', onError)
+		.pipe(gulp.dest('.'));
+}
+
+export const release = gulp.parallel(build, bumpVersion);
 
 const dev = gulp.series(build, serve, watch);
 export default dev;

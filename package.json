@@ -43,6 +43,7 @@
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-babel": "^6.1.2",
     "gulp-bootlint": "^0.8.1",
+    "gulp-bump": "^2.7.0",
     "gulp-changed": "^2.0.0",
     "gulp-clean-css": "^3.0.4",
     "gulp-concat": "^2.6.1",
