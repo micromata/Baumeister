@@ -199,6 +199,11 @@ export function test(done) {
 	});
 }
 
+export function testWatch(done) {
+	jest.runCLI({watch: true, config: pkgJson.jest}, '.', () => {});
+	done();
+}
+
 export function serve(done) {
 	let baseDir = mainDirectories.dev;
 	if (isProdBuild()) {

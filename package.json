@@ -66,6 +66,7 @@
   "scripts": {
     "pretest": "gulp lint -prod",
     "test": "gulp test -prod",
+    "test:watch": "gulp testWatch",
     "start": "gulp",
     "dev": "gulp build",
     "serve": "gulp serve",
