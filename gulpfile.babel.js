@@ -36,10 +36,20 @@ import minimist from 'minimist';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const server = browserSync.create();
-const args = minimist(process.argv.slice(2));
+const args = minimist(process.argv.slice(2), {
+	boolean: 'prod',
+	string: 'bump',
+	alias: {P: 'prod', B: 'bump'}
+});
+
+function hasBumpType() {
+	return args.bump === 'major' ||
+					args.bump === 'minor' ||
+					args.bump === 'patch';
+}
 
 function isProdBuild() {
-	return args.prod || args.major || args.minor || args.patch;
+	return args.prod || hasBumpType();
 }
 
 /**
@@ -265,7 +275,8 @@ export function test(done) {
 }
 test.description = '`gulp test` runs unit test via Jest CLI';
 test.flags = {
-	'-prod': ' exits with exit code 1 when tests are failing'
+	'-prod': ' exits with exit code 1 when tests are failing',
+	'-P': ' exits with exit code 1 when tests are failing'
 };
 
 /**
@@ -296,7 +307,8 @@ export function serve(done) {
 }
 serve.description = '`gulp serve` serves the build (`server` directory)';
 serve.flags = {
-	'-prod': ' serves production build (`dist` directory)'
+	'-prod': ' serves production build (`dist` directory)',
+	'-P': ' serves production build (`dist` directory)'
 };
 
 //  Helper function to reload server
@@ -330,22 +342,17 @@ export const build = gulp.series(
 );
 build.description = '`gulp build` is the main build task';
 build.flags = {
-	'-prod': ' builds for production to `dist` directory.'
+	'-prod': ' builds for production to `dist` directory.',
+	'-P': ' builds for production to `dist` directory.'
 };
 
 function bumpVersion() {
-	let type;
-	if (args.major) {
-		type = 'major';
-	} else if (args.minor) {
-		type = 'minor';
-	} else if (args.patch) {
-		type = 'patch';
-	} else {
-		onError('Please specify release type --(major|minor|patch)');
+	if (!hasBumpType()) {
+		onError('Please specify release type --bump (major|minor|patch)');
 	}
+
 	return gulp.src('./package.json')
-		.pipe(bump({type}))
+		.pipe(bump({type: args.bump}))
 		.on('error', onError)
 		.pipe(gulp.dest('.'));
 }
@@ -371,6 +378,12 @@ function createTag(done) {
 }
 
 export const release = gulp.series(build, bumpVersion, createChangelog, commitChanges, createTag);
+release.description = '`gulp release` builds the current sources and bumps version number';
+release.flags = {
+	'-bump major': ' major release (1.0.0). See http://semver.org',
+	'-bump minor': ' minor release (0.1.0). See http://semver.org',
+	'-bump patch': ' patch release (0.0.1). See http://semver.org'
+};
 
 /**
  * Default task:
