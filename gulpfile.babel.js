@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import del from 'del';
 import chalk from 'chalk';
