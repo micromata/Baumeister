@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import del from 'del';
 import chalk from 'chalk';
@@ -6,7 +5,6 @@ import browserSync from 'browser-sync';
 import browserify from 'browserify';
 import browserifyInc from 'browserify-incremental';
 import babelify from 'babelify';
-import Autoprefix from 'less-plugin-autoprefix';
 import jest from 'jest-cli';
 import buffer from 'vinyl-buffer';
 import source from 'vinyl-source-stream';
@@ -19,7 +17,6 @@ import concat from 'gulp-concat';
 import eslint from 'gulp-eslint';
 import htmlmin from 'gulp-htmlmin';
 import imagemin from 'gulp-imagemin';
-import less from 'gulp-less';
 import notify from 'gulp-notify';
 import nsp from 'gulp-nsp';
 import plumber from 'gulp-plumber';
@@ -34,7 +31,9 @@ import changelog from 'gulp-conventional-changelog';
 import git from 'gulp-git';
 import minimist from 'minimist';
 import semver from 'semver';
-import {settings, mainDirectories, pkgJson} from './gulp.config';
+import sass from 'gulp-sass';
+import vendorPrefix from 'gulp-autoprefixer';
+import {mainDirectories, pkgJson, settings} from './gulp.config';
 
 const server = browserSync.create();
 const args = minimist(process.argv.slice(2), {
@@ -45,8 +44,8 @@ const args = minimist(process.argv.slice(2), {
 
 function hasBumpType() {
 	return args.bump === 'major' ||
-					args.bump === 'minor' ||
-					args.bump === 'patch';
+		args.bump === 'minor' ||
+		args.bump === 'patch';
 }
 
 function isProdBuild() {
@@ -86,14 +85,10 @@ function styles() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.stylesEntryPoint)
 			.pipe(plumber({errorHandler: onError}))
-			.pipe(less({
-				plugins: [new Autoprefix(settings.autoPrefix)]
-			}))
+			.pipe(sass())
+			.pipe(vendorPrefix(settings.autoPrefix))
 			.pipe(cleanCss())
-			.pipe(rename({
-				baseName: 'index',
-				suffix: '.min'
-			}))
+			.pipe(rename('index.min.css'))
 			.pipe(gulp.dest(settings.destinations.prod.styles))
 			.pipe(rename('index.uncss.min.css'))
 			.pipe(uncss({
@@ -104,9 +99,8 @@ function styles() {
 	return gulp.src(settings.sources.stylesEntryPoint)
 		.pipe(plumber({errorHandler: onError}))
 		.pipe(sourcemaps.init())
-		.pipe(less({
-			plugins: [new Autoprefix(settings.autoPrefix)]
-		}))
+		.pipe(sass())
+		.pipe(vendorPrefix(settings.autoPrefix))
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest(settings.destinations.dev.styles));
 }
@@ -271,7 +265,8 @@ function lintBootstrap() {
  */
 export function test(done) {
 	if (args.watch) {
-		jest.runCLI({watch: true, config: pkgJson.jest}, '.', () => {});
+		jest.runCLI({watch: true, config: pkgJson.jest}, '.', () => {
+		});
 		done();
 	}
 

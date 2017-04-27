@@ -1,0 +1,33 @@
+// Own variables
+// --------------------------------------------------
+// Below this comment block you find our addional »global« variables which are
+// used across our modules. There might be additional variables in different
+// modules with a limited scope.
+
+// Image path
+$mm_imagePath: "../img/";
+
+// Responsive helpers for applying media queries in the context of your selectors
+// Example
+// .foo {
+// 		font-size: @font-size-base;
+//   	@media @md-and-below {
+//			font-size: @font-size-base - 1;
+//		}
+//	}
+$retina: "(-webkit-min-device-pixel-ratio: 1.5)",
+			"(min--moz-device-pixel-ratio: 1.5)",
+			"(-o-min-device-pixel-ratio: 3/2)",
+			"(min-device-pixel-ratio: 1.5)";
+$xs-only: "only screen and (max-width: @{screen-xs-max})";
+$sm-only: "only screen and (min-width: @{screen-xs-min}) and (max-width: @{screen-sm-max})";
+$md-only: "only screen and (min-width: @{screen-sm-min}) and (max-width: @{screen-md-max})";
+$lg-only: "only screen and (min-width: @{screen-md-min}) and (max-width: @{screen-lg})";
+$sm-and-below: "only screen and (max-width: @{screen-xs-max})";
+$d-and-below: "only screen and (max-width: @{screen-sm-max})";
+$lg-and-below: "only screen and (max-width: @{screen-lg-min})";
+$sm-and-above: "only screen and (min-width: @{screen-xs-min})";
+$md-and-above: "only screen and (min-width: @{screen-sm-min})";
+$lg-and-above: "only screen and (min-width: @{screen-md-min})";
+$xl-and-above: "only screen and (min-width: @{screen-lg-min})";
+$icon-font-path: "../../../libs/bootstrap/fonts/";
