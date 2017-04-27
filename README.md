@@ -12,18 +12,20 @@
 The aim of this project is to help you with the creation of Bootstrap themes and websites as well as single page applications by providing:
 
 - a file structure with focus on maintainibilty and upgradability
-- a Grunt workflow with the following »features«
+- a Gulp workflow with the following »features«
 	- generating static sites with the use of handlebars templates
-	- transpile and minify our code
+	- transpile, bundle and minify your code
 		- ES6 as well as LESS
-	- get rid of `console` output in production files
+	- remove `console` output and debugger statements in production files
 	- add vendor prefixes
-	- Lint JavaScript and HTML
+	- lint JavaScript and HTML
 	- optimize images (lossless)
 	- start a local server
 	- keep browsers in sync for testing
 	- delete unused CSS (optional)
+	- check for know vulnerabilities in dependencies
 	- release new versions
+	- run unit tests and create coverage reports
 	- and more.
 
 ## Table of Contents
@@ -31,7 +33,7 @@ The aim of this project is to help you with the creation of Bootstrap themes and
 - [Quick install guide](#quick-install-guide)
 - [Dependencies](#dependencies)
 - [Setting up the project](#setting-up-the-project)
-- [Grunt Workflow and tasks](#grunt-workflow-and-tasks)
+- [Gulp Workflow and tasks](#gulp-workflow-and-tasks)
 - [Setting up your Editor (optional)](#setting-up-your-editor-optional)
 - [Writing Markup (using pages, templates and partials)](#writing-markup-using-pages-templates-and-partials)
 - [File and folder structure of LESS files](#file-and-folder-structure-of-less-files)
@@ -42,13 +44,14 @@ The aim of this project is to help you with the creation of Bootstrap themes and
 
 ## Quick install guide
 
-For those already using Node, Grunt and stuff.
+For those already using Node, Gulp and stuff.
 
 ### via Yeoman
 
 	$ npm install -g yo
 	$ npm install -g generator-bootstrap-kickstart
 	$ yo bootstrap-kickstart
+	$ gulp --tasks
 
 See: <https://github.com/micromata/generator-bootstrap-kickstart>
 
@@ -62,11 +65,11 @@ See: <https://github.com/micromata/generator-bootstrap-kickstart>
 ## Dependencies
 
 - Node.js
-- Grunt
+- Gulp
 
 ### Node.js
 
-The major dependency is [Node.js](http://nodejs.org/) including the Node.js package manager called »npm«. The other depencies can be installed with npm.
+The major dependency is [Node.js](http://nodejs.org/) including the Node.js package manager called »npm«. The other dependencies can be installed with npm.
 
 Please enter the following in your terminal if your aren’t sure about the availability of Node.js and npm on your machine:
 
@@ -74,19 +77,19 @@ Please enter the following in your terminal if your aren’t sure about the avai
 
 This should return something like the following in case Node.js and npm is already installed:
 
-	4.4.4
+	4.5.0
 
 If that isn’t the case you have to install Node.js first. On OS X we strongly recommend installing Node via [Homebrew](https://brew.sh/) or [Node Version Manager](https://github.com/creationix/nvm). Not just because it’s easier to switch versions but also because you prevent potential permission problems when running npm.
 
-### Grunt
+### Gulp
 
-Like Bootstrap itself this project uses [Grunt](http://gruntjs.com/) for its build system, with convenient methods for working with the project. It's how we compile and minify our code, at vendor prefixes, optimize images, delete unused CSS, release new versions and more.
+This project uses [Gulp](http://gulpjs.com/) for its build system, with convenient methods for working with the project. It's how we compile and minify our code, at vendor prefixes, optimize images, delete unused CSS, release new versions and more.
 
-#### Installing Grunt
+#### Installing Gulp
 
-Thanks do Node.js and npm installing the Grunt command line tools globally is just this simple one-liner:
+Thanks do Node.js and npm installing the Gulp command line tools globally is just this simple one-liner:
 
-	npm install -g grunt-cli
+	npm install --global gulp-cli
 
 <a name="setup"></a>
 ## Setting up the project
@@ -99,11 +102,11 @@ and call:
 
 	npm install
 
-npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our grunt workflow as well as the needed frontend dependencies to `\node_modules`.
+npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our Gulp workflow as well as the needed frontend dependencies to `\node_modules`.
 
 ## Gulp Workflow and tasks
 
-When completed the setup, you'll be able to run the various Grunt tasks provided from the command line.
+When completed the setup, you'll be able to run the various Gulp tasks provided from the command line.
 
 Just type the following to get an overview about the available Tasks:
 
@@ -113,65 +116,45 @@ This will give you the main Gulp tasks which are ready for you to be fired from 
 
 ````
 Tasks for ~/Documents/Projects/bootstrap-kickstart/gulpfile.babel.js
-├─┬ build      `gulp build` is the main build task
-│ │ -prod      … builds for production to `dist` directory.
-│ └─┬ <series>
-│   ├── clean
-│   └─┬ <parallel>
-│     ├── processHtml
-│     ├── lint
-│     ├── images
-│     ├── clientScripts
-│     ├── vendorScripts
-│     ├── styles
-│     ├── bundleExternalCSS
-│     ├── copyStaticFiles
-│     ├── lintBootstrap
-│     ├── security
-│     └── test
-├─┬ default    `gulp` will build, serve, watch for changes and reload server
-│ └─┬ <series>
-│   ├─┬ <series>
-│   │ ├── clean
-│   │ └─┬ <parallel>
-│   │   ├── processHtml
-│   │   ├── lint
-│   │   ├── images
-│   │   ├── clientScripts
-│   │   ├── vendorScripts
-│   │   ├── styles
-│   │   ├── bundleExternalCSS
-│   │   ├── copyStaticFiles
-│   │   ├── lintBootstrap
-│   │   ├── security
-│   │   └── test
-│   ├── serve
-│   └── watch
-├── lint
-├── serve      `gulp serve` serves the build (`server` directory)
-│   -prod      … serves production build (`dist` directory)
-├── test       `gulp test` runs unit test via Jest CLI
-│   -prod      … exits with exit code 1 when tests are failing
-├── testWatch  `gulp testWatch` runs unit test with Jests native watch option
-└── watch      `gulp watch` watches for changes and runs tasks automatically
+├── build                 `gulp build` is the main build task
+│   --production          … builds for production to `dist` directory.
+│   -P                    … Alias for --production
+├── default               `gulp` will build, serve, watch for changes and reload server
+├── lint                  `gulp lint` lints JavaScript via ESLint
+├── release               `gulp release` builds the current sources and bumps version number
+│   --bump major          … major release (1.0.0). See http://semver.org
+│   --bump minor          … minor release (0.1.0). See http://semver.org
+│   --bump patch          … patch release (0.0.1). See http://semver.org
+│   -B major|minor|patch  … alias to --bump
+├── serve                 `gulp serve` serves the build (`server` directory)
+│   --production          … serves production build (`dist` directory)
+│   -P                    … Alias for --production
+├── test                  `gulp test` runs unit test via Jest CLI
+│   --production          … exits with exit code 1 when tests are failing (CI)
+│   --watch               … runs unit test with Jests native watch option
+│   -P                    … Alias for --production
+│   -W                    … Alias for --watch
+└── watch                 `gulp watch` watches for changes and runs tasks automatically
 ````
 Running those tasks will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following resources are created after setting up and working with the project:
 
 ````
 myProject
-├── dist                       → Contains the files ready for production
+├──.browserify-cache-client.json    → Browserify cache file
+├──.browserify-cache-vendor.json    → Browserify cache file
+├── dist                            → Contains the files ready for production
 │   ├── app
 │   ├── assets
-│   └── libs                   → Relevant files copied from /node_modules
-├── docs                       → JavaScript Docs generated from DocBlock comments
-├── node_modules/              → Dependencies installed by npm
-├── server                     → Contains the files for the development server
+│   └── libs                        → Relevant files copied from /node_modules
+├── coverage                        → Test coverage reports
+├── node_modules/                   → Dependencies installed by npm
+├── server                          → Contains the files for the development server
 │   ├── app
 │   ├── assets
-│   └── libs                   → Relevant files copied from /node_modules
+│   └── libs                        → Relevant files copied from /node_modules
 └── src
     └── assets
-        └── css                → Transpiled and autoprefixed from LESS files
+        └── css                     → Transpiled and autoprefixed from LESS files
 ````
 
 See `/gulpfile.babel.js` to see what happens in Details.
@@ -190,13 +173,15 @@ Beside that we recommend setting up a project within in your editor if you don�
       "node_modules",
       "server",
       "dist",
-      "reports",
-      "docs",
-      "src/assets/css"
+      "src/assets/css",
+			".git"
     ],
     "file_exclude_patterns": [
       ".editorconfig",
-      ".travis.yml"
+      ".travis.yml",
+			".browserify-cache-client.json",
+			".browserify-cache-vendor.json",
+			".DS_Store"
     ]
   }]
 }
@@ -304,7 +289,7 @@ This combination will render to one html file.
 	<p>My content</p>
 
 	<footer>
-		© 2015 MyCompany
+		© 2017 MyCompany
 	</footer>
 </body>
 </html>
@@ -507,17 +492,13 @@ myProject
 
 ### Bundling CSS from dependencies
 
-If your lib ships its own CSS, create a property for your lib in the `bundleCSS` section of your `package.json` where the key is equivalent to the npm package name and the value a string array containing all paths to css files relative to its module folder.
+If your lib ships its own CSS you have to include the path to the files you like to bundle in the `bundleCSS` section of your `package.json`. Please note that glob pattern matching is supported over here.
 
 ```
-"bundleCSS": {
-    "select2": [
-      "dist/css/select2.css"
-    ],
-    "select2-bootstrap-css": [
-      "select2-bootstrap.css"
-    ]
-  }
+"bundleCSS": [
+	"select2/dist/css/select2.css",
+	"select2-bootstrap-css/select2-bootstrap.css"
+]
 ```
 
 The bundled CSS is stored in the `libs` directory during the build process:
@@ -535,7 +516,7 @@ myProject
 ### Including static files from dependencies
 
 Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a seperate `<script>` tag.
-To handle that you just have to include the files in the `includeStaticFiles` section of your `package.json`. Please not that glob pattern macthing is supported over here.
+To handle that you just have to include the files in the `includeStaticFiles` section of your `package.json`. Please note that glob pattern matching is supported over here.
 
 ```
 "includeStaticFiles": [
