@@ -33,6 +33,7 @@ import changelog from 'gulp-conventional-changelog';
 import git from 'gulp-git';
 import minimist from 'minimist';
 import semver from 'semver';
+import envify from 'gulp-envify';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const server = browserSync.create();
@@ -164,6 +165,7 @@ function vendorScripts() {
 		return b.bundle()
 			.pipe(source('vendor.min.js'))
 			.pipe(buffer())
+			.pipe(envify({NODE_ENV: 'production'}))
 			.pipe(uglify())
 			.pipe(gulp.dest(settings.destinations.prod.libs));
 	}
