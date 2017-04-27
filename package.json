@@ -74,7 +74,7 @@
   "scripts": {
     "pretest": "gulp lint -prod",
     "test": "gulp test -prod",
-    "test:watch": "gulp testWatch",
+    "test:watch": "gulp test --watch",
     "start": "gulp",
     "dev": "gulp build",
     "serve": "gulp serve",

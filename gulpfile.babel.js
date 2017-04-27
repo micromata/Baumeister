@@ -38,9 +38,9 @@ import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const server = browserSync.create();
 const args = minimist(process.argv.slice(2), {
-	boolean: 'production',
+	boolean: ['production', 'watch'],
 	string: 'bump',
-	alias: {P: 'production', B: 'bump'}
+	alias: {P: 'production', B: 'bump', W: 'watch'}
 });
 
 function hasBumpType() {
@@ -263,9 +263,15 @@ function lintBootstrap() {
 
 /**
  * Test task:
- * Run `gulp test` respectively `gulp test --production`
+ * Run `gulp test`, `gulp test --watch` or `gulp test --production` in CI to
+ * make exit with a correct exit code when tests are failing
  */
 export function test(done) {
+	if (args.watch) {
+		jest.runCLI({watch: true, config: pkgJson.jest}, '.', () => {});
+		done();
+	}
+
 	jest.runCLI({config: pkgJson.jest}, '.', result => {
 		if (isProdBuild() && !result.success) {
 			done();
@@ -276,19 +282,11 @@ export function test(done) {
 }
 test.description = '`gulp test` runs unit test via Jest CLI';
 test.flags = {
-	'--production': ' exits with exit code 1 when tests are failing',
-	'-P': ' Alias for --production'
+	'--production': ' exits with exit code 1 when tests are failing (CI)',
+	'-P': ' Alias for --production',
+	'--watch': ' runs unit test with Jests native watch option',
+	'-W': ' Alias for --watch'
 };
-
-/**
- * Test watch task:
- * Run `gulp testWatch`
- */
-export function testWatch(done) {
-	jest.runCLI({watch: true, config: pkgJson.jest}, '.', () => {});
-	done();
-}
-testWatch.description = '`gulp testWatch` runs unit test with Jests native watch option';
 
 /**
  * Serve task:
