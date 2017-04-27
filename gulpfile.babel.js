@@ -358,6 +358,8 @@ function bumpVersion() {
 		onError(new Error(chalk.red('Please specify release type: gulp release --bump (major|minor|patch)')));
 	}
 
+	pkgJson.version = semver.inc(pkgJson.version, args.bump);
+
 	return gulp.src('./package.json')
 		.pipe(bump({type: args.bump}))
 		.on('error', onError)
@@ -382,7 +384,7 @@ function createChangelog() {
 function commitChanges() {
 	return gulp.src('.')
 		.pipe(git.add())
-		.pipe(git.commit(`Release ${semver.inc(pkgJson.version, args.bump)}`));
+		.pipe(git.commit(`Release ${pkgJson.version}`));
 }
 
 /**
@@ -390,8 +392,7 @@ function commitChanges() {
  * Used in release task.
  */
 function createTag(done) {
-	const version = semver.inc(pkgJson.version, args.bump);
-	git.tag(version, `Created tag for version: ${version}`, error => {
+	git.tag(pkgJson.version, `Created tag for version: ${pkgJson.version}`, error => {
 		if (error) return onError(error);
 		done();
 	});
