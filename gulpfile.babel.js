@@ -38,9 +38,9 @@ import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const server = browserSync.create();
 const args = minimist(process.argv.slice(2), {
-	boolean: 'prod',
+	boolean: 'production',
 	string: 'bump',
-	alias: {P: 'prod', B: 'bump'}
+	alias: {P: 'production', B: 'bump'}
 });
 
 function hasBumpType() {
@@ -50,7 +50,7 @@ function hasBumpType() {
 }
 
 function isProdBuild() {
-	return args.prod || hasBumpType();
+	return args.production || hasBumpType();
 }
 
 /**
@@ -81,7 +81,7 @@ function clean() {
 
 /**
  * CSS task:
- * Run `gulp styles` respectively `gulp styles -prod`.
+ * Run `gulp styles` respectively `gulp styles --production`.
  * Handles LESS transpiling, auto prefixing, minifying and UnCSS.
  */
 function styles() {
@@ -199,7 +199,7 @@ function copyStaticFiles() {
 
 /**
  * ESLint task:
- * Run `gulp lint` respectively `gulp lint -prod`
+ * Run `gulp lint` respectively `gulp lint --production`
  */
 export function lint() {
 	if (isProdBuild()) {
@@ -263,7 +263,7 @@ function lintBootstrap() {
 
 /**
  * Test task:
- * Run `gulp test` respectively `gulp test -prod`
+ * Run `gulp test` respectively `gulp test --production`
  */
 export function test(done) {
 	jest.runCLI({config: pkgJson.jest}, '.', result => {
@@ -276,8 +276,8 @@ export function test(done) {
 }
 test.description = '`gulp test` runs unit test via Jest CLI';
 test.flags = {
-	'-prod': ' exits with exit code 1 when tests are failing',
-	'-P': ' exits with exit code 1 when tests are failing'
+	'--production': ' exits with exit code 1 when tests are failing',
+	'-P': ' Alias for --production'
 };
 
 /**
@@ -292,7 +292,7 @@ testWatch.description = '`gulp testWatch` runs unit test with Jests native watch
 
 /**
  * Serve task:
- * Run `gulp serve` respectively `gulp serve -prod`
+ * Run `gulp serve` respectively `gulp serve --production`
  */
 export function serve(done) {
 	let baseDir = mainDirectories.dev;
@@ -308,8 +308,8 @@ export function serve(done) {
 }
 serve.description = '`gulp serve` serves the build (`server` directory)';
 serve.flags = {
-	'-prod': ' serves production build (`dist` directory)',
-	'-P': ' serves production build (`dist` directory)'
+	'--production': ' serves production build (`dist` directory)',
+	'-P': ' Alias for --production'
 };
 
 //  Helper function to reload server
@@ -320,7 +320,7 @@ function reload(done) {
 
 /**
  * Watch task:
- * Run `gulp watch` respectively `gulp watch -prod`
+ * Run `gulp watch` respectively `gulp watch --production`
  */
 export function watch() {
 	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, gulp.parallel(lint, reload))).on('change', informOnChange);
@@ -335,7 +335,7 @@ watch.description = '`gulp watch` watches for changes and runs tasks automatical
 
 /**
  * Main buildtask:
- * Run `gulp build` respectively `gulp build -prod`
+ * Run `gulp build` respectively `gulp build --production`
  */
 export const build = gulp.series(
 	clean,
@@ -343,8 +343,8 @@ export const build = gulp.series(
 );
 build.description = '`gulp build` is the main build task';
 build.flags = {
-	'-prod': ' builds for production to `dist` directory.',
-	'-P': ' builds for production to `dist` directory.'
+	'--production': ' builds for production to `dist` directory.',
+	'-P': ' Alias for --production'
 };
 
 function bumpVersion() {
@@ -382,14 +382,15 @@ function createTag(done) {
 export const release = gulp.series(build, bumpVersion, createChangelog, commitChanges, createTag);
 release.description = '`gulp release` builds the current sources and bumps version number';
 release.flags = {
-	'-bump major': ' major release (1.0.0). See http://semver.org',
-	'-bump minor': ' minor release (0.1.0). See http://semver.org',
-	'-bump patch': ' patch release (0.0.1). See http://semver.org'
+	'--bump major': ' major release (1.0.0). See http://semver.org',
+	'--bump minor': ' minor release (0.1.0). See http://semver.org',
+	'--bump patch': ' patch release (0.0.1). See http://semver.org',
+	'-B major|minor|patch': ' alias to --bump'
 };
 
 /**
  * Default task:
- * Run `gulp` respectively `gulp -prod`
+ * Run `gulp` respectively `gulp --production`
  */
 const dev = gulp.series(build, serve, watch);
 dev.description = '`gulp` will build, serve, watch for changes and reload server';
