@@ -112,6 +112,20 @@ function styles() {
 }
 
 /**
+ * Copy fonts from src/assets/fonts
+ */
+function fonts() {
+	if (isProdBuild()) {
+		return gulp.src(settings.sources.fonts)
+			.pipe(changed(settings.destinations.prod.fonts))
+			.pipe(gulp.dest(settings.destinations.prod.fonts));
+	}
+	return gulp.src(settings.sources.fonts)
+		.pipe(changed(settings.destinations.dev.fonts))
+		.pipe(gulp.dest(settings.destinations.dev.fonts));
+}
+
+/**
  * Minify PNG, JPEG, GIF and SVG images with imagemin
  */
 function images() {
@@ -328,6 +342,7 @@ export function watch() {
 	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, gulp.parallel(lint, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.styles, gulp.series(styles, reload)).on('change', informOnChange);
 	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, gulp.series(processHtml, reload))).on('change', informOnChange);
+	gulp.watch(settings.sources.fonts, gulp.series(fonts, reload)).on('change', informOnChange);
 
 	function informOnChange(path) {
 		gutil.log(`File ${chalk.yellow(path)} has changed`);
@@ -336,12 +351,12 @@ export function watch() {
 watch.description = '`gulp watch` watches for changes and runs tasks automatically';
 
 /**
- * Main buildtask:
+ * Main build task:
  * Run `gulp build` respectively `gulp build --production`
  */
 export const build = gulp.series(
 	clean,
-	gulp.parallel(processHtml, lint, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security, test)
+	gulp.parallel(processHtml, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security, test)
 );
 build.description = '`gulp build` is the main build task';
 build.flags = {
