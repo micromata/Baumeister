@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 import del from 'del';
 import chalk from 'chalk';
@@ -9,7 +10,7 @@ import Autoprefix from 'less-plugin-autoprefix';
 import jest from 'jest-cli';
 import buffer from 'vinyl-buffer';
 import source from 'vinyl-source-stream';
-
+import touch from 'gulp-touch';
 import gulp from 'gulp';
 import bootlint from 'gulp-bootlint';
 import changed from 'gulp-changed';
@@ -28,11 +29,29 @@ import uglify from 'gulp-uglify';
 import uncss from 'gulp-uncss';
 import gutil from 'gulp-util';
 import rename from 'gulp-rename';
-
+import bump from 'gulp-bump';
+import changelog from 'gulp-conventional-changelog';
+import git from 'gulp-git';
+import minimist from 'minimist';
+import semver from 'semver';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
-const isProdBuild = () => process.argv.filter(val => val.toLowerCase().indexOf('-prod') !== -1).length > 0;
 const server = browserSync.create();
+const args = minimist(process.argv.slice(2), {
+	boolean: 'production',
+	string: 'bump',
+	alias: {P: 'production', B: 'bump'}
+});
+
+function hasBumpType() {
+	return args.bump === 'major' ||
+					args.bump === 'minor' ||
+					args.bump === 'patch';
+}
+
+function isProdBuild() {
+	return args.production || hasBumpType();
+}
 
 /**
  * Configure notify error reporting.
@@ -62,7 +81,7 @@ function clean() {
 
 /**
  * CSS task:
- * Run `gulp styles` respectively `gulp styles -prod`.
+ * Run `gulp styles` respectively `gulp styles --production`.
  * Handles LESS transpiling, auto prefixing, minifying and UnCSS.
  */
 function styles() {
@@ -180,7 +199,7 @@ function copyStaticFiles() {
 
 /**
  * ESLint task:
- * Run `gulp lint` respectively `gulp lint -prod`
+ * Run `gulp lint` respectively `gulp lint --production`
  */
 export function lint() {
 	if (isProdBuild()) {
@@ -244,7 +263,7 @@ function lintBootstrap() {
 
 /**
  * Test task:
- * Run `gulp test` respectively `gulp test -prod`
+ * Run `gulp test` respectively `gulp test --production`
  */
 export function test(done) {
 	jest.runCLI({config: pkgJson.jest}, '.', result => {
@@ -257,7 +276,8 @@ export function test(done) {
 }
 test.description = '`gulp test` runs unit test via Jest CLI';
 test.flags = {
-	'-prod': ' exits with exit code 1 when tests are failing'
+	'--production': ' exits with exit code 1 when tests are failing',
+	'-P': ' Alias for --production'
 };
 
 /**
@@ -272,7 +292,7 @@ testWatch.description = '`gulp testWatch` runs unit test with Jests native watch
 
 /**
  * Serve task:
- * Run `gulp serve` respectively `gulp serve -prod`
+ * Run `gulp serve` respectively `gulp serve --production`
  */
 export function serve(done) {
 	let baseDir = mainDirectories.dev;
@@ -288,7 +308,8 @@ export function serve(done) {
 }
 serve.description = '`gulp serve` serves the build (`server` directory)';
 serve.flags = {
-	'-prod': ' serves production build (`dist` directory)'
+	'--production': ' serves production build (`dist` directory)',
+	'-P': ' Alias for --production'
 };
 
 //  Helper function to reload server
@@ -299,7 +320,7 @@ function reload(done) {
 
 /**
  * Watch task:
- * Run `gulp watch` respectively `gulp watch -prod`
+ * Run `gulp watch` respectively `gulp watch --production`
  */
 export function watch() {
 	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, gulp.parallel(lint, reload))).on('change', informOnChange);
@@ -314,7 +335,7 @@ watch.description = '`gulp watch` watches for changes and runs tasks automatical
 
 /**
  * Main buildtask:
- * Run `gulp build` respectively `gulp build -prod`
+ * Run `gulp build` respectively `gulp build --production`
  */
 export const build = gulp.series(
 	clean,
@@ -322,12 +343,54 @@ export const build = gulp.series(
 );
 build.description = '`gulp build` is the main build task';
 build.flags = {
-	'-prod': ' builds for production to `dist` directory.'
+	'--production': ' builds for production to `dist` directory.',
+	'-P': ' Alias for --production'
+};
+
+function bumpVersion() {
+	if (!hasBumpType()) {
+		onError(new Error(chalk.red('Please specify release type: gulp release --bump (major|minor|patch)')));
+	}
+
+	return gulp.src('./package.json')
+		.pipe(bump({type: args.bump}))
+		.on('error', onError)
+		.pipe(gulp.dest('./'))
+		.pipe(touch());
+}
+
+function createChangelog() {
+	return gulp.src('./CHANGELOG.md', {buffer: false})
+		.pipe(changelog({preset: 'angular'}))
+		.pipe(gulp.dest('./'));
+}
+
+function commitChanges() {
+	return gulp.src('.')
+		.pipe(git.add())
+		.pipe(git.commit(`Release ${semver.inc(pkgJson.version, args.bump)}`));
+}
+
+function createTag(done) {
+	const version = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
+	git.tag(`${version}`, 'Created tag for version: ' + version, error => {
+		if (error) return onError(error);
+		done();
+	});
+}
+
+export const release = gulp.series(build, bumpVersion, createChangelog, commitChanges, createTag);
+release.description = '`gulp release` builds the current sources and bumps version number';
+release.flags = {
+	'--bump major': ' major release (1.0.0). See http://semver.org',
+	'--bump minor': ' minor release (0.1.0). See http://semver.org',
+	'--bump patch': ' patch release (0.0.1). See http://semver.org',
+	'-B major|minor|patch': ' alias to --bump'
 };
 
 /**
  * Default task:
- * Run `gulp` respectively `gulp -prod`
+ * Run `gulp` respectively `gulp --production`
  */
 const dev = gulp.series(build, serve, watch);
 dev.description = '`gulp` will build, serve, watch for changes and reload server';
