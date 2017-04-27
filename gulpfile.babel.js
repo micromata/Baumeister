@@ -80,8 +80,6 @@ function clean() {
 }
 
 /**
- * CSS task:
- * Run `gulp styles` respectively `gulp styles --production`.
  * Handles LESS transpiling, auto prefixing, minifying and UnCSS.
  */
 function styles() {
@@ -350,6 +348,10 @@ build.flags = {
 	'-P': ' Alias for --production'
 };
 
+/**
+ * Bumps version in package.json.
+ * Used in release task.
+ */
 function bumpVersion() {
 	if (!hasBumpType()) {
 		onError(new Error(chalk.red('Please specify release type: gulp release --bump (major|minor|patch)')));
@@ -362,18 +364,30 @@ function bumpVersion() {
 		.pipe(touch());
 }
 
+/**
+ * Creates changelog.
+ * Used in release task.
+ */
 function createChangelog() {
 	return gulp.src('./CHANGELOG.md', {buffer: false})
 		.pipe(changelog({preset: 'angular'}))
 		.pipe(gulp.dest('./'));
 }
 
+/**
+ * Commits changes.
+ * Used in release task.
+ */
 function commitChanges() {
 	return gulp.src('.')
 		.pipe(git.add())
 		.pipe(git.commit(`Release ${semver.inc(pkgJson.version, args.bump)}`));
 }
 
+/**
+ * Creates Git tag.
+ * Used in release task.
+ */
 function createTag(done) {
 	const version = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
 	git.tag(`${version}`, 'Created tag for version: ' + version, error => {
@@ -382,6 +396,10 @@ function createTag(done) {
 	});
 }
 
+/**
+ * Release task:
+ * Run `gulp release --bump major|minor|patch`
+ */
 export const release = gulp.series(build, bumpVersion, createChangelog, commitChanges, createTag);
 release.description = '`gulp release` builds the current sources and bumps version number';
 release.flags = {
