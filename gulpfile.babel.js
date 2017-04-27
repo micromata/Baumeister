@@ -389,8 +389,8 @@ function commitChanges() {
  * Used in release task.
  */
 function createTag(done) {
-	const version = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
-	git.tag(`${version}`, 'Created tag for version: ' + version, error => {
+	const version = semver.inc(pkgJson.version, args.bump);
+	git.tag(version, `Created tag for version: ${version}`, error => {
 		if (error) return onError(error);
 		done();
 	});
