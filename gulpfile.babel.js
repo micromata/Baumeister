@@ -138,6 +138,17 @@ function images() {
 		.pipe(gulp.dest(settings.destinations.dev.images));
 }
 
+function appTemplates() {
+	if (isProdBuild()) {
+		return gulp.src(settings.sources.appTemplates)
+			.pipe(changed(settings.destinations.prod.app))
+			.pipe(gulp.dest(settings.destinations.prod.app));
+	}
+	return gulp.src(settings.sources.appTemplates)
+		.pipe(changed(settings.destinations.dev.app))
+		.pipe(gulp.dest(settings.destinations.dev.app));
+}
+
 /**
  * Bundle own JavaScript excluding libs defined in package.json → bootstrapKickstart.bundleExternalJS
  */
@@ -158,13 +169,13 @@ function clientScripts() {
 					drop_debugger: true // eslint-disable-line camelcase
 				}
 			}))
-			.pipe(gulp.dest(settings.destinations.prod.scripts));
+			.pipe(gulp.dest(settings.destinations.prod.app));
 	}
 	return b.bundle()
 		.on('error', onError)
 		.pipe(source('client.js'))
 		.pipe(buffer())
-		.pipe(gulp.dest(settings.destinations.dev.scripts));
+		.pipe(gulp.dest(settings.destinations.dev.app));
 }
 
 /**
@@ -343,6 +354,7 @@ export function watch() {
 	gulp.watch(settings.sources.styles, gulp.series(styles, reload)).on('change', informOnChange);
 	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, gulp.series(processHtml, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.fonts, gulp.series(fonts, reload)).on('change', informOnChange);
+	gulp.watch(settings.sources.appTemplates, gulp.series(appTemplates, reload)).on('change', informOnChange);
 
 	function informOnChange(path) {
 		gutil.log(`File ${chalk.yellow(path)} has changed`);
@@ -356,7 +368,7 @@ watch.description = '`gulp watch` watches for changes and runs tasks automatical
  */
 export const build = gulp.series(
 	clean,
-	gulp.parallel(processHtml, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security, test)
+	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security, test)
 );
 build.description = '`gulp build` is the main build task';
 build.flags = {

@@ -11,6 +11,7 @@ export const settings = {
 		styles: ['./src/assets/less/**/*.less'],
 		stylesEntryPoint: './src/assets/less/index.less',
 		scripts: ['./src/app/**/*.js'],
+		appTemplates: ['./src/app/**/*.html'],
 		images: ['./src/assets/img/**/*.{png,jpg,gif,svg}'],
 		fonts: ['./src/assets/fonts/**/*'],
 		externalCss: pkgJson.bootstrapKickstart.bundleCSS,
@@ -21,7 +22,7 @@ export const settings = {
 		dev: {
 			markup: `${mainDirectories.dev}`,
 			styles: `${mainDirectories.dev}assets/css/`,
-			scripts: `${mainDirectories.dev}app/`,
+			app: `${mainDirectories.dev}app/`,
 			fonts: `${mainDirectories.dev}assets/fonts/`,
 			images: `${mainDirectories.dev}assets/img/`,
 			libs: `${mainDirectories.dev}libs/`
@@ -29,7 +30,7 @@ export const settings = {
 		prod: {
 			markup: `${mainDirectories.dist}`,
 			styles: `${mainDirectories.dist}assets/css/`,
-			scripts: `${mainDirectories.dist}app/`,
+			app: `${mainDirectories.dist}app/`,
 			fonts: `${mainDirectories.dist}assets/fonts/`,
 			images: `${mainDirectories.dist}assets/img/`,
 			libs: `${mainDirectories.dist}libs/`
