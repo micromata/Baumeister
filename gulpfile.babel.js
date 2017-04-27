@@ -140,7 +140,12 @@ function clientScripts() {
 			.pipe(source('client.js'))
 			.pipe(buffer())
 			.pipe(rename('client.min.js'))
-			.pipe(uglify())
+			.pipe(uglify({
+				compress: {
+					drop_console: true, // eslint-disable-line camelcase
+					drop_debugger: true // eslint-disable-line camelcase
+				}
+			}))
 			.pipe(gulp.dest(settings.destinations.prod.scripts));
 	}
 	return b.bundle()
