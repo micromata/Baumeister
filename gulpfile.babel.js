@@ -293,9 +293,9 @@ function lintBootstrap() {
 }
 
 /**
- * HTML validation
+ * HTML validation using the Nu HTML Checker
  */
-function lintMarkup() {
+function validateHtml() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.markup)
 			.pipe(htmllint())
@@ -369,7 +369,7 @@ function reload(done) {
 export function watch() {
 	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, gulp.parallel(lint, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.styles, gulp.series(styles, reload)).on('change', informOnChange);
-	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, lintMarkup, gulp.series(processHtml, reload))).on('change', informOnChange);
+	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, validateHtml, gulp.series(processHtml, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.images, gulp.series(images, reload)).on('change', informOnChange);
 	gulp.watch(settings.sources.fonts, gulp.series(fonts, reload)).on('change', informOnChange);
 	gulp.watch(settings.sources.appTemplates, gulp.series(appTemplates, reload)).on('change', informOnChange);
@@ -386,7 +386,7 @@ watch.description = '`gulp watch` watches for changes and runs tasks automatical
  */
 export const build = gulp.series(
 	clean,
-	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintMarkup, lintBootstrap, security, test)
+	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, security, test)
 );
 build.description = '`gulp build` is the main build task';
 build.flags = {
