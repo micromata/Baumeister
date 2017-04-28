@@ -1,4 +1,4 @@
-export const pkgJson = require('./package.json');
+export const pkgJson = require('../package.json');
 
 export const mainDirectories = {
 	dev: './server/',
@@ -35,15 +35,5 @@ export const settings = {
 			images: `${mainDirectories.dist}assets/img/`,
 			libs: `${mainDirectories.dist}libs/`
 		}
-	},
-	autoPrefix: {
-		browsers: [
-			'> 1%',
-			'last 3 version',
-			'ie 8',
-			'ie 9',
-			'Firefox ESR',
-			'Opera 12.1'
-		]
 	}
 };
