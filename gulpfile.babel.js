@@ -292,6 +292,9 @@ function lintBootstrap() {
 		}));
 }
 
+/**
+ * HTML validation
+ */
 function lintMarkup() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.markup)
