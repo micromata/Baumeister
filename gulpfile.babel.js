@@ -292,16 +292,16 @@ function lintBootstrap() {
 		}));
 }
 
-export function lintMarkup() {
+function lintMarkup() {
 	if (isProdBuild()) {
-		return gulp.src([...settings.sources.markup, './*.html'])
-		.pipe(htmllint())
-		.pipe(gulp.dest(settings.destinations.dev.markup));
+		return gulp.src(settings.sources.markup)
+			.pipe(htmllint())
+			.pipe(gulp.dest(settings.destinations.dev.markup));
 	}
-	return gulp.src([...settings.sources.markup, './*.html'])
+	return gulp.src(settings.sources.markup)
 		.pipe(htmllint())
 		.on('error', onError)
-		.pipe(gulp.dest(settings.destinations.dev.markup));
+		.pipe(gulp.dest(settings.destinations.prod.markup));
 }
 
 /**
