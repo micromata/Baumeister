@@ -51,6 +51,7 @@
     "gulp-envify": "^1.0.0",
     "gulp-eslint": "^3.0.1",
     "gulp-git": "^2.2.0",
+    "gulp-html": "^0.4.5",
     "gulp-htmlmin": "^3.0.0",
     "gulp-imagemin": "^3.2.0",
     "gulp-less": "^3.3.0",

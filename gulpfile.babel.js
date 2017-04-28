@@ -34,6 +34,7 @@ import git from 'gulp-git';
 import minimist from 'minimist';
 import semver from 'semver';
 import envify from 'gulp-envify';
+import htmllint from 'gulp-html';
 import {settings, mainDirectories, pkgJson} from './gulp.config';
 
 const server = browserSync.create();
@@ -237,6 +238,7 @@ export function lint() {
 			.pipe(eslint.format())
 			.pipe(eslint.failAfterError());
 	}
+
 	/**
 	 * TODO: Run ESLint with --fix for dev build
 	 * Seems that isn’t possible to fix files in place with multiple inputs. See example.
@@ -288,6 +290,18 @@ function lintBootstrap() {
 			stoponerror: isProdBuild(),
 			disabledIds: ['W005']
 		}));
+}
+
+export function lintMarkup() {
+	if (isProdBuild()) {
+		return gulp.src([...settings.sources.markup, './*.html'])
+		.pipe(htmllint())
+		.pipe(gulp.dest(settings.destinations.dev.markup));
+	}
+	return gulp.src([...settings.sources.markup, './*.html'])
+		.pipe(htmllint())
+		.on('error', onError)
+		.pipe(gulp.dest(settings.destinations.dev.markup));
 }
 
 /**
@@ -352,7 +366,7 @@ function reload(done) {
 export function watch() {
 	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, gulp.parallel(lint, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.styles, gulp.series(styles, reload)).on('change', informOnChange);
-	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, gulp.series(processHtml, reload))).on('change', informOnChange);
+	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, lintMarkup, gulp.series(processHtml, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.images, gulp.series(images, reload)).on('change', informOnChange);
 	gulp.watch(settings.sources.fonts, gulp.series(fonts, reload)).on('change', informOnChange);
 	gulp.watch(settings.sources.appTemplates, gulp.series(appTemplates, reload)).on('change', informOnChange);
@@ -369,7 +383,7 @@ watch.description = '`gulp watch` watches for changes and runs tasks automatical
  */
 export const build = gulp.series(
 	clean,
-	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintBootstrap, security, test)
+	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, lintMarkup, lintBootstrap, security, test)
 );
 build.description = '`gulp build` is the main build task';
 build.flags = {
