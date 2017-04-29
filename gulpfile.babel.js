@@ -5,6 +5,7 @@ import gutil from 'gulp-util';
 
 // Import settings
 import {settings} from './gulp/config';
+import {isProdBuild} from './gulp/commandLineArgs';
 
 // Import tasks
 import clean from './gulp/tasks/clean';
@@ -27,6 +28,12 @@ import createChangelog from './gulp/tasks/createChangelog';
 import commitChanges from './gulp/tasks/commitChanges';
 import createTag from './gulp/tasks/createTag';
 import validateHtml from './gulp/tasks/validateHtml';
+
+/**
+ * Print build target
+ */
+const buildTarget = isProdBuild() ? ' Production ' : ' Development ';
+console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
 
 /**
  * Export imported tasks.
