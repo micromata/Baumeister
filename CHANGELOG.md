@@ -16,9 +16,6 @@
 * **gulp:** Print build target in Terminal ([18eb726](https://github.com/micromata/bootstrap-kickstart/commit/18eb726))
 
 
-
-# Changelog
-
 ## Version 3.1.2 (2017-04-18)
 
 - e79edfc - 2017-04-18: Tweak Travis config (#126) 
