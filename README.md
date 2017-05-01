@@ -513,10 +513,10 @@ We strongly recommend to check the [docs](https://facebook.github.io/jest/docs/g
 We provide a task to automate releases with the following options:
 
 ```
-gulp release --bump major|minor|patch
+gulp release --bump (major|minor|patch|prerelease|premajor|preminor|prepatch) [--prerelease-identifier <yourIdentifier>]
 ```
 
-*Hint: With `-B` there is a shorter alias available.*
+*Hint: With `-B` there is a shorter alias available for `--bump`.*
 
 See <http://semver.org> for details when to choose which release type.
 
@@ -526,6 +526,25 @@ The release task will:
 - generate a changelog
 - commit changes
 - create a Git tag
+
+**Examples**
+
+```
+# Bump version from 3.1.2 to 4.0.0
+gulp release -B major
+
+# Bump version from 3.1.2 to 3.2.0
+gulp release -B minor
+
+# Bump version from 3.1.2 to 3.1.3
+gulp release -B patch
+
+# Bump version from 3.1.2 to 4.0.0-beta.0
+gulp release -B premajor --prerelease-identifier beta
+
+# Bump prerelease version eg. from 4.0.0-beta.0 to 4.0.0-beta.1
+gulp release -B prerelease
+```
 
 ### Changelog creation
 
