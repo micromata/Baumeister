@@ -97,5 +97,10 @@ release.flags = {
 	'--bump major': ' major release (1.0.0). See http://semver.org',
 	'--bump minor': ' minor release (0.1.0). See http://semver.org',
 	'--bump patch': ' patch release (0.0.1). See http://semver.org',
-	'-B major|minor|patch': ' alias to --bump'
+	'--bump prelease': ' prerelease (0.0.1-0). See http://semver.org',
+	'--bump premajor': ' pre major release (1.0.0-0). See http://semver.org',
+	'--bump preminor': ' pre minor release (0.1.0-0). See http://semver.org',
+	'--bump prepath': ' pre path release (0.0.1-0). See http://semver.org',
+	'-B (major|minor|patch)': ' alias to --bump',
+	'--prerelease-identifier yourIdentifier': 'e.g. gulp release -B premajor --prerelease-identifier beta'
 };

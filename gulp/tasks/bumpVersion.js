@@ -17,10 +17,13 @@ function bumpVersion() {
 		onError(new Error(chalk.red('Please specify release type: gulp release --bump (major|minor|patch)')));
 	}
 
-	pkgJson.version = semver.inc(pkgJson.version, args.bump);
+	pkgJson.version = semver.inc(pkgJson.version, args.bump, args['prerelease-identifier']);
 
 	return gulp.src('./package.json')
-		.pipe(bump({type: args.bump}))
+		.pipe(bump({
+			type: args.bump,
+			preid: args['prerelease-identifier']
+		}))
 		.on('error', onError)
 		.pipe(gulp.dest('./'))
 		.pipe(touch());
