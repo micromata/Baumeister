@@ -10,6 +10,7 @@
     "no-eq-null": ["off"],
     "quote-props": ["error", "as-needed"],
     "capitalized-comments": ["warn"],
-    "curly": ["error", "multi-line"]
+    "curly": ["error", "multi-line"],
+    "arrow-parens": ["off"]
   }
 }
