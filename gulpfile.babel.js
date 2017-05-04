@@ -44,8 +44,11 @@ console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
  * ----------------------------------------------------------------------------
  * ESLint task:
  * Run `gulp lint` respectively `gulp lint --production`
+ * ----------------------------------------------------------------------------
+ * Serve task:
+ * Run `gulp serve` respectively `gulp serve --production`
  */
-export {test, lint};
+export {test, lint, serve};
 
 /**
  * Define and export watch task:
