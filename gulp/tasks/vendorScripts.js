@@ -10,13 +10,15 @@ import {settings} from '../config';
 import onError from '../onError';
 import {isProdBuild} from '../commandLineArgs';
 
+export const vendorCacheFile = '.browserify-cache-vendor.json';
+
 /**
  * Bundle JavaScript libs defined in package.json → bootstrapKickstart.bundleExternalJS
  */
 function vendorScripts() {
 	const b = browserify({...browserifyInc.args});
 	settings.sources.externalJs.forEach(dep => b.require(dep));
-	browserifyInc(b, {cacheFile: './.browserify-cache-vendor.json'});
+	browserifyInc(b, {cacheFile: vendorCacheFile});
 
 	if (isProdBuild()) {
 		return b.bundle()

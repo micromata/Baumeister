@@ -11,15 +11,16 @@ import {settings} from '../config';
 import onError from '../onError';
 import {isProdBuild} from '../commandLineArgs';
 
-const b = browserify('./src/app/index.js', {...browserifyInc.args, debug: true})
-	.transform(babelify, {sourceMaps: true})
-	.external(settings.sources.externalJs);
-browserifyInc(b, {cacheFile: './.browserify-cache-client.json'});
+export const clientCacheFile = '.browserify-cache-client.json';
 
 /**
  * Bundle own JavaScript excluding libs defined in package.json → bootstrapKickstart.bundleExternalJS
  */
 function clientScripts() {
+	const b = browserify('./src/app/index.js', {...browserifyInc.args, debug: true})
+		.transform(babelify, {sourceMaps: true})
+		.external(settings.sources.externalJs);
+	browserifyInc(b, {cacheFile: clientCacheFile});
 
 	if (isProdBuild()) {
 		return b.bundle()
