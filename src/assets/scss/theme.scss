@@ -1,0 +1,20 @@
+// Override and extend Bootstrap stuff
+// --------------------------------------------------
+// Files, classes, mixins etc.
+@import "theme/variables";
+@import "theme/mixins";
+@import "theme/scaffolding";
+@import "theme/alerts";
+// Own modules
+// --------------------------------------------------
+// @import "theme/testResponsiveHelpers.less"; // debug
+@import "theme/demoElements";
+@import "theme/footer";
+@import "theme/ribbon";
+
+// Important note //
+// You could also use this file to insert theme related style definitions
+// directly within this file. But we recommend to exclude your LESS code to
+// separate files like the examples above when you exceed a few hundred lines
+// of code. Otherwise it will definitely have a negative impact on
+// maintainability.

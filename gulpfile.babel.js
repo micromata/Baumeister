@@ -79,7 +79,7 @@ function clean() {
 }
 
 /**
- * Handles LESS transpiling, auto prefixing, minifying and UnCSS.
+ * Handles Sass transpiling, auto prefixing, minifying and UnCSS.
  */
 function styles() {
 	if (isProdBuild()) {

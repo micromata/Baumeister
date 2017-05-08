@@ -1,0 +1,23 @@
+//
+// Alerts
+// --------------------------------------------------
+// Just an example for overriding bootstraps alerts.less file
+
+// Local variables
+//
+// Which are meant to be used only in this module. »Global« variables are stored
+// in /assets/less/theme/variables.less
+
+$alert-border-radius: 4px;
+
+// Local mixins
+//
+// Which are meant to be used only in this module. »Global« mixins are stored
+// in /assets/less/theme/mixins.less
+
+// Styles
+//
+
+.alert {
+  border-radius: $alert-border-radius;
+}

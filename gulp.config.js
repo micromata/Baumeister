@@ -8,8 +8,8 @@ export const mainDirectories = {
 export const settings = {
 	sources: {
 		markup: ['./src/*.html'],
-		styles: ['./src/assets/less/**/*.less'],
-		stylesEntryPoint: './src/assets/sass/index.scss',
+		styles: ['./src/assets/scss/**/*.scss'],
+		stylesEntryPoint: './src/assets/scss/index.scss',
 		scripts: ['./src/app/**/*.js'],
 		images: ['./src/assets/img/**/*.{png,jpg,gif,svg}'],
 		externalCss: pkgJson.bootstrapKickstart.bundleCSS,
