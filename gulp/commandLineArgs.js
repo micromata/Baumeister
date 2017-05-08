@@ -7,7 +7,13 @@ export const args = minimist(process.argv.slice(2), {
 });
 
 export function hasBumpType() {
-	return ['major', 'minor', 'patch', 'prerelease', 'premajor', 'preminor', 'prepatch'].includes(args.bump);
+	return args.bump === 'major' ||
+					args.bump === 'minor' ||
+					args.bump === 'patch' ||
+					args.bump === 'prerelease' ||
+					args.bump === 'premajor' ||
+					args.bump === 'preminor' ||
+					args.bump === 'prepatch';
 }
 
 export function isProdBuild() {
