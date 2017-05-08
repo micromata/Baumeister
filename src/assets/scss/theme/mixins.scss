@@ -40,10 +40,6 @@ $end-color-stop: 100%) {
 				  $end-color $end-color-stop
   );
   background-repeat: no-repeat;
-  filter: unquote("progid:DXImageTransform.Microsoft.gradient(startColorstr='"+rgba($start-color)+"', endColorstr='"+rgba($end-color)+"', GradientType=0)");
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(startColorstr='"+rgba($start-color, $start-color-stop)+"', endColorstr='"+rgba($end-color, $end-color-stop)+"', GradientType=0)");
   // IE9 and down, gets no color-stop at all for proper fallback
-}
-
-#gradient {
-  @include mm_vertical-five-colors()
 }
