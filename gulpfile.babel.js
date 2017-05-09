@@ -57,7 +57,7 @@ export {test, lint, serve};
  */
 export function watch() {
 	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, gulp.parallel(lint, reload))).on('change', informOnChange);
-	gulp.watch(settings.sources.styles, gulp.series(styles, lintStyles, reload)).on('change', informOnChange);
+	gulp.watch(settings.sources.styles, gulp.parallel(lintStyles, gulp.series(styles, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, validateHtml, gulp.series(processHtml, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.images, gulp.series(images, reload)).on('change', informOnChange);
 	gulp.watch(settings.sources.fonts, gulp.series(fonts, reload)).on('change', informOnChange);
