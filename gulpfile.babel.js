@@ -28,6 +28,7 @@ import createChangelog from './gulp/tasks/createChangelog';
 import commitChanges from './gulp/tasks/commitChanges';
 import createTag from './gulp/tasks/createTag';
 import validateHtml from './gulp/tasks/validateHtml';
+import cacheBust from './gulp/tasks/cacheBust';
 import lintStyles from './gulp/tasks/lintStyles';
 
 /**
@@ -75,7 +76,8 @@ watch.description = '`gulp watch` watches for changes and runs tasks automatical
  */
 export const build = gulp.series(
 	clean,
-	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, lintStyles, security, test)
+	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, lintStyles, security, test),
+	cacheBust
 );
 build.description = '`gulp build` is the main build task';
 build.flags = {
