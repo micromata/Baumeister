@@ -24,7 +24,3 @@ indent_size = 4
 
 [*.js]
 quote_type = single
-
-[*.less]
-indent_style = space
-indent_size = 2
