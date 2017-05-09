@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import stylelint from 'gulp-stylelint';
 import {settings} from '../config';
 import {isProdBuild} from '../commandLineArgs';
+import onError from '../onError';
 
 const stylelintOptions = {
 	reporters: [{
@@ -24,7 +25,8 @@ function lintStyles() {
 			}));
 	}
 	return gulp.src(settings.sources.styles)
-		.pipe(stylelint(stylelintOptions));
+		.pipe(stylelint(stylelintOptions))
+		.on('error', onError);
 }
 
 export default lintStyles;
