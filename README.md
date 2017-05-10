@@ -35,9 +35,10 @@ The aim of this project is to help you with the creation of Bootstrap themes and
 - [Setting up the project](#setting-up-the-project)
 - [Gulp Workflow and tasks](#gulp-workflow-and-tasks)
 - [Setting up your Editor (optional)](#setting-up-your-editor-optional)
-- [Writing Markup (using pages, templates and partials)](#writing-markup-using-pages-templates-and-partials)
 - [File and folder structure of LESS files](#file-and-folder-structure-of-less-files)
 - [Using external libraries](#using-external-libraries)
+- [Unit tests](#unit-tests)
+- [Release Workflow](#release-workflow)
 - [Browser support](#browser-support)
 - [Contributing to this project](#contributing-to-this-project)
 - [License](#license)
@@ -186,134 +187,6 @@ Beside that we recommend setting up a project within in your editor if you don�
   }]
 }
 ```
-
-## Writing Markup (using pages, templates and partials)
-Using [grunt-generator](https://github.com/clavery/grunt-generator) we can simplify our templates and avoid markup duplications by using a combination of `pages`, `templates` and `partials` (optional). grunt-generator uses [Handlebars](http://handlebarsjs.com/) under the hood to make that possible.
-
-This is super easy to use even if you never used Handlebars before.
-Because every valid HTML page is a valid Handlebars template. But handlebars gives you some extra power. So you can:
-
-- write plain HTML
-- use [built-In helpers](http://handlebarsjs.com/builtin_helpers.html) provided by handlebars
-- go crazy with [custom helpers](http://handlebarsjs.com/block_helpers.html) :heart_eyes:
-
-Let’s dive into it by describing a minimal example. Imagine that we have a simplified file/folder structure like the following in our project:
-
-```
-myProject
-├── index.hbs                  → A page
-├── anotherPage.hbs            → Another page
-├── partials                   → Place to store our partials (usage optional)
-│   └── footer.hbs
-└── templates                  → Place to store our templates
-    ├── default.hbs            → Our default template
-    └── helpers
-        └── helpers.js         → Place to store handlebars helpers (usage optional)
-```
-
-As you can see our pages are stored in the root of the project and are rendered as `html` pages with a little help of Handlebars.
-
-Let’s take a look at the content of our files.
-
-`/templates/helpers/helpers.js`:
-
-```javascript
-/**
- * Adds the current year to a string. Divides given string and year by a space.
- * @example:
- * {{addYear '©'}} --> © 2015
- */
-var addYear = function (s) {
-	return s + ' ' + new Date().getFullYear();
-};
-
-module.exports = {
-	addYear: addYear
-};
-```
-
-`/partials/footer.hbs`:
-
-```html
-<footer>
-	{{addYear '©'}} MyCompany
-</footer>
-```
-
-`/index.hbs`:
-
-```html
----
-title: Page title
----
-<h1>My page</h1>
-
-<p>My content</p>
-
-{{> footer }}
-```
-
-`/templates/default.hbs `:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>My Project{{#if page.title}} - {{page.title}}{{/if}}</title>
-	<link rel="stylesheet" href="">
-</head>
-<body>
-	{{{body}}}
-</body>
-</html>
-```
-
-This combination will render to one html file.
-
-`index.html`:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>My Project - Page title</title>
-	<link rel="stylesheet" href="">
-</head>
-<body>
-	<h1>My page</h1>
-
-	<p>My content</p>
-
-	<footer>
-		© 2017 MyCompany
-	</footer>
-</body>
-</html>
-```
-
-As you can see you can enrich your pages with data via so called frontmatters:
-
-```
----
-title: Page title
----
-```
-
-Frontmatters are basically a key/value storage you can access within your templates, pages and partials via Handlebars.  This enpowers you to do things like [handling active states](https://github.com/micromata/bootstrap-kickstart/blob/develop/partials/navbar.hbs#L16-L22) of your navigation and much more.
-
-There is one predefined key which let you choose a different template in case you’re using more than one:
-
-```
----
-template: myOtherTemplate
----
-```
-
-This would need the presence of a template named `myOtherTemplate.hbs` in the `templates` directory to work properly. You don’t need to define the template within your Frontmatter in case you would like to use  the default template.
 
 ## File and folder structure of LESS files
 
@@ -600,6 +473,149 @@ npm install --save bootstrap@latest
 ##### Updating multiple dependencies at once
 
 We recommend using a command line tool like »[npm-check-update](https://github.com/tjunnone/npm-check-updates)« to update multiple dependencies at once.
+
+## Unit tests
+
+We use [Jest](https://facebook.github.io/jest/), for running unit test and generating test coverage reports.
+See config in property `jest` in `package.json`.
+
+Just type the following to run all test once:
+
+```
+npm test
+```
+
+You can watch changes and run tests automatically with:
+
+```
+npm run test:watch
+```
+This comes in handy since it’s blazingly fast. It runs only tests related to changed files per default but has an interactive mode which enables you to run all if needed.
+
+### For those who are new to Jest
+
+Writing test with Jest feels pretty much the same like writing tests with Mocha/Chai|Jasmine.
+Just have a look at our small dummy test in `src/app/__tests__`.
+
+Placing tests in `__tests__` directories is a default from Jest.
+You can adjust the name of your tests-directory with the `testDirectoryName` configuration option.
+
+The most important things to know:
+- [API docs](https://facebook.github.io/jest/docs/api.html)
+- [Assertions](https://facebook.github.io/jest/docs/expect.html)
+
+*Your are not forced to use Jests assertions. You can alternatively use `assert` by just requiring it or install and use Chai.*
+
+We strongly recommend to check the [docs](https://facebook.github.io/jest/docs/getting-started.html) to dive deeper and read for instance how Jest can help you with mocking.
+
+## Release Workflow
+
+We provide a task to automate releases with the following options:
+
+```
+gulp release --bump (major|minor|patch|prerelease|premajor|preminor|prepatch) [--prerelease-identifier <yourIdentifier>]
+```
+
+*Hint: With `-B` there is a shorter alias available for `--bump`.*
+
+See <http://semver.org> for details when to choose which release type.
+
+The release task will:
+
+- bump the version number in `package.json`
+- generate a changelog
+- commit changes
+- create a Git tag
+
+**Examples**
+
+```
+# Bump version from 3.1.2 to 4.0.0
+gulp release -B major
+
+# Bump version from 3.1.2 to 3.2.0
+gulp release -B minor
+
+# Bump version from 3.1.2 to 3.1.3
+gulp release -B patch
+
+# Bump version from 3.1.2 to 4.0.0-beta.0
+gulp release -B premajor --prerelease-identifier beta
+
+# Bump prerelease version eg. from 4.0.0-beta.0 to 4.0.0-beta.1
+gulp release -B prerelease
+```
+
+### Changelog creation
+
+The changelog is stored in the file `CHANGELOG.MD` in the project root. Every release updates this file.
+
+We are using »conventional changelog« to get relevant changes out of the git commit history and group them nicely.
+
+You should write your commit messages with this [conventions](https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-angular/convention.md) in mind.
+
+See the last commits of Bootstrap Kickstart for some real life commit messages: https://github.com/micromata/bootstrap-kickstart/commits
+
+#### Short summary of the conventions
+
+Example commit message:
+```
+fix(uglify): Remove console output and debugger statements
+```
+Consists of:
+```
+type(scope): subject
+```
+##### Types
+
+Types are used to group commits in the changelog.
+Possible types which are rendered in the changelog are: `feat`, `fix` and `perf`.
+
+There are additional ones which you can use. But these are only rendered if they introduce a breaking change:
+`docs`, `chore`, `style`, `refactor`, and `test`.
+
+##### Scope
+
+The scope is optional and you can choose from whatever you want.
+The scope is used as another grouping element below the type.
+
+You can skip the parentheses if you don’t want to use Scope:
+```
+style: Fix linting errors
+```
+
+##### Subject
+
+The subject contains succinct description of the change:
+
+* use the imperative, present tense: "change" not "changed" nor "changes"
+* capitalize first letter
+* no dot (.) at the end
+
+##### Additional Info,  Breaking changes and issue references
+
+Are defined in the body of the commit message.
+
+Example:
+```
+feat(build): Replace Grunt with Gulp
+<BLANK LINE>
+Closes #28
+BREAKING CHANGE: Grunt Tasks aren’t available any longer.
+But there are equvalent Gulp tasks.
+List the available tasks with `gulp --tasks`
+```
+The body can include the motivation for the change and contrast this with previous behavior.
+
+Plus it should contain any information about **Breaking Changes** and is also the place to
+reference GitHub issues that this commit **Closes**.
+
+**Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message is then used for this.
+
+#### Generated Changelog
+
+This is how a changelog based on this conventions is rendered:
+https://github.com/angular/angular/blob/master/CHANGELOG.md
 
 ## Browser support
 

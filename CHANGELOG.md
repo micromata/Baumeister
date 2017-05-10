@@ -1,4 +1,20 @@
-# Changelog
+<a name="4.0.0-beta.0"></a>
+# [4.0.0-beta.0](https://github.com/micromata/bootstrap-kickstart/compare/3.1.2...4.0.0-beta.0) (2017-05-01)
+
+
+### Bug Fixes
+
+* **browserify:** Speed up bundling while watching 🚀 ([229f63e](https://github.com/micromata/bootstrap-kickstart/commit/229f63e))
+* **package.json:** Complete and fix and npm scripts aliases ([b1f18f8](https://github.com/micromata/bootstrap-kickstart/commit/b1f18f8))
+* **uglify:** Remove console output and debugger statements ([ffaafd9](https://github.com/micromata/bootstrap-kickstart/commit/ffaafd9))
+
+
+### Features
+
+* **bundling:** Integrate gulp envify ([#156](https://github.com/micromata/bootstrap-kickstart/issues/156)) ([8835ddc](https://github.com/micromata/bootstrap-kickstart/commit/8835ddc)), closes [#155](https://github.com/micromata/bootstrap-kickstart/issues/155)
+* **gulp:** Add Gulp release workflow and change ([#151](https://github.com/micromata/bootstrap-kickstart/issues/151)) ([3588558](https://github.com/micromata/bootstrap-kickstart/commit/3588558))
+* **gulp:** Print build target in Terminal ([18eb726](https://github.com/micromata/bootstrap-kickstart/commit/18eb726))
+
 
 ## Version 3.1.2 (2017-04-18)
 
