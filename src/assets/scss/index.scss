@@ -5,6 +5,11 @@
 // --------------------------------------------------
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+/**
+ * --------------------------------------------------
+ * Here begins our own CSS in the rendered CSS file.
+ */
+
 // Base styles
 // --------------------------------------------------
 // Independent of design (shared definitions).
@@ -19,3 +24,5 @@
 // --------------------------------------------------
 // Use this file to reduce ink an optimize the readability and accessibility of the pages.
 // @import "./print";
+
+////////// Do NOT insert style-definitions here! //////////
