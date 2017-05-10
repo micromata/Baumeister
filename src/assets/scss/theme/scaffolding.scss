@@ -8,13 +8,26 @@
 // `html`, `body` etc. and to override the content of
 // /libs/bootstrap/less/scaffolding.less
 
-// html
+// Fix viewport issues with IE 10.
+// See http://getbootstrap.com/getting-started/#support-ie10-width
+@-webkit-viewport { width: device-width; }
+@-moz-viewport { width: device-width; }
+@-ms-viewport { width: device-width; }
+@-o-viewport { width: device-width; }
+@viewport { width: device-width; }
+
+// Optimize legibility on Retina displays
+body {
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
 html {
   // Get properties related to sticky footer. See footer.less
   @include mm_footer-htmlProps();
 }
 
-// body
 body {
   overflow-y: scroll;
   padding-top: 70px;

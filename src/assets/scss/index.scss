@@ -10,12 +10,6 @@
  * Here begins our own CSS in the rendered CSS file.
  */
 
-// Base styles
-// --------------------------------------------------
-// Independent of design (shared definitions).
-// base.less is meant to be used for different themes for one customer.
-@import "./base";
-
 // Theme
 // --------------------------------------------------
 @import "./theme";
