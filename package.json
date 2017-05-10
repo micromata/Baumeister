@@ -22,7 +22,7 @@
   },
   "private": true,
   "dependencies": {
-    "bootstrap": "3.3.7",
+    "bootstrap-sass": "3.3.7",
     "html5shiv": "3.7.3",
     "jquery": "3.2.1",
     "jquery-placeholder": "2.3.1",
@@ -33,7 +33,6 @@
     "babel-preset-env": "^1.2.2",
     "babel-register": "^6.24.1",
     "babelify": "^7.3.0",
-    "bootstrap-sass": "^3.3.7",
     "browser-sync": "^2.18.8",
     "browserify": "^14.3.0",
     "browserify-incremental": "^3.1.1",
@@ -96,10 +95,10 @@
     "bundleCSS": [],
     "bundleExternalJS": [
       "jquery",
-      "bootstrap"
+      "bootstrap-sass"
     ],
     "includeStaticFiles": [
-      "bootstrap/fonts/**/*",
+      "bootstrap-sass/assets/fonts/**/*",
       "html5shiv/dist/html5shiv-printshiv.min.js",
       "respond.js/dest/respond.min.js",
       "jquery-placeholder/jquery.placeholder.js"
