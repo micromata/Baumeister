@@ -69,6 +69,8 @@
     "husky": "^0.13.3",
     "jest-cli": "^19.0.2",
     "less-plugin-autoprefix": "^1.5.1",
+    "metalsmith": "^2.3.0",
+    "metalsmith-layouts": "^1.8.1",
     "minimist": "^1.2.0",
     "semver": "^5.3.0",
     "vinyl-buffer": "^1.0.0",
