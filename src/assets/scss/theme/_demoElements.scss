@@ -3,28 +3,30 @@
 // --------------------------------------------------
 // Just needed to style a few elements on the demo page calles demoElements.html
 
-// Local variables
-//
-// Which are meant to be used only in this module. »Global« variables are stored
-// in /assets/less/theme/variables.less
+.theme-showcase {
+	// Local variables
+	//
+	// Which are meant to be used only in this module. »Global« variables are stored
+	// in /assets/less/theme/variables.less
 
-// Local mixins
-//
-// Which are meant to be used only in this module. »Global« mixins are stored
-// in /assets/less/theme/mixins.less
+	// Local mixins
+	//
+	// Which are meant to be used only in this module. »Global« mixins are stored
+	// in /assets/less/theme/mixins.less
 
-// Styles
-//
-.theme-dropdown .dropdown-menu {
-	position: static;
-	display: block;
-	margin-bottom: 20px;
-}
+	// Styles
+	//
+	.theme-dropdown .dropdown-menu {
+		position: static;
+		display: block;
+		margin-bottom: 20px;
+	}
 
-.theme-showcase > p > .btn {
-	margin: 5px 0;
-}
+	> p > .btn {
+		margin: 5px 0;
+	}
 
-.theme-showcase .navbar .container {
-	width: auto;
+	.navbar .container {
+		width: auto;
+	}
 }
