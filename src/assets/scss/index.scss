@@ -1,4 +1,18 @@
+// Theme
+// --------------------------------------------------
 @import "./theme";
+
+// Bootstrap Core
+// --------------------------------------------------
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Base styles
+// --------------------------------------------------
+// Independent of design (shared definitions).
+// base.less is meant to be used for different themes for one customer.
 @import "./base";
 
+// Print Styles
+// --------------------------------------------------
+// Use this file to reduce ink an optimize the readability and accessibility of the pages.
+// @import "./print";
