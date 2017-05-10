@@ -24,15 +24,15 @@ body {
 }
 
 html {
-  // Get properties related to sticky footer. See footer.less
-  @include mm_footer-htmlProps();
+	// Get properties related to sticky footer. See footer.less
+	@include mm_footer-htmlProps();
 }
 
 body {
-  overflow-y: scroll;
-  padding-top: 70px;
-  padding-bottom: 30px;
+	overflow-y: scroll;
+	padding-top: 70px;
+	padding-bottom: 30px;
 
-  // Get properties related to sticky footer. See footer.less
-  @include mm_footer-bodyProps();
+	// Get properties related to sticky footer. See footer.less
+	@include mm_footer-bodyProps();
 }
