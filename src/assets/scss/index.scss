@@ -1,6 +1,5 @@
-// Theme
-// --------------------------------------------------
-@import "./theme";
+// Import our variables to override Bootstraps default ones
+@import "theme/variables";
 
 // Bootstrap Core
 // --------------------------------------------------
@@ -11,6 +10,10 @@
 // Independent of design (shared definitions).
 // base.less is meant to be used for different themes for one customer.
 @import "./base";
+
+// Theme
+// --------------------------------------------------
+@import "./theme";
 
 // Print Styles
 // --------------------------------------------------
