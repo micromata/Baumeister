@@ -2929,6 +2929,10 @@ extend@3, extend@^3.0.0, extend@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
 
+extend@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/extend/-/extend-2.0.1.tgz#1ee8010689e7395ff9448241c98652bc759a8260"
+
 extglob@^0.3.1:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/extglob/-/extglob-0.3.2.tgz#2e18ff3d2f49ab2765cec9023f011daa8d8349a1"
@@ -5566,6 +5570,12 @@ metalsmith-layouts@^1.8.1:
     is-utf8 "^0.2.0"
     lodash.omit "^4.0.2"
     multimatch "^2.0.0"
+
+metalsmith-register-helpers@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/metalsmith-register-helpers/-/metalsmith-register-helpers-0.3.0.tgz#270025491c2b094fc29f06754dbe2b0bc2ffb917"
+  dependencies:
+    extend "^2.0.0"
 
 metalsmith@^2.3.0:
   version "2.3.0"

@@ -1,12 +1,16 @@
 const metalsmith = require('metalsmith');
 const layouts = require('metalsmith-layouts');
 const inPlace = require('metalsmith-in-place');
+const registerHelpers = require('metalsmith-register-helpers');
 
 metalsmith(__dirname)
 .source('../src')
 .destination('../build')
 .clean(true) // Clean destination before build
 .ignore(['app', 'assets', 'handlebars']) // Ignore other files than handlebars template
+.use(registerHelpers({
+	directory: '../src/handlebars/helpers'
+}))
 .use(layouts({ // Wrap layouts around content pages
 	engine: 'handlebars',
 	rename: false,
