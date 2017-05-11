@@ -19,8 +19,7 @@ metalsmith(__dirname)
 .use(inPlace({ // Render handlebars content pages
 	engineOptions: {
 		pattern: '*.hbs',
-		partials: '../src/handlebars/partials',
-		outputFormat: 'hbs'
+		partials: '../src/handlebars/partials'
 	}
 }))
 .build((error) => { // Build process
