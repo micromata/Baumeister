@@ -1,20 +1,29 @@
 const metalsmith = require('metalsmith');
 const layouts = require('metalsmith-layouts');
+const inPlace = require('metalsmith-in-place');
 
 metalsmith(__dirname)
-.source('../src') // Source directory
-.destination('../build') // Destination directory
-.clean(true) // Clean destination before
-.ignore(['app', 'assets', 'layouts', 'partials']) // Ignore other files than handlebars template
-.use(layouts({ // Wrap layouts around html
-	engine: 'handlebars', // Use the layout engine you like
-	rename: true,
-	directory: '../src/layouts',
+.source('../src')
+.destination('../build')
+.clean(true) // Clean destination before build
+.ignore(['app', 'assets', 'handlebars']) // Ignore other files than handlebars template
+.use(layouts({ // Wrap layouts around content pages
+	engine: 'handlebars',
+	rename: false,
+	directory: '../src/handlebars/layouts',
 	default: 'default.hbs',
-	pattern: '**/*.hbs',
-	partials: '../src/partials',
+	pattern: '*.hbs',
+	partials: '../src/handlebars/partials',
 	partialExtension: '.hbs'
-})).build((error) => { // Build process
+}))
+.use(inPlace({ // Render handlebars content pages
+	engineOptions: {
+		pattern: '*.hbs',
+		partials: '../src/handlebars/partials',
+		outputFormat: 'hbs'
+	}
+}))
+.build((error) => { // Build process
 	if (error) {
 		console.error(error); // Error handling is required
 	}
