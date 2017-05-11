@@ -8,7 +8,7 @@ import {isProdBuild} from '../commandLineArgs';
  * Lint HTML with Bootlint
  */
 function lintBootstrap() {
-	return gulp.src(settings.sources.markup)
+	return gulp.src(settings.sources.html)
 		.pipe(bootlint({
 			stoponerror: isProdBuild(),
 			disabledIds: ['W005']

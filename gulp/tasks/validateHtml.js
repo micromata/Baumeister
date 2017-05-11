@@ -10,14 +10,14 @@ import onError from '../onError';
  */
 function validateHtml() {
 	if (isProdBuild()) {
-		return gulp.src(settings.sources.markup)
+		return gulp.src(settings.sources.html)
 			.pipe(htmllint())
-			.pipe(gulp.dest(settings.destinations.dev.markup));
+			.pipe(gulp.dest(settings.destinations.dev.html));
 	}
-	return gulp.src(settings.sources.markup)
+	return gulp.src(settings.sources.html)
 		.pipe(htmllint())
 		.on('error', onError)
-		.pipe(gulp.dest(settings.destinations.prod.markup));
+		.pipe(gulp.dest(settings.destinations.prod.html));
 }
 
 export default validateHtml;

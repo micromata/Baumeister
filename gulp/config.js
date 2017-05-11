@@ -7,7 +7,7 @@ export const mainDirectories = {
 
 export const settings = {
 	sources: {
-		markup: ['./src/*.html'],
+		html: ['./src/*.html'],
 		handlebars: ['./src/*.hbs'],
 		styles: ['./src/assets/less/**/*.less'],
 		stylesEntryPoint: './src/assets/less/index.less',
@@ -21,7 +21,7 @@ export const settings = {
 	},
 	destinations: {
 		dev: {
-			markup: `${mainDirectories.dev}`,
+			html: `${mainDirectories.dev}`,
 			styles: `${mainDirectories.dev}assets/css/`,
 			app: `${mainDirectories.dev}app/`,
 			fonts: `${mainDirectories.dev}assets/fonts/`,
@@ -29,7 +29,7 @@ export const settings = {
 			libs: `${mainDirectories.dev}libs/`
 		},
 		prod: {
-			markup: `${mainDirectories.dist}`,
+			html: `${mainDirectories.dist}`,
 			styles: `${mainDirectories.dist}assets/css/`,
 			app: `${mainDirectories.dist}app/`,
 			fonts: `${mainDirectories.dist}assets/fonts/`,

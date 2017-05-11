@@ -14,14 +14,14 @@ import {isProdBuild} from '../commandLineArgs';
  */
 function processHtml() {
 	if (isProdBuild()) {
-		return gulp.src(settings.sources.markup)
+		return gulp.src(settings.sources.html)
 			.pipe(processhtml())
 			.pipe(htmlmin({removeComments: true, preserveLineBreaks: true, collapseWhitespace: true}))
-			.pipe(gulp.dest(settings.destinations.prod.markup));
+			.pipe(gulp.dest(settings.destinations.prod.html));
 	}
-	return gulp.src(settings.sources.markup)
-		.pipe(changed(settings.destinations.dev.markup))
-		.pipe(gulp.dest(settings.destinations.dev.markup));
+	return gulp.src(settings.sources.html)
+		.pipe(changed(settings.destinations.dev.html))
+		.pipe(gulp.dest(settings.destinations.dev.html));
 }
 
 export default processHtml;

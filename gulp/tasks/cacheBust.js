@@ -5,9 +5,9 @@ import {isProdBuild} from '../commandLineArgs';
 
 function cacheBust(done) {
 	if (isProdBuild()) {
-		return gulp.src(`${settings.destinations.prod.markup}/**/*.html`)
+		return gulp.src(`${settings.destinations.prod.html}/**/*.html`)
 			.pipe(rev())
-			.pipe(gulp.dest(settings.destinations.prod.markup));
+			.pipe(gulp.dest(settings.destinations.prod.html));
 	}
 	done();
 }
