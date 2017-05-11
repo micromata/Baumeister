@@ -1,5 +1,5 @@
 /**
- * @file Custom Handlebars helpers to use in templates, partials and pages.
+ * @file Custom Handlebars helper to use in layouts, partials and pages.
  * @author Michael Kühnel <m.kuehnel@micromata.de>
  */
 
@@ -15,6 +15,4 @@ function addYear(s) {
 	return s + ' ' + new Date().getFullYear();
 }
 
-module.exports = {
-	addYear
-};
+module.exports = addYear;
