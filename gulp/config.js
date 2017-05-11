@@ -8,6 +8,7 @@ export const mainDirectories = {
 export const settings = {
 	sources: {
 		markup: ['./src/*.html'],
+		handlebars: ['./src/*.hbs'],
 		styles: ['./src/assets/less/**/*.less'],
 		stylesEntryPoint: './src/assets/less/index.less',
 		scripts: ['./src/app/**/*.js'],

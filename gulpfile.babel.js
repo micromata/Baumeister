@@ -29,6 +29,7 @@ import commitChanges from './gulp/tasks/commitChanges';
 import createTag from './gulp/tasks/createTag';
 import validateHtml from './gulp/tasks/validateHtml';
 import cacheBust from './gulp/tasks/cacheBust';
+import handlebars from './gulp/tasks/handlebars';
 
 /**
  * Print build target
@@ -49,7 +50,7 @@ console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
  * Serve task:
  * Run `gulp serve` respectively `gulp serve --production`
  */
-export {test, lint, serve};
+export {test, lint, serve, handlebars};
 
 /**
  * Define and export watch task:
