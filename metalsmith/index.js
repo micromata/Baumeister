@@ -5,13 +5,14 @@ metalsmith(__dirname)
 .source('../src') // Source directory
 .destination('../build') // Destination directory
 .clean(true) // Clean destination before
-.ignore(['app', 'assets', 'layouts']) // Ignore other files than handlebars template
+.ignore(['app', 'assets', 'layouts', 'partials']) // Ignore other files than handlebars template
 .use(layouts({ // Wrap layouts around html
 	engine: 'handlebars', // Use the layout engine you like
 	rename: true,
 	directory: '../src/layouts',
 	default: 'default.hbs',
 	pattern: '**/*.hbs',
+	partials: '../src/partials',
 	partialExtension: '.hbs'
 })).build((error) => { // Build process
 	if (error) {
