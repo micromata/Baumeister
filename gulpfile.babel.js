@@ -50,7 +50,7 @@ console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
  * Serve task:
  * Run `gulp serve` respectively `gulp serve --production`
  */
-export {test, lint, serve, handlebars};
+export {test, lint, serve};
 
 /**
  * Define and export watch task:
