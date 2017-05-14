@@ -4,7 +4,7 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 
 // Import settings
-import {settings} from './gulp/config';
+import {settings, useHandlebars} from './gulp/config';
 import {isProdBuild} from './gulp/commandLineArgs';
 
 // Import tasks
@@ -59,7 +59,19 @@ export {test, lint, serve, handlebars};
 export function watch() {
 	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, gulp.parallel(lint, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.styles, gulp.series(styles, reload)).on('change', informOnChange);
-	gulp.watch(settings.sources.html, gulp.parallel(lintBootstrap, validateHtml, gulp.series(processHtml, reload))).on('change', informOnChange);
+
+	if (useHandlebars) {
+		gulp.watch([
+			...settings.sources.handlebars,
+			'./src/handlebars/layouts/*.hbs',
+			'./src/handlebars/partials/**/*.hbs',
+			'./src/handlebars/helpers/*.js'
+		], gulp.series(handlebars, gulp.parallel(lintBootstrap, validateHtml, gulp.series(processHtml, reload)))).on('change', informOnChange);
+		gulp.watch(['./src/handlebars/helpers/*.js'], gulp.parallel(lint)).on('change', informOnChange);
+	} else {
+		gulp.watch(settings.sources.html, gulp.parallel(lintBootstrap, validateHtml, gulp.series(processHtml, reload))).on('change', informOnChange);
+	}
+
 	gulp.watch(settings.sources.images, gulp.series(images, reload)).on('change', informOnChange);
 	gulp.watch(settings.sources.fonts, gulp.series(fonts, reload)).on('change', informOnChange);
 	gulp.watch(settings.sources.appTemplates, gulp.series(appTemplates, reload)).on('change', informOnChange);
@@ -76,6 +88,7 @@ watch.description = '`gulp watch` watches for changes and runs tasks automatical
  */
 export const build = gulp.series(
 	clean,
+	handlebars,
 	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, security, test),
 	cacheBust
 );

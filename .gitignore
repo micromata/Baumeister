@@ -13,6 +13,7 @@ src/assets/css
 .browserify-cache-client.json
 .browserify-cache-vendor.json
 coverage
+.metalsmith-build
 
 ### Dev ###
 *.sublime-project

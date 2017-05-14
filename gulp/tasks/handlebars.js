@@ -6,12 +6,14 @@ const layouts = require('metalsmith-layouts');
 const inPlace = require('metalsmith-in-place');
 const registerHelpers = require('metalsmith-register-helpers');
 
-import {settings} from '../config';
+import {settings, useHandlebars} from '../config';
 
 /**
  * HTML validation using the Nu HTML Checker
  */
-function handlebars() {
+function handlebars(done) {
+
+	if (!useHandlebars) return done();
 
 	return gulp.src(settings.sources.handlebars)
 		.pipe(frontmatter()).on('data', (file) => {
@@ -39,7 +41,7 @@ function handlebars() {
 				}
 			}))
 		)
-		.pipe(gulp.dest('./_gulpsmith'));
+		.pipe(gulp.dest(settings.destinations.handlebars));
 }
 
 export default handlebars;

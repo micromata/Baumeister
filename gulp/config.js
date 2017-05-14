@@ -1,3 +1,8 @@
+/**
+ * Boolean flag to set when using handlebars instead of plain HTML files in `src`.
+ */
+export const useHandlebars = true;
+
 export const pkgJson = require('../package.json');
 
 export const mainDirectories = {
@@ -20,6 +25,7 @@ export const settings = {
 		staticFiles: pkgJson.bootstrapKickstart.includeStaticFiles
 	},
 	destinations: {
+		handlebars: './.metalsmith-build',
 		dev: {
 			html: `${mainDirectories.dev}`,
 			styles: `${mainDirectories.dev}assets/css/`,
