@@ -1,3 +1,28 @@
+<a name="4.0.0-rc.0"></a>
+# [4.0.0-rc.0](https://github.com/micromata/bootstrap-kickstart/compare/4.0.0-beta.0...4.0.0-rc.0) (2017-05-16)
+
+
+### Bug Fixes
+
+* export serve task to fix npm run scripts ([ee0f611](https://github.com/micromata/bootstrap-kickstart/commit/ee0f611))
+* **browserify:** Delete browserify caches before build ([6a267ee](https://github.com/micromata/bootstrap-kickstart/commit/6a267ee))
+
+
+### Features
+
+* **cachebust:** add cachebust task and hash placeholder in index.html ([ef62491](https://github.com/micromata/bootstrap-kickstart/commit/ef62491))
+* **css:** Lint Sass files using stylelint ([#168](https://github.com/micromata/bootstrap-kickstart/issues/168)) ([89f0ed4](https://github.com/micromata/bootstrap-kickstart/commit/89f0ed4))
+* **css:** replace LESS with Sass ([#167](https://github.com/micromata/bootstrap-kickstart/issues/167)) ([e39894b](https://github.com/micromata/bootstrap-kickstart/commit/e39894b))
+* Compile handlebars templates ([#170](https://github.com/micromata/bootstrap-kickstart/issues/170)) ([d832976](https://github.com/micromata/bootstrap-kickstart/commit/d832976))
+
+
+### BREAKING CHANGES
+
+* **css:** Linting Sass files might break your build as long as you break the rules of [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) and our adaptions in `/.stylelintrc.json`
+* **css:** The replace of LESS with Sass will break your build as long you don’t port your LESS files to Sass.
+
+
+
 <a name="4.0.0-beta.0"></a>
 # [4.0.0-beta.0](https://github.com/micromata/bootstrap-kickstart/compare/3.1.2...4.0.0-beta.0) (2017-05-01)
 
