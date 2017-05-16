@@ -1,5 +1,9 @@
-// Testing media query helpers defined in variables.less
+//
+// Test responsive helpers
+// --------------------------------------------------
+// Testing media query helpers defined in _variables.scss
 // This adds a label in the corners which display the current media query state.
+
 body::after,
 body::before,
 html::before {

@@ -11,14 +11,14 @@
 
 The aim of this project is to help you with the creation of Bootstrap themes and websites as well as single page applications by providing:
 
-- a file structure with focus on maintainibilty and upgradability
+- a file structure with focus on maintainability and upgradability
 - a Gulp workflow with the following »features«
 	- generating static sites with the use of handlebars templates
 	- transpile, bundle and minify your code
-		- ES6 as well as LESS
+		- ES6 as well as Sass
 	- remove `console` output and debugger statements in production files
 	- add vendor prefixes
-	- lint JavaScript and HTML
+	- lint JavaScript, Sass and HTML
 	- optimize images (lossless)
 	- start a local server
 	- keep browsers in sync for testing
@@ -35,7 +35,7 @@ The aim of this project is to help you with the creation of Bootstrap themes and
 - [Setting up the project](#setting-up-the-project)
 - [Gulp Workflow and tasks](#gulp-workflow-and-tasks)
 - [Setting up your Editor (optional)](#setting-up-your-editor-optional)
-- [File and folder structure of LESS files](#file-and-folder-structure-of-less-files)
+- [File and folder structure of Sass files](#file-and-folder-structure-of-sass-files)
 - [Using external libraries](#using-external-libraries)
 - [Unit tests](#unit-tests)
 - [Release Workflow](#release-workflow)
@@ -155,7 +155,7 @@ myProject
 │   └── libs                        → Relevant files copied from /node_modules
 └── src
     └── assets
-        └── css                     → Transpiled and autoprefixed from LESS files
+        └── css                     → Transpiled and autoprefixed from Sass files
 ````
 
 See `/gulpfile.babel.js` to see what happens in Details.
@@ -188,117 +188,120 @@ Beside that we recommend setting up a project within in your editor if you don�
 }
 ```
 
-## File and folder structure of LESS files
+## File and folder structure of Sass files
 
-This is s short version of our conventions when it comes to create bootstrap themes.  Below you’ll find a screenshot from `/assets/less`
+This is s short version of our conventions when it comes to create bootstrap themes. Below you’ll find the folder and file structure we are using:
 
-![Screenshot](http://f.cl.ly/items/3y3V1z0n3S182A2P0I3Q/Bildschirmfoto%202015-08-30%20um%2021.04.33.png)
+```bash
+src/assets/scss
+├── _print.scss
+├── _theme.scss
+├── _variables.scss
+├── index.scss
+└── theme
+    ├── _alerts.scss
+    ├── _demoElements.scss
+    ├── _footer.scss
+    ├── _mixins.scss
+    ├── _scaffolding.scss
+    └── _testResponsiveHelpers.scss
+```
+
 
 Seems to be a pretty huge amount of files for such a little project. So here we go with an explanation.
 
-### index.less
-Our main LESS file which is the one which is creating our index.css file. This file is just about a few imports and setting the path to the icon fonts provided by bootstrap.
+### index.scss
+Our main Sass file is the one which is creating our index.css file. This file is just about a few imports.
 
-```css
+```scss
+// Import our variables to override Bootstraps default ones
+@import "./variables";
+
 // Bootstrap Core
 // --------------------------------------------------
-@import "../../libs/bootstrap/less/bootstrap.less";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-// Set path to icon fonts
-@icon-font-path: "../../libs/bootstrap/fonts/";
+/**
+ * --------------------------------------------------
+ * Here begins our own CSS in the rendered CSS file.
+ */
 
-// Base styles
+// Theme
 // --------------------------------------------------
-// Independent of design (shared definitions).
-// base.less is meant to be used for different themes for one customer.
-@import "base.less";
+@import "./theme";
 
-// Corporate Design
+// Print Styles
 // --------------------------------------------------
-@import "theme.less";
+// Use this file to reduce ink an optimize the readability and accessibility of the pages.
+// @import "./print";
 
 ////////// Do NOT insert style-definitions here! //////////
+
 ```
 
-### base.less
-Is used for shared definitions which makes sense when dealing with different themes for one customer/project. The defaults consist only of a few lines.
+### \_theme.scss
 
-```css
-// Base styles
-// --------------------------------------------------
-// Independent of design (shared definitions)
-// base.less is meant to be used for different themes for one customer.
+We use this file to import the modules/files which defines the actual theme. You could also use this to write down your styles and omit using separate files in the corresponding folder `theme`. But that’s not a recommendation. See content of `_theme.scss`:
 
-// Fix viewport issues with IE 10.
-// See http://getbootstrap.com/getting-started/#support-ie10-width
-@-webkit-viewport   { width: device-width; }
-@-moz-viewport      { width: device-width; }
-@-ms-viewport       { width: device-width; }
-@-o-viewport        { width: device-width; }
-@viewport           { width: device-width; }
-```
-
-### theme.less
-
-We used this file to import the modules/files which defines the actual theme. You could also use this to write down your styles and omit the use of the seperate files laying around in the corresponding folder `theme`. But that’s not a recommendation. See content of `theme.less`:
-
-```css
+```scss
 // Override and extend Bootstrap stuff
 // --------------------------------------------------
 // Files, classes, mixins etc.
-@import "theme/variables.less";
-@import "theme/mixins.less";
-@import "theme/scaffolding.less";
-@import "theme/alerts.less";
+@import "theme/mixins";
+@import "theme/scaffolding";
+@import "theme/alerts";
 
 // Own modules
 // --------------------------------------------------
-@import "theme/demoElements.less";
-@import "theme/footer.less";
-@import "theme/ribbon.less";
+// @import "theme/testResponsiveHelpers"; // debug
+@import "theme/demoElements";
+@import "theme/footer";
 
 // Important note //
-// You could also use this file to insert customer related style definitions
-// directly within this file. But we recommend to exclude your Less code to
-// seperate files like the examples above when you exceed a few hundred lines
+// You could also use this file to insert theme related style definitions
+// directly within this file. But we recommend to exclude your LESS code to
+// separate files like the examples above when you exceed a few hundred lines
 // of code. Otherwise it will definitely have a negative impact on
-// maintainabilty.
-
+// maintainability.
 ```
 
-### theme folder
+### Theme folder
 
-This folder holds the modules needed by the theme. The skeleton of such a module looks like the comments within `ribbon.less`
+This folder holds the modules needed by the theme. The skeleton of such a module looks like the following.
 
-```css
+```scss
 //
-// Ribbon
+// Component name
 // --------------------------------------------------
-// The main ribbon navigation
+// Short component description
 
-// Local variables
-//
-// Which are meant to be used only in this module. »Global« variables are stored
-// in /assets/less/theme/variables.less
+.component-name {
+	// Local variables
+	//
+	// Which are meant to be used only in this module. »Global« variables are stored
+	// in /src/assets/scss/_variables.scss
 
-// Local mixins
-//
-// Which are meant to be used only in this module. »Global« variables are stored
-// in /assets/less/theme/mixins.less
+	// Local mixins
+	//
+	// Which are meant to be used only in this module. »Global« mixins are stored
+	// in /src/assets/scss/theme/_mixins.scss
 
-// Styles
-//
+	// Styles
+	//
+
+}
+
 ```
 
-See [footer.less](assets/less/theme/footer.less) for a »real life« example.
+See [_footer.sass](src/assets/scss/theme/_footer.scss) for a »real life« example.
 
-There are three files which differ from the regular modules. Please have a look at comments within the following files to get an idea how to handle them:
+There are three files which differ from regular components. Please have a look at comments within the following files to get an idea how to handle them:
 
-- [variables.less](assets/less/theme/variables.less)
+- [_variables.scss](src/assets/scss/_variables.scss)
 	Used to override bootstrap variables. Make sure to read the comments which describe how to handle this file which can save you lots of time when it comes to a Bootstrap update.
-- [mixins.less](assets/less/theme/mixins.less)
+- [_mixins.scss](src/assets/scss/theme/_mixins.scss)
 	Holds additional global mixins which are meant to be used across modules.
-- [scaffolding.less](assets/less/theme/scaffolding.less)
+- [_scaffolding.scss](src/assets/scss/theme/_scaffolding.scss)
 	Used to define the most generic html elements.
 
 ## Using external libraries
