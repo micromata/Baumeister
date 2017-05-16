@@ -29,6 +29,7 @@ import commitChanges from './gulp/tasks/commitChanges';
 import createTag from './gulp/tasks/createTag';
 import validateHtml from './gulp/tasks/validateHtml';
 import cacheBust from './gulp/tasks/cacheBust';
+import lintStyles from './gulp/tasks/lintStyles';
 
 /**
  * Print build target
@@ -57,8 +58,8 @@ export {test, lint, serve};
  */
 export function watch() {
 	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, gulp.parallel(lint, reload))).on('change', informOnChange);
-	gulp.watch(settings.sources.styles, gulp.series(styles, reload)).on('change', informOnChange);
-	gulp.watch(settings.sources.markup, gulp.parallel(lintBootstrap, validateHtml, gulp.series(processHtml, reload))).on('change', informOnChange);
+	gulp.watch(settings.sources.styles, gulp.series(styles, gulp.parallel(lintStyles, reload))).on('change', informOnChange);
+	gulp.watch(settings.sources.markup, gulp.series(processHtml, gulp.parallel(lintBootstrap, validateHtml, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.images, gulp.series(images, reload)).on('change', informOnChange);
 	gulp.watch(settings.sources.fonts, gulp.series(fonts, reload)).on('change', informOnChange);
 	gulp.watch(settings.sources.appTemplates, gulp.series(appTemplates, reload)).on('change', informOnChange);
@@ -75,7 +76,7 @@ watch.description = '`gulp watch` watches for changes and runs tasks automatical
  */
 export const build = gulp.series(
 	clean,
-	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, security, test),
+	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, lintStyles, security, test),
 	cacheBust
 );
 build.description = '`gulp build` is the main build task';

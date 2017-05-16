@@ -17,9 +17,9 @@ $icon-font-path: "../../libs/bootstrap/fonts/";
 //		}
 //	}
 $retina: "(-webkit-min-device-pixel-ratio: 1.5)",
-"(min--moz-device-pixel-ratio: 1.5)",
-"(-o-min-device-pixel-ratio: 3/2)",
-"(min-device-pixel-ratio: 1.5)";
+	"(min--moz-device-pixel-ratio: 1.5)",
+	"(-o-min-device-pixel-ratio: 3/2)",
+	"(min-device-pixel-ratio: 1.5)";
 $xs-only: "only screen and (max-width: $screen-xs-max)";
 $sm-only: "only screen and (min-width: $screen-xs-min) and (max-width: $screen-sm-max)";
 $md-only: "only screen and (min-width: $screen-sm-min) and (max-width: $screen-md-max)";
@@ -31,6 +31,18 @@ $sm-and-above: "only screen and (min-width: $screen-xs-min)";
 $md-and-above: "only screen and (min-width: $screen-sm-min)";
 $lg-and-above: "only screen and (min-width: $screen-md-min)";
 $xl-and-above: "only screen and (min-width: $screen-lg-min)";
+
+// Bootstrap variables
+// --------------------------------------------------
+// Below this comment block you’ll finde the original and complete content of
+// node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss.
+// All the untouched variables are commented out. This ensures that all
+// definitions are on the same place and in the scope like the the original
+// bootstrap variables. This helps finding things and diffs are easier to
+// interpret when it comes to a Bootstrap update.
+//
+// stylelint-disable
+
 
 $bootstrap-sass-asset-helper: false !default;
 //
