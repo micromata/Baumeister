@@ -10,7 +10,7 @@ const stylelintOptions = {
 		formatter: 'string',
 		console: true
 	}],
-	syntax: 'less'
+	syntax: 'scss'
 };
 
 /**
