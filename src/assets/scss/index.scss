@@ -1,27 +1,22 @@
+// Import our variables to override Bootstraps default ones
+@import "./variables";
+
 // Bootstrap Core
 // --------------------------------------------------
-@import "../../../node_modules/bootstrap/less/bootstrap.less";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-// Set path to icon fonts
-@icon-font-path: "../../../libs/bootstrap/fonts/";
 /**
  * --------------------------------------------------
  * Here begins our own CSS in the rendered CSS file.
  */
 
-// Base styles
-// --------------------------------------------------
-// Independent of design (shared definitions).
-// base.less is meant to be used for different themes for one customer.
-@import "base.less";
-
 // Theme
 // --------------------------------------------------
-@import "theme.less";
+@import "./theme";
 
 // Print Styles
 // --------------------------------------------------
 // Use this file to reduce ink an optimize the readability and accessibility of the pages.
-//@import "print.less";
+// @import "./print";
 
 ////////// Do NOT insert style-definitions here! //////////
