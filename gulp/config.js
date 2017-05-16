@@ -14,8 +14,8 @@ export const settings = {
 	sources: {
 		html: ['./src/*.html'],
 		handlebars: ['./src/*.hbs'],
-		styles: ['./src/assets/less/**/*.less'],
-		stylesEntryPoint: './src/assets/less/index.less',
+		styles: ['./src/assets/scss/**/*.scss'],
+		stylesEntryPoint: './src/assets/scss/index.scss',
 		scripts: ['./src/app/**/*.js'],
 		appTemplates: ['./src/app/**/*.html'],
 		images: ['./src/assets/img/**/*.{png,jpg,gif,svg}'],

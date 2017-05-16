@@ -1,9 +1,9 @@
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
-import less from 'gulp-less';
+import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import uncss from 'gulp-uncss';
-import Autoprefix from 'less-plugin-autoprefix';
+import vendorPrefix from 'gulp-autoprefixer';
 import cleanCss from 'gulp-clean-css';
 import rename from 'gulp-rename';
 
@@ -23,20 +23,16 @@ const autoPrefixOptions = {
 };
 
 /**
- * Handles LESS transpiling, auto prefixing, minifying and UnCSS.
+ * Handles Sass transpiling, auto prefixing, minifying and UnCSS.
  */
 function styles() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.stylesEntryPoint)
 			.pipe(plumber({errorHandler: onError}))
-			.pipe(less({
-				plugins: [new Autoprefix(autoPrefixOptions)]
-			}))
+			.pipe(sass())
+			.pipe(vendorPrefix(autoPrefixOptions))
 			.pipe(cleanCss())
-			.pipe(rename({
-				baseName: 'index',
-				suffix: '.min'
-			}))
+			.pipe(rename('index.min.css'))
 			.pipe(gulp.dest(settings.destinations.prod.styles))
 			.pipe(rename('index.uncss.min.css'))
 			.pipe(uncss({
@@ -47,9 +43,8 @@ function styles() {
 	return gulp.src(settings.sources.stylesEntryPoint)
 		.pipe(plumber({errorHandler: onError}))
 		.pipe(sourcemaps.init())
-		.pipe(less({
-			plugins: [new Autoprefix(autoPrefixOptions)]
-		}))
+		.pipe(sass())
+		.pipe(vendorPrefix(autoPrefixOptions))
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest(settings.destinations.dev.styles));
 }

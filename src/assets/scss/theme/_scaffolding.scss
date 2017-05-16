@@ -1,0 +1,40 @@
+@import "footer";
+
+//
+// Scaffolding
+// --------------------------------------------------
+//
+// Use this to add CSS rules according to the most generic html elements like
+// `html`, `body` etc. and to override the content of
+// node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_scaffolding.scss
+
+// Fix viewport issues with IE 10.
+// See http://getbootstrap.com/getting-started/#support-ie10-width
+// stylelint-disable at-rule-empty-line-before
+@-webkit-viewport { width: device-width; }
+@-moz-viewport { width: device-width; }
+@-ms-viewport { width: device-width; }
+@-o-viewport { width: device-width; }
+@viewport { width: device-width; }
+// stylelint-enable
+
+// Optimize legibility on Retina displays
+body {
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html {
+	// Get properties related to sticky footer. See _footer.scss
+	@include footer-htmlProps();
+}
+
+body {
+	overflow-y: scroll;
+	padding-top: 70px;
+	padding-bottom: 30px;
+
+	// Get properties related to sticky footer. See _footer.scss
+	@include footer-bodyProps();
+}
