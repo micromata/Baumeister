@@ -1,10 +1,11 @@
 import gulp from 'gulp';
-import changed from 'gulp-changed';
 import htmlmin from 'gulp-htmlmin';
 import processhtml from 'gulp-processhtml';
 
-import {settings} from '../config';
+import {settings, useHandlebars} from '../config';
 import {isProdBuild} from '../commandLineArgs';
+
+const sourceFiles = useHandlebars ? './.metalsmith-build/*.html' : settings.sources.html;
 
 /**
  * Process HTML:
@@ -14,14 +15,13 @@ import {isProdBuild} from '../commandLineArgs';
  */
 function processHtml() {
 	if (isProdBuild()) {
-		return gulp.src(settings.sources.markup)
+		return gulp.src(sourceFiles)
 			.pipe(processhtml())
 			.pipe(htmlmin({removeComments: true, preserveLineBreaks: true, collapseWhitespace: true}))
-			.pipe(gulp.dest(settings.destinations.prod.markup));
+			.pipe(gulp.dest(settings.destinations.prod.html));
 	}
-	return gulp.src(settings.sources.markup)
-		.pipe(changed(settings.destinations.dev.markup))
-		.pipe(gulp.dest(settings.destinations.dev.markup));
+	return gulp.src(sourceFiles)
+		.pipe(gulp.dest(settings.destinations.dev.html));
 }
 
 export default processHtml;

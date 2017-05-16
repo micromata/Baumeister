@@ -36,7 +36,7 @@ function styles() {
 			.pipe(gulp.dest(settings.destinations.prod.styles))
 			.pipe(rename('index.uncss.min.css'))
 			.pipe(uncss({
-				html: settings.sources.markup
+				html: settings.sources.html
 			}))
 			.pipe(gulp.dest(settings.destinations.prod.styles));
 	}

@@ -10,13 +10,13 @@ import {isProdBuild} from '../commandLineArgs';
  */
 function lint() {
 	if (isProdBuild()) {
-		return gulp.src([...settings.sources.scripts, './*.js', './gulp/**/*.js'])
+		return gulp.src([...settings.sources.scripts, './*.js', './gulp/**/*.js', './src/handlebars/helpers/*.js'])
 			.pipe(eslint())
 			.pipe(eslint.format())
 			.pipe(eslint.failAfterError());
 	}
 
-	return gulp.src([...settings.sources.scripts, './*.js', './gulp/**/*.js'])
+	return gulp.src([...settings.sources.scripts, './*.js', './gulp/**/*.js', './src/handlebars/helpers/*.js'])
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError())

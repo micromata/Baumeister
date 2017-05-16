@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="author" content="Micromata GmbH" />
-	<title>Bootstrap Kickstart</title>
+	<title>Bootstrap Kickstart{{#if title}} - {{title}}{{/if}}</title>
 
 	<!-- Our compiled and merged LESS files -->
 	<!-- build:css assets/css/index.min.css?rev=@@hash -->
@@ -55,54 +55,7 @@
 <![endif]-->
 
 	<!-- begin: content -->
-		<!-- begin: navbar -->
-		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.html">Bootstrap Kickstart</a>
-				</div>
-				<!-- begin: navbar-collapse -->
-				<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="active">
-							<a href="index.html">Home</a>
-						</li>
-						<li class="">
-							<a href="demoElements.html">Demo Elements</a>
-						</li>
-						<li class="">
-							<a href="stickyFooter.html">Sticky footer</a>
-						</li>
-					</ul>
-				</div>
-				<!-- end: navbar-collapse -->
-			</div>
-		</div>
-		<!-- end: navbar -->
-
-	<!-- begin: content container -->
-	<div class="container">
-
-		<!-- begin: content -->
-		<h1>Bootstrap starter template</h1>
-		<p class="lead">
-			Use this document as a way to quickly start any new project.
-			<br>All you get is this text and a mostly barebones HTML document.
-		</p>
-		<p>
-			Borrowed from the <a href="http://getbootstrap.com/examples/starter-template/">Bootstrap starter template</a>.
-		</p>
-		<!-- end: content -->
-
-	</div>
-	<!-- end: content container -->
-
+	{{{contents}}}
 	<!-- end: content -->
 
 <!--

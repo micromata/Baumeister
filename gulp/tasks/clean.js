@@ -1,7 +1,7 @@
 import del from 'del';
 import path from 'path';
 
-import {mainDirectories} from '../config';
+import {mainDirectories, settings} from '../config';
 import {isProdBuild} from '../commandLineArgs';
 import {clientCacheFile} from './clientScripts';
 import {vendorCacheFile} from './vendorScripts';
@@ -17,12 +17,14 @@ function clean() {
 	if (isProdBuild()) {
 		return del([
 			...browserifyCache,
-			mainDirectories.dist
+			mainDirectories.dist,
+			settings.destinations.handlebars
 		]);
 	}
 	return del([
 		...browserifyCache,
-		mainDirectories.dev
+		mainDirectories.dev,
+		settings.destinations.handlebars
 	]);
 }
 
