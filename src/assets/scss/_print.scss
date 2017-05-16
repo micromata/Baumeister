@@ -15,19 +15,28 @@
 		letter-spacing: -0.15em;
 		color: #404040;
 	}
-	aside, nav, [role="navigation"], img {
+
+	[role="navigation"],
+	aside,
+	img,
+	nav {
 		display: none;
 	}
-	h1 {
-		font-size: 140%
+
+	h1 {
+		font-size: 140%;
 	}
-	body, main, footer {
+
+	body,
+	footer,
+	main {
 		clear: both;
 		float: none;
 		width: 100%;
 		margin: 0;
 		padding: 0;
 	}
+
 	a {
 		text-decoration: none;
 	}
