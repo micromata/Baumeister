@@ -11,6 +11,7 @@
     "quote-props": ["error", "as-needed"],
     "capitalized-comments": ["warn"],
     "curly": ["error", "multi-line"],
-    "arrow-parens": ["off"]
+    "arrow-parens": ["off"],
+    "no-debugger": ["warn"]
   }
 }

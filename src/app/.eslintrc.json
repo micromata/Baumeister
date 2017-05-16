@@ -3,5 +3,8 @@
     "browser": true,
     "jquery": true,
     "jest": true
+  },
+  "rules": {
+    "no-console": ["warn"]
   }
 }
