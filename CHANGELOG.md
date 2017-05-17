@@ -1,3 +1,16 @@
+<a name="4.0.0-rc.1"></a>
+# [4.0.0-rc.1](https://github.com/micromata/bootstrap-kickstart/compare/4.0.0-rc.0...4.0.0-rc.1) (2017-05-17)
+
+
+### Bug Fixes
+
+* **css:** Fail style task with correct exit code in production mode ([25b8e80](https://github.com/micromata/bootstrap-kickstart/commit/25b8e80))
+* **css:** Fix failing uncss task when using handlebars ([861ae08](https://github.com/micromata/bootstrap-kickstart/commit/861ae08))
+* **css:** Own CSS has to be loaded after libs CSS ([4a343a1](https://github.com/micromata/bootstrap-kickstart/commit/4a343a1))
+* **scss:** Path for bootstrap icon fonts (glyphicons). ([9e56dfe](https://github.com/micromata/bootstrap-kickstart/commit/9e56dfe))
+
+
+
 <a name="4.0.0-rc.0"></a>
 # [4.0.0-rc.0](https://github.com/micromata/bootstrap-kickstart/compare/4.0.0-beta.0...4.0.0-rc.0) (2017-05-16)
 
