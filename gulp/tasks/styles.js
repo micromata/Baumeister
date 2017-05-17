@@ -28,7 +28,6 @@ const autoPrefixOptions = {
 function styles() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.stylesEntryPoint)
-			.pipe(plumber({errorHandler: onError}))
 			.pipe(sass())
 			.pipe(vendorPrefix(autoPrefixOptions))
 			.pipe(cleanCss())
