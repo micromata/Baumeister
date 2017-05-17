@@ -7,9 +7,11 @@ import vendorPrefix from 'gulp-autoprefixer';
 import cleanCss from 'gulp-clean-css';
 import rename from 'gulp-rename';
 
-import {settings} from '../config';
+import {settings, useHandlebars} from '../config';
 import {isProdBuild} from '../commandLineArgs';
 import onError from '../onError';
+
+const htmlSources = useHandlebars ? './.metalsmith-build/*.html' : settings.sources.html;
 
 const autoPrefixOptions = {
 	browsers: [
@@ -35,7 +37,7 @@ function styles() {
 			.pipe(gulp.dest(settings.destinations.prod.styles))
 			.pipe(rename('index.uncss.min.css'))
 			.pipe(uncss({
-				html: settings.sources.html
+				html: htmlSources
 			}))
 			.pipe(gulp.dest(settings.destinations.prod.styles));
 	}
