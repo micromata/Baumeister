@@ -71,7 +71,7 @@
     "gulp-util": "^3.0.8",
     "gulpsmith": "^0.5.5",
     "husky": "^0.13.3",
-    "jest-cli": "^20.0.1",
+    "jest-cli": "^20.0.3",
     "jstransformer-handlebars": "^1.0.0",
     "less-plugin-autoprefix": "^1.5.1",
     "metalsmith": "^2.3.0",
