@@ -9,7 +9,7 @@
     "url": "http://www.micromata.de"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "license": "MIT",
   "version": "4.0.0-rc.1",
