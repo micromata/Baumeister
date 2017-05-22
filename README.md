@@ -66,7 +66,7 @@ See: <https://github.com/micromata/generator-bootstrap-kickstart>
 
 ## Dependencies
 
-- Node.js
+- Node.js (>=6.0.0)
 - Gulp
 
 ### Node.js
@@ -75,11 +75,11 @@ The major dependency is [Node.js](http://nodejs.org/) including the Node.js pack
 
 Please enter the following in your terminal if your aren’t sure about the availability of Node.js and npm on your machine:
 
-	npm --version
+	node --version
 
 This should return something like the following in case Node.js and npm is already installed:
 
-	4.5.0
+	v6.10.2
 
 If that isn’t the case you have to install Node.js first. On OS X we strongly recommend installing Node via [Homebrew](https://brew.sh/) or [Node Version Manager](https://github.com/creationix/nvm). Not just because it’s easier to switch versions but also because you prevent potential permission problems when running npm.
 
