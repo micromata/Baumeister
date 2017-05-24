@@ -20,9 +20,9 @@ export const settings = {
 		appTemplates: ['./src/app/**/*.html'],
 		images: ['./src/assets/img/**/*.{png,jpg,gif,svg}'],
 		fonts: ['./src/assets/fonts/**/*'],
-		externalCss: pkgJson.bootstrapKickstart.bundleCSS,
-		externalJs: pkgJson.bootstrapKickstart.bundleExternalJS,
-		staticFiles: pkgJson.bootstrapKickstart.includeStaticFiles
+		externalCss: pkgJson.buildr.bundleCSS,
+		externalJs: pkgJson.buildr.bundleExternalJS,
+		staticFiles: pkgJson.buildr.includeStaticFiles
 	},
 	destinations: {
 		handlebars: './.metalsmith-build',
