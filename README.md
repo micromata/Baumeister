@@ -40,7 +40,6 @@ The aim of this project is to help you with the creation of Bootstrap themes and
 - [Using external libraries](#using-external-libraries)
 - [Unit tests](#unit-tests)
 - [Release Workflow](#release-workflow)
-- [Browser support](#browser-support)
 - [Contributing to this project](#contributing-to-this-project)
 - [License](#license)
 
@@ -773,22 +772,6 @@ reference GitHub issues that this commit **Closes**.
 
 This is how a changelog based on this conventions is rendered:
 https://github.com/angular/angular/blob/master/CHANGELOG.md
-
-## Browser support
-
-It depends on you and the Markup, JS and CSS you are writing. We still have to support IE8 in a few projects so the HTML templates used in this repository are containing the following snippet taken from the [HTML5 Boilerplate](http://html5boilerplate.com/):
-
-````
-<!--[if lt IE 8>
-	<p class="browsehappy">
-		You are using an <strong>outdated</strong> browser.
-		Please <a href="http://browsehappy.com/">upgrade your browser</a>
-		to improve your experience.
-	</p>
-<![endif]-->
-````
-
-Change this according to your needs. And make sure to visit the [Browser and device support](http://getbootstrap.com/getting-started/#support) information provided by Bootstrap.
 
 ## Contributing to this project
 
