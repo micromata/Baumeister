@@ -5,7 +5,7 @@ import {settings} from '../config';
 import {isProdBuild} from '../commandLineArgs';
 
 /**
- * Copy files defined in package.json → bootstrapKickstart.includeStaticFiles
+ * Copy files defined in package.json → kitt.includeStaticFiles
  */
 function copyStaticFiles() {
 	return gulp.src(settings.sources.staticFiles.map(sourcePath => path.join('node_modules/', sourcePath)), {base: 'node_modules/'})

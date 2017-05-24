@@ -14,7 +14,7 @@ import {isProdBuild} from '../commandLineArgs';
 export const clientCacheFile = '.browserify-cache-client.json';
 
 /**
- * Bundle own JavaScript excluding libs defined in package.json → bootstrapKickstart.bundleExternalJS
+ * Bundle own JavaScript excluding libs defined in package.json → kitt.bundleExternalJS
  */
 function clientScripts() {
 	const b = browserify('./src/app/index.js', {...browserifyInc.args, debug: true})
