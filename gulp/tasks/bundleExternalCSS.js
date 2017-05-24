@@ -7,10 +7,10 @@ import {settings, pkgJson} from '../config';
 import {isProdBuild} from '../commandLineArgs';
 
 /**
- * Bundle CSS files defined in package.json → bootstrapKickstart.bundleCSS
+ * Bundle CSS files defined in package.json → baumeister.bundleCSS
  */
 function bundleExternalCSS(done) {
-	const files = pkgJson.bootstrapKickstart.bundleCSS.map(sourcePath => path.join('node_modules/', sourcePath));
+	const files = pkgJson.baumeister.bundleCSS.map(sourcePath => path.join('node_modules/', sourcePath));
 	if (!files.length) return done();
 	if (isProdBuild()) {
 
