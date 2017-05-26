@@ -13,7 +13,7 @@ import {isProdBuild} from '../commandLineArgs';
 export const vendorCacheFile = '.browserify-cache-vendor.json';
 
 /**
- * Bundle JavaScript libs defined in package.json → bootstrapKickstart.bundleExternalJS
+ * Bundle JavaScript libs defined in package.json → kitt.bundleExternalJS
  */
 function vendorScripts() {
 	const b = browserify({...browserifyInc.args});
