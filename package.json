@@ -1,8 +1,8 @@
 {
-  "name": "bootstrap-kickstart",
-  "title": "Bootstrap Kickstart",
-  "description": "This is a boilerplate for scaffolding Bootstrap themes.",
-  "homepage": "https://github.com/micromata/bootstrap-kickstart",
+  "name": "buildr",
+  "title": "Buildr",
+  "description": "Build workflow for your web development needs.",
+  "homepage": "https://github.com/micromata/buildr",
   "author": {
     "name": "Michael Kühnel",
     "email": "m.kuehnel@micromata.de",
@@ -13,13 +13,7 @@
   },
   "license": "MIT",
   "version": "4.0.0-rc.1",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:micromata/bootstrap-kickstart.git"
-  },
-  "bugs": {
-    "url": "https://github.com/micromata/bootstrap-kickstart/issues"
-  },
+  "repository": "micromata/buildr",
   "private": true,
   "dependencies": {
     "bootstrap-sass": "3.3.7",
@@ -98,7 +92,7 @@
     "release:major": "gulp release --bump major",
     "postmerge": "npm install"
   },
-  "bootstrapKickstart": {
+  "buildr": {
     "bundleCSS": [],
     "bundleExternalJS": [
       "jquery",

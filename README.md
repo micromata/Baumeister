@@ -1,15 +1,15 @@
-[![Build Status](https://travis-ci.org/micromata/bootstrap-kickstart.svg?branch=master)](https://travis-ci.org/micromata/bootstrap-kickstart)
-[![Dependency Status](https://david-dm.org/micromata/bootstrap-kickstart.svg)](https://david-dm.org/micromata/bootstrap-kickstart)
-[![devDependency Status](https://david-dm.org/micromata/bootstrap-kickstart/dev-status.svg)](https://david-dm.org/micromata/bootstrap-kickstart#info=devDependencies)
-[![Join the chat at https://gitter.im/micromata/bootstrap-kickstart](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/micromata/bootstrap-kickstart?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Twitter](https://img.shields.io/badge/Twitter-%40BootstrapKick%20-blue.svg?style=flat)](https://twitter.com/BootstrapKick)
+[![Build Status](https://travis-ci.org/micromata/buildr.svg?branch=master)](https://travis-ci.org/micromata/buildr)
+[![Dependency Status](https://david-dm.org/micromata/buildr.svg)](https://david-dm.org/micromata/buildr)
+[![devDependency Status](https://david-dm.org/micromata/buildr/dev-status.svg)](https://david-dm.org/micromata/buildr#info=devDependencies)
+[![Join the chat at https://gitter.im/micromata/buildr](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/micromata/buildr?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Twitter](https://img.shields.io/badge/Twitter-%40buildr.io%20-blue.svg?style=flat)](https://twitter.com/buildr.io)
 [![Unicorn](https://img.shields.io/badge/unicorn-approved-ff69b4.svg?style=flat)](https://www.youtube.com/watch?v=qRC4Vk6kisY)
 
-# Build workflow for your web development needs
+# Buildr – a build workflow for your web development needs
 
-![Logo](src/assets/img/bootstrap-kickstart-logo.png)
+![Logo](src/assets/img/buildr-logo.png)
 
-The aim of this project is to help you with the creation of Bootstrap themes and websites as well as single page applications by providing:
+The aim of this project is to help you to build your things. From Bootstrap themes over static websites to single page applications. Buildr provides:
 
 - a file structure with focus on maintainability and upgradability
 - a Gulp workflow with the following »features«
@@ -51,16 +51,16 @@ For those already using Node, Gulp and stuff.
 ### via Yeoman
 
 	$ npm install -g yo
-	$ npm install -g generator-bootstrap-kickstart
-	$ yo bootstrap-kickstart
+	$ npm install -g generator-buildr
+	$ yo buildr
 	$ gulp --tasks
 
-See: <https://github.com/micromata/generator-bootstrap-kickstart>
+See: <https://github.com/micromata/generator-buildr>
 
 ### via Git
 
-	$ git clone https://github.com/micromata/bootstrap-kickstart.git
-	$ cd bootstrap-kickstart
+	$ git clone https://github.com/micromata/buildr.git
+	$ cd buildr
 	$ npm install
 	$ gulp --tasks
 
@@ -98,7 +98,7 @@ Thanks do Node.js and npm installing the Gulp command line tools globally is jus
 
 Navigate to the root of your checkout:
 
-	cd path/to/your/checkout/of/bootstrap-kickstart
+	cd path/to/your/checkout/of/buildr
 
 and call:
 
@@ -117,7 +117,7 @@ Just type the following to get an overview about the available Tasks:
 This will give you the main Gulp tasks which are ready for you to be fired from the terminal.:
 
 ````
-Tasks for ~/Documents/Projects/bootstrap-kickstart/gulpfile.babel.js
+Tasks for ~/Documents/Projects/buildr/gulpfile.babel.js
 ├── build                 `gulp build` is the main build task
 │   --production          … builds for production to `dist` directory.
 │   -P                    … Alias for --production
@@ -194,7 +194,7 @@ Beside that we recommend setting up a project within in your editor if you don�
 Using handlebars we can simplify our templates and avoid markup duplications by using a combination of `pages`, `layouts` and `partials`.
 
 ### This is optional
-Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Bootstrap Kickstart for creating a static site. If you are developing a single page application instead you might turn of handlebars compiling and place `.html` files in the `/src` directory.
+Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Buildr for creating a static site. If you are developing a single page application instead you might turn of handlebars compiling and place `.html` files in the `/src` directory.
 
 In this case you have turn of Handlebars compiling in `gulp/config.js`:
 
@@ -330,7 +330,7 @@ title: My page title
 ---
 ```
 
-Frontmatters are basically a key/value storage you can access within your layouts, pages and partials via Handlebars.  This empowers you to do things like [handling active states](https://github.com/micromata/bootstrap-kickstart/blob/master/src/handlebars/partials/navbar.hbs#L16-L22) of your navigation and much more.
+Frontmatters are basically a key/value storage you can access within your layouts, pages and partials via Handlebars.  This empowers you to do things like [handling active states](https://github.com/micromata/buildr/blob/master/src/handlebars/partials/navbar.hbs#L16-L22) of your navigation and much more.
 
 There is one predefined key which let you choose a different layout file in case you’re using more than one:
 
@@ -464,7 +464,7 @@ Let’s assume you like to ad some fanciness to your form select fields. This co
 
 This is how you get the files into your `/node_modules` directory and define the dependency in the `package.json` file.
 
-	cd path/to/your/checkout/of/bootstrap-kickstart
+	cd path/to/your/checkout/of/buildr
 	npm search select2
 
 This leads to something like:
@@ -753,7 +753,7 @@ We are using »conventional changelog« to get relevant changes out of the git c
 
 You should write your commit messages with this [conventions](https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-angular/convention.md) in mind.
 
-See the last commits of Bootstrap Kickstart for some real life commit messages: https://github.com/micromata/bootstrap-kickstart/commits
+See the last [commits](https://github.com/micromata/buildr/commits) of Buildr for some real life commit messages.
 
 #### Short summary of the conventions
 
