@@ -1,3 +1,24 @@
+<a name="4.0.0-rc.2"></a>
+# [4.0.0-rc.2](https://github.com/micromata/baumeister/compare/4.0.0-rc.1...v4.0.0-rc.2) (2017-06-06)
+
+
+### Chores
+
+* Drop support for node v4 and v5 ([7b3253f](https://github.com/micromata/baumeister/commit/7b3253f)), closes [#166](https://github.com/micromata/baumeister/issues/166)
+
+
+### Features
+
+* Remove oldIE support 🎉 ([5d8980c](https://github.com/micromata/baumeister/commit/5d8980c)), closes [#175](https://github.com/micromata/baumeister/issues/175)
+
+
+### BREAKING CHANGES
+
+* Removing oldIE support means that we no longer add conditional classes to the `<html>` element to adress oldIEs, we’ve removed polyfills (html5shiv, respond.js, jquery-placeholder) and we’ve removed the message for oldIE users to upgrade their browser.
+* You need at least Node v6 since this release as we use ES2016 features in gulp related code.
+
+
+
 <a name="4.0.0-rc.1"></a>
 # [4.0.0-rc.1](https://github.com/micromata/bootstrap-kickstart/compare/4.0.0-rc.0...4.0.0-rc.1) (2017-05-17)
 
