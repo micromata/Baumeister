@@ -12,18 +12,19 @@ Twitter:            @nuzy_, @vitamin_J, @citizenschmidt, @rvrng
 Kai Dorschner:      For creating and documenting a pretty slick file structure
                     for developing Bootstrap themes and giving technical
                     advice → http://krnl.de
-HTML5 Boilerplate:  For providing some awesome snippets
-                    → http://html5boilerplate.com
-INIT:               For inspiration about the grunt workflow
+Nicolai Süper:      For contributing to Baumeister and the Yeoman generator
+                    → https://github.com/nicolaisueper
+Julia Reuter:       For creating the Baumeister logo
+                    → https://www.juliareuter-design.com
+INIT:               For inspiration about the initial grunt workflow
                     → http://use-init.com
 Nicolas Gallagher:  For writing those lovely contributing guidelines
                     → https://github.com/necolas/issue-guidelines
 
 
 /* SITE */
-Standards:          HTML5, CSS3
-Components:         Bootstrap, jQuery, HTML5 Shiv, HTML5 Placeholder jQuery
-                    Plugin, Respond.js, Normalize.css
+Standards:          HTML5, CSS3, ES6
+Components:         Bootstrap, jQuery, Normalize.css
 Build tool:         Gulp
 Package Manager:    npm
-Software:           Sublime Text, MacDown, Terminal, SourceTree, Tower, Kaleidoscope
+Software:           Atom, iTerm, Tower, Kaleidoscope
