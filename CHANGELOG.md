@@ -1,3 +1,14 @@
+<a name="4.0.0-rc.3"></a>
+# [4.0.0-rc.3](https://github.com/micromata/baumeister/compare/4.0.0-rc.2...4.0.0-rc.3) (2017-06-16)
+
+
+### Features
+
+* Banner generation on dist files (#188) ([852515f](https://github.com/micromata/baumeister/commit/852515f))
+* **CSS:** Remove special (aka Bang) comments as well ([c8a6335](https://github.com/micromata/baumeister/commit/c8a6335))
+
+
+
 <a name="4.0.0-rc.2"></a>
 # [4.0.0-rc.2](https://github.com/micromata/baumeister/compare/4.0.0-rc.1...v4.0.0-rc.2) (2017-06-06)
 
