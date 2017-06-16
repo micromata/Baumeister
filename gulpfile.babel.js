@@ -31,6 +31,7 @@ import validateHtml from './gulp/tasks/validateHtml';
 import cacheBust from './gulp/tasks/cacheBust';
 import lintStyles from './gulp/tasks/lintStyles';
 import handlebars from './gulp/tasks/handlebars';
+import banners from './gulp/tasks/banners';
 
 /**
  * Print build target
@@ -91,7 +92,8 @@ export const build = gulp.series(
 	clean,
 	handlebars,
 	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, lintStyles, security, test),
-	cacheBust
+	cacheBust,
+	banners
 );
 build.description = '`gulp build` is the main build task';
 build.flags = {
