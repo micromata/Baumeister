@@ -32,7 +32,7 @@ function styles() {
 		return gulp.src(settings.sources.stylesEntryPoint)
 			.pipe(sass())
 			.pipe(vendorPrefix(autoPrefixOptions))
-			.pipe(cleanCss())
+			.pipe(cleanCss({level: {1: {specialComments: 0}}}))
 			.pipe(rename('index.min.css'))
 			.pipe(gulp.dest(settings.destinations.prod.styles))
 			.pipe(rename('index.uncss.min.css'))
