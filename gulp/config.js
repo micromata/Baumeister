@@ -4,7 +4,7 @@
 export const useHandlebars = true;
 
 /**
- * Flag for generating banner on dist files (css & js)
+ * Flag for generating banner on dist files (CSS & JS)
  */
 export const generateBanner = false;
 

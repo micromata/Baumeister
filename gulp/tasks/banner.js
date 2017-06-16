@@ -23,11 +23,11 @@ function banner(done) {
 	const opts = {pkgJson, yearString, dateString};
 	if (isProdBuild() && generateBanner) {
 		return merge(gulp.src(settings.destinations.prod.app + '**/*.js')
-				.pipe(gulpBanner(bannerString, opts))
-				.pipe(gulp.dest(settings.destinations.prod.app)),
-			gulp.src(settings.destinations.prod.styles + '**/*.css')
-				.pipe(gulpBanner(bannerString, opts))
-				.pipe(gulp.dest(settings.destinations.prod.styles))
+			.pipe(gulpBanner(bannerString, opts))
+			.pipe(gulp.dest(settings.destinations.prod.app)),
+		gulp.src(settings.destinations.prod.styles + '**/*.css')
+			.pipe(gulpBanner(bannerString, opts))
+			.pipe(gulp.dest(settings.destinations.prod.styles))
 		);
 	}
 	done();
