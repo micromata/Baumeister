@@ -2860,9 +2860,16 @@ etag@^1.7.0, etag@~1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.0.tgz#6f631aef336d6c46362b51764044ce216be3c051"
 
-event-stream@^3.1.0:
+event-emitter@~0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/event-emitter/-/event-emitter-0.3.5.tgz#df8c69eef1647923c7157b9ce83840610b02cc39"
+  dependencies:
+    d "1"
+    es5-ext "~0.10.14"
+
+event-stream@^3.1.0, event-stream@^3.3.4:
   version "3.3.4"
-  resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-3.3.4.tgz#4ab4c9a0f5a54db9338b4c34d86bfce8f4b35571"
+  resolved "https://registry.npmjs.org/event-stream/-/event-stream-3.3.4.tgz#4ab4c9a0f5a54db9338b4c34d86bfce8f4b35571"
   dependencies:
     duplexer "~0.1.1"
     from "~0"
@@ -3677,6 +3684,14 @@ gulp-autoprefixer@^4.0.0:
     through2 "^2.0.0"
     vinyl-sourcemaps-apply "^0.2.0"
 
+gulp-banner@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.npmjs.org/gulp-banner/-/gulp-banner-0.1.3.tgz#0208a314983fdc851c95e9944b0a7cf305479fa3"
+  dependencies:
+    gulp-util "~3.0.7"
+    through2 "~2.0.0"
+    underscore.template "~0.1.2"
+
 gulp-bootlint@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/gulp-bootlint/-/gulp-bootlint-0.8.1.tgz#62c396f9ab727cfb13134dddcaed091bb0bc2ff7"
@@ -3957,7 +3972,7 @@ gulp-uncss@^1.0.6:
     object-assign "^4.0.1"
     uncss "^0.14.1"
 
-gulp-util@3.0.8, gulp-util@^3, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.1, gulp-util@^3.0.2, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@^3.0.8, gulp-util@latest, gulp-util@~3.0.6:
+gulp-util@3.0.8, gulp-util@^3, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.1, gulp-util@^3.0.2, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@^3.0.8, gulp-util@latest, gulp-util@~3.0.6, gulp-util@~3.0.7:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -5770,6 +5785,12 @@ merge-descriptors@1.0.1:
 merge-stream@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-1.0.1.tgz#4041202d508a342ba00174008df0c251b8c135e1"
+  dependencies:
+    readable-stream "^2.0.1"
+
+merge-stream@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/merge-stream/-/merge-stream-1.0.1.tgz#4041202d508a342ba00174008df0c251b8c135e1"
   dependencies:
     readable-stream "^2.0.1"
 
@@ -8291,6 +8312,10 @@ uncss@^0.14.1:
     phridge "~2.0.0"
     postcss "~5.0.14"
     request "~2.69.0"
+
+underscore.template@~0.1.2:
+  version "0.1.7"
+  resolved "https://registry.npmjs.org/underscore.template/-/underscore.template-0.1.7.tgz#3013e0ea181756306f1609e959cafbc722adb3e9"
 
 underscore@1.7.x:
   version "1.7.0"

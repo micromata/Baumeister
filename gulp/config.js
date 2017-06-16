@@ -3,6 +3,11 @@
  */
 export const useHandlebars = true;
 
+/**
+ * Flag for generating banner on dist files (css & js)
+ */
+export const generateBanner = false;
+
 export const pkgJson = require('../package.json');
 
 export const mainDirectories = {
