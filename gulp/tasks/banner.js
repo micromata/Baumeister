@@ -14,11 +14,8 @@ const bannerString = '/*! <%= pkgJson.title %> - v<%= pkgJson.version %>\n' +
 	' */\n';
 
 function banner(done) {
-	const currentDate = new Date();
-	const yearString = currentDate.getFullYear();
-	const monthString = currentDate.getUTCMonth() > 8 ? currentDate.getUTCMonth() + 1 : `0${currentDate.getUTCMonth() + 1}`;
-	const dayString = currentDate.getDate() > 9 ? currentDate.getDate() : `0${currentDate.getDate()}`;
-	const dateString = `${yearString}-${monthString}-${dayString}`;
+	const yearString = new Date().getFullYear();
+	const dateString = new Date().toLocaleDateString('en-US');
 
 	const opts = {pkgJson, yearString, dateString};
 	if (isProdBuild() && generateBanners) {
