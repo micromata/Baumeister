@@ -24,7 +24,13 @@ function banner(done) {
 			.pipe(gulp.dest(settings.destinations.prod.app)),
 		gulp.src(settings.destinations.prod.styles + '**/*.css')
 			.pipe(gulpBanner(bannerString, opts))
-			.pipe(gulp.dest(settings.destinations.prod.styles))
+			.pipe(gulp.dest(settings.destinations.prod.styles)),
+		gulp.src(settings.destinations.prod.libs + '*.js')
+			.pipe(gulpBanner(bannerString, opts))
+			.pipe(gulp.dest(settings.destinations.prod.libs)),
+		gulp.src(settings.destinations.prod.libs + '*.css')
+			.pipe(gulpBanner(bannerString, opts))
+			.pipe(gulp.dest(settings.destinations.prod.libs))
 		);
 	}
 	done();
