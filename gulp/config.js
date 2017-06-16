@@ -4,9 +4,9 @@
 export const useHandlebars = true;
 
 /**
- * Flag for generating banner on dist files (CSS & JS)
+ * Flag for generating banners on on top of dist files (CSS & JS).
  */
-export const generateBanner = false;
+export const generateBanners = false;
 
 export const pkgJson = require('../package.json');
 

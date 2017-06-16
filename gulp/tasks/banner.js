@@ -4,7 +4,7 @@
 import gulp from 'gulp';
 import gulpBanner from 'gulp-banner';
 import {isProdBuild} from '../commandLineArgs';
-import {generateBanner, pkgJson, settings} from '../config';
+import {generateBanners, pkgJson, settings} from '../config';
 import merge from 'merge-stream';
 
 const bannerString = '/*! <%= pkgJson.title %> - v<%= pkgJson.version %>\n' +
@@ -21,7 +21,7 @@ function banner(done) {
 	const dateString = `${yearString}-${monthString}-${dayString}`;
 
 	const opts = {pkgJson, yearString, dateString};
-	if (isProdBuild() && generateBanner) {
+	if (isProdBuild() && generateBanners) {
 		return merge(gulp.src(settings.destinations.prod.app + '**/*.js')
 			.pipe(gulpBanner(bannerString, opts))
 			.pipe(gulp.dest(settings.destinations.prod.app)),
