@@ -1,0 +1,21 @@
+//
+// Alerts
+// --------------------------------------------------
+// Just an example for overriding bootstraps alerts.scss file
+
+.alert {
+	// Local variables
+	//
+	// Which are meant to be used only in this module. »Global« variables are stored
+	// in /src/assets/scss/_variables.scss
+	$alert-border-radius: 4px;
+
+	// Local mixins
+	//
+	// Which are meant to be used only in this module. »Global« mixins are stored
+	// in /src/assets/scss/theme/_mixins.scss
+
+	// Styles
+	//
+	border-radius: $alert-border-radius;
+}

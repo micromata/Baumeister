@@ -1,0 +1,43 @@
+// Base Print Styles
+// --------------------------------------------------
+
+@page {
+	size: auto;
+	margin: 2cm 1cm;
+}
+
+@media print {
+	body {
+		font-family: Garamond, Georgia, 'Times New Roman', serif;
+		background: white;
+		font-size: 90%;
+		line-height: 115%;
+		letter-spacing: -0.15em;
+		color: #404040;
+	}
+
+	[role="navigation"],
+	aside,
+	img,
+	nav {
+		display: none;
+	}
+
+	h1 {
+		font-size: 140%;
+	}
+
+	body,
+	footer,
+	main {
+		clear: both;
+		float: none;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	a {
+		text-decoration: none;
+	}
+}

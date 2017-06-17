@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="Micromata GmbH">
+	<title>Baumeister{{#if title}} - {{title}}{{/if}}</title>
+
+	<!-- Libs -->
+	<!-- build:css libs/libs.min.css?rev=@@hash -->
+	<link href="libs/libs.css" rel="stylesheet">
+	<!-- /build -->
+
+	<!-- Our compiled and merged Sass files -->
+	<!-- build:css assets/css/index.min.css?rev=@@hash -->
+	<link href="assets/css/index.css" rel="stylesheet">
+	<!-- /build -->
+
+	<!--
+	Replace "no-js" class with "js" in case JavaScript is available.
+	You can delete this when you feel the need to make use of modernizr.
+	-->
+	<script>(function(h){h.className = h.className.replace('no-js', 'js')})(document.documentElement)</script>
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory. -->
+
+	<!-- Place anything custom after this. But put JS to the end of body. -->
+</head>
+
+<body>
+
+	<!-- begin: content -->
+	{{{contents}}}
+	<!-- end: content -->
+
+<!--
+JavaScript
+=======================================================
+Placed at the end of the document. Performance reasons.
+Non minified/merged versions for debugging purposes are
+replaced in the production ready build.
+-->
+
+<!-- Vendor JS -->
+<!-- build:js libs/vendor.min.js?rev=@@hash -->
+<script src="libs/vendor.js"></script>
+<!-- /build -->
+
+<!-- Own JS -->
+<!-- build:js app/client.min.js?rev=@@hash -->
+<script src="app/client.js"></script>
+<!-- /build -->
+
+<!-- External scripts (eg. analytics) should be placed here -->
+</body>
+</html>
