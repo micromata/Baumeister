@@ -5,7 +5,7 @@ import processhtml from 'gulp-processhtml';
 import {settings, useHandlebars} from '../config';
 import {isProdBuild} from '../commandLineArgs';
 
-const sourceFiles = useHandlebars ? './.metalsmith-build/*.html' : settings.sources.html;
+const sourceFiles = useHandlebars ? `${settings.destinations.handlebars}/*.html` : settings.sources.html;
 
 /**
  * Process HTML:
