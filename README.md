@@ -8,7 +8,7 @@
 # Baumeister – The frontend build workflow for your needs
 
 <p align="center">
-	<img width="65%" src="src/assets/img/baumeister-logo.png" alt="Baumeister Logo">
+	<img width="80%" src="https://cdn.rawgit.com/micromata/baumeister-media/master/dist/Baumeister-Logo-Default.svg" alt="Baumeister Logo">
 </p>
 
 The aim of this project is to help you to build your things. From Bootstrap themes over static websites to single page applications. Baumeister provides:
