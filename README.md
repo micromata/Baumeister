@@ -93,7 +93,7 @@ This project uses [Gulp](http://gulpjs.com/) for its build system, with convenie
 
 #### Installing Gulp
 
-Thanks do Node.js and npm installing the Gulp command line tools globally is just this simple one-liner:
+Thanks to Node.js and npm installing the Gulp command line tools globally is just this simple one-liner:
 
 	npm install --global gulp-cli
 
