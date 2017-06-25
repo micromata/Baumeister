@@ -1,3 +1,4 @@
+[![GitHub version](https://badge.fury.io/gh/micromata%2Fbaumeister.svg)](https://badge.fury.io/gh/micromata%2Fbaumeister)
 [![Build Status](https://travis-ci.org/micromata/baumeister.svg?branch=master)](https://travis-ci.org/micromata/baumeister)
 [![Dependency Status](https://david-dm.org/micromata/baumeister.svg)](https://david-dm.org/micromata/baumeister)
 [![devDependency Status](https://david-dm.org/micromata/baumeister/dev-status.svg)](https://david-dm.org/micromata/baumeister#info=devDependencies)
