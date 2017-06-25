@@ -10,7 +10,7 @@ import {pkgJson} from '../config';
 function commitChanges() {
 	return gulp.src('.')
 		.pipe(git.add())
-		.pipe(git.commit(`Release ${pkgJson.version}`));
+		.pipe(git.commit(`chore: Release ${pkgJson.version}`));
 }
 
 export default commitChanges;
