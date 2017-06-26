@@ -700,7 +700,7 @@ We are using [stylelint-config-standard](https://github.com/stylelint/stylelint-
 .stylelintrc.json
 ```
 
-See [stylelint rules](https://stylelint.io/user-guide/rules/) in case you like get details to these rules.
+See [stylelint rules](https://stylelint.io/user-guide/rules/) in case you like get details to these rules and the [stylelint user guide](https://stylelint.io/user-guide/configuration/) to see how to configure stylelint (e.g. how to turn of rules).
 
 ### Bootlint (Markup)
 
