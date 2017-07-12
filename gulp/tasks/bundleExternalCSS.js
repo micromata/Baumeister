@@ -1,6 +1,7 @@
 import path from 'path';
 import gulp from 'gulp';
-import cleanCss from 'gulp-clean-css';
+import postcss from 'gulp-postcss';
+import cssnano from 'cssnano';
 import concat from 'gulp-concat';
 
 import {settings, pkgJson} from '../config';
@@ -14,7 +15,11 @@ function bundleExternalCSS(done) {
 	if (!files.length) return done();
 	if (isProdBuild()) {
 		return gulp.src(files)
-			.pipe(cleanCss())
+			.pipe(postcss([cssnano({
+				discardComments: {
+					removeAll: true
+				}
+			})]))
 			.pipe(concat('libs.min.css'))
 			.pipe(gulp.dest(settings.destinations.prod.libs));
 	}

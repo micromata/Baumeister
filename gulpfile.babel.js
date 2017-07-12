@@ -91,7 +91,8 @@ watch.description = '`gulp watch` watches for changes and runs tasks automatical
 export const build = gulp.series(
 	clean,
 	handlebars,
-	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, styles, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, lintStyles, security, test),
+	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, lintStyles, security, test),
+	styles,
 	cacheBust,
 	banners
 );
