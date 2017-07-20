@@ -23,6 +23,25 @@ const autoPrefixOptions = {
 	]
 };
 
+const uncssOptions = {
+	ignoreSheets: [/fonts.googleapis/],
+	timeout: 2000,
+	html: `${settings.destinations.prod.html}/**/*.html`,
+	ignore: [
+		/\w\.in/,
+		/(#|\.)navbar(-[a-zA-Z]+)?/,
+		/(#|\.)modal(-[a-zA-Z]+)?/,
+		/(#|\.)dropdown(-[a-zA-Z]+)?/,
+		/(#|\.)carousel(-[a-zA-Z]+)?/,
+		/(#|\.)tooltip(-[a-zA-Z]+)?/,
+		/(#|\.)(open)/,
+		'.fade',
+		'.collapse',
+		'.collapsing',
+		'.in'
+	]
+};
+
 /**
  * Handles Sass transpiling, auto prefixing, minifying and UnCSS.
  */
@@ -40,7 +59,7 @@ function styles() {
 			.pipe(rename('index.min.css'))
 			.pipe(gulp.dest(settings.destinations.prod.styles))
 			.pipe(rename('index.uncss.min.css'))
-			.pipe(postcss([uncss.postcssPlugin({html: `${settings.destinations.prod.html}/**/*.html`})]))
+			.pipe(postcss([uncss.postcssPlugin(uncssOptions)]))
 			.pipe(gulp.dest(settings.destinations.prod.styles));
 	}
 	return gulp.src(settings.sources.stylesEntryPoint)
