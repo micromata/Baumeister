@@ -1,3 +1,15 @@
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/micromata/baumeister/compare/1.0.1...1.0.2) (2017-07-26)
+
+
+### Bug Fixes
+
+* **stylelint:** Ignore Sass @-rules and directives ([fecf229](https://github.com/micromata/baumeister/commit/fecf229))
+* Update dependencies ([6d15031](https://github.com/micromata/baumeister/commit/6d15031))
+* Update dependencies ([33a1de4](https://github.com/micromata/baumeister/commit/33a1de4))
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/micromata/baumeister/compare/1.0.0...v1.0.1) (2017-06-25)
 
