@@ -134,7 +134,7 @@ import 'core-js/es6/promise';
 /**
  * Import a single string method
  */
-// import 'core-js/fn/string/trim-start';
+import 'core-js/fn/string/trim-start';
 
 /**
  * Import a single array^ method

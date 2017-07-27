@@ -11,5 +11,5 @@ require('bootstrap-sass');
 $(() => {
 	consoleErrorFix();
 	ieViewportFix();
-	console.log('YaY, my first ES6-Module !!!!');
+	console.log('                     YaY, my first ES6-Module !!!!'.trimStart());
 });
