@@ -1,3 +1,4 @@
+import './polyfills';
 import $ from 'jquery';
 import {consoleErrorFix, ieViewportFix} from './base';
 
