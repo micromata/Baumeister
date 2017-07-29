@@ -1,9 +1,9 @@
 {
   "extends": "stylelint-config-standard",
   "rules": {
-   "indentation": "tab",
-   "number-leading-zero": ["always", {"severity": "warning"}],
-   "at-rule-no-unknown": [ true, {
+    "indentation": "tab",
+    "number-leading-zero": ["always", { "severity": "warning" }],
+    "at-rule-no-unknown": [true, {
       "ignoreAtRules": [
         "extend",
         "mixin",
@@ -18,5 +18,5 @@
         "while"
       ]
     }]
- }
+  }
 }
