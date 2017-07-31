@@ -9,9 +9,23 @@
  */
 
 /**
+  * ----------------------------------------------------------------------------
+  * Import each and every polyfill provided by core-js
+  * -----------------------------------------------------------------------------
+  * This is for the lazy ones and absolultely not recommend because it will
+  * increase your JS bundle by more than 120 kb (minified). Better check what
+  * your target browsers need (https://kangax.github.io/compat-table/es6/)
+  * and use partial imports like in the examples below.
+  */
+// import 'core-js';
+
+/**
  * ----------------------------------------------------------------------------
  * Promises. Needed for Internet Explorer  up to IE11
  * -----------------------------------------------------------------------------
+ * This polyfill alone will blow up your bundle size with more than 20 kb
+ * (minified). So please  don’t use that if your are targeting only browser
+ * which have Promises build in. See https://kangax.github.io/compat-table/es6/
  */
 import 'core-js/es6/promise';
 
