@@ -1,3 +1,18 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/micromata/baumeister/compare/1.0.3...1.1.0) (2017-07-31)
+
+
+### Bug Fixes
+
+* **release:** Bump version number in package-lock.json as well ([78ab99a](https://github.com/micromata/baumeister/commit/78ab99a))
+
+
+### Features
+
+* Set polyfills via core-js ([#194](https://github.com/micromata/baumeister/issues/194)) ([05a8f90](https://github.com/micromata/baumeister/commit/05a8f90))
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/micromata/baumeister/compare/1.0.2...1.0.3) (2017-07-29)
 
