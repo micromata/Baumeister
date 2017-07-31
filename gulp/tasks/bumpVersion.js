@@ -19,7 +19,7 @@ function bumpVersion() {
 
 	pkgJson.version = semver.inc(pkgJson.version, args.bump, args['prerelease-identifier']);
 
-	return gulp.src('./package.json')
+	return gulp.src(['./package.json', './package-lock.json'])
 		.pipe(bump({
 			type: args.bump,
 			preid: args['prerelease-identifier']
