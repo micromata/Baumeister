@@ -10,11 +10,11 @@ import {args, isProdBuild} from '../commandLineArgs';
  */
 function test(done) {
 	if (args.watch) {
-		jest.runCLI({watch: true, config: pkgJson.jest}, '.', () => {});
+		jest.runCLI({watch: true, config: pkgJson.jest}, '.').then(() => {});
 		done();
 	}
 
-	jest.runCLI({config: pkgJson.jest}, '.', result => {
+	jest.runCLI({config: pkgJson.jest}, '.').then(result => {
 		if (isProdBuild() && !result.success) {
 			done();
 			process.exit(1);
