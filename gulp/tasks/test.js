@@ -16,10 +16,9 @@ function test(done) {
 
 	jest.runCLI({config: pkgJson.jest}, '.').then(result => {
 		if (isProdBuild() && !result.success) {
-			done();
-			process.exit(1);
+			return done() && process.exit(1);
 		}
-		done();
+		return done();
 	});
 }
 test.description = '`gulp test` runs unit test via Jest CLI';
