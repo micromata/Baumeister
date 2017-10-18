@@ -7,8 +7,8 @@ import uglify from 'gulp-uglify';
 import envify from 'gulp-envify';
 
 import {settings} from '../config';
-import onError from '../onError';
-import {isProdBuild} from '../commandLineArgs';
+import onError from '../on-error';
+import {isProdBuild} from '../command-line-args';
 
 export const vendorCacheFile = '.browserify-cache-vendor.json';
 

@@ -2,8 +2,8 @@ import gulp from 'gulp';
 import eslint from 'gulp-eslint';
 
 import {settings} from '../config';
-import onError from '../onError';
-import {isProdBuild} from '../commandLineArgs';
+import onError from '../on-error';
+import {isProdBuild} from '../command-line-args';
 /**
  * ESLint task:
  * Run `gulp lint` respectively `gulp lint --production`

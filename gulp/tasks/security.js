@@ -1,7 +1,7 @@
 import nsp from 'gulp-nsp';
 import path from 'path';
 
-import {isProdBuild} from '../commandLineArgs';
+import {isProdBuild} from '../command-line-args';
 
 /**
  * Check dependencies with help of the node security platform

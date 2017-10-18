@@ -3,7 +3,7 @@ import htmlmin from 'gulp-htmlmin';
 import processhtml from 'gulp-processhtml';
 
 import {settings, useHandlebars} from '../config';
-import {isProdBuild} from '../commandLineArgs';
+import {isProdBuild} from '../command-line-args';
 
 const sourceFiles = useHandlebars ? `${settings.destinations.handlebars}/*.html` : settings.sources.html;
 

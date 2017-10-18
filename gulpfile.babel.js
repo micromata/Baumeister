@@ -1,3 +1,4 @@
+/* eslint filenames/match-exported: 0 */
 // Import npm modules
 import chalk from 'chalk';
 import gulp from 'gulp';
@@ -5,31 +6,31 @@ import gutil from 'gulp-util';
 
 // Import settings
 import {settings, useHandlebars} from './gulp/config';
-import {isProdBuild} from './gulp/commandLineArgs';
+import {isProdBuild} from './gulp/command-line-args';
 
 // Import tasks
 import clean from './gulp/tasks/clean';
 import styles from './gulp/tasks/styles';
 import fonts from './gulp/tasks/fonts';
 import images from './gulp/tasks/images';
-import appTemplates from './gulp/tasks/appTemplates';
-import clientScripts from './gulp/tasks/clientScripts';
-import vendorScripts from './gulp/tasks/vendorScripts';
-import bundleExternalCSS from './gulp/tasks/bundleExternalCSS';
-import copyStaticFiles from './gulp/tasks/copyStaticFiles';
+import appTemplates from './gulp/tasks/app-templates';
+import clientScripts from './gulp/tasks/client-scripts';
+import vendorScripts from './gulp/tasks/vendor-scripts';
+import bundleExternalCSS from './gulp/tasks/bundle-external-css';
+import copyStaticFiles from './gulp/tasks/copy-static-files';
 import lint from './gulp/tasks/lint';
 import security from './gulp/tasks/security';
-import processHtml from './gulp/tasks/processHtml';
-import lintBootstrap from './gulp/tasks/lintBootstrap';
+import processHtml from './gulp/tasks/process-html';
+import lintBootstrap from './gulp/tasks/lint-bootstrap';
 import test from './gulp/tasks/test';
 import {serve, reload} from './gulp/tasks/serve';
-import bumpVersion from './gulp/tasks/bumpVersion';
-import createChangelog from './gulp/tasks/createChangelog';
-import commitChanges from './gulp/tasks/commitChanges';
-import createTag from './gulp/tasks/createTag';
-import validateHtml from './gulp/tasks/validateHtml';
-import cacheBust from './gulp/tasks/cacheBust';
-import lintStyles from './gulp/tasks/lintStyles';
+import bumpVersion from './gulp/tasks/bump-version';
+import createChangelog from './gulp/tasks/create-changelog';
+import commitChanges from './gulp/tasks/commit-changes';
+import createTag from './gulp/tasks/create-tag';
+import validateHtml from './gulp/tasks/validate-html';
+import cacheBust from './gulp/tasks/cache-bust';
+import lintStyles from './gulp/tasks/lint-styles';
 import handlebars from './gulp/tasks/handlebars';
 import banners from './gulp/tasks/banners';
 

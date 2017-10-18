@@ -8,8 +8,8 @@ import rename from 'gulp-rename';
 import uglify from 'gulp-uglify';
 
 import {settings} from '../config';
-import onError from '../onError';
-import {isProdBuild} from '../commandLineArgs';
+import onError from '../on-error';
+import {isProdBuild} from '../command-line-args';
 
 export const clientCacheFile = '.browserify-cache-client.json';
 

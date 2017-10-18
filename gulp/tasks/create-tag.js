@@ -1,7 +1,7 @@
 import git from 'gulp-git';
 
 import {pkgJson} from '../config';
-import onError from '../onError';
+import onError from '../on-error';
 
 /**
  * Creates Git tag.

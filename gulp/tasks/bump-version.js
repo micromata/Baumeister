@@ -5,8 +5,8 @@ import bump from 'gulp-bump';
 import semver from 'semver';
 
 import {pkgJson} from '../config';
-import onError from '../onError';
-import {args, hasBumpType} from '../commandLineArgs';
+import onError from '../on-error';
+import {args, hasBumpType} from '../command-line-args';
 
 /**
  * Bumps version in package.json.

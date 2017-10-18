@@ -2,8 +2,8 @@ import gulp from 'gulp';
 import htmllint from 'gulp-html';
 
 import {settings, useHandlebars} from '../config';
-import {isProdBuild} from '../commandLineArgs';
-import onError from '../onError';
+import {isProdBuild} from '../command-line-args';
+import onError from '../on-error';
 
 const sourceFiles = useHandlebars ? './.metalsmith-build/*.html' : settings.sources.html;
 
