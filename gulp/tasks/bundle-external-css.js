@@ -5,7 +5,7 @@ import cssnano from 'cssnano';
 import concat from 'gulp-concat';
 
 import {settings, pkgJson} from '../config';
-import {isProdBuild} from '../commandLineArgs';
+import {isProdBuild} from '../command-line-args';
 
 /**
  * Bundle CSS files defined in package.json → baumeister.bundleCSS

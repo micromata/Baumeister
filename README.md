@@ -227,7 +227,7 @@ src
 ├── anotherPage.hbs        → Another page
 └── handlebars
     ├── helpers            → Place to store custom handlebars helpers (usage optional)
-    │   └── addYear.js
+    │   └── add-year.js
     ├── layouts            → Place to store our layouts
     │   └── default.hbs    → Our default layout
     └── partials           → Place to store our partials (usage optional)
@@ -240,7 +240,7 @@ Let’s take a look at the content of our files.
 
 #### Custom helper
 
-Content of `src/handlebars/helpers/addYear.js`:
+Content of `src/handlebars/helpers/add-year.js`:
 
 ```javascript
 /**
@@ -717,7 +717,7 @@ We are using [Bootlint](https://github.com/twbs/bootlint) to check for potential
 You can disable certain [rules](https://github.com/twbs/bootlint/wiki) within:
 
 ```
-gulp/tasks/lintBootstrap.js
+gulp/tasks/lint-bootstrap.js
 ```
 
 ## Release Workflow

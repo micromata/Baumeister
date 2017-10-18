@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import rev from 'gulp-rev-append';
 import {settings} from '../config';
-import {isProdBuild} from '../commandLineArgs';
+import {isProdBuild} from '../command-line-args';
 
 function cacheBust(done) {
 	if (isProdBuild()) {

@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import bootlint from 'gulp-bootlint';
 
 import {settings, useHandlebars} from '../config';
-import {isProdBuild} from '../commandLineArgs';
+import {isProdBuild} from '../command-line-args';
 
 const sourceFiles = useHandlebars ? './.metalsmith-build/*.html' : settings.sources.html;
 

@@ -1,8 +1,8 @@
 import gulp from 'gulp';
 import stylelint from 'gulp-stylelint';
 import {settings} from '../config';
-import {isProdBuild} from '../commandLineArgs';
-import onError from '../onError';
+import {isProdBuild} from '../command-line-args';
+import onError from '../on-error';
 
 const stylelintOptions = {
 	reporters: [{

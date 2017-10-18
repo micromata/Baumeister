@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import path from 'path';
 
 import {settings} from '../config';
-import {isProdBuild} from '../commandLineArgs';
+import {isProdBuild} from '../command-line-args';
 
 /**
  * Copy files defined in package.json → baumeister.includeStaticFiles

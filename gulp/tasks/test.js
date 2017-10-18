@@ -1,7 +1,7 @@
 import jest from 'jest-cli';
 
 import {pkgJson} from '../config';
-import {args, isProdBuild} from '../commandLineArgs';
+import {args, isProdBuild} from '../command-line-args';
 
 /**
  * Test task:

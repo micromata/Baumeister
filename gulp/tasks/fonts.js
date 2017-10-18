@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import changed from 'gulp-changed';
 
 import {settings} from '../config';
-import {isProdBuild} from '../commandLineArgs';
+import {isProdBuild} from '../command-line-args';
 
 /**
  * Copy fonts from src/assets/fonts

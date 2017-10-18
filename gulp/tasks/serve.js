@@ -1,7 +1,7 @@
 import browserSync from 'browser-sync';
 
 import {mainDirectories} from '../config';
-import {isProdBuild} from '../commandLineArgs';
+import {isProdBuild} from '../command-line-args';
 
 const server = browserSync.create();
 

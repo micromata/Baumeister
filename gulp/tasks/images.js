@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import imagemin from 'gulp-imagemin';
 
 import {settings} from '../config';
-import {isProdBuild} from '../commandLineArgs';
+import {isProdBuild} from '../command-line-args';
 
 /**
  * Minify PNG, JPEG, GIF and SVG images with imagemin

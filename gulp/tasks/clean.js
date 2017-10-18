@@ -2,9 +2,9 @@ import del from 'del';
 import path from 'path';
 
 import {mainDirectories, settings} from '../config';
-import {isProdBuild} from '../commandLineArgs';
-import {clientCacheFile} from './clientScripts';
-import {vendorCacheFile} from './vendorScripts';
+import {isProdBuild} from '../command-line-args';
+import {clientCacheFile} from './client-scripts';
+import {vendorCacheFile} from './vendor-scripts';
 
 const browserifyCache = [
 	path.join(__dirname, `/../../${clientCacheFile}`),
