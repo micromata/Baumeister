@@ -34,6 +34,7 @@
     "del": "^3.0.0",
     "eslint-config-xo": "0.18.2",
     "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-filenames": "^1.2.0",
     "gulp": "github:gulpjs/gulp#3f5aba2",
     "gulp-banner": "^0.1.3",
     "gulp-bootlint": "^0.8.1",
