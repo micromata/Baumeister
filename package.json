@@ -69,7 +69,7 @@
     "metalsmith": "^2.3.0",
     "metalsmith-in-place": "^3.0.1",
     "metalsmith-layouts": "^1.8.1",
-    "metalsmith-register-helpers": "^0.3.0",
+    "metalsmith-register-helpers": "^0.4.0",
     "minimist": "^1.2.0",
     "semver": "^5.4.1",
     "stylelint-config-standard": "^17.0.0",
