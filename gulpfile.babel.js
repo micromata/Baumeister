@@ -128,3 +128,6 @@ release.flags = {
 	'-B (major|minor|patch)': ' alias to --bump',
 	'--prerelease-identifier yourIdentifier': 'e.g. gulp release -B premajor --prerelease-identifier beta'
 };
+
+export const lintAll = gulp.parallel(lint, lintStyles);
+lintAll.description = '`gulp lintAll` lints ES and style sources';
