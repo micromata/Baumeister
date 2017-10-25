@@ -1,8 +1,12 @@
 {
   "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-no-unsupported-browser-features"
+  ],
   "rules": {
     "indentation": "tab",
     "number-leading-zero": ["always", { "severity": "warning" }],
+    "plugin/no-unsupported-browser-features": [true, { "severity": "warning" }],
     "at-rule-no-unknown": [true, {
       "ignoreAtRules": [
         "extend",
