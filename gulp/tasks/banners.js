@@ -20,9 +20,10 @@ function banners(done) {
 
 	const opts = {pkgJson, year, fullDate};
 	if (isProdBuild() && generateBanners) {
-		return merge(gulp.src(settings.destinations.prod.app + '**/*.js')
-			.pipe(gulpBanner(banner, opts))
-			.pipe(gulp.dest(settings.destinations.prod.app)),
+		return merge(
+			gulp.src(settings.destinations.prod.app + '**/*.js')
+				.pipe(gulpBanner(banner, opts))
+				.pipe(gulp.dest(settings.destinations.prod.app)),
 		gulp.src(settings.destinations.prod.styles + '**/*.css')
 			.pipe(gulpBanner(banner, opts))
 			.pipe(gulp.dest(settings.destinations.prod.styles)),

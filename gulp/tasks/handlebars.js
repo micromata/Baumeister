@@ -39,8 +39,7 @@ function handlebars(done) {
 					pattern: '*.hbs',
 					partials: 'src/handlebars/partials'
 				}
-			}))
-		)
+			})))
 		.pipe(gulp.dest(settings.destinations.handlebars));
 }
 
