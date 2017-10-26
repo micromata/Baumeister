@@ -55,7 +55,8 @@ function styles() {
 					discardComments: {
 						removeAll: true
 					}
-				})]))
+				})
+			]))
 			.pipe(rename('index.min.css'))
 			.pipe(gulp.dest(settings.destinations.prod.styles))
 			.pipe(rename('index.uncss.min.css'))
