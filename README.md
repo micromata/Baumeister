@@ -40,20 +40,12 @@ The aim of this project is to help you to build your things. From Bootstrap them
 - [Writing markup (static sites vs. single page apps)](./docs/static-vs-spa.md)
 - [File and folder structure of Sass files](./docs/sass-file-structure.md)
 - [Using external libraries](./docs/using-ext-libs.md)
-- [Adding polyfills](#adding-polyfills)
+- [Adding polyfills](./docs/adding-polyfills.md)
 - [Unit tests](#unit-tests)
 - [Configuring linters](#configuring-linters)
 - [Release Workflow](#release-workflow)
 - [Contributing to this project](#contributing-to-this-project)
 - [License](#license)
-
-## Adding polyfills
-
-The file `src/app/polyfills.js` is prepared to import polyfills you might need depending on your use of modern JavaScript language features and your target browsers.
-
-Just import the ones you need for the browsers you are targeting.
-
-The only polyfill activated by default is a Promises polyfill which is needed if you use Promises and targeting Internet Explorers.
 
 ## Unit tests
 
