@@ -1,4 +1,4 @@
-## Using external libraries
+# Using external libraries
 
 Let’s assume you like to add some fanciness to your form select fields. This could be accomplished with [Select2](https://github.com/select2/select2).
 
@@ -27,7 +27,7 @@ which will:
 - download the latest and greatest version to your `node_modules` directory
 - add `"select2": "~4.0.3"` to your `package.json`
 
-### Using and bundling JavaScript dependencies
+## Using and bundling JavaScript dependencies
 
 You have to decide whether to use ES6 imports or `require` your dependency in the commonJS way depending on the module format your dependency provides.
 
@@ -60,7 +60,7 @@ myProject
         └── vendor.min.js
 ```
 
-### Bundling CSS from dependencies
+## Bundling CSS from dependencies
 
 If a used library ships its own CSS you have to include the path to the files you like to bundle in the `bundleCSS` section of your `package.json`. Please note that glob pattern matching is supported over here.
 
@@ -83,7 +83,7 @@ myProject
         └── libs.min.css
 ```
 
-### Including static files from dependencies
+## Including static files from dependencies
 
 Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a separate `<script>` tag.
 To handle that you just have to include the files in the `includeStaticFiles` section of your `package.json`. Please note that glob pattern matching is supported over here.
@@ -132,7 +132,7 @@ myProject
                 └── respond.min.js
 ```
 
-### Changing versions of dependencies
+## Changing versions of dependencies
 
 You can change the version of the dependencies by editing the `package.json` file within the root directory of the project by hand.
 
@@ -153,11 +153,11 @@ Where `^1.11.1` installed the latest 1.x.x release which is version 1.11.1 in ca
 
 Check <http://semver.org/> for more information about »Semantic Versioning«.
 
-#### Updating beyond defined semver ranges
+### Updating beyond defined semver ranges
 
 There are multiple ways to get newer versions than defined via the semver ranges in your `package.json`
 
-##### Updating single dependencies via CLI
+#### Updating single dependencies via CLI
 
 You can use npm to update single dependencies and persist changes to your `package.json`
 
@@ -167,6 +167,6 @@ For example:
 npm install --save bootstrap@latest
 ```
 
-##### Updating multiple dependencies at once
+#### Updating multiple dependencies at once
 
 We recommend using a command line tool like »[npm-check-update](https://github.com/tjunnone/npm-check-updates)« to update multiple dependencies at once.

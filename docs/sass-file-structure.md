@@ -1,4 +1,4 @@
-## File and folder structure of Sass files
+# File and folder structure of Sass files
 
 This is s short version of our conventions when it comes to create bootstrap themes. Below you’ll find the folder and file structure we are using:
 

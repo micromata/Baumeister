@@ -1,4 +1,4 @@
-## Unit tests
+# Unit tests
 
 We use [Jest](https://facebook.github.io/jest/), for running unit test and generating test coverage reports.
 See config in property `jest` in `package.json`.
@@ -16,7 +16,7 @@ npm run test:watch
 ```
 This comes in handy since it’s blazingly fast. It runs only tests related to changed files per default but has an interactive mode which enables you to run all if needed.
 
-### For those who are new to Jest
+## For those who are new to Jest
 
 Writing test with Jest feels pretty much the same like writing tests with Mocha/Chai|Jasmine.
 Just have a look at our small dummy test in `src/app/__tests__`.
