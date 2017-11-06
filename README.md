@@ -36,7 +36,7 @@ The aim of this project is to help you to build your things. From Bootstrap them
 
 - [Quickstart](./docs/quickstart.md)
 - [Gulp workflow and tasks](./docs/gulp-workflow.md)
-- [Setting up your editor (optional)](#setting-up-your-editor-optional)
+- [Setting up your editor (optional)](./docs/editorconfig.md)
 - [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps)
 - [File and folder structure of Sass files](#file-and-folder-structure-of-sass-files)
 - [Using external libraries](#using-external-libraries)
@@ -46,34 +46,6 @@ The aim of this project is to help you to build your things. From Bootstrap them
 - [Release Workflow](#release-workflow)
 - [Contributing to this project](#contributing-to-this-project)
 - [License](#license)
-
-### Setting up your Editor (optional)
-
-We strongly advise to install an [EditorConfig plugin](http://editorconfig.org/#download) and take a look at the `.editorconfig` file in the root of this project.
-
-Beside that we recommend setting up a project within in your editor if you don’t want to see these generated files cluttered all over your project. In case of Sublime Text it’s as easy as hitting »Project« → »Save Project As …« and adding the following to `projectName.sublime-project`.
-
-```json
-{
-  "folders": [{
-    "path": ".",
-    "folder_exclude_patterns": [
-      "node_modules",
-      "server",
-      "dist",
-      "src/assets/css",
-			".git"
-    ],
-    "file_exclude_patterns": [
-      ".editorconfig",
-      ".travis.yml",
-			".browserify-cache-client.json",
-			".browserify-cache-vendor.json",
-			".DS_Store"
-    ]
-  }]
-}
-```
 
 ## Writing Markup (static sites vs. single page apps)
 Baumeister acts like a static sites generator by default. Using handlebars we can simplify our templates and avoid markup duplications by using a combination of `pages`, `layouts` and `partials`.
