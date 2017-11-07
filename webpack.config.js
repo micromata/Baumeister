@@ -18,7 +18,18 @@ const dev = {
 		new webpack.optimize.CommonsChunkPlugin({
 			name: ['app', 'vendor', 'polyfills']
 		})
-	]
+	],
+	module: {
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /(node_modules)/,
+				use: {
+					loader: 'babel-loader'
+				}
+			}
+		]
+	}
 };
 
 const prod = {
@@ -39,7 +50,10 @@ const prod = {
 				}
 			}
 		})
-	]
+	],
+	module: {
+		...dev.module
+	}
 };
 
 module.exports = {dev, prod};
