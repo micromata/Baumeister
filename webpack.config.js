@@ -49,6 +49,11 @@ const prod = {
 					drop_debugger: true // eslint-disable-line camelcase
 				}
 			}
+		}),
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify('production')
+			}
 		})
 	],
 	module: {
