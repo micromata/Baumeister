@@ -1,8 +1,8 @@
-import {settings} from './gulp/config';
+import path from 'path';
+import webpack from 'webpack';
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
-const webpack = require('webpack');
-const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+import {settings} from './gulp/config';
 
 const dev = {
 	entry: {
