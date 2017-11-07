@@ -14,8 +14,7 @@ import styles from './gulp/tasks/styles';
 import fonts from './gulp/tasks/fonts';
 import images from './gulp/tasks/images';
 import appTemplates from './gulp/tasks/app-templates';
-import clientScripts from './gulp/tasks/client-scripts';
-import vendorScripts from './gulp/tasks/vendor-scripts';
+import webpack from './gulp/tasks/webpack';
 import bundleExternalCSS from './gulp/tasks/bundle-external-css';
 import copyStaticFiles from './gulp/tasks/copy-static-files';
 import lint from './gulp/tasks/lint';
@@ -60,7 +59,7 @@ export {test, lint, serve};
  * Run `gulp watch` respectively `gulp watch --production`
  */
 export function watch() {
-	gulp.watch(settings.sources.scripts, gulp.series(clientScripts, gulp.parallel(lint, reload))).on('change', informOnChange);
+	gulp.watch(settings.sources.scripts, gulp.series(webpack, gulp.parallel(lint, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.styles, gulp.series(styles, gulp.parallel(lintStyles, reload))).on('change', informOnChange);
 
 	if (useHandlebars) {
@@ -92,7 +91,7 @@ watch.description = '`gulp watch` watches for changes and runs tasks automatical
 export const build = gulp.series(
 	clean,
 	handlebars,
-	gulp.parallel(processHtml, appTemplates, lint, fonts, images, clientScripts, vendorScripts, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, lintStyles, security, test),
+	gulp.parallel(processHtml, appTemplates, lint, fonts, images, webpack, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, lintStyles, security, test),
 	styles,
 	cacheBust,
 	banners

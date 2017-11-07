@@ -1,13 +1,16 @@
-const webpack = require('webpack');
+import {settings} from './gulp/config';
 
-module.exports = {
+const webpack = require('webpack');
+const path = require('path');
+
+const dev = {
 	entry: {
 		polyfills: './src/app/polyfills.js',
 		vendor: './src/app/vendor.js',
 		app: './src/app/index.js'
 	},
 	output: {
-		path: __dirname + '/dist',
+		path: path.join(__dirname, settings.destinations.dev.app),
 		filename: '[name].bundle.js'
 	},
 	plugins: [
@@ -16,3 +19,13 @@ module.exports = {
 		})
 	]
 };
+
+const prod = {
+	...dev,
+	output: {
+		path: path.join(__dirname, settings.destinations.prod.app),
+		filename: '[name].bundle.min.js'
+	}
+};
+
+module.exports = {dev, prod};
