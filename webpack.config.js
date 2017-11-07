@@ -2,6 +2,7 @@ import {settings} from './gulp/config';
 
 const webpack = require('webpack');
 const path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const dev = {
 	entry: {
@@ -21,11 +22,24 @@ const dev = {
 };
 
 const prod = {
-	...dev,
+	entry: {
+		...dev.entry
+	},
 	output: {
 		path: path.join(__dirname, settings.destinations.prod.app),
 		filename: '[name].bundle.min.js'
-	}
+	},
+	plugins: [
+		...dev.plugins,
+		new UglifyJSPlugin({
+			uglifyOptions: {
+				compress: {
+					drop_console: true, // eslint-disable-line camelcase
+					drop_debugger: true // eslint-disable-line camelcase
+				}
+			}
+		})
+	]
 };
 
 module.exports = {dev, prod};
