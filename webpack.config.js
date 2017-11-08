@@ -21,6 +21,9 @@ const dev = {
 		new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery'
+		}),
+		new webpack.SourceMapDevToolPlugin({
+			columns: false
 		})
 	],
 	module: {
