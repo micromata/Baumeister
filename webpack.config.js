@@ -7,8 +7,8 @@ import {settings} from './gulp/config';
 const dev = {
 	entry: {
 		polyfills: './src/app/polyfills.js',
-		vendor: './src/app/vendor.js',
-		app: './src/app/index.js'
+		app: './src/app/index.js',
+		vendor: settings.sources.externalJs
 	},
 	output: {
 		path: path.join(__dirname, settings.destinations.dev.app),
@@ -17,13 +17,17 @@ const dev = {
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin({
 			name: ['app', 'vendor', 'polyfills']
+		}),
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery'
 		})
 	],
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
-				exclude: /(node_modules)/,
+				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader'
 				}
