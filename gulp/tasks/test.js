@@ -1,7 +1,7 @@
 import jest from 'jest-cli';
 
-import {pkgJson} from '../config';
 import {args, isProdBuild} from '../command-line-args';
+const pkgJson = require('../../package.json');
 
 /**
  * Test task:

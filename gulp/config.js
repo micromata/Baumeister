@@ -8,7 +8,7 @@ export const useHandlebars = true;
  */
 export const generateBanners = false;
 
-export const pkgJson = require('../package.json');
+const configFile = require('../baumeister.json');
 
 export const mainDirectories = {
 	dev: './server/',
@@ -25,9 +25,9 @@ export const settings = {
 		appTemplates: ['./src/app/**/*.html'],
 		images: ['./src/assets/img/**/*.{png,jpg,gif,svg}'],
 		fonts: ['./src/assets/fonts/**/*'],
-		externalCss: pkgJson.baumeister.bundleCSS,
-		externalJs: pkgJson.baumeister.bundleExternalJS,
-		staticFiles: pkgJson.baumeister.includeStaticFiles
+		externalCss: configFile.bundleCSS,
+		externalJs: configFile.bundleExternalJS,
+		staticFiles: configFile.includeStaticFiles
 	},
 	destinations: {
 		handlebars: './.metalsmith-build',

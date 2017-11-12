@@ -4,14 +4,14 @@ import postcss from 'gulp-postcss';
 import cssnano from 'cssnano';
 import concat from 'gulp-concat';
 
-import {settings, pkgJson} from '../config';
+import {settings} from '../config';
 import {isProdBuild} from '../command-line-args';
 
 /**
- * Bundle CSS files defined in package.json → baumeister.bundleCSS
+ * Bundle CSS files defined in baumeister.json → bundleCSS
  */
 function bundleExternalCSS(done) {
-	const files = pkgJson.baumeister.bundleCSS.map(sourcePath => path.join('node_modules/', sourcePath));
+	const files = settings.sources.externalCss.map(sourcePath => path.join('node_modules/', sourcePath));
 	if (!files.length) return done();
 	if (isProdBuild()) {
 		return gulp.src(files)

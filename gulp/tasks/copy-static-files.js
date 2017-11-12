@@ -5,7 +5,7 @@ import {settings} from '../config';
 import {isProdBuild} from '../command-line-args';
 
 /**
- * Copy files defined in package.json → baumeister.includeStaticFiles
+ * Copy files defined in baumeister.json → includeStaticFiles
  */
 function copyStaticFiles() {
 	return gulp.src(settings.sources.staticFiles.map(sourcePath => path.join('node_modules/', sourcePath)), {base: 'node_modules/'})

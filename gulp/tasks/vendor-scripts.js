@@ -13,7 +13,7 @@ import {isProdBuild} from '../command-line-args';
 export const vendorCacheFile = '.browserify-cache-vendor.json';
 
 /**
- * Bundle JavaScript libs defined in package.json → baumeister.bundleExternalJS
+ * Bundle JavaScript libs defined in baumeister.json → bundleExternalJS
  */
 function vendorScripts() {
 	const b = browserify({...browserifyInc.args});

@@ -1,0 +1,10 @@
+{
+  "bundleCSS": [],
+  "bundleExternalJS": [
+    "jquery",
+    "bootstrap-sass"
+  ],
+  "includeStaticFiles": [
+    "bootstrap-sass/assets/fonts/**/*"
+  ]
+}

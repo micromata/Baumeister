@@ -111,6 +111,8 @@ and call:
 
 npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our Gulp workflow as well as the needed frontend dependencies to `\node_modules`.
 
+There are some settings in the `baumeister.json` file in the root directory. These make it possible to include additional dependencies without touching any Gulp task. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
+
 ## Gulp Workflow and tasks
 
 When completed the setup, you'll be able to run the various Gulp tasks provided from the command line.
@@ -508,7 +510,7 @@ require('bootstrap');
 require('select2');
 ```
 
-Finally add the library to the `bundleExternalJS` section of `package.json` to add the sources the `vendor.js` bundle.
+Finally add the library to the `bundleExternalJS` section of `baumeister.json` to add the sources the `vendor.js` bundle.
 
 ```
 bundleExternalJS": ["jquery", "bootstrap", "select2"]
@@ -527,7 +529,7 @@ myProject
 
 ### Bundling CSS from dependencies
 
-If a used library ships its own CSS you have to include the path to the files you like to bundle in the `bundleCSS` section of your `package.json`. Please note that glob pattern matching is supported over here.
+If a used library ships its own CSS you have to include the path to the files you like to bundle in the `bundleCSS` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
 
 ```
 "bundleCSS": [
@@ -551,7 +553,7 @@ myProject
 ### Including static files from dependencies
 
 Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a separate `<script>` tag.
-To handle that you just have to include the files in the `includeStaticFiles` section of your `package.json`. Please note that glob pattern matching is supported over here.
+To handle that you just have to include the files in the `includeStaticFiles` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
 
 ```
 "includeStaticFiles": [
