@@ -14,7 +14,7 @@ import {isProdBuild} from '../command-line-args';
 export const clientCacheFile = '.browserify-cache-client.json';
 
 /**
- * Bundle own JavaScript excluding libs defined in package.json → baumeister.bundleExternalJS
+ * Bundle own JavaScript excluding libs defined in baumeister.json → bundleExternalJS
  */
 function clientScripts() {
 	const b = browserify('./src/app/index.js', {...browserifyInc.args, debug: true})

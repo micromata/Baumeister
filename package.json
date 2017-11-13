@@ -101,16 +101,6 @@
     "release:major": "gulp release --bump major",
     "postmerge": "npm install"
   },
-  "baumeister": {
-    "bundleCSS": [],
-    "bundleExternalJS": [
-      "jquery",
-      "bootstrap-sass"
-    ],
-    "includeStaticFiles": [
-      "bootstrap-sass/assets/fonts/**/*"
-    ]
-  },
   "jest": {
     "testPathIgnorePatterns": [
       "<rootDir>/gulp/",
