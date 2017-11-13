@@ -132,7 +132,7 @@ In the root directory is a file named `baumeister.json` which you can use to cha
 }
 ```
 
-`bundleCSS`, `bundleExternalJS` and `includeStaticFiles` make make it possible to include additional dependencies without touching any Gulp task. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
+`bundleCSS`, `bundleExternalJS` and `includeStaticFiles` makes it possible to include additional dependencies without touching any Gulp task. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
 
 The ramifications of changing the `useHandlebars` setting are explained in the section [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps).
 
@@ -232,8 +232,7 @@ In this case you have to switch off Handlebars compiling in `baumeister.json`:
 
 ```javascript
 /**
- * Boolean flag to set when using handlebars instead of plain
- * HTML files in `src`.
+ * Boolean flag to set when using handlebars instead of plain HTML files in `src`.
  */
 "useHandlebars": false
 ```
@@ -861,7 +860,7 @@ https://github.com/angular/angular/blob/master/CHANGELOG.md
 
 Adding banners on top of the production bundles is fully optional and disabled by default.
 
-It can be enabled with setting the `generateBanners` property within `baumeister.json` to `true`
+It can be enabled with setting the `generateBanners` property within `baumeister.json` to `true`.
 
 ```javascript
 /**
