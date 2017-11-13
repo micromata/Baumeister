@@ -46,6 +46,7 @@ The aim of this project is to help you to build your things. From Bootstrap them
 - [Unit tests](#unit-tests)
 - [Configuring linters](#configuring-linters)
 - [Release Workflow](#release-workflow)
+- [Adding banners](#adding-banners)
 - [Contributing to this project](#contributing-to-this-project)
 - [License](#license)
 
@@ -110,6 +111,32 @@ and call:
 	npm install
 
 npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our Gulp workflow as well as the needed frontend dependencies to `\node_modules`.
+
+
+### Adjust settings via the Baumeister config file
+
+In the root directory is a file named `baumeister.json` which you can use to change a few important settings without touching any gulp tasks:
+
+```json
+{
+  "useHandlebars": true,
+  "generateBanners": true,
+  "bundleCSS": [],
+  "bundleExternalJS": [
+    "jquery",
+    "bootstrap-sass"
+  ],
+  "includeStaticFiles": [
+    "bootstrap-sass/assets/fonts/**/*"
+  ]
+}
+```
+
+`bundleCSS`, `bundleExternalJS` and `includeStaticFiles` makes it possible to include additional dependencies without touching any Gulp task. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
+
+The ramifications of changing the `useHandlebars` setting are explained in the section [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps).
+
+[Adding banners](#adding-banners) describes the effects of setting `generateBanners` to `true`.
 
 ## Gulp Workflow and tasks
 
@@ -201,13 +228,13 @@ Baumeister acts like a static sites generator by default. Using handlebars we ca
 ### This is optional
 Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Baumeister for creating a static site. If you are developing a single page application instead you might turn off handlebars compiling and place just an `index.html` file in the `/src` directory and store additional templates in `/src/app`.
 
-In this case you have to switch off Handlebars compiling in `gulp/config.js`:
+In this case you have to switch off Handlebars compiling in `baumeister.json`:
 
 ```javascript
 /**
  * Boolean flag to set when using handlebars instead of plain HTML files in `src`.
  */
-export const useHandlebars = false;
+"useHandlebars": false
 ```
 
 ### Using handlebars
@@ -508,7 +535,7 @@ require('bootstrap');
 require('select2');
 ```
 
-Finally add the library to the `bundleExternalJS` section of `package.json` to add the sources the `vendor.js` bundle.
+Finally add the library to the `bundleExternalJS` section of `baumeister.json` to add the sources the `vendor.js` bundle.
 
 ```
 bundleExternalJS": ["jquery", "bootstrap", "select2"]
@@ -527,7 +554,7 @@ myProject
 
 ### Bundling CSS from dependencies
 
-If a used library ships its own CSS you have to include the path to the files you like to bundle in the `bundleCSS` section of your `package.json`. Please note that glob pattern matching is supported over here.
+If a used library ships its own CSS you have to include the path to the files you like to bundle in the `bundleCSS` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
 
 ```
 "bundleCSS": [
@@ -551,7 +578,7 @@ myProject
 ### Including static files from dependencies
 
 Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a separate `<script>` tag.
-To handle that you just have to include the files in the `includeStaticFiles` section of your `package.json`. Please note that glob pattern matching is supported over here.
+To handle that you just have to include the files in the `includeStaticFiles` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
 
 ```
 "includeStaticFiles": [
@@ -828,6 +855,29 @@ reference GitHub issues that this commit **Closes**.
 
 This is how a changelog based on this conventions is rendered:
 https://github.com/angular/angular/blob/master/CHANGELOG.md
+
+## Adding banners
+
+Adding banners on top of the production bundles is fully optional and disabled by default.
+
+It can be enabled with setting the `generateBanners` property within `baumeister.json` to `true`.
+
+```javascript
+/**
+ * Flag for generating banners on on top of dist files (CSS & JS).
+ */
+"generateBanners": true
+```
+
+If enabled it will place the following banners to the bundled CSS and JS files:
+
+```javascript
+/*! <%= pkgJson.title %> - v<%= pkgJson.version %>
+ * <%= pkgJson.author.email %>
+ * Copyright ©<%= year %> <%= pkgJson.author.name %>
+ * <%= fullDate %>
+ */
+```
 
 ## Contributing to this project
 

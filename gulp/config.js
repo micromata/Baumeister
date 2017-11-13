@@ -1,14 +1,14 @@
+const configFile = require('../baumeister.json');
+
 /**
  * Boolean flag to set when using handlebars instead of plain HTML files in `src`.
  */
-export const useHandlebars = true;
+export const useHandlebars = configFile.useHandlebars;
 
 /**
  * Flag for generating banners on on top of dist files (CSS & JS).
  */
-export const generateBanners = false;
-
-export const pkgJson = require('../package.json');
+export const generateBanners = configFile.generateBanners;
 
 export const mainDirectories = {
 	dev: './server/',
@@ -25,9 +25,9 @@ export const settings = {
 		appTemplates: ['./src/app/**/*.html'],
 		images: ['./src/assets/img/**/*.{png,jpg,gif,svg}'],
 		fonts: ['./src/assets/fonts/**/*'],
-		externalCss: pkgJson.baumeister.bundleCSS,
-		externalJs: pkgJson.baumeister.bundleExternalJS,
-		staticFiles: pkgJson.baumeister.includeStaticFiles
+		externalCss: configFile.bundleCSS,
+		externalJs: configFile.bundleExternalJS,
+		staticFiles: configFile.includeStaticFiles
 	},
 	destinations: {
 		handlebars: './.metalsmith-build',

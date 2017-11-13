@@ -1,0 +1,12 @@
+{
+  "useHandlebars": true,
+  "generateBanners": true,
+  "bundleCSS": [],
+  "bundleExternalJS": [
+    "jquery",
+    "bootstrap-sass"
+  ],
+  "includeStaticFiles": [
+    "bootstrap-sass/assets/fonts/**/*"
+  ]
+}
