@@ -37,7 +37,6 @@ The aim of this project is to help you to build your things. From Bootstrap them
 - [Quick install guide](#quick-install-guide)
 - [Dependencies](#dependencies)
 - [Setting up the project](#setting-up-the-project)
-- [Configure your project via `baumeister.json`](#baumeister-json)
 - [Gulp workflow and tasks](#gulp-workflow-and-tasks)
 - [Setting up your editor (optional)](#setting-up-your-editor-optional)
 - [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps)
