@@ -93,8 +93,8 @@ export const build = gulp.series(
 	handlebars,
 	gulp.parallel(processHtml, appTemplates, lint, fonts, images, webpack, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, lintStyles, security, test),
 	styles,
-	cacheBust,
-	banners
+	banners,
+	cacheBust
 );
 build.description = '`gulp build` is the main build task';
 build.flags = {
