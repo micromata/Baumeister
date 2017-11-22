@@ -51,7 +51,7 @@ export const settings = {
 		}
 	},
 	webpack: {
-		DefinePlugin: isProdBuild() ? {...configFile.webpack.DefinePlugin.prod} : {...configFile.webpack.DefinePlugin.prod},
+		DefinePlugin: isProdBuild() ? {...configFile.webpack.DefinePlugin.prod} : {...configFile.webpack.DefinePlugin.dev},
 		ProvidePlugin: {...configFile.webpack.ProvidePlugin}
 	}
 };
