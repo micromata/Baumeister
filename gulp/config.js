@@ -1,3 +1,5 @@
+import {isProdBuild} from './command-line-args';
+
 const configFile = require('../baumeister.json');
 
 /**
@@ -47,5 +49,9 @@ export const settings = {
 			images: `${mainDirectories.dist}assets/img/`,
 			libs: `${mainDirectories.dist}libs/`
 		}
+	},
+	webpack: {
+		DefinePlugin: isProdBuild() ? {...configFile.webpack.DefinePlugin.prod} : {...configFile.webpack.DefinePlugin.prod},
+		ProvidePlugin: {...configFile.webpack.ProvidePlugin}
 	}
 };
