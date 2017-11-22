@@ -18,10 +18,7 @@ const dev = {
 		new webpack.optimize.CommonsChunkPlugin({
 			name: ['app', 'vendor', 'polyfills']
 		}),
-		new webpack.ProvidePlugin({
-			$: 'jquery',
-			jQuery: 'jquery'
-		}),
+		new webpack.ProvidePlugin({...settings.webpack.ProvidePlugin}),
 		new webpack.SourceMapDevToolPlugin({
 			columns: false
 		})
@@ -57,11 +54,7 @@ const prod = {
 				}
 			}
 		}),
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: '"production"'
-			}
-		})
+		new webpack.DefinePlugin({...settings.webpack.DefinePlugin})
 	],
 	module: {
 		...dev.module
