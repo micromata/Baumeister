@@ -73,7 +73,7 @@ See: <https://github.com/micromata/generator-baumeister>
 ## Dependencies
 
 - Node.js (>=6.0.0)
-- Gulp
+- Globally installed [Gulp CLI](https://www.npmjs.com/package/gulp-cli)
 
 ### Node.js
 
@@ -91,9 +91,18 @@ If this isn’t the case you have to install Node.js first. On OS X we strongly 
 
 ### Gulp
 
-This project uses [Gulp](http://gulpjs.com/) for its build system, with convenient methods for working with the project. It's how we compile and minify our code, at vendor prefixes, optimize images, delete unused CSS, release new versions and more.
+This project uses [Gulp](http://gulpjs.com/) for its build system, with convenient methods for working with the project. It's how we compile and minify our code, at vendor prefixes, optimize images, delete unused CSS, release new versions and more. Since we use Gulp 4, Baumeister needs the newer extracted Gulp CLI which is meant to be installed globally only.
 
-#### Installing Gulp
+Please check if you have installed `gulp-cli` properly be entering the following in your terminal:
+
+    gulp --v
+
+This needs to return `CLI version 1.x.x`. If it returns something like `CLI version 3.x.x` instead you have to replace the globally installed `gulp` package with the `gulp-cli` package by running:
+
+	npm uninstall --global gulp
+	npm install --global gulp-cli
+
+#### Installing Gulp CLI
 
 Thanks to Node.js and npm installing the Gulp command line tools globally is just this simple one-liner:
 
