@@ -33,6 +33,10 @@ const dev = {
 				}
 			}
 		]
+	},
+	stats: {
+		timings: true,
+		version: false
 	}
 };
 

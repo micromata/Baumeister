@@ -14,7 +14,7 @@ import styles from './gulp/tasks/styles';
 import fonts from './gulp/tasks/fonts';
 import images from './gulp/tasks/images';
 import appTemplates from './gulp/tasks/app-templates';
-import webpack from './gulp/tasks/webpack';
+import webpack, {webpackWatch} from './gulp/tasks/webpack';
 import bundleExternalCSS from './gulp/tasks/bundle-external-css';
 import copyStaticFiles from './gulp/tasks/copy-static-files';
 import lint from './gulp/tasks/lint';
@@ -59,7 +59,7 @@ export {test, lint, serve};
  * Run `gulp watch` respectively `gulp watch --production`
  */
 export function watch() {
-	gulp.watch(settings.sources.scripts, gulp.series(webpack, gulp.parallel(lint, reload))).on('change', informOnChange);
+	gulp.watch(settings.sources.scripts, gulp.series(gulp.parallel(lint, reload))).on('change', informOnChange);
 	gulp.watch(settings.sources.styles, gulp.series(styles, gulp.parallel(lintStyles, reload))).on('change', informOnChange);
 
 	if (useHandlebars) {
@@ -106,7 +106,11 @@ build.flags = {
  * Define and export default task:
  * Run `gulp` respectively `gulp --production`
  */
-const dev = gulp.series(build, serve, watch);
+const dev = gulp.series(
+	build,
+	serve,
+	gulp.parallel(webpackWatch, watch)
+);
 dev.description = '`gulp` will build, serve, watch for changes and reload server';
 export default dev;
 
