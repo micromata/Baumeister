@@ -95,7 +95,7 @@ This project uses [Gulp](http://gulpjs.com/) for its build system, with convenie
 
 Please check if you have installed `gulp-cli` properly be entering the following in your terminal:
 
-    gulp --v
+    gulp -v
 
 This needs to return `CLI version 1.x.x`. If it returns something like `CLI version 3.x.x` instead you have to replace the globally installed `gulp` package with the `gulp-cli` package by running:
 
