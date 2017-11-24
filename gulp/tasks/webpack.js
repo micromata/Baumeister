@@ -20,7 +20,7 @@ function webpack(done) {
 		.pipe(gulp.dest(settings.destinations.dev.app));
 }
 
-export function webpackWatch() {
+function webpackWatch() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.scripts)
 			.pipe(wp({
@@ -37,4 +37,4 @@ export function webpackWatch() {
 		.pipe(gulp.dest(settings.destinations.dev.app));
 }
 
-export default webpack;
+export {webpack, webpackWatch};

@@ -14,7 +14,7 @@ import styles from './gulp/tasks/styles';
 import fonts from './gulp/tasks/fonts';
 import images from './gulp/tasks/images';
 import appTemplates from './gulp/tasks/app-templates';
-import webpack, {webpackWatch} from './gulp/tasks/webpack';
+import {webpack, webpackWatch} from './gulp/tasks/webpack';
 import bundleExternalCSS from './gulp/tasks/bundle-external-css';
 import copyStaticFiles from './gulp/tasks/copy-static-files';
 import lint from './gulp/tasks/lint';
