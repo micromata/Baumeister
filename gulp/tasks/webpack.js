@@ -4,33 +4,26 @@ import {isProdBuild} from '../command-line-args';
 import {settings} from '../config';
 
 const config = require('../../webpack.config');
+const webpack = createWebpackFunctions({});
+const webpackWatch = createWebpackFunctions({watch: true});
 
-function webpack() {
-	if (isProdBuild()) {
-		return gulp.src(settings.sources.scripts)
-			.pipe(wp(config.prod))
-			.pipe(gulp.dest(settings.destinations.prod.app));
-	}
-	return gulp.src(settings.sources.scripts)
-		.pipe(wp(config.dev))
-		.pipe(gulp.dest(settings.destinations.dev.app));
-}
-
-function webpackWatch() {
-	if (isProdBuild()) {
+function createWebpackFunctions(additionalOptions) {
+	return function () {
+		if (isProdBuild()) {
+			return gulp.src(settings.sources.scripts)
+				.pipe(wp({
+					...config.prod,
+					...additionalOptions
+				}))
+				.pipe(gulp.dest(settings.destinations.prod.app));
+		}
 		return gulp.src(settings.sources.scripts)
 			.pipe(wp({
-				...config.prod,
-				watch: true
+				...config.dev,
+				...additionalOptions
 			}))
-			.pipe(gulp.dest(settings.destinations.prod.app));
-	}
-	return gulp.src(settings.sources.scripts)
-		.pipe(wp({
-			...config.dev,
-			watch: true
-		}))
-		.pipe(gulp.dest(settings.destinations.dev.app));
+			.pipe(gulp.dest(settings.destinations.dev.app));
+	};
 }
 
 export {webpack, webpackWatch};
