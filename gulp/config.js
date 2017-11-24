@@ -49,9 +49,5 @@ export const settings = {
 			images: `${mainDirectories.dist}assets/img/`,
 			libs: `${mainDirectories.dist}libs/`
 		}
-	},
-	webpack: {
-		DefinePlugin: isProdBuild() ? {...configFile.webpack.DefinePlugin.prod} : {...configFile.webpack.DefinePlugin.dev},
-		ProvidePlugin: {...configFile.webpack.ProvidePlugin}
 	}
 };

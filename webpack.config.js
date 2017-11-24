@@ -4,6 +4,8 @@ import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
 import {settings} from './gulp/config';
 
+const configFile = require('./baumeister.json');
+
 const dev = {
 	entry: {
 		polyfills: './src/app/polyfills.js',
@@ -18,7 +20,8 @@ const dev = {
 		new webpack.optimize.CommonsChunkPlugin({
 			name: ['app', 'vendor', 'polyfills']
 		}),
-		new webpack.ProvidePlugin({...settings.webpack.ProvidePlugin}),
+		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
+		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.dev}),
 		new webpack.SourceMapDevToolPlugin({
 			columns: false
 		})
@@ -49,7 +52,11 @@ const prod = {
 		filename: '[name].bundle.min.js'
 	},
 	plugins: [
-		...dev.plugins,
+		new webpack.optimize.CommonsChunkPlugin({
+			name: ['app', 'vendor', 'polyfills']
+		}),
+		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
+		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.prod}),
 		new UglifyJSPlugin({
 			uglifyOptions: {
 				compress: {
@@ -57,8 +64,7 @@ const prod = {
 					drop_debugger: true // eslint-disable-line camelcase
 				}
 			}
-		}),
-		new webpack.DefinePlugin({...settings.webpack.DefinePlugin})
+		})
 	],
 	module: {
 		...dev.module
