@@ -137,7 +137,21 @@ In the root directory is a file named `baumeister.json` which you can use to cha
   ],
   "includeStaticFiles": [
     "bootstrap-sass/assets/fonts/**/*"
-  ]
+  ],
+  "webpack": {
+      "DefinePlugin": {
+        "dev": {},
+        "prod": {
+          "process.env": {
+            "NODE_ENV": "'production'"
+          }
+        }
+      },
+      "ProvidePlugin": {
+        "$": "jquery",
+        "jQuery": "jquery"
+      }
+    }
 }
 ```
 
@@ -146,6 +160,17 @@ In the root directory is a file named `baumeister.json` which you can use to cha
 The ramifications of changing the `useHandlebars` setting are explained in the section [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps).
 
 [Adding banners](#adding-banners) describes the effects of setting `generateBanners` to `true`.
+
+### Define global constants at compile time
+
+If you want to provide values for different types of builds (`NODE_ENV` is a popular example), you can define them inside the `dev` and `prod` properties of the `DefinePlugin` section.
+The plugin does a direct text replacement, so the value given to it must include actual quotes inside of the string. You can use alternating quotes, like `"'production'"`, or  use `JSON.stringify('production')`.
+You may take a look at the official [Webpack DefinePlugin docs](https://webpack.js.org/plugins/define-plugin/).
+
+### Automatically load modules instead of requiring / importing them
+
+The `ProvidePlugin` section is an object where the value equals to the module name and the key represents the property name of the window object the module gets mapped to.
+See the official [Webpack ProvidePlugin docs](https://webpack.js.org/plugins/define-plugin/) for further information.
 
 ## Gulp Workflow and tasks
 
