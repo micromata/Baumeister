@@ -1,15 +1,11 @@
 import gulp from 'gulp';
 import wp from 'webpack-stream';
-import {args, isProdBuild} from '../command-line-args';
+import {isProdBuild} from '../command-line-args';
 import {settings} from '../config';
 
 const config = require('../../webpack.config');
 
-function webpack(done) {
-
-	// Prevent doubled excution of webpack in watch mode
-	if (args._[0] !== 'build') return done();
-
+function webpack() {
 	if (isProdBuild()) {
 		return gulp.src(settings.sources.scripts)
 			.pipe(wp(config.prod))
