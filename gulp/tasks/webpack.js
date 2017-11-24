@@ -4,11 +4,11 @@ import {isProdBuild} from '../command-line-args';
 import {settings} from '../config';
 
 const config = require('../../webpack.config');
-const webpack = createWebpackFunctions({});
-const webpackWatch = createWebpackFunctions({watch: true});
+const webpack = createWebpackFunctions('webpack', {});
+const webpackWatch = createWebpackFunctions('webpackWatch', {watch: true});
 
-function createWebpackFunctions(additionalOptions) {
-	return function () {
+function createWebpackFunctions(taskName, additionalOptions) {
+	const task = function () {
 		if (isProdBuild()) {
 			return gulp.src(settings.sources.scripts)
 				.pipe(wp({
@@ -24,6 +24,8 @@ function createWebpackFunctions(additionalOptions) {
 			}))
 			.pipe(gulp.dest(settings.destinations.dev.app));
 	};
+	task.displayName = taskName;
+	return task;
 }
 
 export {webpack, webpackWatch};
