@@ -1,5 +1,3 @@
-import {isProdBuild} from './command-line-args';
-
 const configFile = require('../baumeister.json');
 
 /**
