@@ -74,7 +74,7 @@
     "semver": "^5.4.1",
     "stylelint-config-standard": "^17.0.0",
     "uglifyjs-webpack-plugin": "^1.0.1",
-    "uncss": "^0.15.0",
+    "uncss": "^0.16.0",
     "webpack-stream": "^4.0.0"
   },
   "scripts": {
