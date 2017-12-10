@@ -1,6 +1,6 @@
 {
   "useHandlebars": true,
-  "generateBanners": true,
+  "generateBanners": false,
   "bundleCSS": [],
   "bundleExternalJS": [
     "jquery",
