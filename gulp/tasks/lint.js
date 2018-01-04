@@ -13,7 +13,8 @@ function lint() {
 		return gulp.src([...settings.sources.scripts, './*.js', './gulp/**/*.js', './src/handlebars/helpers/*.js'])
 			.pipe(eslint())
 			.pipe(eslint.format())
-			.pipe(eslint.failAfterError());
+			.pipe(eslint.failAfterError())
+			.on('error', onError);
 	}
 
 	return gulp.src([...settings.sources.scripts, './*.js', './gulp/**/*.js', './src/handlebars/helpers/*.js'])

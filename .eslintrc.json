@@ -1,8 +1,12 @@
 {
   "extends": "xo/esnext",
+  "env": {
+    "browser": true
+  },
   "plugins": [
     "security",
-    "filenames"
+    "filenames",
+    "compat"
   ],
   "rules": {
     "padded-blocks": ["off"],
@@ -14,6 +18,7 @@
     "curly": ["error", "multi-line"],
     "arrow-parens": ["off"],
     "no-debugger": ["warn"],
-    "filenames/match-exported": [2, "kebab"]
+    "filenames/match-exported": [2, "kebab"],
+    "compat/compat": 2
   }
 }
