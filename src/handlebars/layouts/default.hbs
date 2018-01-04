@@ -45,14 +45,19 @@ Non minified/merged versions for debugging purposes are
 replaced in the production ready build.
 -->
 
+<!-- Polyfills -->
+<!-- build:js app/polyfills.bundle.min.js?rev=@@hash -->
+<script src="app/polyfills.bundle.js"></script>
+<!-- /build -->
+
 <!-- Vendor JS -->
-<!-- build:js libs/vendor.min.js?rev=@@hash -->
-<script src="libs/vendor.js"></script>
+<!-- build:js app/vendor.bundle.min.js?rev=@@hash -->
+<script src="app/vendor.bundle.js"></script>
 <!-- /build -->
 
 <!-- Own JS -->
-<!-- build:js app/client.min.js?rev=@@hash -->
-<script src="app/client.js"></script>
+<!-- build:js app/app.bundle.min.js?rev=@@hash -->
+<script src="app/app.bundle.js"></script>
 <!-- /build -->
 
 <!-- External scripts (eg. analytics) should be placed here -->

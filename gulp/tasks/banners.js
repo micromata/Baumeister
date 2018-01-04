@@ -4,8 +4,10 @@
 import gulp from 'gulp';
 import gulpBanner from 'gulp-banner';
 import {isProdBuild} from '../command-line-args';
-import {generateBanners, pkgJson, settings} from '../config';
+import {generateBanners, settings} from '../config';
 import merge from 'merge-stream';
+
+const pkgJson = require('../../package.json');
 
 const banner = `/*! <%= pkgJson.title %> - v<%= pkgJson.version %>
  * <%= pkgJson.author.email %>

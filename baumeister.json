@@ -1,0 +1,26 @@
+{
+  "useHandlebars": true,
+  "generateBanners": false,
+  "bundleCSS": [],
+  "bundleExternalJS": [
+    "jquery",
+    "bootstrap-sass"
+  ],
+  "includeStaticFiles": [
+    "bootstrap-sass/assets/fonts/**/*"
+  ],
+  "webpack": {
+    "DefinePlugin": {
+      "dev": {},
+      "prod": {
+        "process.env": {
+          "NODE_ENV": "'production'"
+        }
+      }
+    },
+    "ProvidePlugin": {
+      "$": "jquery",
+      "jQuery": "jquery"
+    }
+  }
+}

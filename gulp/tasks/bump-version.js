@@ -4,9 +4,10 @@ import touch from 'gulp-touch';
 import bump from 'gulp-bump';
 import semver from 'semver';
 
-import {pkgJson} from '../config';
 import onError from '../on-error';
 import {args, hasBumpType} from '../command-line-args';
+
+const pkgJson = require('../../package.json');
 
 /**
  * Bumps version in package.json.

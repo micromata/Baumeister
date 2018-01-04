@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import git from 'gulp-git';
 
-import {pkgJson} from '../config';
+const pkgJson = require('../../package.json');
 
 /**
  * Commits changes.

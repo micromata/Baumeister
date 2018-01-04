@@ -46,6 +46,7 @@ The aim of this project is to help you to build your things. From Bootstrap them
 - [Unit tests](#unit-tests)
 - [Configuring linters](#configuring-linters)
 - [Release Workflow](#release-workflow)
+- [Adding banners](#adding-banners)
 - [Contributing to this project](#contributing-to-this-project)
 - [License](#license)
 
@@ -72,7 +73,7 @@ See: <https://github.com/micromata/generator-baumeister>
 ## Dependencies
 
 - Node.js (>=6.0.0)
-- Gulp
+- Globally installed [Gulp CLI](https://www.npmjs.com/package/gulp-cli)
 
 ### Node.js
 
@@ -90,9 +91,18 @@ If this isn’t the case you have to install Node.js first. On OS X we strongly 
 
 ### Gulp
 
-This project uses [Gulp](http://gulpjs.com/) for its build system, with convenient methods for working with the project. It's how we compile and minify our code, at vendor prefixes, optimize images, delete unused CSS, release new versions and more.
+This project uses [Gulp](http://gulpjs.com/) for its build system, with convenient methods for working with the project. It's how we compile and minify our code, at vendor prefixes, optimize images, delete unused CSS, release new versions and more. Since we use Gulp 4, Baumeister needs the newer extracted Gulp CLI which is meant to be installed globally only.
 
-#### Installing Gulp
+Please check if you have installed `gulp-cli` properly be entering the following in your terminal:
+
+    gulp -v
+
+This needs to return `CLI version 1.x.x`. If it returns something like `CLI version 3.x.x` instead you have to replace the globally installed `gulp` package with the `gulp-cli` package by running:
+
+	npm uninstall --global gulp
+	npm install --global gulp-cli
+
+#### Installing Gulp CLI
 
 Thanks to Node.js and npm installing the Gulp command line tools globally is just this simple one-liner:
 
@@ -110,6 +120,57 @@ and call:
 	npm install
 
 npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our Gulp workflow as well as the needed frontend dependencies to `\node_modules`.
+
+
+### Adjust settings via the Baumeister config file
+
+In the root directory is a file named `baumeister.json` which you can use to change a few important settings without touching any gulp tasks:
+
+```json
+{
+  "useHandlebars": true,
+  "generateBanners": true,
+  "bundleCSS": [],
+  "bundleExternalJS": [
+    "jquery",
+    "bootstrap-sass"
+  ],
+  "includeStaticFiles": [
+    "bootstrap-sass/assets/fonts/**/*"
+  ],
+  "webpack": {
+      "DefinePlugin": {
+        "dev": {},
+        "prod": {
+          "process.env": {
+            "NODE_ENV": "'production'"
+          }
+        }
+      },
+      "ProvidePlugin": {
+        "$": "jquery",
+        "jQuery": "jquery"
+      }
+    }
+}
+```
+
+`bundleCSS`, `bundleExternalJS` and `includeStaticFiles` makes it possible to include additional dependencies without touching any Gulp task. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
+
+The ramifications of changing the `useHandlebars` setting are explained in the section [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps).
+
+[Adding banners](#adding-banners) describes the effects of setting `generateBanners` to `true`.
+
+### Define global constants at compile time
+
+If you want to provide values for different types of builds (`NODE_ENV` is a popular example), you can define them inside the `dev` and `prod` properties of the `DefinePlugin` section.
+The plugin does a direct text replacement, so the value given to it must include actual quotes inside of the string. You can use alternating quotes, like `"'production'"`, or  use `JSON.stringify('production')`.
+You may take a look at the official [Webpack DefinePlugin docs](https://webpack.js.org/plugins/define-plugin/).
+
+### Automatically load modules instead of requiring / importing them
+
+The `ProvidePlugin` section is an object where the value equals to the module name and the key represents the property name of the window object the module gets mapped to.
+See the official [Webpack ProvidePlugin docs](https://webpack.js.org/plugins/define-plugin/) for further information.
 
 ## Gulp Workflow and tasks
 
@@ -201,13 +262,13 @@ Baumeister acts like a static sites generator by default. Using handlebars we ca
 ### This is optional
 Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Baumeister for creating a static site. If you are developing a single page application instead you might turn off handlebars compiling and place just an `index.html` file in the `/src` directory and store additional templates in `/src/app`.
 
-In this case you have to switch off Handlebars compiling in `gulp/config.js`:
+In this case you have to switch off Handlebars compiling in `baumeister.json`:
 
 ```javascript
 /**
  * Boolean flag to set when using handlebars instead of plain HTML files in `src`.
  */
-export const useHandlebars = false;
+"useHandlebars": false
 ```
 
 ### Using handlebars
@@ -508,7 +569,7 @@ require('bootstrap');
 require('select2');
 ```
 
-Finally add the library to the `bundleExternalJS` section of `package.json` to add the sources the `vendor.js` bundle.
+Finally add the library to the `bundleExternalJS` section of `baumeister.json` to add the sources the `vendor.js` bundle.
 
 ```
 bundleExternalJS": ["jquery", "bootstrap", "select2"]
@@ -527,7 +588,7 @@ myProject
 
 ### Bundling CSS from dependencies
 
-If a used library ships its own CSS you have to include the path to the files you like to bundle in the `bundleCSS` section of your `package.json`. Please note that glob pattern matching is supported over here.
+If a used library ships its own CSS you have to include the path to the files you like to bundle in the `bundleCSS` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
 
 ```
 "bundleCSS": [
@@ -551,7 +612,7 @@ myProject
 ### Including static files from dependencies
 
 Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a separate `<script>` tag.
-To handle that you just have to include the files in the `includeStaticFiles` section of your `package.json`. Please note that glob pattern matching is supported over here.
+To handle that you just have to include the files in the `includeStaticFiles` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
 
 ```
 "includeStaticFiles": [
@@ -616,7 +677,7 @@ So `~3.2.0` installed the latest 3.2.x release which is version v3.2.0 in case o
 
 Where `^1.11.1` installed the latest 1.x.x release which is version 1.11.1 in case of jQuery right now. So jQuery 1.11.2 as well as jQuery 1.12.0 will be fetched as soon as it is released when you call `npm update` or `npm install`. But npm won’t install jQuery 2.x.x or later.
 
-Check <http://semver-ftw.org> for more information about »Semantic Versioning«.
+Check <http://semver.org/> for more information about »Semantic Versioning«.
 
 #### Updating beyond defined semver ranges
 
@@ -828,6 +889,29 @@ reference GitHub issues that this commit **Closes**.
 
 This is how a changelog based on this conventions is rendered:
 https://github.com/angular/angular/blob/master/CHANGELOG.md
+
+## Adding banners
+
+Adding banners on top of the production bundles is fully optional and disabled by default.
+
+It can be enabled with setting the `generateBanners` property within `baumeister.json` to `true`.
+
+```javascript
+/**
+ * Flag for generating banners on on top of dist files (CSS & JS).
+ */
+"generateBanners": true
+```
+
+If enabled it will place the following banners to the bundled CSS and JS files:
+
+```javascript
+/*! <%= pkgJson.title %> - v<%= pkgJson.version %>
+ * <%= pkgJson.author.email %>
+ * Copyright ©<%= year %> <%= pkgJson.author.name %>
+ * <%= fullDate %>
+ */
+```
 
 ## Contributing to this project
 
