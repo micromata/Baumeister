@@ -1,23 +1,21 @@
 {
-  "presets": [
-	"env"
-  ],
-  "plugins": [
-	"transform-object-rest-spread",
-	[
-	  "transform-runtime",
-	  {
-		"polyfill": false,
-		"regenerator": true
-	  }
-	],
-	[
-	  "transform-regenerator",
-	  {
-		"asyncGenerators": true,
-		"generators": true,
-		"async": true
-	  }
+	"presets": ["env"],
+	"plugins": [
+		"transform-object-rest-spread",
+		[
+			"transform-runtime",
+			{
+				"polyfill": false,
+				"regenerator": true
+			}
+		],
+		[
+			"transform-regenerator",
+			{
+				"asyncGenerators": true,
+				"generators": true,
+				"async": true
+			}
+		]
 	]
-  ]
 }
