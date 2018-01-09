@@ -4,11 +4,9 @@
   "bundleCSS": [],
   "bundleExternalJS": [
     "jquery",
-    "bootstrap-sass"
+    "bootstrap"
   ],
-  "includeStaticFiles": [
-    "bootstrap-sass/assets/fonts/**/*"
-  ],
+  "includeStaticFiles": [],
   "webpack": {
     "DefinePlugin": {
       "dev": {},
