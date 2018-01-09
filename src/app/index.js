@@ -1,3 +1,7 @@
+/**
+ * @file  JavaScript entry point of the project
+ */
+
 import {consoleErrorFix, ieViewportFix} from './base';
 
 $(() => {
