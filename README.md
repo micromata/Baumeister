@@ -208,8 +208,6 @@ Running those tasks will create a bunch of directories and files which aren’t 
 
 ````
 myProject
-├──.browserify-cache-client.json    → Browserify cache file
-├──.browserify-cache-vendor.json    → Browserify cache file
 ├──.metalsmith-build                → Compiled handlebars sources
 ├── dist                            → Contains the files ready for production
 │   ├── app
@@ -248,8 +246,6 @@ Beside that we recommend setting up a project within in your editor if you don�
     "file_exclude_patterns": [
       ".editorconfig",
       ".travis.yml",
-			".browserify-cache-client.json",
-			".browserify-cache-vendor.json",
 			".DS_Store"
     ]
   }]
@@ -278,7 +274,7 @@ Because every valid HTML page is a valid Handlebars template. But handlebars giv
 
 - write plain HTML
 - use [built-In helpers](http://handlebarsjs.com/builtin_helpers.html) provided by Handlebars
-- go crazy with [custom helpers](http://handlebarsjs.com/block_helpers.html) :heart_eyes:
+- go wild with [custom helpers](http://handlebarsjs.com/block_helpers.html) :heart_eyes:
 
 Let’s dive into it by describing a minimal example. Imagine that we have a simplified file/folder structure like the following in our project:
 
@@ -569,7 +565,7 @@ require('bootstrap');
 require('select2');
 ```
 
-Finally add the library to the `bundleExternalJS` section of `baumeister.json` to add the sources the `vendor.js` bundle.
+Finally add the library to the `bundleExternalJS` section of `baumeister.json` to add the sources the `vendor.bundle.js`file.
 
 ```
 bundleExternalJS": ["jquery", "bootstrap", "select2"]
@@ -579,11 +575,11 @@ The bundled JavaScript is stored in the `libs` directory during the build proces
 ```
 myProject
 ├── server
-│   └── libs
-│       └── vendor.js
+│   └── app
+│       └── app/vendor.bundle.js
 └── dist
-    └── libs
-        └── vendor.min.js
+    └── app
+        └── vendor.bundle.min.js
 ```
 
 ### Bundling CSS from dependencies
@@ -892,7 +888,7 @@ https://github.com/angular/angular/blob/master/CHANGELOG.md
 
 ## Adding banners
 
-Adding banners on top of the production bundles is fully optional and disabled by default.
+Adding banners on top of the production bundles is fully optional and turned off by default.
 
 It can be enabled with setting the `generateBanners` property within `baumeister.json` to `true`.
 
