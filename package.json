@@ -15,6 +15,23 @@
   "version": "2.0.1",
   "repository": "micromata/baumeister",
   "private": true,
+  "scripts": {
+    "pretest": "gulp lint --production",
+    "test": "gulp test --production",
+    "test:watch": "gulp test --watch",
+    "start": "gulp",
+    "dev": "gulp build",
+    "serve": "gulp serve",
+    "watch": "gulp watch",
+    "lint": "gulp lint --production",
+    "lint:fix": "gulp lint",
+    "build": "gulp build --production",
+    "build:check": "gulp serve --production",
+    "release:patch": "gulp release --bump patch",
+    "release:minor": "gulp release --bump minor",
+    "release:major": "gulp release --bump major",
+    "postmerge": "npm install"
+  },
   "dependencies": {
     "bootstrap": "^4.0.0-beta.3",
     "jquery": "3.2.1",
@@ -78,23 +95,6 @@
     "uglifyjs-webpack-plugin": "^1.1.5",
     "uncss": "^0.16.1",
     "webpack-stream": "^4.0.0"
-  },
-  "scripts": {
-    "pretest": "gulp lint --production",
-    "test": "gulp test --production",
-    "test:watch": "gulp test --watch",
-    "start": "gulp",
-    "dev": "gulp build",
-    "serve": "gulp serve",
-    "watch": "gulp watch",
-    "lint": "gulp lint --production",
-    "lint:fix": "gulp lint",
-    "build": "gulp build --production",
-    "build:check": "gulp serve --production",
-    "release:patch": "gulp release --bump patch",
-    "release:minor": "gulp release --bump minor",
-    "release:major": "gulp release --bump major",
-    "postmerge": "npm install"
   },
   "jest": {
     "testPathIgnorePatterns": [
