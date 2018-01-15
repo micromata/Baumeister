@@ -1,3 +1,4 @@
+import path from 'path';
 import chalk from 'chalk';
 
 const pkg = require('../package.json');
@@ -17,6 +18,7 @@ module.exports = (options) => ({
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
+				include: path.resolve(__dirname, settings.sources.app),
 				use: {
 					loader: 'babel-loader'
 				}
