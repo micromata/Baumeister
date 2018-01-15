@@ -5,12 +5,8 @@
   "includeStaticFiles": [],
   "webpack": {
     "DefinePlugin": {
-      "dev": {},
-      "prod": {
-        "process.env": {
-          "NODE_ENV": "'production'"
-        }
-      }
+      "development": {},
+      "production": {}
     },
     "ProvidePlugin": {
       "$": "jquery",

@@ -35,7 +35,6 @@ module.exports = (options) => ({
 			name: ['app', 'vendor', 'polyfills']
 		}),
 		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
-		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.dev}),
 		...options.plugins
 	],
 	stats: {

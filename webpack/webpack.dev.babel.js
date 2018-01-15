@@ -3,6 +3,7 @@ import webpack from 'webpack';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 import {mainDirectories, settings} from './config';
+const configFile = require('../baumeister.json');
 
 module.exports = require('./webpack.base.babel')({
 	devServer: {
@@ -20,6 +21,7 @@ module.exports = require('./webpack.base.babel')({
 		}),
 		new webpack.SourceMapDevToolPlugin({
 			columns: false
-		})
+		}),
+		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.development})
 	]
 });
