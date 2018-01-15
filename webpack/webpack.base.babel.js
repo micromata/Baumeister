@@ -1,14 +1,15 @@
 import chalk from 'chalk';
 
 const pkg = require('../package.json');
+import {settings} from './config';
 
 const buildTarget = process.env.NODE_ENV === 'production' ? ' Production ' : ' Development ';
 console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
 
 module.exports = (options) => ({
 	entry: {
-		polyfills: './src/app/polyfills.js',
-		app: './src/app/index.js',
+		polyfills: `${settings.sources.app}polyfills.js`,
+		app: `${settings.sources.app}index.js`,
 		vendor: Object.keys(pkg.dependencies)
 	},
 	module: {

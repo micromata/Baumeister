@@ -2,7 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 
 const configFile = require('../baumeister.json');
-import {settings} from '../gulp/config';
+import {settings} from './config';
 
 module.exports = require('./webpack.base.babel')({
 	output: {

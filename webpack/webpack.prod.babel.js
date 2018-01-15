@@ -3,11 +3,11 @@ import webpack from 'webpack';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
 const configFile = require('../baumeister.json');
-import {settings} from '../gulp/config';
+import {settings} from './config';
 
 module.exports = require('./webpack.base.babel')({
 	output: {
-		path: path.join(__dirname, '../', settings.destinations.prod.app),
+		path: path.join(__dirname, settings.destinations.prod.app),
 		filename: '[name].bundle.min.js'
 	},
 	plugins: [
