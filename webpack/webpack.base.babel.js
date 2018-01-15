@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-import {settings} from '../gulp/config';
+const pkg = require('../package.json');
 
 const buildTarget = process.env.NODE_ENV === 'production' ? ' Production ' : ' Development ';
 console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
@@ -9,7 +9,7 @@ module.exports = (options) => ({
 	entry: {
 		polyfills: './src/app/polyfills.js',
 		app: './src/app/index.js',
-		vendor: settings.sources.externalJs
+		vendor: Object.keys(pkg.dependencies)
 	},
 	module: {
 		rules: [
