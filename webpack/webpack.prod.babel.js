@@ -1,8 +1,6 @@
 import path from 'path';
-import webpack from 'webpack';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
-const configFile = require('../baumeister.json');
 import {settings} from './config';
 
 module.exports = require('./webpack.base.babel')({
@@ -11,11 +9,6 @@ module.exports = require('./webpack.base.babel')({
 		filename: '[name].bundle.min.js'
 	},
 	plugins: [
-		new webpack.optimize.CommonsChunkPlugin({
-			name: ['app', 'vendor', 'polyfills']
-		}),
-		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
-		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.prod}),
 		new UglifyJSPlugin({
 			uglifyOptions: {
 				compress: {

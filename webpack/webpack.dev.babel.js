@@ -1,20 +1,23 @@
 import path from 'path';
 import webpack from 'webpack';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const configFile = require('../baumeister.json');
-import {settings} from './config';
+import {mainDirectories, settings} from './config';
 
 module.exports = require('./webpack.base.babel')({
+	devServer: {
+		contentBase: mainDirectories.dev,
+		port: 3000,
+		overlay: true
+	},
 	output: {
 		path: path.join(__dirname, settings.destinations.dev.app),
 		filename: '[name].bundle.js'
 	},
 	plugins: [
-		new webpack.optimize.CommonsChunkPlugin({
-			name: ['app', 'vendor', 'polyfills']
+		new HtmlWebpackPlugin({
+			title: 'Dev Server'
 		}),
-		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
-		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.dev}),
 		new webpack.SourceMapDevToolPlugin({
 			columns: false
 		})
