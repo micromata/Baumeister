@@ -36,7 +36,7 @@
     "postmerge": "npm install",
     "webpack": "cross-env NODE_ENV=production webpack --config build/webpack.prod.babel.js --hide-modules --progress",
     "webpack:dev": "cross-env NODE_ENV=development webpack --config build/webpack.dev.babel.js --hide-modules --progress",
-    "handlebars": "node build/handlebars.js"
+    "handlebars": "babel-node build/handlebars.js"
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta.3",
@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^7.2.4",
+    "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
@@ -90,6 +91,7 @@
     "husky": "^0.14.3",
     "jest-cli": "^22.0.4",
     "jstransformer-handlebars": "^1.0.0",
+    "log-symbols": "^2.1.0",
     "merge-stream": "^1.0.1",
     "metalsmith": "^2.3.0",
     "metalsmith-filter": "^1.0.2",
