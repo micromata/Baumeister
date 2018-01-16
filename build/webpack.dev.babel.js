@@ -1,6 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 import {mainDirectories, settings} from './config';
 const configFile = require('../baumeister.json');
