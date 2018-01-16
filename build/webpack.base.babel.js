@@ -20,12 +20,10 @@ module.exports = (options) => ({
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
 				include: path.resolve(__dirname, settings.sources.app),
-				use: {
-					loader: 'babel-loader'
-				}
+				loader: 'babel-loader'
 			}
 		]
 	},

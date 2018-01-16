@@ -30,7 +30,6 @@ export const settings = {
 		// staticFiles: configFile.includeStaticFiles
 	},
 	destinations: {
-		// handlebars: './.metalsmith-build',
 		dev: {
 			// html: `${mainDirectories.dev}`,
 			// styles: `${mainDirectories.dev}assets/css/`,

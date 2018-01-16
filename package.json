@@ -21,10 +21,10 @@
     "pretest": "gulp lint --production",
     "test": "gulp test --production",
     "test:watch": "gulp test --watch",
-    "start": "webpack-dev-server --config webpack/webpack.dev.babel.js --open",
+    "start": "npm run clean:dev && cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.babel.js --open",
     "dev": "gulp build",
     "serve": "gulp serve",
-    "watch": "cross-env NODE_ENV=development webpack --config webpack/webpack.dev.babel.js --hide-modules --watch",
+    "watch": "cross-env NODE_ENV=development webpack --config build/webpack.dev.babel.js --hide-modules --watch",
     "lint": "gulp lint --production",
     "lint:fix": "gulp lint",
     "build": "npm-run-all clean webpack",
@@ -34,8 +34,9 @@
     "release:minor": "gulp release --bump minor",
     "release:major": "gulp release --bump major",
     "postmerge": "npm install",
-    "webpack": "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --hide-modules --progress",
-    "webpack:dev": "cross-env NODE_ENV=development webpack --config webpack/webpack.dev.babel.js --hide-modules --progress"
+    "webpack": "cross-env NODE_ENV=production webpack --config build/webpack.prod.babel.js --hide-modules --progress",
+    "webpack:dev": "cross-env NODE_ENV=development webpack --config build/webpack.dev.babel.js --hide-modules --progress",
+    "handlebars": "node build/handlebars.js"
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta.3",
@@ -91,6 +92,7 @@
     "jstransformer-handlebars": "^1.0.0",
     "merge-stream": "^1.0.1",
     "metalsmith": "^2.3.0",
+    "metalsmith-filter": "^1.0.2",
     "metalsmith-in-place": "^4.0.0",
     "metalsmith-layouts": "^1.8.1",
     "metalsmith-register-helpers": "^0.4.0",
