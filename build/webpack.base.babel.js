@@ -1,11 +1,11 @@
 import path from 'path';
 import chalk from 'chalk';
-
 import webpack from 'webpack';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const pkg = require('../package.json');
 const configFile = require('../baumeister.json');
-import {settings} from './config';
+import {settings, mainDirectories} from './config';
 
 const buildTarget = process.env.NODE_ENV === 'production' ? ' Production ' : ' Development ';
 console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
@@ -22,7 +22,7 @@ module.exports = (options) => ({
 			{
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
-				include: path.resolve(__dirname, settings.sources.app),
+				include: path.resolve(__dirname, '../', settings.sources.app),
 				loader: 'babel-loader'
 			}
 		]
@@ -33,6 +33,13 @@ module.exports = (options) => ({
 			name: ['app', 'vendor', 'polyfills']
 		}),
 		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
+		new CopyWebpackPlugin([
+			settings.destinations.handlebars
+			// {
+			// 	from: settings.destinations.handlebars,
+			// 	to: '../'
+			// }
+		]),
 		...options.plugins
 	],
 	stats: {

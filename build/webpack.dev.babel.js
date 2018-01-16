@@ -1,24 +1,21 @@
 import path from 'path';
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-import {mainDirectories, settings} from './config';
+import {mainDirectories} from './config';
 const configFile = require('../baumeister.json');
 
 module.exports = require('./webpack.base.babel')({
 	devServer: {
-		contentBase: mainDirectories.dev,
+		contentBase: path.join(__dirname, mainDirectories.dev),
 		port: 3000,
-		overlay: true
+		overlay: true,
+		hotOnly: false
 	},
 	output: {
-		path: path.join(__dirname, settings.destinations.dev.app),
-		filename: '[name].bundle.js'
+		path: path.join(__dirname, mainDirectories.dev),
+		filename: 'app/[name].bundle.js'
 	},
 	plugins: [
-		new HtmlWebpackPlugin({
-			title: 'Dev Server'
-		}),
 		new webpack.SourceMapDevToolPlugin({
 			columns: false
 		}),
