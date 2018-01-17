@@ -8,8 +8,7 @@ module.exports = require('./webpack.base.babel')({
 	devServer: {
 		contentBase: path.join(__dirname, mainDirectories.dev),
 		port: 3000,
-		overlay: true,
-		hotOnly: false
+		overlay: true
 	},
 	output: {
 		path: path.join(__dirname, mainDirectories.dev),

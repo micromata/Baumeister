@@ -2,13 +2,13 @@ import path from 'path';
 import webpack from 'webpack';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
-import {settings} from './config';
+import {mainDirectories} from './config';
 const configFile = require('../baumeister.json');
 
 module.exports = require('./webpack.base.babel')({
 	output: {
-		path: path.join(__dirname, settings.destinations.prod.app),
-		filename: '[name].bundle.min.js'
+		path: path.join(__dirname, mainDirectories.dist),
+		filename: 'app/[name].bundle.js'
 	},
 	plugins: [
 		new UglifyJSPlugin({

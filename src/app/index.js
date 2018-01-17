@@ -2,6 +2,7 @@
  * @file  JavaScript entry point of the project
  */
 
+import '../assets/scss/index.scss';
 import {consoleErrorFix, ieViewportFix} from './base';
 
 $(() => {

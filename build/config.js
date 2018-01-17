@@ -12,7 +12,8 @@
 
 export const mainDirectories = {
 	dev: '../server/',
-	dist: '../dist/'
+	dist: '../dist/',
+	src: '../src'
 };
 
 export const settings = {
