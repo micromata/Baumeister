@@ -61,10 +61,11 @@ metalsmith(__dirname)
 		// Handle successful build
 		} else {
 			/**
+			 * NOTE:
 			 * We need to backdate the generated files by ten seconds until
 			 * https://github.com/webpack/watchpack/issues/25 is fixed.
 			 * Otherwise we would have some uneeded rebuilds when starting webpack in
-			 * watch mode or the webpack dev server.
+			 * watch mode or starting the webpack dev server.
 			 */
 			const f = path.resolve(__dirname, '../', settings.destinations.handlebars);
 			const now = Date.now() / 1000;

@@ -21,10 +21,10 @@
     "pretest": "gulp lint --production",
     "test": "gulp test --production",
     "test:watch": "gulp test --watch",
-    "start": "npm-run-all clean:dev handlebars webpack:server",
+    "start": "npm-run-all clean:dev handlebars --parallel handlebars:watch webpack:server",
     "dev": "gulp build",
     "serve": "gulp serve",
-    "watch": "npm-run-all clean:dev handlebars webpack:watch",
+    "watch": "npm-run-all clean:dev handlebars --parallel handlebars:watch webpack:watch",
     "lint": "gulp lint --production",
     "lint:fix": "gulp lint",
     "build": "npm-run-all clean webpack",
@@ -38,7 +38,8 @@
     "webpack:dev": "cross-env NODE_ENV=development webpack --config build/webpack.dev.babel.js --hide-modules --progress",
     "webpack:watch": "cross-env NODE_ENV=development webpack --config build/webpack.dev.babel.js --hide-modules --watch",
     "webpack:server": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.babel.js --open",
-    "handlebars": "babel-node build/handlebars.js"
+    "handlebars": "babel-node build/handlebars.js",
+    "handlebars:watch": "onchange \"src/**/*.hbs\" \"src/handlebars/helpers/*.js\" -- npm run handlebars"
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta.3",
@@ -103,6 +104,7 @@
     "metalsmith-register-helpers": "^0.4.0",
     "minimist": "^1.2.0",
     "npm-run-all": "^4.1.2",
+    "onchange": "^3.3.0",
     "perfy": "^1.1.2",
     "regenerator": "^0.12.3",
     "semver": "^5.4.1",
