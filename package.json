@@ -40,8 +40,8 @@
     "handlebars:watch": "onchange \"src/**/*.hbs\" \"src/handlebars/helpers/*.js\" -- npm run handlebars"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-beta.3",
-    "jquery": "3.2.1",
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.2.1",
     "popper.js": "^1.12.9"
   },
   "devDependencies": {

@@ -8,7 +8,7 @@
 // Example
 // .foo {
 // 		font-size: @font-size-base;
-//   	@media #{$md-and-below} {
+//		@media #{$md-and-below} {
 //			font-size: @font-size-base - 1;
 //		}
 //	}
@@ -57,7 +57,7 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $gray-300: #dee2e6 !default;
 // $gray-400: #ced4da !default;
 // $gray-500: #adb5bd !default;
-// $gray-600: #868e96 !default;
+// $gray-600: #6c757d !default;
 // $gray-700: #495057 !default;
 // $gray-800: #343a40 !default;
 // $gray-900: #212529 !default;
@@ -65,15 +65,15 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // $grays: () !default;
 // $grays: map-merge((
-//   "100": $gray-100,
-//   "200": $gray-200,
-//   "300": $gray-300,
-//   "400": $gray-400,
-//   "500": $gray-500,
-//   "600": $gray-600,
-//   "700": $gray-700,
-//   "800": $gray-800,
-//   "900": $gray-900
+  // "100": $gray-100,
+  // "200": $gray-200,
+  // "300": $gray-300,
+  // "400": $gray-400,
+  // "500": $gray-500,
+  // "600": $gray-600,
+  // "700": $gray-700,
+  // "800": $gray-800,
+  // "900": $gray-900
 // ), $grays);
 
 // $blue:    #007bff !default;
@@ -89,19 +89,19 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // $colors: () !default;
 // $colors: map-merge((
-//   "blue":       $blue,
-//   "indigo":     $indigo,
-//   "purple":     $purple,
-//   "pink":       $pink,
-//   "red":        $red,
-//   "orange":     $orange,
-//   "yellow":     $yellow,
-//   "green":      $green,
-//   "teal":       $teal,
-//   "cyan":       $cyan,
-//   "white":      $white,
-//   "gray":       $gray-600,
-//   "gray-dark":  $gray-800
+  // "blue":       $blue,
+  // "indigo":     $indigo,
+  // "purple":     $purple,
+  // "pink":       $pink,
+  // "red":        $red,
+  // "orange":     $orange,
+  // "yellow":     $yellow,
+  // "green":      $green,
+  // "teal":       $teal,
+  // "cyan":       $cyan,
+  // "white":      $white,
+  // "gray":       $gray-600,
+  // "gray-dark":  $gray-800
 // ), $colors);
 
 // $primary:       $blue !default;
@@ -115,14 +115,14 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // $theme-colors: () !default;
 // $theme-colors: map-merge((
-//   "primary":    $primary,
-//   "secondary":  $secondary,
-//   "success":    $success,
-//   "info":       $info,
-//   "warning":    $warning,
-//   "danger":     $danger,
-//   "light":      $light,
-//   "dark":       $dark
+  // "primary":    $primary,
+  // "secondary":  $secondary,
+  // "success":    $success,
+  // "info":       $info,
+  // "warning":    $warning,
+  // "danger":     $danger,
+  // "light":      $light,
+  // "dark":       $dark
 // ), $theme-colors);
 // stylelint-enable
 
@@ -145,7 +145,7 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $enable-shadows:            false !default;
 // $enable-gradients:          false !default;
 // $enable-transitions:        true !default;
-// $enable-hover-media-query:  false !default;
+// $enable-hover-media-query:  false !default; // Deprecated, no longer affects any compiled CSS
 // $enable-grid-classes:       true !default;
 // $enable-print-styles:       true !default;
 
@@ -156,23 +156,27 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // variables. Mostly focused on spacing.
 // You can add more entries to the $spacers map, should you need more variation.
 
+// stylelint-disable
 // $spacer: 1rem !default;
-// $spacers: (
-//   0: 0,
-//   1: ($spacer * .25),
-//   2: ($spacer * .5),
-//   3: $spacer,
-//   4: ($spacer * 1.5),
-//   5: ($spacer * 3)
-// ) !default;
+// $spacers: () !default;
+// $spacers: map-merge((
+  // 0: 0,
+  // 1: ($spacer * .25),
+  // 2: ($spacer * .5),
+  // 3: $spacer,
+  // 4: ($spacer * 1.5),
+  // 5: ($spacer * 3)
+// ), $spacers);
 
 // This variable affects the `.h-*` and `.w-*` classes.
-// $sizes: (
-//   25: 25%,
-//   50: 50%,
-//   75: 75%,
-//   100: 100%
-// ) !default;
+// $sizes: () !default;
+// $sizes: map-merge((
+  // 25: 25%,
+  // 50: 50%,
+  // 75: 75%,
+  // 100: 100%
+// ), $sizes);
+// stylelint-enable
 
 // Body
 //
@@ -243,7 +247,7 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $line-height-sm:              1.5 !default;
 
 // $border-width:                1px !default;
-// $border-color:                $gray-200 !default;
+// $border-color:                $gray-300 !default;
 
 // $border-radius:               .25rem !default;
 // $border-radius-lg:            .3rem !default;
@@ -365,7 +369,7 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $input-btn-line-height:       $line-height-base !default;
 
 // $input-btn-focus-width:       .2rem !default;
-// $input-btn-focus-color:       rgba(theme-color("primary"), .25) !default;
+// $input-btn-focus-color:       rgba($component-active-bg, .25) !default;
 // $input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
 
 // $input-btn-padding-y-sm:      .25rem !default;
@@ -443,14 +447,14 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $input-border-radius-sm:                $border-radius-sm !default;
 
 // $input-focus-bg:                        $input-bg !default;
-// $input-focus-border-color:              lighten(theme-color("primary"), 25%) !default;
+// $input-focus-border-color:              lighten($component-active-bg, 25%) !default;
 // $input-focus-color:                     $input-color !default;
 // $input-focus-width:                     $input-btn-focus-width !default;
 // $input-focus-box-shadow:                $input-btn-focus-box-shadow !default;
 
 // $input-placeholder-color:               $gray-600 !default;
 
-// $input-height-border:                   $input-btn-border-width * 2 !default;
+// $input-height-border:                   $input-border-width * 2 !default;
 
 // $input-height-inner:                    ($font-size-base * $input-btn-line-height) + ($input-btn-padding-y * 2) !default;
 // $input-height:                          calc(#{$input-height-inner} + #{$input-height-border}) !default;
@@ -489,20 +493,21 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $custom-control-indicator-disabled-bg:          $gray-200 !default;
 // $custom-control-label-disabled-color:     $gray-600 !default;
 
-// $custom-control-indicator-checked-color:        $white !default;
-// $custom-control-indicator-checked-bg:           theme-color("primary") !default;
+// $custom-control-indicator-checked-color:        $component-active-color !default;
+// $custom-control-indicator-checked-bg:           $component-active-bg !default;
+// $custom-control-indicator-checked-disabled-bg:  rgba(theme-color("primary"), .5) !default;
 // $custom-control-indicator-checked-box-shadow:   none !default;
 
 // $custom-control-indicator-focus-box-shadow:     0 0 0 1px $body-bg, $input-btn-focus-box-shadow !default;
 
-// $custom-control-indicator-active-color:         $white !default;
-// $custom-control-indicator-active-bg:            lighten(theme-color("primary"), 35%) !default;
+// $custom-control-indicator-active-color:         $component-active-color !default;
+// $custom-control-indicator-active-bg:            lighten($component-active-bg, 35%) !default;
 // $custom-control-indicator-active-box-shadow:    none !default;
 
 // $custom-checkbox-indicator-border-radius:       $border-radius !default;
 // $custom-checkbox-indicator-icon-checked:        str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$custom-control-indicator-checked-color}' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E"), "#", "%23") !default;
 
-// $custom-checkbox-indicator-indeterminate-bg:    theme-color("primary") !default;
+// $custom-checkbox-indicator-indeterminate-bg:    $component-active-bg !default;
 // $custom-checkbox-indicator-indeterminate-color: $custom-control-indicator-checked-color !default;
 // $custom-checkbox-indicator-icon-indeterminate:  str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'%3E%3Cpath stroke='#{$custom-checkbox-indicator-indeterminate-color}' d='M0 2h4'/%3E%3C/svg%3E"), "#", "%23") !default;
 // $custom-checkbox-indicator-indeterminate-box-shadow: none !default;
@@ -527,7 +532,7 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $custom-select-border-radius:       $border-radius !default;
 
 // $custom-select-focus-border-color:  $input-focus-border-color !default;
-// $custom-select-focus-box-shadow:    inset 0 1px 2px rgba($black, .075), $input-btn-focus-box-shadow !default;
+// $custom-select-focus-box-shadow:    inset 0 1px 2px rgba($black, .075), 0 0 5px rgba($custom-select-focus-border-color, .5) !default;
 
 // $custom-select-font-size-sm:        75% !default;
 // $custom-select-height-sm:           $input-height-sm !default;
@@ -627,6 +632,8 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $navbar-padding-y:                  ($spacer / 2) !default;
 // $navbar-padding-x:                  $spacer !default;
 
+// $navbar-nav-link-padding-x:         .5rem !default;
+
 // $navbar-brand-font-size:            $font-size-lg !default;
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
 // $nav-link-height:                   ($font-size-base * $line-height-base + $nav-link-padding-y * 2) !default;
@@ -667,13 +674,15 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $pagination-border-width:           $border-width !default;
 // $pagination-border-color:           $gray-300 !default;
 
+// $pagination-focus-box-shadow:       $input-btn-focus-box-shadow !default;
+
 // $pagination-hover-color:            $link-hover-color !default;
 // $pagination-hover-bg:               $gray-200 !default;
 // $pagination-hover-border-color:     $gray-300 !default;
 
-// $pagination-active-color:           $white !default;
-// $pagination-active-bg:              theme-color("primary") !default;
-// $pagination-active-border-color:    theme-color("primary") !default;
+// $pagination-active-color:           $component-active-color !default;
+// $pagination-active-bg:              $component-active-bg !default;
+// $pagination-active-border-color:    $pagination-active-bg !default;
 
 // $pagination-disabled-color:         $gray-600 !default;
 // $pagination-disabled-bg:            $white !default;
@@ -709,9 +718,11 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // Tooltips
 
+// $tooltip-font-size:           $font-size-sm !default;
 // $tooltip-max-width:           200px !default;
 // $tooltip-color:               $white !default;
 // $tooltip-bg:                  $black !default;
+// $tooltip-border-radius:        $border-radius !default;
 // $tooltip-opacity:             .9 !default;
 // $tooltip-padding-y:           .25rem !default;
 // $tooltip-padding-x:           .5rem !default;
@@ -724,10 +735,12 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // Popovers
 
+// $popover-font-size:                 $font-size-sm !default;
 // $popover-bg:                        $white !default;
 // $popover-max-width:                 276px !default;
 // $popover-border-width:              $border-width !default;
 // $popover-border-color:              rgba($black, .2) !default;
+// $popover-border-radius:             $border-radius-lg !default;
 // $popover-box-shadow:                0 .25rem .5rem rgba($black, .2) !default;
 
 // $popover-header-bg:                 darken($popover-bg, 3%) !default;
@@ -801,6 +814,10 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $alert-border-radius:               $border-radius !default;
 // $alert-link-font-weight:            $font-weight-bold !default;
 // $alert-border-width:                $border-width !default;
+
+// $alert-bg-level:                    -10 !default;
+// $alert-border-level:                -9 !default;
+// $alert-color-level:                 6 !default;
 
 
 // Progress bars
@@ -912,3 +929,8 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // $pre-color:                         $gray-900 !default;
 // $pre-scrollable-max-height:         340px !default;
+
+
+// Printing
+// $print-page-size:                   a3 !default;
+// $print-body-min-width:              map-get($grid-breakpoints, "lg") !default;
