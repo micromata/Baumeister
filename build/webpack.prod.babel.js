@@ -8,7 +8,6 @@ import {mainDirectories, settings} from './config';
 const configFile = require('../baumeister.json');
 
 const purifyCSSOptions = {
-	verbose: true,
 	paths: globby.sync(path.join(settings.destinations.handlebars, '**/*.html')),
 	purifyOptions: {
 		minify: true,
