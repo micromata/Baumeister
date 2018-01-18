@@ -39,7 +39,7 @@ module.exports = (options) => ({
 						{loader: 'postcss-loader', options:
 							{
 								sourceMap: true,
-								config : {
+								config: {
 									ctx: {
 										usePurifyCSS: configFile.usePurifyCSS,
 										cssnano: {

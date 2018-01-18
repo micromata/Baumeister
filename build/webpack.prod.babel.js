@@ -47,6 +47,6 @@ module.exports = require('./webpack.base.babel')({
 			}
 		}),
 		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.production}),
-		configFile.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : function noop(){}
+		configFile.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : function () {}
 	]
 });
