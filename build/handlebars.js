@@ -80,7 +80,8 @@ metalsmith(__dirname)
 									console.log(
 										logSymbols.success,
 										` Finished ${chalk.blue.bold('Handlebars build')} after`,
-										chalk.yellow.bold(perfy.end('build').time >= 1 ? `${Math.round(perfy.end('build').time * 100) / 100} s` : `${Math.round(perfy.end('build').milliseconds)} ms`)
+										chalk.yellow.bold(perfy.end('build').time >= 1 ? `${Math.round(perfy.end('build').time * 100) / 100} s` : `${Math.round(perfy.end('build').milliseconds)} ms`),
+										'\n'
 									);
 									process.exit(0);
 								});
