@@ -25,8 +25,8 @@
     "lint": "eslint --ext .jsx,.js --cache build src",
     "lint:fix": "npm run lint -- --fix",
     "lint:watch": "onchange \"src/**/*.js\" \"src/**/*.jsx\" \"build/*.js\" -- npm run lint --silent",
-    "build": "npm-run-all test handlebars clean webpack --silent",
-    "build:dev": "npm-run-all test handlebars clean:dev webpack:dev --silent",
+    "build": "time npm-run-all security test handlebars clean webpack --silent",
+    "build:dev": "npm-run-all security test handlebars clean:dev webpack:dev --silent",
     "release:patch": "gulp release --bump patch",
     "release:minor": "gulp release --bump minor",
     "release:major": "gulp release --bump major",
@@ -36,7 +36,8 @@
     "webpack:server": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.babel.js --open",
     "webpack:server:prod": "cross-env NODE_ENV=production webpack-dev-server --config build/webpack.prod.babel.js --open",
     "handlebars": "babel-node build/handlebars.js",
-    "handlebars:watch": "onchange \"src/**/*.hbs\" \"src/handlebars/helpers/*.js\" -- npm run handlebars"
+    "handlebars:watch": "onchange \"src/**/*.hbs\" \"src/handlebars/helpers/*.js\" -- npm run handlebars",
+    "security": "nsp check"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
@@ -105,6 +106,7 @@
     "minimist": "^1.2.0",
     "node-sass": "^4.7.2",
     "npm-run-all": "^4.1.2",
+    "nsp": "^3.1.0",
     "onchange": "^3.3.0",
     "perfy": "^1.1.2",
     "postcss-loader": "^2.0.10",
