@@ -61,6 +61,7 @@ module.exports = (options) => ({
 							}
 						},
 						{loader: 'sass-loader', options: {sourceMap: true}}
+					]
 				})
 			}
 		]
