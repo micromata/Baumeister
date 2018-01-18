@@ -14,6 +14,7 @@ src/assets/css
 .browserify-cache-vendor.json
 coverage
 .metalsmith-build
+.eslintcache
 
 ### Dev ###
 *.sublime-project
