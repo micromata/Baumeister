@@ -18,8 +18,7 @@
   "scripts": {
     "clean": "del dist",
     "clean:dev": "del server",
-    "pretest": "npm run lint",
-    "test": "jest",
+    "test": "npm run lint --silent && jest",
     "test:watch": "jest --watch",
     "start": "npm-run-all clean:dev handlebars --parallel handlebars:watch webpack:server lint:watch --silent",
     "start:prod": "npm-run-all clean handlebars --parallel handlebars:watch webpack:server:prod lint:watch  --silent",
