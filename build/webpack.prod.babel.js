@@ -1,9 +1,32 @@
 import path from 'path';
 import webpack from 'webpack';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
+import PurifyCSSPlugin from 'purifycss-webpack';
+import globby from 'globby';
 
-import {mainDirectories} from './config';
+import {mainDirectories, settings} from './config';
 const configFile = require('../baumeister.json');
+
+const purifyCSSOptions = {
+	verbose: true,
+	paths: globby.sync(path.join(settings.destinations.handlebars, '**/*.html')),
+	purifyOptions: {
+		minify: true,
+		cleanCssOptions: {level: {1: {specialComments: 0}}},
+		whitelist: [
+			'*navbar*',
+			'*modal*',
+			'*dropdown*',
+			'*carousel*',
+			'*tooltip*',
+			'open',
+			'fade',
+			'collapse',
+			'collapsing',
+			'in'
+		]
+	}
+};
 
 module.exports = require('./webpack.base.babel')({
 	devServer: {
@@ -24,6 +47,7 @@ module.exports = require('./webpack.base.babel')({
 				}
 			}
 		}),
-		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.production})
+		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.production}),
+		configFile.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : function noop(){}
 	]
 });

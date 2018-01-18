@@ -112,6 +112,8 @@
     "onchange": "^3.3.0",
     "perfy": "^1.1.2",
     "postcss-loader": "^2.0.10",
+    "purify-css": "^1.2.5",
+    "purifycss-webpack": "^0.7.0",
     "regenerator": "^0.12.3",
     "sass-loader": "^6.0.6",
     "semver": "^5.4.1",

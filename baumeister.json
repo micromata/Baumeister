@@ -1,5 +1,6 @@
 {
   "useHandlebars": true,
+  "usePurifyCSS": true,
   "generateBanners": false,
   "bundleCSS": [],
   "includeStaticFiles": [],
