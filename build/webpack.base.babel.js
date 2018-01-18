@@ -72,7 +72,13 @@ module.exports = (options) => ({
 		generateCssFile,
 		new webpack.optimize.CommonsChunkPlugin({name: ['app', 'vendor', 'polyfills']}),
 		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
-		new CopyWebpackPlugin([settings.destinations.handlebars]),
+		new CopyWebpackPlugin([
+			settings.destinations.handlebars,
+			{
+				from: settings.sources.fonts,
+				to: settings.destinations.fonts
+			}
+		]),
 		...options.plugins
 	],
 	stats: {

@@ -25,7 +25,7 @@
     "lint": "eslint --ext .jsx,.js --cache build src",
     "lint:fix": "npm run lint -- --fix",
     "lint:watch": "onchange \"src/**/*.js\" \"src/**/*.jsx\" \"build/*.js\" -- npm run lint --silent",
-    "build": "time npm-run-all security test handlebars clean webpack --silent",
+    "build": "npm-run-all security test handlebars clean webpack --silent",
     "build:dev": "npm-run-all security test handlebars clean:dev webpack:dev --silent",
     "release": "npm run build --silent && standard-version --tag-prefix",
     "release:patch": "npm run release --silent -- --release-as patch",

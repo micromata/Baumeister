@@ -22,29 +22,28 @@ export const settings = {
 		handlebars: './src/handlebars/',
 		// styles: ['./src/assets/scss/**/*.scss'],
 		// stylesEntryPoint: './src/assets/scss/index.scss',
-		app: './src/app/'
+		app: './src/app/',
 		// scripts: ['./src/app/**/*.js'],
 		// appTemplates: ['./src/app/**/*.html'],
 		// images: ['./src/assets/img/**/*.{png,jpg,gif,svg}'],
-		// fonts: ['./src/assets/fonts/**/*'],
+		fonts: './src/assets/fonts'
 		// externalCss: configFile.bundleCSS,
 		// staticFiles: configFile.includeStaticFiles
 	},
 	destinations: {
 		handlebars: './.metalsmith-build',
+		fonts: 'assets/fonts',
 		dev: {
 			// html: `${mainDirectories.dev}`,
 			// styles: `${mainDirectories.dev}assets/css/`,
-			app: `${mainDirectories.dev}app/`
-			// fonts: `${mainDirectories.dev}assets/fonts/`,
+			// app: `${mainDirectories.dev}app/`,
 			// images: `${mainDirectories.dev}assets/img/`,
 			// libs: `${mainDirectories.dev}libs/`
 		},
 		prod: {
 			// html: `${mainDirectories.prod}`,
 			// styles: `${mainDirectories.prod}assets/css/`,
-			app: `${mainDirectories.prod}app/`
-			// fonts: `${mainDirectories.prod}assets/fonts/`,
+			// app: `${mainDirectories.prod}app/`,
 			// images: `${mainDirectories.prod}assets/img/`,
 			// libs: `${mainDirectories.prod}libs/`
 		}
