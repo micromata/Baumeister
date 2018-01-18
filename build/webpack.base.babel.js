@@ -8,13 +8,13 @@ const pkg = require('../package.json');
 const configFile = require('../baumeister.json');
 import {settings} from './config';
 
-const buildTarget = process.env.NODE_ENV === 'production' ? ' Production ' : ' Development ';
-console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
-
+const isDevMode = process.env.NODE_ENV === 'development';
+const buildTarget = isDevMode ? ' Development ' : ' Production ';
 const generateCssFile = new ExtractTextPlugin({
-	filename: 'assets/css/[name].bundle.css',
-	disable: process.env.NODE_ENV === 'development'
+	filename: 'assets/css/[name].bundle.css'
 });
+
+console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
 
 module.exports = (options) => ({
 	devServer: options.devServer,
@@ -36,10 +36,31 @@ module.exports = (options) => ({
 				use: generateCssFile.extract({
 					use: [
 						{loader: 'css-loader', options: {sourceMap: true}},
+						{loader: 'postcss-loader', options:
+							{
+								sourceMap: true,
+								config : {
+									ctx: {
+										cssnano: {
+											discardComments: {
+												removeAll: true
+											}
+										},
+										autoprefixer: {
+											browsers: [
+												'> 1%',
+												'last 3 version',
+												'ie 8',
+												'ie 9',
+												'Firefox ESR',
+												'Opera 12.1'
+											]
+										}
+									}
+								}
+							}
+						},
 						{loader: 'sass-loader', options: {sourceMap: true}}
-					],
-					// Use style-loader in development
-					fallback: 'style-loader'
 				})
 			}
 		]

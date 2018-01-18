@@ -12,7 +12,7 @@
 
 export const mainDirectories = {
 	dev: '../server/',
-	dist: '../dist/',
+	prod: '../dist/',
 	src: '../src'
 };
 
@@ -41,12 +41,12 @@ export const settings = {
 			// libs: `${mainDirectories.dev}libs/`
 		},
 		prod: {
-			// html: `${mainDirectories.dist}`,
-			// styles: `${mainDirectories.dist}assets/css/`,
-			app: `${mainDirectories.dist}app/`
-			// fonts: `${mainDirectories.dist}assets/fonts/`,
-			// images: `${mainDirectories.dist}assets/img/`,
-			// libs: `${mainDirectories.dist}libs/`
+			// html: `${mainDirectories.prod}`,
+			// styles: `${mainDirectories.prod}assets/css/`,
+			app: `${mainDirectories.prod}app/`
+			// fonts: `${mainDirectories.prod}assets/fonts/`,
+			// images: `${mainDirectories.prod}assets/img/`,
+			// libs: `${mainDirectories.prod}libs/`
 		}
 	}
 };

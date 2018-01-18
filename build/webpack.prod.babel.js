@@ -6,8 +6,13 @@ import {mainDirectories} from './config';
 const configFile = require('../baumeister.json');
 
 module.exports = require('./webpack.base.babel')({
+	devServer: {
+		contentBase: path.join(__dirname, mainDirectories.prod),
+		port: 3001,
+		overlay: true
+	},
 	output: {
-		path: path.join(__dirname, mainDirectories.dist),
+		path: path.join(__dirname, mainDirectories.prod),
 		filename: 'app/[name].bundle.js'
 	},
 	plugins: [
