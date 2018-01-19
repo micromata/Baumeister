@@ -4,14 +4,23 @@ import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
+import {settings} from './config';
 const pkg = require('../package.json');
 const configFile = require('../baumeister.json');
-import {settings} from './config';
 
 const isDevMode = process.env.NODE_ENV === 'development';
 const buildTarget = isDevMode ? ' Development ' : ' Production ';
+
 const generateCssFile = new ExtractTextPlugin({
 	filename: 'assets/css/[name].bundle.css'
+});
+
+const staticFiles = settings.sources.staticFiles.map(glob => {
+	return {
+		from: glob,
+		context: 'node_modules',
+		to: settings.destinations.staticFiles
+	};
 });
 
 console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
@@ -86,7 +95,8 @@ module.exports = (options) => ({
 				from: settings.sources.appTemplates.files,
 				context: settings.sources.appTemplates.directory,
 				to: settings.destinations.appTemplates
-			}
+			},
+			...staticFiles
 		]),
 		...options.plugins
 	],

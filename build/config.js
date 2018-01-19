@@ -1,4 +1,4 @@
-// const configFile = require('../baumeister.json');
+const configFile = require('../baumeister.json');
 
 /**
  * Boolean flag to set when using handlebars instead of plain HTML files in `src`.
@@ -25,14 +25,15 @@ export const settings = {
 			files: '**/*.html'
 		},
 		images: './src/assets/img',
-		fonts: './src/assets/fonts'
+		fonts: './src/assets/fonts',
 		// externalCss: configFile.bundleCSS,
-		// staticFiles: configFile.includeStaticFiles
+		staticFiles: configFile.includeStaticFiles
 	},
 	destinations: {
 		handlebars: './.metalsmith-build',
 		fonts: 'assets/fonts',
 		images: 'assets/img',
-		appTemplates: 'app'
+		appTemplates: 'app',
+		staticFiles: 'libs'
 	}
 };
