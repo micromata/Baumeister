@@ -18,12 +18,8 @@ export const mainDirectories = {
 
 export const settings = {
 	sources: {
-		// html: ['./src/*.html'],
 		handlebars: './src/handlebars/',
-		// styles: ['./src/assets/scss/**/*.scss'],
-		// stylesEntryPoint: './src/assets/scss/index.scss',
 		app: './src/app/',
-		// scripts: ['./src/app/**/*.js'],
 		appTemplates: {
 			directory: './src/app',
 			files: '**/*.html'
@@ -37,18 +33,6 @@ export const settings = {
 		handlebars: './.metalsmith-build',
 		fonts: 'assets/fonts',
 		images: 'assets/img',
-		appTemplates: 'app',
-		dev: {
-			// html: `${mainDirectories.dev}`,
-			// styles: `${mainDirectories.dev}assets/css/`,
-			// app: `${mainDirectories.dev}app/`,
-			// libs: `${mainDirectories.dev}libs/`
-		},
-		prod: {
-			// html: `${mainDirectories.prod}`,
-			// styles: `${mainDirectories.prod}assets/css/`,
-			// app: `${mainDirectories.prod}app/`,
-			// libs: `${mainDirectories.prod}libs/`
-		}
+		appTemplates: 'app'
 	}
 };
