@@ -24,7 +24,10 @@ export const settings = {
 		// stylesEntryPoint: './src/assets/scss/index.scss',
 		app: './src/app/',
 		// scripts: ['./src/app/**/*.js'],
-		// appTemplates: ['./src/app/**/*.html'],
+		appTemplates: {
+			directory: './src/app',
+			files: '**/*.html'
+		},
 		images: './src/assets/img',
 		fonts: './src/assets/fonts'
 		// externalCss: configFile.bundleCSS,
@@ -34,6 +37,7 @@ export const settings = {
 		handlebars: './.metalsmith-build',
 		fonts: 'assets/fonts',
 		images: 'assets/img',
+		appTemplates: 'app',
 		dev: {
 			// html: `${mainDirectories.dev}`,
 			// styles: `${mainDirectories.dev}assets/css/`,

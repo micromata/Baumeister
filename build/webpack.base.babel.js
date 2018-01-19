@@ -81,6 +81,11 @@ module.exports = (options) => ({
 			{
 				from: settings.sources.images,
 				to: settings.destinations.images
+			},
+			{
+				from: settings.sources.appTemplates.files,
+				context: settings.sources.appTemplates.directory,
+				to: settings.destinations.appTemplates
 			}
 		]),
 		...options.plugins
