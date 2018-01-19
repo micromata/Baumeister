@@ -77,6 +77,10 @@ module.exports = (options) => ({
 			{
 				from: settings.sources.fonts,
 				to: settings.destinations.fonts
+			},
+			{
+				from: settings.sources.images,
+				to: settings.destinations.images
 			}
 		]),
 		...options.plugins

@@ -25,7 +25,7 @@ export const settings = {
 		app: './src/app/',
 		// scripts: ['./src/app/**/*.js'],
 		// appTemplates: ['./src/app/**/*.html'],
-		// images: ['./src/assets/img/**/*.{png,jpg,gif,svg}'],
+		images: './src/assets/img',
 		fonts: './src/assets/fonts'
 		// externalCss: configFile.bundleCSS,
 		// staticFiles: configFile.includeStaticFiles
@@ -33,18 +33,17 @@ export const settings = {
 	destinations: {
 		handlebars: './.metalsmith-build',
 		fonts: 'assets/fonts',
+		images: 'assets/img',
 		dev: {
 			// html: `${mainDirectories.dev}`,
 			// styles: `${mainDirectories.dev}assets/css/`,
 			// app: `${mainDirectories.dev}app/`,
-			// images: `${mainDirectories.dev}assets/img/`,
 			// libs: `${mainDirectories.dev}libs/`
 		},
 		prod: {
 			// html: `${mainDirectories.prod}`,
 			// styles: `${mainDirectories.prod}assets/css/`,
 			// app: `${mainDirectories.prod}app/`,
-			// images: `${mainDirectories.prod}assets/img/`,
 			// libs: `${mainDirectories.prod}libs/`
 		}
 	}

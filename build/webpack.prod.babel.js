@@ -2,6 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 import PurifyCSSPlugin from 'purifycss-webpack';
+import ImageminPlugin from 'imagemin-webpack-plugin';
 import globby from 'globby';
 
 import {mainDirectories, settings} from './config';
@@ -47,6 +48,7 @@ module.exports = require('./webpack.base.babel')({
 			}
 		}),
 		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.production}),
-		configFile.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : function () {}
+		configFile.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : function () {},
+		new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i})
 	]
 });

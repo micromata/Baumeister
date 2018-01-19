@@ -95,6 +95,7 @@
     "gulp-util": "^3.0.8",
     "gulpsmith": "^0.6.0",
     "husky": "^0.14.3",
+    "imagemin-webpack-plugin": "^1.6.1",
     "jest-cli": "^22.0.4",
     "jstransformer-handlebars": "^1.0.0",
     "log-symbols": "^2.1.0",
