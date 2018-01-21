@@ -24,15 +24,13 @@ export const settings = {
 			directory: './src/app',
 			files: '**/*.html'
 		},
-		images: './src/assets/img',
-		fonts: './src/assets/fonts',
+		assets: './src/assets',
 		// externalCss: configFile.bundleCSS,
 		staticFiles: configFile.includeStaticFiles
 	},
 	destinations: {
 		handlebars: './.metalsmith-build',
-		fonts: 'assets/fonts',
-		images: 'assets/img',
+		assets: 'assets',
 		appTemplates: 'app',
 		staticFiles: 'libs'
 	}

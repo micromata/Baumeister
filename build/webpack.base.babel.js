@@ -84,12 +84,10 @@ module.exports = (options) => ({
 		new CopyWebpackPlugin([
 			settings.destinations.handlebars,
 			{
-				from: settings.sources.fonts,
-				to: settings.destinations.fonts
-			},
-			{
-				from: settings.sources.images,
-				to: settings.destinations.images
+				from: '**/*',
+				context: settings.sources.assets,
+				to: settings.destinations.assets,
+				ignore: ['scss/**']
 			},
 			{
 				from: settings.sources.appTemplates.files,
