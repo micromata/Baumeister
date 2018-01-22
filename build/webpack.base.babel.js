@@ -30,7 +30,7 @@ module.exports = (options) => ({
 	entry: {
 		polyfills: `${settings.sources.app}polyfills.js`,
 		app: `${settings.sources.app}index.js`,
-		vendor: Object.keys(pkg.dependencies)
+		vendor: [...Object.keys(pkg.dependencies), ...settings.sources.externalCss.map(glob => `./node_modules/${glob}`)]
 	},
 	module: {
 		rules: [
@@ -39,6 +39,14 @@ module.exports = (options) => ({
 				exclude: /node_modules/,
 				include: path.resolve(__dirname, '../', settings.sources.app),
 				loader: 'babel-loader', options: {sourceMap: true}
+			},
+			{
+				test: /\.css$/,
+				use: generateCssFile.extract({
+					use: [
+						{loader: 'css-loader', options: {sourceMap: true}}
+					]
+				})
 			},
 			{
 				test: /\.scss$/,

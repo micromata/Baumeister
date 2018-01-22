@@ -25,7 +25,7 @@ export const settings = {
 			files: '**/*.html'
 		},
 		assets: './src/assets',
-		// externalCss: configFile.bundleCSS,
+		externalCss: configFile.bundleCSS,
 		staticFiles: configFile.includeStaticFiles
 	},
 	destinations: {
