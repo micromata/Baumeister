@@ -1,5 +1,6 @@
 import path from 'path';
 import chalk from 'chalk';
+import globby from 'globby';
 import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
@@ -15,13 +16,18 @@ const generateCssFile = new ExtractTextPlugin({
 	filename: 'assets/css/[name].bundle.css'
 });
 
-const staticFiles = settings.sources.staticFiles.map(glob => {
+const copyVendorFiles = configFile.vendor.includeStaticFiles.map(glob => {
 	return {
 		from: glob,
 		context: 'node_modules',
-		to: settings.destinations.staticFiles
+		to: settings.destinations.vendorFiles
 	};
 });
+
+const getVendorCSS = function () {
+	// Return flattened array of resolved globs from baumeister.json
+	return [].concat(...configFile.vendor.bundleCSS.map(glob => globby.sync(`./node_modules/${glob}`)));
+};
 
 console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
 
@@ -30,7 +36,7 @@ module.exports = (options) => ({
 	entry: {
 		polyfills: `${settings.sources.app}polyfills.js`,
 		app: `${settings.sources.app}index.js`,
-		vendor: [...Object.keys(pkg.dependencies), ...configFile.bundleCSS.map(glob => `./node_modules/${glob}`)]
+		vendor: [...Object.keys(pkg.dependencies), ...getVendorCSS()]
 	},
 	module: {
 		rules: [
@@ -100,7 +106,7 @@ module.exports = (options) => ({
 				to: settings.destinations.assets,
 				ignore: ['scss/**']
 			},
-			...staticFiles
+			...copyVendorFiles
 		]),
 		...options.plugins
 	],

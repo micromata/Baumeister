@@ -24,13 +24,12 @@ export const settings = {
 			directory: './src/app',
 			files: '**/*.html'
 		},
-		assets: './src/assets',
-		staticFiles: configFile.includeStaticFiles
+		assets: './src/assets'
 	},
 	destinations: {
 		handlebars: './.metalsmith-build',
 		assets: 'assets',
 		appTemplates: 'app',
-		staticFiles: 'libs'
+		vendorFiles: 'assets/vendor'
 	}
 };
