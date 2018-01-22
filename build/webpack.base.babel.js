@@ -30,7 +30,7 @@ module.exports = (options) => ({
 	entry: {
 		polyfills: `${settings.sources.app}polyfills.js`,
 		app: `${settings.sources.app}index.js`,
-		vendor: [...Object.keys(pkg.dependencies), ...settings.sources.externalCss.map(glob => `./node_modules/${glob}`)]
+		vendor: [...Object.keys(pkg.dependencies), ...configFile.bundleCSS.map(glob => `./node_modules/${glob}`)]
 	},
 	module: {
 		rules: [
