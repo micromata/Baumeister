@@ -130,14 +130,16 @@ In the root directory is a file named `baumeister.json` which you can use to cha
 {
   "useHandlebars": true,
   "generateBanners": true,
-  "bundleCSS": [],
   "bundleExternalJS": [
     "jquery",
     "bootstrap-sass"
   ],
-  "includeStaticFiles": [
-    "bootstrap-sass/assets/fonts/**/*"
-  ],
+  "vendor": {
+    "bundleCSS": [],
+    "includeStaticFiles": [
+      "bootstrap-sass/assets/fonts/**/*"
+    ]
+  },
   "webpack": {
       "DefinePlugin": {
         "dev": {},
@@ -155,7 +157,7 @@ In the root directory is a file named `baumeister.json` which you can use to cha
 }
 ```
 
-`bundleCSS`, `bundleExternalJS` and `includeStaticFiles` makes it possible to include additional dependencies without touching any Gulp task. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
+`vendor.bundleCSS`, `bundleExternalJS` and `vendor.includeStaticFiles` makes it possible to include additional dependencies without touching any Gulp task. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
 
 The ramifications of changing the `useHandlebars` setting are explained in the section [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps).
 
@@ -584,7 +586,7 @@ myProject
 
 ### Bundling CSS from dependencies
 
-If a used library ships its own CSS you have to include the path to the files you like to bundle in the `bundleCSS` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
+If a used library ships its own CSS you have to include the path to the files you like to bundle in the `vendor.bundleCSS` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
 
 ```
 "bundleCSS": [
@@ -608,7 +610,7 @@ myProject
 ### Including static files from dependencies
 
 Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a separate `<script>` tag.
-To handle that you just have to include the files in the `includeStaticFiles` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
+To handle that you just have to include the files in the `vendor.includeStaticFiles` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
 
 ```
 "includeStaticFiles": [
