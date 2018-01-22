@@ -4,8 +4,10 @@ import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 import PurifyCSSPlugin from 'purifycss-webpack';
 import ImageminPlugin from 'imagemin-webpack-plugin';
 import globby from 'globby';
+import {stripIndents} from 'common-tags';
 
 import {mainDirectories, settings} from './config';
+const pkg = require('../package.json');
 const configFile = require('../baumeister.json');
 
 const purifyCSSOptions = {
@@ -26,6 +28,19 @@ const purifyCSSOptions = {
 			'in'
 		]
 	}
+};
+
+const generateBanners = function () {
+	if (!configFile.generateBanners) {
+		return function () {};
+	}
+
+	return new webpack.BannerPlugin({
+		banner: stripIndents`${pkg.title} - v${pkg.version}
+		${pkg.author.email}
+		Copyright ©${new Date().getFullYear()} ${pkg.author.name}
+		${new Date().toLocaleDateString('en-US', {day: '2-digit', month: 'long', year: 'numeric'})}`
+	});
 };
 
 module.exports = require('./webpack.base.babel')({
@@ -49,6 +64,7 @@ module.exports = require('./webpack.base.babel')({
 		}),
 		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.production}),
 		configFile.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : function () {},
-		new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i})
+		new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i}),
+		generateBanners()
 	]
 });
