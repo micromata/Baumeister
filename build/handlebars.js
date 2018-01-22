@@ -10,9 +10,13 @@ import filter from 'metalsmith-filter';
 import globby from 'globby';
 import perfy from 'perfy';
 
-import {settings} from './config';
+import {settings, useHandlebars} from './config';
 
 perfy.start('build', false);
+
+if (!useHandlebars) {
+	process.exit(0);
+}
 
 metalsmith(__dirname)
 	// Source directory

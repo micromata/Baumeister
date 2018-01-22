@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-import {settings} from './config';
+import {settings, useHandlebars} from './config';
 const pkg = require('../package.json');
 const configFile = require('../baumeister.json');
 
@@ -90,17 +90,15 @@ module.exports = (options) => ({
 		new webpack.optimize.CommonsChunkPlugin({name: ['app', 'vendor', 'polyfills']}),
 		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
 		new CopyWebpackPlugin([
-			settings.destinations.handlebars,
+			{
+				from: '**/*.html',
+				context: useHandlebars ? settings.destinations.handlebars : './src'
+			},
 			{
 				from: '**/*',
 				context: settings.sources.assets,
 				to: settings.destinations.assets,
 				ignore: ['scss/**']
-			},
-			{
-				from: settings.sources.appTemplates.files,
-				context: settings.sources.appTemplates.directory,
-				to: settings.destinations.appTemplates
 			},
 			...staticFiles
 		]),

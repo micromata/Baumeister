@@ -6,7 +6,7 @@ import ImageminPlugin from 'imagemin-webpack-plugin';
 import globby from 'globby';
 import {stripIndents} from 'common-tags';
 
-import {mainDirectories, settings} from './config';
+import {mainDirectories, settings, generateBanners} from './config';
 const pkg = require('../package.json');
 const configFile = require('../baumeister.json');
 
@@ -30,8 +30,8 @@ const purifyCSSOptions = {
 	}
 };
 
-const generateBanners = function () {
-	if (!configFile.generateBanners) {
+const bannerPlugin = function () {
+	if (!generateBanners) {
 		return function () {};
 	}
 
@@ -65,6 +65,6 @@ module.exports = require('./webpack.base.babel')({
 		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.production}),
 		configFile.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : function () {},
 		new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i}),
-		generateBanners()
+		bannerPlugin()
 	]
 });
