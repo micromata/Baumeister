@@ -2,10 +2,7 @@
   "useHandlebars": true,
   "usePurifyCSS": true,
   "generateBanners": false,
-  "bundleCSS": [
-    "normalize.css/normalize.css",
-    "bootstrap/dist/css/bootstrap-reboot.css"
-  ],
+  "bundleCSS": [],
   "includeStaticFiles": [],
   "webpack": {
     "DefinePlugin": {
