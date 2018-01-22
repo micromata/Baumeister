@@ -26,9 +26,9 @@ export const settings = {
 		images: ['./src/assets/img/**/*.{png,jpg,gif,svg}'],
 		assets: ['./src/assets/**/*', '!./src/assets/{fonts,fonts/**,img,img/**,scss,scss/**}'],
 		fonts: ['./src/assets/fonts/**/*'],
-		externalCss: configFile.bundleCSS,
+		externalCss: configFile.vendor.bundleCSS,
 		externalJs: configFile.bundleExternalJS,
-		staticFiles: configFile.includeStaticFiles
+		staticFiles: configFile.vendor.includeStaticFiles
 	},
 	destinations: {
 		handlebars: './.metalsmith-build',

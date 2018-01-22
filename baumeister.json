@@ -1,12 +1,14 @@
 {
   "useHandlebars": true,
   "generateBanners": false,
-  "bundleCSS": [],
   "bundleExternalJS": [
     "jquery",
     "bootstrap"
   ],
-  "includeStaticFiles": [],
+  "vendor": {
+    "bundleCSS": [],
+    "includeStaticFiles": []
+  },
   "webpack": {
     "DefinePlugin": {
       "dev": {},
