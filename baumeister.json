@@ -2,8 +2,10 @@
   "useHandlebars": true,
   "usePurifyCSS": true,
   "generateBanners": false,
-  "bundleCSS": [],
-  "includeStaticFiles": [],
+  "vendor": {
+    "bundleCSS": [],
+    "includeStaticFiles": []
+  },
   "webpack": {
     "DefinePlugin": {
       "development": {},
