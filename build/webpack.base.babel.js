@@ -4,11 +4,13 @@ import globby from 'globby';
 import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import minimist from 'minimist';
 
 import {settings, useHandlebars} from './config';
 const pkg = require('../package.json');
 const configFile = require('../baumeister.json');
 
+const cliFlags = minimist(process.argv.slice(2));
 const isDevMode = process.env.NODE_ENV === 'development';
 const buildTarget = isDevMode ? ' Development ' : ' Production ';
 
@@ -29,7 +31,9 @@ const getVendorCSS = function () {
 	return [].concat(...configFile.vendor.bundleCSS.map(glob => globby.sync(`./node_modules/${glob}`)));
 };
 
-console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
+if (!cliFlags.json) {
+	console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
+}
 
 module.exports = (options) => ({
 	devServer: options.devServer,

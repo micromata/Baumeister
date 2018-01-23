@@ -15,6 +15,7 @@ src/assets/css
 coverage
 .metalsmith-build
 .eslintcache
+.webpack-stats.json
 
 ### Dev ###
 *.sublime-project

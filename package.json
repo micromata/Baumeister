@@ -38,6 +38,7 @@
     "webpack:dev": "cross-env NODE_ENV=development webpack --config build/webpack.dev.babel.js --hide-modules --progress",
     "webpack:server": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.babel.js --open",
     "webpack:server:prod": "cross-env NODE_ENV=production webpack-dev-server --config build/webpack.prod.babel.js --open",
+    "webpack:analyze": "cross-env NODE_ENV=production webpack --config build/webpack.prod.babel.js --profile --json > ./.webpack-stats.json && webpack-bundle-analyzer ./.webpack-stats.json ./dist -s parsed",
     "handlebars": "babel-node build/handlebars.js",
     "handlebars:watch": "onchange \"src/**/*.hbs\" \"src/handlebars/helpers/*.js\" -- npm run handlebars",
     "security": "nsp check",
@@ -128,6 +129,7 @@
     "uglifyjs-webpack-plugin": "^1.1.5",
     "uncss": "^0.16.1",
     "webpack": "^3.10.0",
+    "webpack-bundle-analyzer": "^2.9.2",
     "webpack-dev-server": "^2.11.0"
   },
   "jest": {
