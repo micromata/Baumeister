@@ -1,4 +1,5 @@
 import path from 'path';
+import crypto from 'crypto';
 import chalk from 'chalk';
 import globby from 'globby';
 import webpack from 'webpack';
@@ -11,6 +12,7 @@ const pkg = require('../package.json');
 const configFile = require('../baumeister.json');
 
 const cliFlags = minimist(process.argv.slice(2));
+const hash = crypto.createHash('sha512').update(String(Date.now())).digest('hex').slice(0, 20);
 const isDevMode = process.env.NODE_ENV === 'development';
 const buildTarget = isDevMode ? ' Development ' : ' Production ';
 
@@ -102,7 +104,22 @@ module.exports = (options) => ({
 		new CopyWebpackPlugin([
 			{
 				from: '**/*.html',
-				context: useHandlebars ? settings.destinations.handlebars : './src'
+				context: useHandlebars ? settings.destinations.handlebars : './src',
+				transform(content) {
+					if (isDevMode) {
+						return content;
+					}
+					content = content.toString();
+					content = content.replace(
+						/<link href="(.*\.css)\?rev=@@hash"/g,
+						`<link href="$1?rev=${hash}"`
+					);
+					content = content.replace(
+						/<script src="(.*\.js)\?rev=@@hash"><\/script>/g,
+						`<script src="$1?rev=${hash}></script>"`
+					);
+					return content;
+				}
 			},
 			{
 				from: '**/*',

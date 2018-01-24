@@ -10,16 +10,11 @@
 	<meta name="author" content="Micromata GmbH">
 	<title>Baumeister{{#if title}} - {{title}}{{/if}}</title>
 
-	<!-- Libs -->
-	<!-- build:css libs/libs.min.css?rev=@@hash -->
-	<!-- <link href="libs/libs.css" rel="stylesheet"> -->
-	<!-- /build -->
+	<!-- Bundled vendor CSS files -->
+	<link href="assets/css/vendor.bundle.css?rev=@@hash" rel="stylesheet">
 
 	<!-- Our compiled and merged Sass files -->
-	<link href="assets/css/app.bundle.css" rel="stylesheet">
-
-	<!-- Bundled vendor CSS files -->
-	<link href="assets/css/vendor.bundle.css" rel="stylesheet">
+	<link href="assets/css/app.bundle.css?rev=@@hash" rel="stylesheet">
 
 	<!--
 	Replace "no-js" class with "js" in case JavaScript is available.
@@ -47,13 +42,13 @@ replaced in the production ready build.
 -->
 
 <!-- Polyfills -->
-<script src="app/polyfills.bundle.js"></script>
+<script src="app/polyfills.bundle.js?rev=@@hash"></script>
 
 <!-- Vendor JS -->
-<script src="app/vendor.bundle.js"></script>
+<script src="app/vendor.bundle.js?rev=@@hash"></script>
 
 <!-- Own JS -->
-<script src="app/app.bundle.js"></script>
+<script src="app/app.bundle.js?rev=@@hash"></script>
 
 <!-- External scripts (eg. analytics) should be placed here -->
 </body>
