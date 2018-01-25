@@ -1,10 +1,10 @@
 import path from 'path';
-import crypto from 'crypto';
 import chalk from 'chalk';
 import globby from 'globby';
 import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import WebpackAssetsManifest from 'webpack-assets-manifest';
 import minimist from 'minimist';
 
 import {settings, useHandlebars} from './config';
@@ -12,12 +12,15 @@ const pkg = require('../package.json');
 const configFile = require('../baumeister.json');
 
 const cliFlags = minimist(process.argv.slice(2));
-const hash = crypto.createHash('sha512').update(String(Date.now())).digest('hex').slice(0, 20);
 const isDevMode = process.env.NODE_ENV === 'development';
 const buildTarget = isDevMode ? ' Development ' : ' Production ';
 
+const manifest = new WebpackAssetsManifest({
+	output: path.resolve('.webpack-assets.json')
+});
+
 const generateCssFile = new ExtractTextPlugin({
-	filename: 'assets/css/[name].bundle.css'
+	filename: configFile.cacheBusting && !isDevMode ? 'assets/css/[name].[chunkhash].bundle.css' : 'assets/css/[name].bundle.css'
 });
 
 const copyVendorFiles = configFile.vendor.includeStaticFiles.map(glob => {
@@ -98,6 +101,7 @@ module.exports = (options) => ({
 	},
 	output: options.output,
 	plugins: [
+		manifest,
 		generateCssFile,
 		new webpack.optimize.CommonsChunkPlugin({name: ['app', 'vendor', 'polyfills']}),
 		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
@@ -106,19 +110,7 @@ module.exports = (options) => ({
 				from: '**/*.html',
 				context: useHandlebars ? settings.destinations.handlebars : './src',
 				transform(content) {
-					if (isDevMode || !configFile.cacheBusting) {
-						return content;
-					}
-					content = content.toString();
-					content = content.replace(
-						/<link href="(.*\.css)\?rev=@@hash"/g,
-						`<link href="$1?rev=${hash}"`
-					);
-					content = content.replace(
-						/<script src="(.*\.js)\?rev=@@hash"><\/script>/g,
-						`<script src="$1?rev=${hash}></script>"`
-					);
-					return content;
+					return content.toString().replace(/@@(.*\.css|.*\.js)/g, (match, $1) => manifest.assets[$1]);
 				}
 			},
 			{

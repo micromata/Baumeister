@@ -51,7 +51,7 @@ module.exports = require('./webpack.base.babel')({
 	},
 	output: {
 		path: path.join(__dirname, mainDirectories.prod),
-		filename: 'app/[name].bundle.js'
+		filename: configFile.cacheBusting ? 'app/[name].[chunkhash].bundle.js' : 'app/[name].bundle.js'
 	},
 	plugins: [
 		new UglifyJSPlugin({

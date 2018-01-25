@@ -11,10 +11,10 @@
 	<title>Baumeister{{#if title}} - {{title}}{{/if}}</title>
 
 	<!-- Bundled vendor CSS files -->
-	<link href="assets/css/vendor.bundle.css?rev=@@hash" rel="stylesheet">
+	<link href="@@vendor.css" rel="stylesheet">
 
 	<!-- Our compiled and merged Sass files -->
-	<link href="assets/css/app.bundle.css?rev=@@hash" rel="stylesheet">
+	<link href="@@app.css" rel="stylesheet">
 
 	<!--
 	Replace "no-js" class with "js" in case JavaScript is available.
@@ -42,13 +42,13 @@ replaced in the production ready build.
 -->
 
 <!-- Polyfills -->
-<script src="app/polyfills.bundle.js?rev=@@hash"></script>
+<script src="@@polyfills.js"></script>
 
 <!-- Vendor JS -->
-<script src="app/vendor.bundle.js?rev=@@hash"></script>
+<script src="@@vendor.js"></script>
 
 <!-- Own JS -->
-<script src="app/app.bundle.js?rev=@@hash"></script>
+<script src="@@app.js"></script>
 
 <!-- External scripts (eg. analytics) should be placed here -->
 </body>
