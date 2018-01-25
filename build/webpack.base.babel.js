@@ -20,7 +20,7 @@ const manifest = new WebpackAssetsManifest({
 });
 
 const generateCssFile = new ExtractTextPlugin({
-	filename: 'assets/css/[name].[chunkhash].bundle.css'
+	filename: configFile.cacheBusting && !isDevMode ? 'assets/css/[name].[chunkhash].bundle.css' : 'assets/css/[name].bundle.css'
 });
 
 const copyVendorFiles = configFile.vendor.includeStaticFiles.map(glob => {
