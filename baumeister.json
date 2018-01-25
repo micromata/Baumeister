@@ -2,6 +2,7 @@
   "useHandlebars": true,
   "usePurifyCSS": true,
   "generateBanners": false,
+  "chacheBusting": true,
   "vendor": {
     "bundleCSS": [],
     "includeStaticFiles": []
