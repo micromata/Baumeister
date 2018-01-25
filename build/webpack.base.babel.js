@@ -106,7 +106,7 @@ module.exports = (options) => ({
 				from: '**/*.html',
 				context: useHandlebars ? settings.destinations.handlebars : './src',
 				transform(content) {
-					if (isDevMode || !configFile.chacheBusting) {
+					if (isDevMode || !configFile.cacheBusting) {
 						return content;
 					}
 					content = content.toString();
