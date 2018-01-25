@@ -2,7 +2,7 @@
   "useHandlebars": true,
   "usePurifyCSS": true,
   "generateBanners": false,
-  "chacheBusting": true,
+  "cacheBusting": true,
   "vendor": {
     "bundleCSS": [
       "bootstrap/dist/css/bootstrap-reboot.css"
