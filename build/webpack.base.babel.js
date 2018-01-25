@@ -5,6 +5,7 @@ import globby from 'globby';
 import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import WebpackAssetsManifest from 'webpack-assets-manifest';
 import minimist from 'minimist';
 
 import {settings, useHandlebars} from './config';
@@ -17,7 +18,7 @@ const isDevMode = process.env.NODE_ENV === 'development';
 const buildTarget = isDevMode ? ' Development ' : ' Production ';
 
 const generateCssFile = new ExtractTextPlugin({
-	filename: 'assets/css/[name].bundle.css'
+	filename: 'assets/css/[name].[chunkhash].bundle.css'
 });
 
 const copyVendorFiles = configFile.vendor.includeStaticFiles.map(glob => {
@@ -98,6 +99,14 @@ module.exports = (options) => ({
 	},
 	output: options.output,
 	plugins: [
+		new WebpackAssetsManifest({
+			writeToDisk: true,
+			output: path.resolve('.webpack-assets.json'),
+			done(manifest) {
+				console.log(chalk.cyan('\n⏰  Here we are in the done() method of WebpackAssetsManifest'));
+				console.log(`\nThe manifest has been written to ${manifest.getOutputPath()}`);
+			}
+		}),
 		generateCssFile,
 		new webpack.optimize.CommonsChunkPlugin({name: ['app', 'vendor', 'polyfills']}),
 		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
@@ -106,18 +115,10 @@ module.exports = (options) => ({
 				from: '**/*.html',
 				context: useHandlebars ? settings.destinations.handlebars : './src',
 				transform(content) {
-					if (isDevMode || !configFile.chacheBusting) {
-						return content;
-					}
+					const assets = require('../.webpack-assets.json');
+					console.log(chalk.magenta('\n⏰  Here we are in the transform() method of CopyWebpackPlugin'));
 					content = content.toString();
-					content = content.replace(
-						/<link href="(.*\.css)\?rev=@@hash"/g,
-						`<link href="$1?rev=${hash}"`
-					);
-					content = content.replace(
-						/<script src="(.*\.js)\?rev=@@hash"><\/script>/g,
-						`<script src="$1?rev=${hash}></script>"`
-					);
+					content = content.replace(/@@(.*\.css|.*\.js)/g, (match, $1) => assets[$1]);
 					return content;
 				}
 			},

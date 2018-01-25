@@ -129,6 +129,7 @@
     "uglifyjs-webpack-plugin": "^1.1.5",
     "uncss": "^0.16.1",
     "webpack": "^3.10.0",
+    "webpack-assets-manifest": "^1.0.0",
     "webpack-bundle-analyzer": "^2.9.2",
     "webpack-dev-server": "^2.11.0"
   },
