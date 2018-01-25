@@ -2,8 +2,18 @@
  * @file  JavaScript entry point of the project
  */
 
-import '../assets/scss/index.scss';
+// Import the whole Bootstrap JS bundle
+import 'bootstrap';
+
+// or just what you need to keep your vendor bundle small
+// import 'bootstrap/js/dist/util';
+// import 'bootstrap/js/dist/dropdown';
+
+// Import methods from the base module
 import {consoleErrorFix, ieViewportFix} from './base';
+
+// Import our Sass entrypoint to create the CSS app bundle
+import '../assets/scss/index.scss';
 
 $(() => {
 	consoleErrorFix();

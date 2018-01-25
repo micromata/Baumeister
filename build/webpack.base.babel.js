@@ -9,7 +9,6 @@ import minimist from 'minimist';
 import {stripIndents} from 'common-tags';
 
 import {settings, useHandlebars} from './config';
-const pkg = require('../package.json');
 const configFile = require('../baumeister.json');
 
 const cliFlags = minimist(process.argv.slice(2));
@@ -45,15 +44,13 @@ if (!cliFlags.json) {
 module.exports = (options) => ({
 	devServer: options.devServer,
 	entry: {
-		polyfills: `${settings.sources.app}polyfills.js`,
 		app: `${settings.sources.app}index.js`,
-		vendor: [...Object.keys(pkg.dependencies), ...getVendorCSS()]
+		vendor: [`${settings.sources.app}polyfills.js`, ...getVendorCSS()]
 	},
 	module: {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
 				include: path.resolve(__dirname, '../', settings.sources.app),
 				loader: 'babel-loader', options: {sourceMap: true}
 			},
@@ -105,7 +102,10 @@ module.exports = (options) => ({
 	plugins: [
 		manifest,
 		generateCssFile,
-		new webpack.optimize.CommonsChunkPlugin({name: ['app', 'vendor', 'polyfills']}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor',
+			minChunks: module => /node_modules/.test(module.resource)
+		}),
 		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
 		new CopyWebpackPlugin([
 			{
