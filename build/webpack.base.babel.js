@@ -1,5 +1,4 @@
 import path from 'path';
-import crypto from 'crypto';
 import chalk from 'chalk';
 import globby from 'globby';
 import webpack from 'webpack';
@@ -13,9 +12,12 @@ const pkg = require('../package.json');
 const configFile = require('../baumeister.json');
 
 const cliFlags = minimist(process.argv.slice(2));
-const hash = crypto.createHash('sha512').update(String(Date.now())).digest('hex').slice(0, 20);
 const isDevMode = process.env.NODE_ENV === 'development';
 const buildTarget = isDevMode ? ' Development ' : ' Production ';
+
+const manifest = new WebpackAssetsManifest({
+	output: path.resolve('.webpack-assets.json')
+});
 
 const generateCssFile = new ExtractTextPlugin({
 	filename: 'assets/css/[name].[chunkhash].bundle.css'
@@ -99,14 +101,7 @@ module.exports = (options) => ({
 	},
 	output: options.output,
 	plugins: [
-		new WebpackAssetsManifest({
-			writeToDisk: true,
-			output: path.resolve('.webpack-assets.json'),
-			done(manifest) {
-				console.log(chalk.cyan('\n⏰  Here we are in the done() method of WebpackAssetsManifest'));
-				console.log(`\nThe manifest has been written to ${manifest.getOutputPath()}`);
-			}
-		}),
+		manifest,
 		generateCssFile,
 		new webpack.optimize.CommonsChunkPlugin({name: ['app', 'vendor', 'polyfills']}),
 		new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
@@ -115,11 +110,7 @@ module.exports = (options) => ({
 				from: '**/*.html',
 				context: useHandlebars ? settings.destinations.handlebars : './src',
 				transform(content) {
-					const assets = require('../.webpack-assets.json');
-					console.log(chalk.magenta('\n⏰  Here we are in the transform() method of CopyWebpackPlugin'));
-					content = content.toString();
-					content = content.replace(/@@(.*\.css|.*\.js)/g, (match, $1) => assets[$1]);
-					return content;
+					return content.toString().replace(/@@(.*\.css|.*\.js)/g, (match, $1) => manifest.assets[$1]);
 				}
 			},
 			{
