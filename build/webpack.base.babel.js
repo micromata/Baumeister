@@ -6,6 +6,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import WebpackAssetsManifest from 'webpack-assets-manifest';
 import minimist from 'minimist';
+import {stripIndents} from 'common-tags';
 
 import {settings, useHandlebars} from './config';
 const pkg = require('../package.json');
@@ -37,7 +38,8 @@ const getVendorCSS = function () {
 };
 
 if (!cliFlags.json) {
-	console.log(chalk.yellow(`Build target: ${chalk.bold.inverse(buildTarget)}`));
+	console.log(chalk.yellow(stripIndents`Build target: ${chalk.bold.inverse(buildTarget)}
+	━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`));
 }
 
 module.exports = (options) => ({
