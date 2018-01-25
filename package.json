@@ -18,8 +18,8 @@
   "scripts": {
     "start": "npm-run-all clean:dev handlebars --parallel handlebars:watch webpack:server eslint:watch stylelint:watch --silent",
     "start:prod": "npm-run-all clean handlebars --parallel handlebars:watch webpack:server:prod eslint:watch stylelint:watch  --silent",
-    "clean": "del dist",
-    "clean:dev": "del server",
+    "clean": "del .webpack-assets.json dist",
+    "clean:dev": "del .webpack-assets.json server",
     "test": "npm run eslint --silent && jest",
     "test:watch": "jest --watch",
     "eslint": "eslint --ext .jsx,.js --cache build src",
