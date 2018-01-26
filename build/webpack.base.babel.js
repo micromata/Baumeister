@@ -112,7 +112,12 @@ module.exports = (options) => ({
 				from: '**/*.html',
 				context: useHandlebars ? settings.destinations.handlebars : './src',
 				transform(content) {
-					return content.toString().replace(/@@(.*\.css|.*\.js)/g, (match, $1) => manifest.assets[$1]);
+					return content.toString().replace(/@@(.*\.css|.*\.js)/g, (match, $1) => {
+						if (!($1 in manifest.assets)) {
+							return `<!-- No ${$1} to be bundled -->`;
+						}
+						return /\.css/g.match ? `<link href="${manifest.assets[$1]}" rel="stylesheet">` : `<script src="${manifest.assets[$1]}"></script>`;
+					});
 				}
 			},
 			{

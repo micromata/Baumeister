@@ -4,9 +4,7 @@
   "generateBanners": false,
   "cacheBusting": true,
   "vendor": {
-    "bundleCSS": [
-      "bootstrap/dist/css/bootstrap-reboot.css"
-    ],
+    "bundleCSS": [],
     "includeStaticFiles": []
   },
   "webpack": {
