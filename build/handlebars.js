@@ -9,6 +9,7 @@ import registerHelpers from 'metalsmith-register-helpers';
 import filter from 'metalsmith-filter';
 import globby from 'globby';
 import perfy from 'perfy';
+import {stripIndents} from 'common-tags';
 
 import {settings, useHandlebars} from './config';
 
@@ -60,7 +61,11 @@ metalsmith(__dirname)
 
 		// Handle build errors
 		if (err) {
-			console.error(err);
+			console.log(stripIndents`
+				${logSymbols.error} Handlebars build failed:
+				${chalk.red.bold(err.message)}
+			`);
+			process.exit(1);
 
 		// Handle successful build
 		} else {
