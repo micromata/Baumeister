@@ -18,6 +18,7 @@
   "scripts": {
     "start": "npm-run-all clean:dev handlebars --parallel handlebars:watch webpack:server eslint:watch stylelint:watch --silent",
     "build": "npm-run-all security test handlebars clean webpack --silent",
+    "build:check": "serve dist --open",
     "test": "npm run eslint --silent && jest",
     "test:watch": "jest --watch",
     "eslint": "eslint --ext .jsx,.js --cache build src",
@@ -88,6 +89,7 @@
     "purifycss-webpack": "^0.7.0",
     "regenerator": "^0.12.3",
     "sass-loader": "^6.0.6",
+    "serve": "^6.4.9",
     "standard-version": "^4.3.0",
     "style-loader": "^0.19.1",
     "stylelint": "^8.4.0",
