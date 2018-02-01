@@ -12,14 +12,15 @@
 	<img width="50%" src="https://cdn.rawgit.com/micromata/baumeister-media/master/dist/Baumeister-Logo-Default.svg" alt="Baumeister Logo">
 </p>
 
-The aim of this project is to help you to build your things. From Bootstrap themes over static websites to single page applications. Baumeister provides:
+Baumeister is here to help you to build your things. From Bootstrap themes over static websites to single page applications. Baumeister provides:
 
 - a file structure with focus on maintainability and upgradability
-- a Gulp workflow with the following »features«
+- a build setup based on Webpack and npm scripts with the following »features«
 	- generate static sites with ease using handlebars templates
 		- optional – see [details](#writing-markup-static-sites-vs-single-page-apps)
 	- transpile, bundle and minify your code
 		- ES6 as well as Sass
+	- Visualize size of bundled files with an interactive zoomable treemap
 	- remove `console` output and `debugger` statements in production files
 	- add vendor prefixes
 	- lint JavaScript, Sass and HTML
@@ -32,13 +33,15 @@ The aim of this project is to help you to build your things. From Bootstrap them
 	- run unit tests and create coverage reports
 	- and more.
 
+Baumeister mainly uses [Webpack](https://webpack.js.org) at its core for transpiling, bundling and minifying files offering [npm scripts](#build-workflow-and-npm-scripts) for working with the project. Besides that we have defined a few npm scripts to handle things like our [release workflow](#release-workflow). All necessary dependencies are locally installed via npm.
+
 ## Table of Contents
 
 - [Quick install guide](#quick-install-guide)
 - [Dependencies](#dependencies)
 - [Setting up the project](#setting-up-the-project)
-- [Gulp workflow and tasks](#gulp-workflow-and-tasks)
-- [Setting up your editor (optional)](#setting-up-your-editor-optional)
+- [Build Workflow and npm scripts](#build-workflow-and-npm-scripts)
+- [Setting up your editor](#setting-up-your-editor)
 - [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps)
 - [File and folder structure of Sass files](#file-and-folder-structure-of-sass-files)
 - [Using external libraries](#using-external-libraries)
@@ -52,112 +55,95 @@ The aim of this project is to help you to build your things. From Bootstrap them
 
 ## Quick install guide
 
-For those already using Node, Gulp and stuff.
+For those already using Node.js.
 
 ### via Yeoman
+*See: <https://github.com/micromata/generator-baumeister> for details.*
 
-	$ npm install -g yo
-	$ npm install -g generator-baumeister
+	$ npm i -g yo
+	$ npm i -g generator-baumeister
 	$ yo baumeister
-	$ gulp --tasks
+	$ npm start
 
-See: <https://github.com/micromata/generator-baumeister>
+*See [Build Workflow and npm scripts](#build-workflow-and-npm-scripts) for the main scripts.*
 
 ### via Git
 
 	$ git clone https://github.com/micromata/baumeister.git
 	$ cd baumeister
 	$ npm install
-	$ gulp --tasks
+	$ npm start
+
+*See [Build Workflow and npm scripts](#build-workflow-and-npm-scripts) for the main scripts.*
 
 ## Dependencies
 
 - Node.js (>=6.0.0)
-- Globally installed [Gulp CLI](https://www.npmjs.com/package/gulp-cli)
 
 ### Node.js
 
-The major dependency is [Node.js](http://nodejs.org/) including the Node.js package manager called »npm«. The other dependencies can be installed with npm.
+The major dependency is [Node.js](http://nodejs.org/) including bundled package manager called »npm«. The projects dependencies are locally installed with npm.
 
 Please enter the following in your terminal if your aren’t sure about the availability of Node.js and npm on your machine:
 
-	node --version
+```
+node --version
+````
 
 This should return something like the following in case Node.js and npm is already installed:
 
-	v8.1.0
+```
+v8.9.4
+```
 
-If this isn’t the case you have to install Node.js first. On OS X we strongly recommend installing Node via [Homebrew](https://brew.sh/) or [Node Version Manager](https://github.com/creationix/nvm). Not just because it’s easier to switch versions but also because you prevent potential permission problems when running npm.
-
-### Gulp
-
-This project uses [Gulp](http://gulpjs.com/) for its build system, with convenient methods for working with the project. It's how we compile and minify our code, at vendor prefixes, optimize images, delete unused CSS, release new versions and more. Since we use Gulp 4, Baumeister needs the newer extracted Gulp CLI which is meant to be installed globally only.
-
-Please check if you have installed `gulp-cli` properly be entering the following in your terminal:
-
-    gulp -v
-
-This needs to return `CLI version 1.x.x`. If it returns something like `CLI version 3.x.x` instead you have to replace the globally installed `gulp` package with the `gulp-cli` package by running:
-
-	npm uninstall --global gulp
-	npm install --global gulp-cli
-
-#### Installing Gulp CLI
-
-Thanks to Node.js and npm installing the Gulp command line tools globally is just this simple one-liner:
-
-	npm install --global gulp-cli
+If this isn’t the case you have to install Node.js first. On OS X we strongly recommend installing Node via [Homebrew](https://brew.sh/) or [Node Version Manager](https://github.com/creationix/nvm). Not just because it’s easier to switch versions but also because you prevent potential permission problems when running npm. See [detailed instructions](http://michael-kuehnel.de/node.js/2015/09/08/using-vm-to-switch-node-versions.html).
 
 <a name="setup"></a>
+
 ## Setting up the project
 
 Navigate to the root of your checkout:
 
-	cd path/to/your/checkout/of/baumeister
+```bash
+cd path/to/your/checkout/of/baumeister
+```
 
-and call:
+and install the dependencies via:
 
-	npm install
+```bash
+npm install
+```
 
-npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our Gulp workflow as well as the needed frontend dependencies to `\node_modules`.
-
+npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our build workflow as well as the needed frontend dependencies to `\node_modules`.
 
 ### Adjust settings via the Baumeister config file
 
-In the root directory is a file named `baumeister.json` which you can use to change a few important settings without touching any gulp tasks:
+In the root directory is a file named `baumeister.json` which you can be used to change themost important settings without touching any Webpack config:
 
 ```json
 {
   "useHandlebars": true,
-  "generateBanners": true,
-  "bundleExternalJS": [
-    "jquery",
-    "bootstrap-sass"
-  ],
+  "usePurifyCSS": true,
+  "generateBanners": false,
+  "cacheBusting": true,
   "vendor": {
     "bundleCSS": [],
-    "includeStaticFiles": [
-      "bootstrap-sass/assets/fonts/**/*"
-    ]
+    "includeStaticFiles": []
   },
   "webpack": {
-      "DefinePlugin": {
-        "dev": {},
-        "prod": {
-          "process.env": {
-            "NODE_ENV": "'production'"
-          }
-        }
-      },
-      "ProvidePlugin": {
-        "$": "jquery",
-        "jQuery": "jquery"
-      }
+    "DefinePlugin": {
+      "development": {},
+      "production": {}
+    },
+    "ProvidePlugin": {
+      "$": "jquery",
+      "jQuery": "jquery"
     }
+  }
 }
 ```
 
-`vendor.bundleCSS`, `bundleExternalJS` and `vendor.includeStaticFiles` makes it possible to include additional dependencies without touching any Gulp task. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
+`vendor.bundleCSS` and `vendor.includeStaticFiles` makes it possible to include additional dependencies without touching any Webpack config. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
 
 The ramifications of changing the `useHandlebars` setting are explained in the section [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps).
 
@@ -174,85 +160,45 @@ You may take a look at the official [Webpack DefinePlugin docs](https://webpack.
 The `ProvidePlugin` section is an object where the value equals to the module name and the key represents the property name of the window object the module gets mapped to.
 See the official [Webpack ProvidePlugin docs](https://webpack.js.org/plugins/define-plugin/) for further information.
 
-## Gulp Workflow and tasks
+## Build Workflow and npm scripts
 
-When completed the setup, you'll be able to run the various Gulp tasks provided from the command line.
+When completed the setup, you'll be able to run various npm scripts from the command line. Below are listed the main scripts needed for developing and building your project.
 
-Just type the following to get an overview about the available Tasks:
+| Command                 | Description |
+| ----------------------- | --- |
+| `npm start`             | *Builds for development, starts a webserver, watches files for changes, rebuilds incremental and reloads your browser.* |
+| `npm test`              | *Lints your JavaScript files and runs unit test via the Jest CLI.* |
+| `npm run test:watch`    | *Runs unit test with Jests watch option.* |
+| `npm run build`         | *Builds for production to `dist` directory.* |
+| `npm run build:check`   | *Starts a static fileserver serving the `dist` directory.* |
+| `npm run build:analyze` | *Starts »Webpack Bundle Analyzer« to visualize size of Webpack output files* |
 
-	gulp --tasks
 
-This will give you the main Gulp tasks which are ready for you to be fired from the terminal.:
+There a lot more scripts defined in the `package.json` but most of the other ones are used to combine scripts. We recommend to to use a tool like [npm task list](https://github.com/ruyadorno/ntl) which provides a interactive CLI menu to list and select npm scripts.
 
-````
-Tasks for ~/Documents/Projects/baumeister/gulpfile.babel.js
-├── build                 `gulp build` is the main build task
-│   --production          … builds for production to `dist` directory.
-│   -P                    … Alias for --production
-├── default               `gulp` will build, serve, watch for changes and reload server
-├── lint                  `gulp lint` lints JavaScript via ESLint
-├── release               `gulp release` builds the current sources and bumps version number
-│   --bump major          … major release (1.0.0). See http://semver.org
-│   --bump minor          … minor release (0.1.0). See http://semver.org
-│   --bump patch          … patch release (0.0.1). See http://semver.org
-│   -B major|minor|patch  … alias to --bump
-├── serve                 `gulp serve` serves the build (`server` directory)
-│   --production          … serves production build (`dist` directory)
-│   -P                    … Alias for --production
-├── test                  `gulp test` runs unit test via Jest CLI
-│   --production          … exits with exit code 1 when tests are failing (CI)
-│   --watch               … runs unit test with Jests native watch option
-│   -P                    … Alias for --production
-│   -W                    … Alias for --watch
-└── watch                 `gulp watch` watches for changes and runs tasks automatically
-````
-Running those tasks will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following resources are created after setting up and working with the project:
+Running those scripts will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following resources are created after setting up and working with the project:
 
 ````
 myProject
 ├──.metalsmith-build                → Compiled handlebars sources
+├── coverage                        → Test coverage reports
 ├── dist                            → Contains the files ready for production
 │   ├── app
-│   ├── assets
-│   └── libs                        → Relevant files copied from /node_modules
-├── coverage                        → Test coverage reports
-├── node_modules/                   → Dependencies installed by npm
+│   └── assets
+│   └── **.html
+├── node_modules                    → Dependencies installed by npm
 ├── server                          → Contains the files for the development server
 │   ├── app
-│   ├── assets
-│   └── libs                        → Relevant files copied from /node_modules
-└── src
-    └── assets
-        └── css                     → Transpiled and autoprefixed from Sass files
+│   └── assets
+│   └── **.html
+├── .eslintcache
+├── .webpack-assets.json            → Containes bundled file names
+└── .webpack-stats.json             → Containes bundle informations
 ````
 
-See `/gulpfile.babel.js` to see what happens in Details.
-
-### Setting up your Editor (optional)
+## Setting up your Editor
 
 We strongly advise to install an [EditorConfig plugin](http://editorconfig.org/#download) and take a look at the `.editorconfig` file in the root of this project.
-
-Beside that we recommend setting up a project within in your editor if you don’t want to see these generated files cluttered all over your project. In case of Sublime Text it’s as easy as hitting »Project« → »Save Project As …« and adding the following to `projectName.sublime-project`.
-
-```json
-{
-  "folders": [{
-    "path": ".",
-    "folder_exclude_patterns": [
-      "node_modules",
-      "server",
-      "dist",
-      "src/assets/css",
-			".git"
-    ],
-    "file_exclude_patterns": [
-      ".editorconfig",
-      ".travis.yml",
-			".DS_Store"
-    ]
-  }]
-}
-```
 
 ## Writing Markup (static sites vs. single page apps)
 Baumeister acts like a static sites generator by default. Using handlebars we can simplify our templates and avoid markup duplications by using a combination of `pages`, `layouts` and `partials`.
@@ -772,17 +718,29 @@ See [stylelint rules](https://stylelint.io/user-guide/rules/) in case you like g
 
 ## Release Workflow
 
-We provide a task to automate releases with the following options:
+We provide the following npms scripts to automate releases:
 
 ```
-gulp release --bump (major|minor|patch|prerelease|premajor|preminor|prepatch) [--prerelease-identifier <yourIdentifier>]
+npm run release:patch
 ```
-
-*Hint: With `-B` there is a shorter alias available for `--bump`.*
+```
+npm run release:minor
+```
+```
+npm run release:major
+```
 
 See <http://semver.org> for details when to choose which release type.
 
-The release task will:
+As long as your git commit messages are [conventional](https://conventionalcommits.org)  and accurate, you no longer need to specify the semver type. You can just use the following instead:
+```
+npm run release
+```
+
+*This script can also be used to define pre-releases by adding the optional flags like `npm run release -- --prerelease beta`. See [Release as a pre-release](https://github.com/conventional-changelog/standard-version/blob/master/README.md#release-as-a-pre-release) for further information.*
+
+
+All release scripts will:
 
 - bump the version number in `package.json`
 - generate a changelog
@@ -793,19 +751,19 @@ The release task will:
 
 ```
 # Bump version from 3.1.2 to 4.0.0
-gulp release -B major
+npm run release:major
 
 # Bump version from 3.1.2 to 3.2.0
-gulp release -B minor
+npm run release:minor
 
 # Bump version from 3.1.2 to 3.1.3
-gulp release -B patch
+npm run release:patch
 
 # Bump version from 3.1.2 to 4.0.0-beta.0
-gulp release -B premajor --prerelease-identifier beta
+npm run release -- --prerelease beta --release-as major
 
 # Bump prerelease version eg. from 4.0.0-beta.0 to 4.0.0-beta.1
-gulp release -B prerelease
+npm run release -- --prerelease
 ```
 
 ### Changelog creation
@@ -860,12 +818,12 @@ Are defined in the body of the commit message.
 
 Example:
 ```
-feat(build): Replace Grunt with Gulp
+feat(build): Replace Gulp with Webpack and npm scripts
 <BLANK LINE>
-Closes #28
-BREAKING CHANGE: Grunt Tasks aren’t available any longer.
-But there are equivalent Gulp tasks.
-List the available tasks with `gulp --tasks`
+Closes #225
+BREAKING CHANGE: Gulp tasks aren’t available any longer.
+But there are equivalent npm scripts.
+List the available scripts with `npx nls`
 ```
 The body can include the motivation for the change and contrast this with previous behavior.
 
@@ -877,7 +835,7 @@ reference GitHub issues that this commit **Closes**.
 #### Generated Changelog
 
 This is how a changelog based on this conventions is rendered:
-https://github.com/angular/angular/blob/master/CHANGELOG.md
+https://github.com/micromata/Baumeister/blob/master/CHANGELOG.md
 
 ## Adding banners
 
