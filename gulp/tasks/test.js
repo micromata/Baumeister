@@ -16,7 +16,7 @@ function test(done) {
 
 	jest.runCLI({config: pkgJson.jest}, '.').then(result => {
 		if (isProdBuild() && !result.success) {
-			return done() && process.exit(1);
+			return done() && process.exit(1); // eslint-disable-line unicorn/no-process-exit
 		}
 		return done();
 	});
