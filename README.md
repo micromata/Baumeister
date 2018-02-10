@@ -495,133 +495,100 @@ where the Name is your key for installation. In our use case you would the do:
 which will:
 
 - download the latest and greatest version to your `node_modules` directory
-- add `"select2": "~4.0.3"` to your `package.json`
+- add `"select2": "^4.0.6"` to your `package.json`
 
 ### Using and bundling JavaScript dependencies
 
-You have to decide whether to use ES6 imports or `require` your dependency in the commonJS way depending on the module format your dependency provides.
-
-Example:
-
 ```javascript
-import $ from 'jquery';
-// this is necessary because bootstrap itself checks the existence of jQuery with window.jQuery.
-window.jQuery = $;
+// Import select2
+import 'select2';
 
-// Because of bootstrap and select2 aren’t UMD modules, we can’t import them using ES6 syntax.
-require('bootstrap');
-require('select2');
+$(() => {
+  // Using select2
+  $('.single-select').select2();
+});
 ```
 
-Finally add the library to the `bundleExternalJS` section of `baumeister.json` to add the sources the `vendor.bundle.js`file.
+Importing the library into your JavaScript will automatically add the needed sources to the `vendor.bundle.js` file.
 
-```
-bundleExternalJS": ["jquery", "bootstrap", "select2"]
-```
-The bundled JavaScript is stored in the `libs` directory during the build process:
+The bundled vendor JavaScript is stored in the `app` directory during the build process:
 
 ```
 myProject
-├── server
-│   └── app
-│       └── app/vendor.bundle.js
 └── dist
     └── app
-        └── vendor.bundle.min.js
+        └── vendor.694dbf332f7953c4041b.bundle.js
 ```
 
 ### Bundling CSS from dependencies
 
-If a used library ships its own CSS you have to include the path to the files you like to bundle in the `vendor.bundleCSS` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
+If a used library ships its own CSS you have to include the paths to the files you like to bundle in the `vendor.bundleCSS` section of your `baumeister.json` to add the CSS to the `vendor.bundle.css` file. Please note that glob pattern matching is supported over here.
 
 ```
-"bundleCSS": [
-	"select2/dist/css/select2.css",
-	"select2-bootstrap-css/select2-bootstrap.css"
-]
+"vendor": {
+    "bundleCSS": [
+      "select2/dist/css/select2.css",
+      "select2-bootstrap-css/select2-bootstrap.css"
+    ],
+    "includeStaticFiles": []
+  }
 ```
 
-The bundled CSS is stored in the `libs` directory during the build process:
+The bundled CSS is stored in the `css` directory during the build process:
 
 ```
 myProject
-├── server
-│   └── libs
-│       └── libs.css
 └── dist
-    └── libs
-        └── libs.min.css
+    └── assets
+        └── css
+            └──vendor.694dbf332f7953c4041b.bundle.css
 ```
 
 ### Including static files from dependencies
 
-Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a separate `<script>` tag.
-To handle that you just have to include the files in the `vendor.includeStaticFiles` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
+Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a separate `<script>` tags.
+To handle that you have to include the files in the `vendor.includeStaticFiles` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
 
 ```
 "includeStaticFiles": [
-    "bootstrap/fonts/**/*",
-    "html5shiv/dist/html5shiv-printshiv.min.js",
-    "respond.js/dest/respond.min.js"
+  "font-awesome/fonts/**"
 ]
 ```
 
-These files are stored in the `libs` directory during the build process:
+These files are stored in the `vendor` directory during the build process:
 
 ```
 myProject
-├── server
-│   └── libs
-│       ├── bootstrap
-│       │   └── fonts
-│       │       ├── glyphicons-halflings-regular.eot
-│       │       ├── glyphicons-halflings-regular.svg
-│       │       ├── glyphicons-halflings-regular.ttf
-│       │       ├── glyphicons-halflings-regular.woff
-│       │       └── glyphicons-halflings-regular.woff2
-│       ├── html5shiv
-│       │   └── dist
-│       │       └── html5shiv-printshiv.min.js
-│       └── respond.js
-│           └── dest
-│               └── respond.min.js
 └── dist
-    └── libs
-        ├── bootstrap
-        │   └── fonts
-        │       ├── glyphicons-halflings-regular.eot
-        │       ├── glyphicons-halflings-regular.svg
-        │       ├── glyphicons-halflings-regular.ttf
-        │       ├── glyphicons-halflings-regular.woff
-        │       └── glyphicons-halflings-regular.woff2
-        ├── html5shiv
-        │   └── dist
-        │       └── html5shiv-printshiv.min.js
-        └── respond.js
-            └── dest
-                └── respond.min.js
+    └── assets
+        └── vendor
+            └── font-awesome
+                └── fonts
+                    ├── fontawesome-webfont.eot
+                    ├── fontawesome-webfont.svg
+                    ├── fontawesome-webfont.ttf
+                    ├── fontawesome-webfont.woff
+                    └── fontawesome-webfont.woff2
 ```
 
 ### Changing versions of dependencies
 
 You can change the version of the dependencies by editing the `package.json` file within the root directory of the project by hand.
 
-	"dependencies": {
-	  "bootstrap": "~3.2.0",
-	  "jquery": "^1.11.1",
-	  "html5shiv": "^3.7.2",
-	  "respondJs": "~1.4.2",
-	  "jquery-placeholder": "2.0.8"
-	}
+```
+"dependencies": {
+  "bootstrap": "^4.0.0",
+  "core-js": "^2.5.3",
+  "jquery": "^3.2.1",
+  "popper.js": "^1.12.9",
+}
+```
 
-The tilde `~` means: Install the latest version including patch-releases.
-The caret `^` means: Install the latest version including minor-releases.
+The version numbers describe semver ranges where the caret `^` means: Install the latest version including minor-releases.
 
-So `~3.2.0` installed the latest 3.2.x release which is version v3.2.0 in case of Bootstrap right now. So  Bootstrap 3.2.1 will be fetched as soon as it is released when you call `npm update` or `npm install`. But npm won’t install Bootstrap 3.3.x or later.
+So `^4.0.0` installes the latest 4.x.x release which is version v4.0.0 in case of Bootstrap right now. So Bootstrap 4.0.1 as well as jQuery 4.1.0 will be fetched as soon as it is released when you call `npm update` or `npm install`. But npm won’t install Bootstrap 5.x.x or later.
 
-Where `^1.11.1` installed the latest 1.x.x release which is version 1.11.1 in case of jQuery right now. So jQuery 1.11.2 as well as jQuery 1.12.0 will be fetched as soon as it is released when you call `npm update` or `npm install`. But npm won’t install jQuery 2.x.x or later.
-
-Check <http://semver.org/> for more information about »Semantic Versioning«.
+Check <http://semver.org/> for more information about »Semantic Versioning« or check the [npm semver calculator](https://semver.npmjs.com/) to explore with semver ranges.
 
 #### Updating beyond defined semver ranges
 
