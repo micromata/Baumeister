@@ -5,6 +5,7 @@ import gulpsmith from 'gulpsmith';
 const layouts = require('metalsmith-layouts');
 const inPlace = require('metalsmith-in-place');
 const registerHelpers = require('metalsmith-register-helpers');
+const registerPartials = require('metalsmith-discover-partials');
 
 import {settings, useHandlebars} from '../config';
 
@@ -25,14 +26,14 @@ function handlebars(done) {
 			.use(registerHelpers({
 				directory: 'src/handlebars/helpers'
 			}))
+			.use(registerPartials({
+				directory: 'src/handlebars/partials',
+				pattern: /\.hbs$/
+			}))
 			.use(layouts({ // Wrap layouts around content pages
-				engine: 'handlebars',
-				rename: false,
 				directory: 'src/handlebars/layouts',
 				default: 'default.hbs',
-				pattern: '*.hbs',
-				partials: 'src/handlebars/partials',
-				partialExtension: '.hbs'
+				pattern: '*.hbs'
 			}))
 			.use(inPlace({ // Render handlebars content pages
 				engineOptions: {

@@ -39,7 +39,8 @@ const dev = {
 	},
 	stats: {
 		timings: true,
-		version: false
+		version: false,
+		colors: true
 	}
 };
 

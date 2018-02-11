@@ -66,6 +66,7 @@
     "jstransformer-handlebars": "^1.1.0",
     "merge-stream": "^1.0.1",
     "metalsmith": "^2.3.0",
+    "metalsmith-discover-partials": "^0.1.0",
     "metalsmith-in-place": "^4.1.1",
     "metalsmith-layouts": "^2.1.0",
     "metalsmith-register-helpers": "^0.4.0",
