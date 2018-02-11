@@ -24,6 +24,7 @@ export const settings = {
 		scripts: ['./src/app/**/*.js'],
 		appTemplates: ['./src/app/**/*.html'],
 		images: ['./src/assets/img/**/*.{png,jpg,gif,svg}'],
+		assets: ['./src/assets/**/*', '!./src/assets/{fonts,fonts/**,img,img/**,scss,scss/**}'],
 		fonts: ['./src/assets/fonts/**/*'],
 		externalCss: configFile.bundleCSS,
 		externalJs: configFile.bundleExternalJS,
@@ -35,6 +36,7 @@ export const settings = {
 			html: `${mainDirectories.dev}`,
 			styles: `${mainDirectories.dev}assets/css/`,
 			app: `${mainDirectories.dev}app/`,
+			assets: `${mainDirectories.dev}assets/`,
 			fonts: `${mainDirectories.dev}assets/fonts/`,
 			images: `${mainDirectories.dev}assets/img/`,
 			libs: `${mainDirectories.dev}libs/`
@@ -43,6 +45,7 @@ export const settings = {
 			html: `${mainDirectories.dist}`,
 			styles: `${mainDirectories.dist}assets/css/`,
 			app: `${mainDirectories.dist}app/`,
+			assets: `${mainDirectories.dist}assets/`,
 			fonts: `${mainDirectories.dist}assets/fonts/`,
 			images: `${mainDirectories.dist}assets/img/`,
 			libs: `${mainDirectories.dist}libs/`

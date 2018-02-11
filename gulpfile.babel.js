@@ -16,6 +16,7 @@ import images from './gulp/tasks/images';
 import appTemplates from './gulp/tasks/app-templates';
 import {webpack, webpackWatch} from './gulp/tasks/webpack';
 import bundleExternalCSS from './gulp/tasks/bundle-external-css';
+import copyAssets from './gulp/tasks/copy-assets';
 import copyStaticFiles from './gulp/tasks/copy-static-files';
 import lint from './gulp/tasks/lint';
 import security from './gulp/tasks/security';
@@ -91,7 +92,7 @@ watch.description = '`gulp watch` watches for changes and runs tasks automatical
 export const build = gulp.series(
 	clean,
 	handlebars,
-	gulp.parallel(processHtml, appTemplates, lint, fonts, images, webpack, bundleExternalCSS, copyStaticFiles, validateHtml, lintBootstrap, lintStyles, security, test),
+	gulp.parallel(processHtml, appTemplates, lint, fonts, images, webpack, bundleExternalCSS, copyAssets, copyStaticFiles, validateHtml, lintBootstrap, lintStyles, security, test),
 	styles,
 	banners,
 	cacheBust
