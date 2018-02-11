@@ -48,8 +48,8 @@ Baumeister mainly uses [Webpack](https://webpack.js.org) at its core for transpi
 - [Adding polyfills](#adding-polyfills)
 - [Unit tests](#unit-tests)
 - [Configuring linters](#configuring-linters)
-- [Release Workflow](#release-workflow)
 - [Adding banners](#adding-banners)
+- [Release Workflow](#release-workflow)
 - [Contributing to this project](#contributing-to-this-project)
 - [License](#license)
 
@@ -677,6 +677,29 @@ We are using [stylelint-config-standard](https://github.com/stylelint/stylelint-
 
 See [stylelint rules](https://stylelint.io/user-guide/rules/) in case you like get details to these rules and the [stylelint user guide](https://stylelint.io/user-guide/configuration/) to see how to configure stylelint (e.g. how to turn of rules).
 
+## Adding banners
+
+Adding banners on top of the production bundles is fully optional and turned off by default.
+
+It can be enabled with setting the `generateBanners` property within `baumeister.json` to `true`.
+
+```javascript
+/**
+ * Flag for generating banners on on top of dist files (CSS & JS).
+ */
+"generateBanners": true
+```
+
+If enabled it will place the following banners to the bundled CSS and JS files:
+
+```javascript
+/*! <%= pkgJson.title %> - v<%= pkgJson.version %>
+ * <%= pkgJson.author.email %>
+ * Copyright ©<%= year %> <%= pkgJson.author.name %>
+ * <%= fullDate %>
+ */
+```
+
 ## Release Workflow
 
 We provide the following npms scripts to automate releases:
@@ -797,29 +820,6 @@ reference GitHub issues that this commit **Closes**.
 
 This is how a changelog based on this conventions is rendered:
 https://github.com/micromata/Baumeister/blob/master/CHANGELOG.md
-
-## Adding banners
-
-Adding banners on top of the production bundles is fully optional and turned off by default.
-
-It can be enabled with setting the `generateBanners` property within `baumeister.json` to `true`.
-
-```javascript
-/**
- * Flag for generating banners on on top of dist files (CSS & JS).
- */
-"generateBanners": true
-```
-
-If enabled it will place the following banners to the bundled CSS and JS files:
-
-```javascript
-/*! <%= pkgJson.title %> - v<%= pkgJson.version %>
- * <%= pkgJson.author.email %>
- * Copyright ©<%= year %> <%= pkgJson.author.name %>
- * <%= fullDate %>
- */
-```
 
 ## Contributing to this project
 
