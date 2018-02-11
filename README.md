@@ -48,7 +48,8 @@ Baumeister mainly uses [Webpack](https://webpack.js.org) at its core for transpi
 - [Adding polyfills](#adding-polyfills)
 - [Unit tests](#unit-tests)
 - [Configuring linters](#configuring-linters)
-- [Deleting unused CSS](deleting-unused-css)
+- [Deleting unused CSS](#deleting-unused-css)
+- [Deactivate cache busting](#deactivate-cache-busting)
 - [Adding banners](#adding-banners)
 - [Release Workflow](#release-workflow)
 - [Contributing to this project](#contributing-to-this-project)
@@ -701,6 +702,14 @@ To activate PurifyCSS set the `usePurifyCSS` option in within `baumeister.json` 
 In addition you can define a PurifyCSS `whitelist` defining an array of selectors that should not be removed.
 
 For example. `["button-active", "*modal*"]` will leave any selector that includes `modal` in it and selectors that match `button-active`. The asterisks act like a wildcard, so wrapping a string with `*`, leaves all selectors that include it.
+
+## Deactivate cache busting
+
+You should set far-future `Cache-Control` and `Expires` headers (see [Apache settings](https://github.com/h5bp/server-configs-apache/blob/master/src/web_performance/expires_headers.conf) and settings for other [web servers](https://github.com/h5bp/server-configs)). This ensures resources are cached for a specified time period (usually a year or more). And this will remain so as long as the user doesn’t erase their browser cache.
+
+By default we are revisioning the bundled assets with adding a hash to the filenames for the production build. So for instance the file `app.bundle.js` will be renamed to something like `app.6c38e655f70a4f9e3d26.bundle.js`. The filename will change when the file content changes which will force the browser to redownload changed files instead of serving them from the cache.
+
+You can disable hash based file name revving by setting the `cacheBusting` property within `baumeister.json` to `false`.
 
 ## Adding banners
 
