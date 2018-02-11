@@ -1,3 +1,13 @@
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/micromata/baumeister/compare/2.0.1...2.0.2) (2018-02-11)
+
+
+### Bug Fixes
+
+* adapt breaking changes of updated dev dependencies ([9c2ff57](https://github.com/micromata/baumeister/commit/9c2ff57))
+* copy additional directories in src/assets to build directories ([376d729](https://github.com/micromata/baumeister/commit/376d729))
+* update dependencies ([d60d3e1](https://github.com/micromata/baumeister/commit/d60d3e1))
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/micromata/baumeister/compare/2.0.0...2.0.1) (2018-01-10)
 
