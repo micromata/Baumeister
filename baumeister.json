@@ -1,6 +1,20 @@
 {
   "useHandlebars": true,
-  "usePurifyCSS": true,
+  "purifyCSS": {
+    "usePurifyCSS": false,
+    "whitelist": [
+      "*navbar*",
+      "*modal*",
+      "*dropdown*",
+      "*carousel*",
+      "*tooltip*",
+      "open",
+      "fade",
+      "collapse",
+      "collapsing",
+      "in"
+    ]
+  },
   "generateBanners": false,
   "cacheBusting": true,
   "vendor": {

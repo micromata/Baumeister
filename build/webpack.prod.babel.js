@@ -15,18 +15,7 @@ const purifyCSSOptions = {
 	purifyOptions: {
 		minify: true,
 		cleanCssOptions: {level: {1: {specialComments: 0}}},
-		whitelist: [
-			'*navbar*',
-			'*modal*',
-			'*dropdown*',
-			'*carousel*',
-			'*tooltip*',
-			'open',
-			'fade',
-			'collapse',
-			'collapsing',
-			'in'
-		]
+		whitelist: configFile.purifyCSS.whitelist
 	}
 };
 
@@ -63,7 +52,7 @@ module.exports = require('./webpack.base.babel')({
 			}
 		}),
 		new webpack.DefinePlugin({...configFile.webpack.DefinePlugin.production}),
-		configFile.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : function () {},
+		configFile.purifyCSS.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : function () {},
 		new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i}),
 		bannerPlugin()
 	]

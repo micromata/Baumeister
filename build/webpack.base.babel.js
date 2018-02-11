@@ -72,7 +72,7 @@ module.exports = (options) => ({
 								sourceMap: true,
 								config: {
 									ctx: {
-										usePurifyCSS: configFile.usePurifyCSS,
+										usePurifyCSS: configFile.purifyCSS.usePurifyCSS,
 										cssnano: {
 											discardComments: {
 												removeAll: true
