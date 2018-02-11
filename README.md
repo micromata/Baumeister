@@ -656,18 +656,12 @@ Below you’ll find information how to adapt the rules in case they don’t fit 
 
 ### ESLint (JavaScript)
 
-We are using [eslint-config-xo](https://github.com/sindresorhus/eslint-config-xo) as presets but adapted a few rules within:
+We are using [eslint-config-baumeister](https://github.com/micromata/eslint-config-baumeister) as preset which is based on [eslint-config-xo](https://github.com/sindresorhus/eslint-config-xo), [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn), [eslint-plugin-security](https://github.com/nodesecurity/eslint-plugin-security), [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import), [eslint-plugin-filenames](https://github.com/selaux/eslint-plugin-filenames) with a few adaptions.
+
+Feel free to decativate or change rules according to your needs in:
 
 ```
 .eslintrc.json
-```
-
-See [ESLint rules](http://eslint.org/docs/rules/) in case you like get details to these rules.
-
-In addition we extend the settings for client code in:
-
-```
-src/app/.eslintrc.json
 ```
 
 See [Configuring ESLint](http://eslint.org/docs/user-guide/configuring) if you need to know more.
