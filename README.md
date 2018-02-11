@@ -48,6 +48,7 @@ Baumeister mainly uses [Webpack](https://webpack.js.org) at its core for transpi
 - [Adding polyfills](#adding-polyfills)
 - [Unit tests](#unit-tests)
 - [Configuring linters](#configuring-linters)
+- [Deleting unused CSS](deleting-unused-css)
 - [Adding banners](#adding-banners)
 - [Release Workflow](#release-workflow)
 - [Contributing to this project](#contributing-to-this-project)
@@ -118,12 +119,26 @@ npm will look at the `package.json` file and automatically fetch and install the
 
 ### Adjust settings via the Baumeister config file
 
-In the root directory is a file named `baumeister.json` which you can be used to change themost important settings without touching any Webpack config:
+In the root directory is a file named `baumeister.json` which you can be used to change the most important settings without touching any Webpack config:
 
 ```json
 {
   "useHandlebars": true,
-  "usePurifyCSS": true,
+  "purifyCSS": {
+    "usePurifyCSS": false,
+    "whitelist": [
+      "*navbar*",
+      "*modal*",
+      "*dropdown*",
+      "*carousel*",
+      "*tooltip*",
+      "open",
+      "fade",
+      "collapse",
+      "collapsing",
+      "in"
+    ]
+  },
   "generateBanners": false,
   "cacheBusting": true,
   "vendor": {
@@ -677,9 +692,19 @@ We are using [stylelint-config-standard](https://github.com/stylelint/stylelint-
 
 See [stylelint rules](https://stylelint.io/user-guide/rules/) in case you like get details to these rules and the [stylelint user guide](https://stylelint.io/user-guide/configuration/) to see how to configure stylelint (e.g. how to turn of rules).
 
+## Deleting unused CSS
+
+We are using [PurifyCSS](https://github.com/purifycss/purifycss) to remove unused selectors from your CSS. This is fully optional and is turned off by default.
+
+To activate PurifyCSS set the `usePurifyCSS` option in within `baumeister.json` to `true`.
+
+In addition you can define a PurifyCSS `whitelist` defining an array of selectors that should not be removed.
+
+For example. `["button-active", "*modal*"]` will leave any selector that includes `modal` in it and selectors that match `button-active`. The asterisks act like a wildcard, so wrapping a string with `*`, leaves all selectors that include it.
+
 ## Adding banners
 
-Adding banners on top of the production bundles is fully optional and turned off by default.
+Adding banners on top of the production bundles is fully optional and is turned off by default.
 
 It can be enabled with setting the `generateBanners` property within `baumeister.json` to `true`.
 
@@ -693,7 +718,8 @@ It can be enabled with setting the `generateBanners` property within `baumeister
 If enabled it will place the following banners to the bundled CSS and JS files:
 
 ```javascript
-/*! <%= pkgJson.title %> - v<%= pkgJson.version %>
+/*!
+ * <%= pkgJson.title %> - v<%= pkgJson.version %>
  * <%= pkgJson.author.email %>
  * Copyright ©<%= year %> <%= pkgJson.author.name %>
  * <%= fullDate %>
