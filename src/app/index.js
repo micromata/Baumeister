@@ -9,10 +9,11 @@ import 'bootstrap';
 // import 'bootstrap/js/dist/util';
 // import 'bootstrap/js/dist/dropdown';
 
-import './polyfills';
+// Import polyfills
+import './base/polyfills';
 
 // Import methods from the base module
-import {consoleErrorFix, ieViewportFix} from './base';
+import {consoleErrorFix, ieViewportFix} from './base/base';
 
 // Import our Sass entrypoint to create the CSS app bundle
 import '../assets/scss/index.scss';
