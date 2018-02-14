@@ -33,7 +33,11 @@ const copyVendorFiles = configFile.vendor.includeStaticFiles.map(glob => {
 
 const getVendorCSS = function () {
 	// Return flattened array of resolved globs from baumeister.json
-	return [].concat(...configFile.vendor.bundleCSS.map(glob => globby.sync(`./node_modules/${glob}`)));
+	const vendorCSS = [].concat(...configFile.vendor.bundleCSS.map(glob => globby.sync(`./node_modules/${glob}`)));
+	if (!vendorCSS.length) {
+		return false;
+	}
+	return {vendor: vendorCSS};
 };
 
 if (!cliFlags.json) {
@@ -45,7 +49,7 @@ module.exports = (options) => ({
 	devServer: options.devServer,
 	entry: {
 		app: `${settings.sources.app}index.js`,
-		vendor: [`${settings.sources.app}polyfills.js`, ...getVendorCSS()]
+		...getVendorCSS()
 	},
 	module: {
 		rules: [

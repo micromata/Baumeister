@@ -9,6 +9,8 @@ import 'bootstrap';
 // import 'bootstrap/js/dist/util';
 // import 'bootstrap/js/dist/dropdown';
 
+import './polyfills';
+
 // Import methods from the base module
 import {consoleErrorFix, ieViewportFix} from './base';
 
