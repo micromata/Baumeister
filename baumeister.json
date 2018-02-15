@@ -1,22 +1,30 @@
 {
   "useHandlebars": true,
+  "purifyCSS": {
+    "usePurifyCSS": false,
+    "whitelist": [
+      "*navbar*",
+      "*modal*",
+      "*dropdown*",
+      "*carousel*",
+      "*tooltip*",
+      "open",
+      "fade",
+      "collapse",
+      "collapsing",
+      "in"
+    ]
+  },
   "generateBanners": false,
-  "bundleExternalJS": [
-    "jquery",
-    "bootstrap"
-  ],
+  "cacheBusting": true,
   "vendor": {
     "bundleCSS": [],
     "includeStaticFiles": []
   },
   "webpack": {
     "DefinePlugin": {
-      "dev": {},
-      "prod": {
-        "process.env": {
-          "NODE_ENV": "'production'"
-        }
-      }
+      "development": {},
+      "production": {}
     },
     "ProvidePlugin": {
       "$": "jquery",

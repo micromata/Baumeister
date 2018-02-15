@@ -5,9 +5,8 @@ node_js:
   - 8
   - node
 script:
-  - npm run dev
-  - rm -rf server
   - npm run build
+  - npm run build:dev
 notifications:
   webhooks:
     urls:

@@ -14,6 +14,9 @@ src/assets/css
 .browserify-cache-vendor.json
 coverage
 .metalsmith-build
+.eslintcache
+.webpack-stats.json
+.webpack-assets.json
 
 ### Dev ###
 *.sublime-project
