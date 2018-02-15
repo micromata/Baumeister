@@ -1,3 +1,62 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="3.0.0-beta.0"></a>
+# [3.0.0-beta.0](https://github.com/micromata/baumeister/compare/2.0.2...3.0.0-beta.0) (2018-02-15)
+
+
+### Code Refactoring
+
+* **baumeister.json:** Rename properties related to vendor files ([7ac3de1](https://github.com/micromata/baumeister/commit/7ac3de1))
+
+
+### Features
+
+* remove Yarn lockfile 👋🏻 ([0d4cd1b](https://github.com/micromata/baumeister/commit/0d4cd1b))
+* **eslint:** Simplify setup and include two additional plugins ([57219c3](https://github.com/micromata/baumeister/commit/57219c3))
+* **build:** Replace Gulp with Webpack (and npm scripts) ([b91adea](https://github.com/micromata/baumeister/commit/b91adea))
+* **bootstrap:** Upgrade to Bootstrap 4 ([e4680b5](https://github.com/micromata/baumeister/commit/e4680b5))
+
+
+### BREAKING CHANGES
+
+* **build:** Gulp and all the tasks are gone. But most of the npm scripts still do what they did before. Here are the main scripts needed for developing and building your project.
+
+  | Command                 | Description |
+  | ----------------------- | --- |
+  | `npm start`             | *Builds for development, starts a webserver, watches files for changes, rebuilds incremental and reloads your browser.* |
+  | `npm test`              | *Lints your JavaScript files and runs unit test via the Jest CLI.* |
+  | `npm run test:watch`    | *Runs unit test with Jests watch option.* |
+  | `npm run build`         | *Builds for production to `dist` directory.* |
+  | `npm run build:check`   | *Starts a static fileserver serving the `dist` directory.* |
+  | `npm run build:analyze` | *Starts »Webpack Bundle Analyzer« to visualize size of Webpack output files* |
+
+  See `package.json` `scripts` section for all available scripts.
+
+* **build:** The polyfills bundle is gone and the references to the bundles in `default.hbs` has changed to:
+  ```html
+  <!-- Bundled vendor CSS files -->
+  @@vendor.css
+
+  <!-- Our compiled and merged Sass files -->
+  @@app.css
+
+  […]
+
+  <!-- Vendor JS -->
+  @@vendor.js
+
+  <!-- Own JS -->
+  @@app.js
+	```
+
+* **eslint:** This adds [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn) and the [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import) which might introduce new linting errors. You might want to turn off rules in `/.eslintrc.json` in case you find them too opinionated.
+
+* **baumeister.json:** The properties `bundleCSS` and `includeStaticFiles` in baumeister.json are moved to `vendor.bundleCSS` and `vendor.includeStaticFiles`. You have to adapt these changes in case you have added dependencies via these properties.
+
+* **bootstrap:** See [Bootstrap v4 migration guide](https://getbootstrap.com/docs/4.0/migration/) to read about the most notable as well as breaking changes.
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/micromata/baumeister/compare/2.0.1...2.0.2) (2018-02-11)
 
