@@ -79,6 +79,7 @@
     "jstransformer-handlebars": "^1.1.0",
     "log-symbols": "^2.2.0",
     "metalsmith": "^2.3.0",
+    "metalsmith-discover-partials": "^0.1.0",
     "metalsmith-filter": "^1.0.2",
     "metalsmith-in-place": "^4.1.1",
     "metalsmith-layouts": "^2.1.0",

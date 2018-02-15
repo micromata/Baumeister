@@ -6,6 +6,7 @@ import metalsmith from 'metalsmith';
 import layouts from 'metalsmith-layouts';
 import inPlace from 'metalsmith-in-place';
 import registerHelpers from 'metalsmith-register-helpers';
+import registerPartials from 'metalsmith-discover-partials';
 import filter from 'metalsmith-filter';
 import globby from 'globby';
 import perfy from 'perfy';
@@ -34,15 +35,17 @@ metalsmith(__dirname)
 		directory: path.join(__dirname, '../', settings.sources.handlebars, 'helpers')
 	}))
 
+	// Register Handlebars partials
+	.use(registerPartials({
+		directory: path.join(__dirname, '../', settings.sources.handlebars, 'partials'),
+		pattern: /\.hbs$/
+	}))
+
 	// Wrap layouts around content pages
 	.use(layouts({
-		engine: 'handlebars',
-		rename: false,
 		directory: path.join(__dirname, '../', settings.sources.handlebars, 'layouts'),
 		default: 'default.hbs',
-		pattern: '*.hbs',
-		partials: path.join(__dirname, '../', settings.sources.handlebars, 'partials'),
-		partialExtension: '.hbs'
+		pattern: '*.hbs'
 	}))
 
 	// Render handlebars content pages
