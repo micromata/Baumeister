@@ -10,15 +10,11 @@
 	<meta name="author" content="Micromata GmbH">
 	<title>Baumeister{{#if title}} - {{title}}{{/if}}</title>
 
-	<!-- Libs -->
-	<!-- build:css libs/libs.min.css?rev=@@hash -->
-	<link href="libs/libs.css" rel="stylesheet">
-	<!-- /build -->
+	<!-- Bundled vendor CSS files -->
+	@@vendor.css
 
 	<!-- Our compiled and merged Sass files -->
-	<!-- build:css assets/css/index.min.css?rev=@@hash -->
-	<link href="assets/css/index.css" rel="stylesheet">
-	<!-- /build -->
+	@@app.css
 
 	<!--
 	Replace "no-js" class with "js" in case JavaScript is available.
@@ -37,28 +33,11 @@
 	{{{contents}}}
 	<!-- end: content -->
 
-<!--
-JavaScript
-=======================================================
-Placed at the end of the document. Performance reasons.
-Non minified/merged versions for debugging purposes are
-replaced in the production ready build.
--->
+	<!-- Vendor JS -->
+	@@vendor.js
 
-<!-- Polyfills -->
-<!-- build:js app/polyfills.bundle.min.js?rev=@@hash -->
-<script src="app/polyfills.bundle.js"></script>
-<!-- /build -->
-
-<!-- Vendor JS -->
-<!-- build:js app/vendor.bundle.min.js?rev=@@hash -->
-<script src="app/vendor.bundle.js"></script>
-<!-- /build -->
-
-<!-- Own JS -->
-<!-- build:js app/app.bundle.min.js?rev=@@hash -->
-<script src="app/app.bundle.js"></script>
-<!-- /build -->
+	<!-- Own JS -->
+	@@app.js
 
 <!-- External scripts (eg. analytics) should be placed here -->
 </body>

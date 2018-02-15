@@ -24,7 +24,7 @@ Nicolas Gallagher:  For writing those lovely contributing guidelines
 
 /* SITE */
 Standards:          HTML5, CSS3, ES6
-Components:         Bootstrap, jQuery, Normalize.css
-Build tool:         Gulp
+Components:         Bootstrap, jQuery
+Build tool:         Webpack, npm scripts
 Package Manager:    npm
 Software:           Atom, iTerm, Tower, Kaleidoscope
