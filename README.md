@@ -399,7 +399,7 @@ Our main Sass file is the one which is creating our index.css file. This file is
 
 // Bootstrap Core
 // --------------------------------------------------
-@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 /**
  * --------------------------------------------------
@@ -705,9 +705,9 @@ For example. `["button-active", "*modal*"]` will leave any selector that include
 
 ## Deactivate cache busting
 
-You should set far-future `Cache-Control` and `Expires` headers (see [Apache settings](https://github.com/h5bp/server-configs-apache/blob/master/src/web_performance/expires_headers.conf) and settings for other [web servers](https://github.com/h5bp/server-configs)). This ensures resources are cached for a specified time period (usually a year or more). And this will remain so as long as the user doesn’t erase their browser cache.
+You should set far-future `Cache-Control` and `Expires` headers (see [Apache settings](https://github.com/h5bp/server-configs-apache/blob/master/src/web_performance/expires_headers.conf) and settings for other [web servers](https://github.com/h5bp/server-configs)). This ensures resources are cached for a specified time period (usually a year or more). And this will remain as long as the user doesn’t erase their browser cache.
 
-By default we are revisioning the bundled assets with adding a hash to the filenames for the production build. So for instance the file `app.bundle.js` will be renamed to something like `app.6c38e655f70a4f9e3d26.bundle.js`. The filename will change when the file content changes which will force the browser to redownload changed files instead of serving them from the cache.
+By default we are revisioning the bundled assets with adding a hash to the filenames for the production build. So for instance the file `app.bundle.js` will be renamed to something like `app.6c38e655f70a4f9e3d26.bundle.js`. The filename will change when the file content changes which will force the browser to re-download changed files instead of serving them from the cache.
 
 You can disable hash based file name revving by setting the `cacheBusting` property within `baumeister.json` to `false`.
 
@@ -737,7 +737,7 @@ If enabled it will place the following banners to the bundled CSS and JS files:
 
 ## Release Workflow
 
-We provide the following npms scripts to automate releases:
+We provide the following npm scripts to automate releases:
 
 ```
 npm run release:patch
