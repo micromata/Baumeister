@@ -12,7 +12,8 @@ module.exports = require('./webpack.base.babel')({
 	},
 	output: {
 		path: path.join(__dirname, mainDirectories.dev),
-		filename: 'app/[name].bundle.js'
+		filename: 'app/[name].bundle.js',
+		chunkFilename: 'app/[name].bundle.js'
 	},
 	plugins: [
 		new webpack.SourceMapDevToolPlugin({

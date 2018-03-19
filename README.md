@@ -624,11 +624,11 @@ We recommend using a command line tool like »[npm-check-update](https://github.
 
 ## Adding polyfills
 
-The file `src/app/base/polyfills.js` is prepared to import polyfills you might need depending on your use of modern JavaScript language features and your target browsers.
+The file `src/app/base/polyfills.js` is prepared to dynamic import polyfills you might need depending on your use of modern JavaScript language features and your target browsers. This way the polyfills are lazy loaded only in case the used browser actually needs them.
 
 Just import the ones you need for the browsers you are targeting.
 
-The only polyfill activated by default is a Promises polyfill which is needed if you use Promises and targeting Internet Explorers.
+The only polyfill activated by default is a Promises polyfill which is needed for lazy loading polyfills in Internet Explorers.
 
 ## Unit tests
 

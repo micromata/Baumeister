@@ -3,27 +3,19 @@
  * Please only add those you are actually using. Otherwise you’ll unnecessarily
  * blow up the size of your JS bundle.
  *
- * You can add your own extra polyfills to this file:
- * Check https://github.com/zloirock/core-js to see whats available.
+ * You can add your own additional polyfills to this file:
+ * See https://github.com/zloirock/core-js to see whats available.
  *
+ * Check what your target browsers need (https://kangax.github.io/compat-table/es6/)
+ * and use dynamic imports like in the examples below. This way the polyfills
+ * are lazy loaded only when a browser actually needs them.
  */
-
-/**
-  * ----------------------------------------------------------------------------
-  * Import each and every polyfill provided by core-js
-  * -----------------------------------------------------------------------------
-  * This is for the lazy ones and absolultely not recommended because it will
-  * increase your JS bundle by more than 120 kb (minified). Better check what
-  * your target browsers need (https://kangax.github.io/compat-table/es6/)
-  * and use partial imports like in the examples below.
-  */
-// import 'core-js';
 
 /**
  * ----------------------------------------------------------------------------
  * Promises. Mainly needed for Internet Explorer up to IE11
  * -----------------------------------------------------------------------------
- * Promises are needed to lazy load addtional polyfills in case there are
+ * Promises are needed to lazy load additional polyfills in case there are
  * needed. We are using https://github.com/taylorhakes/promise-polyfill instead
  * of the polyfill provided by core-js to keep the vendor bundle as small as
  * possible. This one adds 3.19 kB minified and 1.23 kB minified and gzipped.
@@ -36,126 +28,61 @@ import 'promise-polyfill/src/polyfill';
 
 /**
  * ----------------------------------------------------------------------------
- * Additional ES6 polyfills
+ * Definition of dynamically imported polyfills
  * -----------------------------------------------------------------------------
  */
 
-/**
- * Import all object methods.
- * See https://github.com/zloirock/core-js#ecmascript-6-object how to import
- * just the ones you need.
- */
-// import 'core-js/es6/object';
+export const applyPolyfills = () => {
 
-/**
- * Import all function methods.
- * See https://github.com/zloirock/core-js#ecmascript-6-function how to import
- * just the ones you need.
- */
-// import 'core-js/es6/function';
+	const polyfills = [];
 
-/**
- * Import all array methods.
- * See https://github.com/zloirock/core-js#ecmascript-6-array how to import
- * just the ones you need.
- */
-// import 'core-js/es6/array';
+	/**
+	 * Globals
+	 */
 
-/**
- * Import all string methods.
- * See https://github.com/zloirock/core-js#ecmascript-6-string how to import
- * just the ones you need.
- */
-// import 'core-js/es6/string';
+	// if (typeof Object.assign !== 'function') {
+	// 	polyfills.push(import(/* webpackChunkName: "Object.assign" */ 'core-js/fn/object/assign'));
+	// }
 
-/**
- * Import all regexp methods.
- * See https://github.com/zloirock/core-js#ecmascript-6-regexp how to import
- * just the ones you need.
- */
-// import 'core-js/es6/regexp';
+	// if (!window.Set) {
+	// 	polyfills.push(import(/* webpackChunkName: "set" */ 'core-js/es6/set'));
+	// }
 
-/**
- * Import all number methods.
- * See https://github.com/zloirock/core-js#ecmascript-6-number how to import
- * just the ones you need.
- */
-// import 'core-js/es6/number';
+	// if (!window.Map) {
+	// 	polyfills.push(import(/* webpackChunkName: "map" */ 'core-js/es6/map'));
+	// }
 
-/**
- * Import all math methods.
- * See https://github.com/zloirock/core-js#ecmascript-6-math how to import
- * just the ones you need.
- */
-// import 'core-js/es6/math';
+	/**
+	 * Array prototype methods
+	 */
 
-/**
- * Import all date methods.
- * See https://github.com/zloirock/core-js#ecmascript-6-date how to import
- * just the ones you need.
- */
-// import 'core-js/es6/date';
+	// if (!Array.prototype.includes) {
+	// 	polyfills.push(import(/* webpackChunkName: "Array.prototype.includes" */ 'core-js/fn/array/includes'));
+	// }
 
-/**
- * Import all collection types.
- * See https://github.com/zloirock/core-js#ecmascript-6-collections.
- */
-// import 'core-js/es6/map';
-// import 'core-js/es6/set';
-// import 'core-js/es6/weak-map';
-// import 'core-js/es6/weak-set';
+	// if (!Array.prototype.find) {
+	// 	polyfills.push(import(/* webpackChunkName: "Array.prototype.find" */ 'core-js/fn/array/find'));
+	// }
 
-/**
- * Import all typed-array methods.
- * See https://github.com/zloirock/core-js#ecmascript-6-typed-arrays how to import
- * just the ones you need.
- */
-// import 'core-js/es6/typed';
+	/**
+	 * String prototype methods
+	 */
 
-/**
- * Import all reflect methods.
- * See https://github.com/zloirock/core-js#ecmascript-6-reflect how to import
- * just the ones you need.
- */
-// import 'core-js/es6/reflect';
+	// if (!String.prototype.includes) {
+	// 	polyfills.push(import(/* webpackChunkName: "String.prototype.includes" */ 'core-js/fn/string/includes'));
+	// }
 
-/**
- * ----------------------------------------------------------------------------
- * Additional ES7+ polyfills
- * -----------------------------------------------------------------------------
- */
+	// if (!String.prototype.startsWith) {
+	// 	polyfills.push(import(/* webpackChunkName: "String.prototype.startsWith" */ 'core-js/fn/string/starts-with'));
+	// }
 
-/**
- * Import all ES7 polyfills,
- * See https://github.com/zloirock/core-js#ecmascript-7-proposals how to import
- * just the ones you need.
- */
-// import 'core-js/es7';
+	// if (!String.prototype.trimStart) {
+	// 	polyfills.push(import(/* webpackChunkName: "String.prototype.trimStart" */ 'core-js/fn/string/trim-start'));
+	// }
 
-/**
- * Import all polyfills of stage 4 proposals
- */
-// import 'core-js/stage/4';
+	// if (!String.prototype.trimEnd) {
+	// 	polyfills.push(import(/* webpackChunkName: "String.prototype.trimEnd" */ 'core-js/fn/string/trim-end'));
+	// }
 
-/**
- * Import all polyfills of stage 3 proposals
- * See https://github.com/zloirock/core-js#ecmascript-7-proposals how to import
- * pre stage 3 polyfills.
- */
-// import 'core-js/stage/3';
-
-/**
- * ----------------------------------------------------------------------------
- * Examples for method based imports
- * -----------------------------------------------------------------------------
- */
-
-/**
- * Import a single string method
- */
-// import 'core-js/fn/string/trim-start';
-
-/**
- * Import a single array method
- */
-// import 'core-js/fn/array/includes';
+	return Promise.all(polyfills);
+};
