@@ -35,7 +35,7 @@
     "release:major": "npm run release --silent -- --release-as major",
     "webpack": "cross-env NODE_ENV=production webpack --config build/webpack.prod.babel.js --hide-modules --progress",
     "webpack:dev": "cross-env NODE_ENV=development webpack --config build/webpack.dev.babel.js --hide-modules --progress",
-    "webpack:server": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.babel.js --open",
+    "webpack:server": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.babel.js --open  --host 0.0.0.0",
     "webpack:stats": "cross-env NODE_ENV=production webpack --config build/webpack.prod.babel.js --profile --json > ./.webpack-stats.json",
     "handlebars": "babel-node build/handlebars.js",
     "handlebars:watch": "onchange \"src/**/*.hbs\" \"src/handlebars/helpers/*.js\" -- onerror \"npm run handlebars --silent\" -t \"Handlebars build failed\"",
