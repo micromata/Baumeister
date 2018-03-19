@@ -21,13 +21,18 @@
 
 /**
  * ----------------------------------------------------------------------------
- * Promises. Needed for Internet Explorer  up to IE11
+ * Promises. Mainly needed for Internet Explorer up to IE11
  * -----------------------------------------------------------------------------
- * This polyfill alone will blow up your bundle size with more than 20 kb
- * (minified). So please  don’t use that if your are targeting only browsers
- * which have Promises build in. See https://kangax.github.io/compat-table/es6/
+ * Promises are needed to lazy load addtional polyfills in case there are
+ * needed. We are using https://github.com/taylorhakes/promise-polyfill instead
+ * of the polyfill provided by core-js to keep the vendor bundle as small as
+ * possible. This one adds 3.19 kB minified and 1.23 kB minified and gzipped.
+ *
+ * But remember that you don’t have to use it if your are targeting only
+ * browsers which have Promises build in.
+ * See https://kangax.github.io/compat-table/es6/
  */
-import 'core-js/es6/promise';
+import 'promise-polyfill/src/polyfill';
 
 /**
  * ----------------------------------------------------------------------------
