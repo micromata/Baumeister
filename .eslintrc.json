@@ -1,5 +1,9 @@
 {
   "extends": "baumeister",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "allowImportExportEverywhere": true
+},
   "overrides": [
     {
       "files": ["build/*.js"],
