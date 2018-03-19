@@ -20,7 +20,7 @@ Baumeister is here to help you to build your things. From Bootstrap themes over 
 		- optional – see [details](#writing-markup-static-sites-vs-single-page-apps)
 	- transpile, bundle and minify your code
 		- ES6 as well as Sass
-	- Visualize size of bundled files with an interactive zoomable treemap
+	- visualize size of bundled files with an interactive zoomable treemap
 	- remove `console` output and `debugger` statements in production files
 	- add vendor prefixes
 	- lint JavaScript, Sass and HTML
@@ -33,7 +33,7 @@ Baumeister is here to help you to build your things. From Bootstrap themes over 
 	- run unit tests and create coverage reports
 	- and more.
 
-Baumeister mainly uses [Webpack](https://webpack.js.org) at its core for transpiling, bundling and minifying files offering [npm scripts](#build-workflow-and-npm-scripts) for working with the project. Besides that we have defined a few npm scripts to handle things like our [release workflow](#release-workflow). All necessary dependencies are locally installed via npm.
+Baumeister mainly uses [Webpack](https://webpack.js.org) at its core for transpiling, bundling and minifying files and provides [npm scripts](#build-workflow-and-npm-scripts) for working with the project. Besides that we have defined a few npm scripts to handle things like our [release workflow](#release-workflow). All necessary dependencies are locally installed via npm.
 
 ## Table of Contents
 
@@ -84,7 +84,7 @@ For those already using Node.js.
 
 ### Node.js
 
-The major dependency is [Node.js](http://nodejs.org/) including bundled package manager called »npm«. The projects dependencies are locally installed with npm.
+The major dependency is [Node.js](http://nodejs.org/) including the bundled package manager called »npm«. The projects dependencies are locally installed with npm.
 
 Please enter the following in your terminal if your aren’t sure about the availability of Node.js and npm on your machine:
 
@@ -98,16 +98,16 @@ This should return something like the following in case Node.js and npm is alrea
 v8.9.4
 ```
 
-If this isn’t the case you have to install Node.js first. On OS X we strongly recommend installing Node via [Homebrew](https://brew.sh/) or [Node Version Manager](https://github.com/creationix/nvm). Not just because it’s easier to switch versions but also because you prevent potential permission problems when running npm. See [detailed instructions](http://michael-kuehnel.de/node.js/2015/09/08/using-vm-to-switch-node-versions.html).
+If this isn’t the case you have to install Node.js first. On OS X we strongly recommend installing Node via [Homebrew](https://brew.sh/) or the [Node Version Manager](https://github.com/creationix/nvm). Not just because it’s easier to switch versions but also because you prevent potential permission problems when running npm. See [detailed instructions](http://michael-kuehnel.de/node.js/2015/09/08/using-vm-to-switch-node-versions.html).
 
 <a name="setup"></a>
 
 ## Setting up the project
 
-Navigate to the root of your checkout:
+Navigate to the root of your installation:
 
 ```bash
-cd path/to/your/checkout/of/baumeister
+cd path/to/your/installation/of/baumeister
 ```
 
 and install the dependencies via:
@@ -116,7 +116,7 @@ and install the dependencies via:
 npm install
 ```
 
-npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our build workflow as well as the needed frontend dependencies to `\node_modules`.
+npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our build workflow as well as the needed frontend dependencies to a `node_modules` directory.
 
 ### Adjust settings via the Baumeister config file
 
@@ -380,7 +380,6 @@ src/assets/scss
 ├── index.scss
 └── theme
     ├── _alerts.scss
-    ├── _demoElements.scss
     ├── _footer.scss
     ├── _mixins.scss
     ├── _scaffolding.scss
@@ -419,7 +418,7 @@ Our main Sass file is the one which is creating our index.css file. This file is
 
 ```
 
-### \_theme.scss
+### _theme.scss
 
 We use this file to import the modules/files which defines the actual theme. You could also use this to write down your styles and omit using separate files in the corresponding folder `theme`. But that’s not a recommendation. See content of `_theme.scss`:
 
@@ -434,7 +433,6 @@ We use this file to import the modules/files which defines the actual theme. You
 // Own modules
 // --------------------------------------------------
 // @import "theme/testResponsiveHelpers"; // debug
-@import "theme/demoElements";
 @import "theme/footer";
 
 // Important note //
@@ -626,7 +624,7 @@ We recommend using a command line tool like »[npm-check-update](https://github.
 
 ## Adding polyfills
 
-The file `src/app/polyfills.js` is prepared to import polyfills you might need depending on your use of modern JavaScript language features and your target browsers.
+The file `src/app/base/polyfills.js` is prepared to import polyfills you might need depending on your use of modern JavaScript language features and your target browsers.
 
 Just import the ones you need for the browsers you are targeting.
 
