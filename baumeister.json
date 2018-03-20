@@ -23,8 +23,12 @@
   },
   "webpack": {
     "DefinePlugin": {
-      "development": {},
-      "production": {}
+      "development": {
+        "PRODUCTION": false
+      },
+      "production": {
+        "PRODUCTION": true
+      }
     },
     "ProvidePlugin": {
       "$": "jquery",
