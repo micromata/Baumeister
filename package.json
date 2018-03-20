@@ -25,7 +25,7 @@
     "test:watch": "jest --watch",
     "eslint": "eslint --ext .jsx,.js --cache build src",
     "eslint:fix": "npm run eslint --silent -- --fix",
-    "eslint:watch": "onchange \"src/**/*.js\" \"src/**/*.jsx\" \"build/*.js\" -- onerror \"npm run eslint --silent\" -t \"Linting error(s)\"",
+    "eslint:watch": "onchange \"src/**/*.js\" \"src/**/*.jsx\" \"build/**/*.js\" -- onerror \"npm run eslint --silent\" -t \"Linting error(s)\"",
     "stylelint": "stylelint \"src/assets/scss/**/*.scss\"",
     "stylelint:fix": "npm run stylelint --silent -- --fix",
     "stylelint:watch": "onchange \"src/assets/scss/**/*.scss\" -- onerror \"npm run stylelint --silent\" -t \"Linting error(s)\"",
