@@ -1,7 +1,7 @@
 import path from 'path';
 
 import {settings} from '../config';
-import {generateCssFile} from './helpers';
+import {generateCssFile} from './plugin.generate-css-file';
 
 const configFile = require('../../baumeister.json');
 

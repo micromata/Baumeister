@@ -9,7 +9,8 @@ import PurifyCSSPlugin from 'purifycss-webpack';
 import ImageminPlugin from 'imagemin-webpack-plugin';
 
 import {generateBanners, settings, useHandlebars} from '../config';
-import {isDevMode, isProdMode, generateCssFile} from './helpers';
+import {isDevMode, isProdMode} from './helpers';
+import {generateCssFile} from './plugin.generate-css-file';
 
 const pkg = require('../../package.json');
 const configFile = require('../../baumeister.json');
