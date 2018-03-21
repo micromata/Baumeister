@@ -75,6 +75,7 @@
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-unicorn": "^4.0.2",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
     "globby": "^8.0.0",
     "husky": "^0.14.3",
     "imagemin-webpack-plugin": "^2.0.0",
