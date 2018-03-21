@@ -55,5 +55,18 @@ export const rules = [
 				{loader: 'sass-loader', options: {sourceMap: true}}
 			]
 		})
+	},
+	{
+		test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+		use: [
+			{
+				loader: 'file-loader',
+				options: {
+					outputPath: '../',
+					useRelativePath: true,
+					name: '[name].[ext]'
+				}
+			}
+		]
 	}
 ];
