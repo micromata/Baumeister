@@ -9,7 +9,7 @@ import PurifyCSSPlugin from 'purifycss-webpack';
 import ImageminPlugin from 'imagemin-webpack-plugin';
 
 import {generateBanners, settings, useHandlebars} from '../config';
-import {isDevMode, isProdMode} from './helpers';
+import {isDevMode} from './helpers';
 import {generateCssFile} from './plugin.generate-css-file';
 
 const pkg = require('../../package.json');
@@ -39,7 +39,7 @@ const purifyCSSOptions = {
 /**
  * Plugins used for development and production builds
  */
-const plugins = [
+const generalPlugins = [
 	manifest,
 	generateCssFile,
 	new webpack.optimize.CommonsChunkPlugin({
@@ -78,12 +78,6 @@ const devPlugins = [
 	new webpack.SourceMapDevToolPlugin({columns: false})
 ];
 
-if (isDevMode()) {
-	devPlugins.forEach(plugin => {
-		plugins.push(plugin);
-	});
-}
-
 /**
  * Plugins used for production builds only
  */
@@ -106,10 +100,4 @@ const prodPlugins = [
 	}) : function () {}
 ];
 
-if (isProdMode()) {
-	prodPlugins.forEach(plugin => {
-		plugins.push(plugin);
-	});
-}
-
-export {plugins};
+export const plugins = isDevMode() ? [...generalPlugins, ...devPlugins] : [...generalPlugins, ...prodPlugins];
