@@ -5,4 +5,3 @@ export const isDevMode = function () {
 export const isProdMode = function () {
 	return process.env.NODE_ENV === 'production';
 };
-

@@ -91,13 +91,13 @@ const prodPlugins = [
 			}
 		}
 	}),
-	configFile.purifyCSS.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : function () {},
+	configFile.purifyCSS.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : false,
 	generateBanners ? new webpack.BannerPlugin({
 		banner: stripIndents`${pkg.title} - v${pkg.version}
 		${pkg.author.email}
 		Copyright ©${new Date().getFullYear()} ${pkg.author.name}
 		${new Date().toLocaleDateString('en-US', {day: '2-digit', month: 'long', year: 'numeric'})}`
-	}) : function () {}
-];
+	}) : false
+].filter(Boolean);
 
 export const plugins = isDevMode() ? [...generalPlugins, ...devPlugins] : [...generalPlugins, ...prodPlugins];
