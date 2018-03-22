@@ -15,7 +15,7 @@
  * ----------------------------------------------------------------------------
  * Promises. Mainly needed for Internet Explorer up to IE11
  * -----------------------------------------------------------------------------
- * Promises are needed to lazy load additional polyfills in case there are
+ * Promises are needed to lazy load addtional polyfills in case they are
  * needed. We are using https://github.com/taylorhakes/promise-polyfill instead
  * of the polyfill provided by core-js to keep the vendor bundle as small as
  * possible. This one adds 3.19 kB minified and 1.23 kB minified and gzipped.
