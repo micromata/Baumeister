@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* Open Webpack dev server with --host flag ([8ffcc18](https://github.com/micromata/baumeister/commit/8ffcc18))
+* Open webpack dev server with --host flag ([8ffcc18](https://github.com/micromata/baumeister/commit/8ffcc18))
 * Referencing fonts from within Sass files ([cefe987](https://github.com/micromata/baumeister/commit/cefe987)), closes [#236](https://github.com/micromata/baumeister/issues/236)
 
 
@@ -31,7 +31,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 * remove Yarn lockfile 👋🏻 ([0d4cd1b](https://github.com/micromata/baumeister/commit/0d4cd1b))
 * **eslint:** Simplify setup and include two additional plugins ([57219c3](https://github.com/micromata/baumeister/commit/57219c3))
-* **build:** Replace Gulp with Webpack (and npm scripts) ([b91adea](https://github.com/micromata/baumeister/commit/b91adea))
+* **build:** Replace Gulp with webpack (and npm scripts) ([b91adea](https://github.com/micromata/baumeister/commit/b91adea))
 * **bootstrap:** Upgrade to Bootstrap 4 ([e4680b5](https://github.com/micromata/baumeister/commit/e4680b5))
 
 
@@ -46,7 +46,7 @@ All notable changes to this project will be documented in this file. See [standa
   | `npm run test:watch`    | *Runs unit test with Jests watch option.* |
   | `npm run build`         | *Builds for production to `dist` directory.* |
   | `npm run build:check`   | *Starts a static fileserver serving the `dist` directory.* |
-  | `npm run build:analyze` | *Starts »Webpack Bundle Analyzer« to visualize size of Webpack output files* |
+  | `npm run build:analyze` | *Starts »webpack bundle analyzer« to visualize size of webpack output files* |
 
   See `package.json` `scripts` section for all available scripts.
 
@@ -109,7 +109,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Code Refactoring
 
-* **bundling:** Replace Browserify with Webpack ([eb96f75](https://github.com/micromata/baumeister/commit/eb96f75)), closes [#209](https://github.com/micromata/baumeister/issues/209) [#211](https://github.com/micromata/baumeister/issues/211)
+* **bundling:** Replace Browserify with webpack ([eb96f75](https://github.com/micromata/baumeister/commit/eb96f75)), closes [#209](https://github.com/micromata/baumeister/issues/209) [#211](https://github.com/micromata/baumeister/issues/211)
 
 
 ### Features

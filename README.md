@@ -15,7 +15,7 @@
 Baumeister is here to help you to build your things. From Bootstrap themes over static websites to single page applications. Baumeister provides:
 
 - a file structure with focus on maintainability and upgradability
-- a build setup based on Webpack and npm scripts with the following »features«
+- a build setup based on webpack and npm scripts with the following »features«
 	- generate static sites with ease using handlebars templates
 		- optional – see [details](#writing-markup-static-sites-vs-single-page-apps)
 	- transpile, bundle and minify your code
@@ -33,7 +33,7 @@ Baumeister is here to help you to build your things. From Bootstrap themes over 
 	- run unit tests and create coverage reports
 	- and more.
 
-Baumeister mainly uses [Webpack](https://webpack.js.org) at its core for transpiling, bundling and minifying files and provides [npm scripts](#build-workflow-and-npm-scripts) for working with the project. Besides that we have defined a few npm scripts to handle things like our [release workflow](#release-workflow). All necessary dependencies are locally installed via npm.
+Baumeister mainly uses [webpack](https://webpack.js.org) at its core for transpiling, bundling and minifying files and provides [npm scripts](#build-workflow-and-npm-scripts) for working with the project. Besides that we have defined a few npm scripts to handle things like our [release workflow](#release-workflow). All necessary dependencies are locally installed via npm.
 
 ## Table of Contents
 
@@ -120,7 +120,7 @@ npm will look at the `package.json` file and automatically fetch and install the
 
 ### Adjust settings via the Baumeister config file
 
-In the root directory is a file named `baumeister.json` which you can be used to change the most important settings without touching any Webpack config:
+In the root directory is a file named `baumeister.json` which you can be used to change the most important settings without touching any webpack config:
 
 ```json
 {
@@ -163,7 +163,7 @@ In the root directory is a file named `baumeister.json` which you can be used to
 }
 ```
 
-`vendor.bundleCSS` and `vendor.includeStaticFiles` makes it possible to include additional dependencies without touching any Webpack config. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
+`vendor.bundleCSS` and `vendor.includeStaticFiles` makes it possible to include additional dependencies without touching any webpack config. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
 
 The ramifications of changing the `useHandlebars` setting are explained in the section [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps).
 
@@ -177,12 +177,12 @@ The plugin does a direct text replacement, so the value given to it must include
 
 This is very useful to change behaviour between development and production build. For example adapting the URL prefix to an API. This is why we have predefined the constant `PRODUCTION`.
 
-You may take a look at the official [Webpack DefinePlugin docs](https://webpack.js.org/plugins/define-plugin/).
+You may take a look at the official [webpack DefinePlugin docs](https://webpack.js.org/plugins/define-plugin/).
 
 ### Automatically load modules instead of requiring / importing them
 
 The `ProvidePlugin` section is an object where the value equals to the module name and the key represents the property name of the window object the module gets mapped to.
-See the official [Webpack ProvidePlugin docs](https://webpack.js.org/plugins/define-plugin/) for further information.
+See the official [webpack ProvidePlugin docs](https://webpack.js.org/plugins/define-plugin/) for further information.
 
 ## Build Workflow and npm scripts
 
@@ -195,7 +195,7 @@ When completed the setup, you'll be able to run various npm scripts from the com
 | `npm run test:watch`    | *Runs unit test with Jests watch option.* |
 | `npm run build`         | *Builds for production to `dist` directory.* |
 | `npm run build:check`   | *Starts a static fileserver serving the `dist` directory.* |
-| `npm run build:analyze` | *Starts »Webpack Bundle Analyzer« to visualize size of Webpack output files* |
+| `npm run build:analyze` | *Starts »webpack bundle analyzer« to visualize size of webpack output files* |
 
 
 There a lot more scripts defined in the `package.json` but most of the other ones are used to combine scripts. We recommend to to use a tool like [npm task list](https://github.com/ruyadorno/ntl) which provides a interactive CLI menu to list and select npm scripts.
@@ -843,7 +843,7 @@ Are defined in the body of the commit message.
 
 Example:
 ```
-feat(build): Replace Gulp with Webpack and npm scripts
+feat(build): Replace Gulp with webpack and npm scripts
 <BLANK LINE>
 Closes #225
 BREAKING CHANGE: Gulp tasks aren’t available any longer.
