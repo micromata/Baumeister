@@ -148,8 +148,12 @@ In the root directory is a file named `baumeister.json` which you can be used to
   },
   "webpack": {
     "DefinePlugin": {
-      "development": {},
-      "production": {}
+      "development": {
+        "PRODUCTION": false
+      },
+      "production": {
+        "PRODUCTION": true
+      }
     },
     "ProvidePlugin": {
       "$": "jquery",
@@ -167,8 +171,12 @@ The ramifications of changing the `useHandlebars` setting are explained in the s
 
 ### Define global constants at compile time
 
-If you want to provide values for different types of builds (`NODE_ENV` is a popular example), you can define them inside the `dev` and `prod` properties of the `DefinePlugin` section.
-The plugin does a direct text replacement, so the value given to it must include actual quotes inside of the string. You can use alternating quotes, like `"'production'"`, or  use `JSON.stringify('production')`.
+If you want to provide constants for different types of builds, you can define them inside the `development` and `production` properties of the `DefinePlugin` section.
+
+The plugin does a direct text replacement, so the value given to it must include actual quotes inside of the string. You can use alternating quotes, like `"'My value'"`, or  use `JSON.stringify('My value')`.
+
+This is very useful to change behaviour between development and production build. For example adapting the URL prefix to an API. This is why we have predefined the constant `PRODUCTION`.
+
 You may take a look at the official [Webpack DefinePlugin docs](https://webpack.js.org/plugins/define-plugin/).
 
 ### Automatically load modules instead of requiring / importing them

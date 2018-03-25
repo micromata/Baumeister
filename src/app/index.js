@@ -26,9 +26,4 @@ $(async () => {
 	ieViewportFix();
 
 	console.log('YaY, my first ES6-Module !!!!');
-	if (PRODUCTION) { // eslint-disable-line no-undef
-		console.log('Prod');
-	} else {
-		console.log('Dev');
-	}
 });
