@@ -23,9 +23,21 @@ module.exports = {
 	module: {rules},
 	output,
 	plugins,
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				commons: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendor',
+					chunks: 'all'
+				}
+			}
+		}
+	},
+	mode: isDevMode() ? 'development' : 'production',
 	stats: {
 		timings: true,
-		version: false,
-		hash: false
+		hash: false,
+		builtAt: false
 	}
 };
