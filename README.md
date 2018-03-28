@@ -239,6 +239,8 @@ In this case you have to switch off Handlebars compiling in `baumeister.json`:
 "useHandlebars": false
 ```
 
+Please note that we have additional guides for setting up Baumeister to be used with React and other single page applications libraries/frameworks in the Baumeister [Wiki](https://github.com/micromata/Baumeister/wiki).
+
 ### Using handlebars
 
 It’s super easy to use even if you never used Handlebars before.
