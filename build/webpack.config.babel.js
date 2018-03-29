@@ -8,6 +8,7 @@ import {entry} from './webpack/config.entry';
 import {rules} from './webpack/config.module.rules';
 import {output} from './webpack/config.output';
 import {plugins} from './webpack/config.plugins';
+import {optimization} from './webpack/config.optimization';
 
 const cliFlags = minimist(process.argv.slice(2));
 const buildTarget = isDevMode() ? ' Development ' : ' Production ';
@@ -23,17 +24,7 @@ module.exports = {
 	module: {rules},
 	output,
 	plugins,
-	optimization: {
-		splitChunks: {
-			cacheGroups: {
-				commons: {
-					test: /[\\/]node_modules[\\/]/,
-					name: 'vendor',
-					chunks: 'all'
-				}
-			}
-		}
-	},
+	optimization,
 	mode: isDevMode() ? 'development' : 'production',
 	stats: {
 		timings: true,
