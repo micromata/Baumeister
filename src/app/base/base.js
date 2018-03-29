@@ -46,3 +46,10 @@ export function consoleErrorFix() {
  * https://github.com/webpack/webpack/issues/6587
  */
 import(/* webpackChunkName: "noop" */ './dummy').then(() => {});
+
+/**
+ * Thanks to tree shaking this won’t land in the production build 🌳
+ */
+export function testTreeshaking() {
+	window.theTreeIsShaked = 'shakedy-shake';
+}
