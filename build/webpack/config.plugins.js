@@ -7,10 +7,10 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 import PurifyCSSPlugin from 'purifycss-webpack';
 import ImageminPlugin from 'imagemin-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 import {generateBanners, settings, useHandlebars} from '../config';
-import {isDevMode} from './helpers';
-import {generateCssFile} from './plugin.generate-css-file';
+import {isDevMode, isProdMode} from './helpers';
 
 const pkg = require('../../package.json');
 const configFile = require('../../baumeister.json');
@@ -41,10 +41,8 @@ const purifyCSSOptions = {
  */
 const generalPlugins = [
 	manifest,
-	generateCssFile,
-	new webpack.optimize.CommonsChunkPlugin({
-		name: 'vendor',
-		minChunks: module => /node_modules/.test(module.resource)
+	new MiniCssExtractPlugin({
+		filename: configFile.cacheBusting && isProdMode() ? 'assets/css/[name].[chunkhash].bundle.css' : 'assets/css/[name].bundle.css'
 	}),
 	new webpack.ProvidePlugin({...configFile.webpack.ProvidePlugin}),
 	new CopyWebpackPlugin([
