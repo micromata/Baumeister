@@ -4,7 +4,6 @@ import globby from 'globby';
 import {stripIndents} from 'common-tags';
 import WebpackAssetsManifest from 'webpack-assets-manifest';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 import PurifyCSSPlugin from 'purifycss-webpack';
 import ImageminPlugin from 'imagemin-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -81,14 +80,6 @@ const devPlugins = [
  */
 const prodPlugins = [
 	new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i}),
-	new UglifyJSPlugin({
-		uglifyOptions: {
-			compress: {
-				drop_console: true, // eslint-disable-line camelcase
-				drop_debugger: true // eslint-disable-line camelcase
-			}
-		}
-	}),
 	configFile.purifyCSS.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : false,
 	generateBanners ? new webpack.BannerPlugin({
 		banner: stripIndents`${pkg.title} - v${pkg.version}
