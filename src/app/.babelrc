@@ -1,6 +1,42 @@
 {
 	"presets": [["env", {"modules": false}]],
 	"plugins": [
-		"syntax-dynamic-import"
+		"syntax-dynamic-import",
+		[
+			"transform-runtime",
+			{
+				"polyfill": false,
+				"regenerator": true
+			}
+		],
+		[
+			"transform-regenerator",
+			{
+				"asyncGenerators": true,
+				"generators": true,
+				"async": true
+			}
+		],
+		[
+			"transform-imports",
+			{
+				"lodash": {
+					"transform": "lodash/${member}",
+					"preventFullImport": true
+				},
+				"reactstrap": {
+					"transform": "reactstrap/lib/${member}",
+					"preventFullImport": true
+				},
+				"react-bootstrap": {
+					"transform": "react-bootstrap/lib/${member}",
+					"preventFullImport": true
+				},
+				"react-router": {
+					"transform": "react-router/${member}",
+					"preventFullImport": true
+				}
+			}
+		]
 	]
 }
