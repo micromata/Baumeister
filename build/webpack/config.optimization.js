@@ -1,6 +1,9 @@
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
 export const optimization = {
+	runtimeChunk: {
+		name: 'runtime'
+	},
 	splitChunks: {
 		cacheGroups: {
 			commons: {

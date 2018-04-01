@@ -79,6 +79,7 @@ const devPlugins = [
  * Plugins used for production builds only
  */
 const prodPlugins = [
+	new webpack.HashedModuleIdsPlugin(),
 	new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i}),
 	configFile.purifyCSS.usePurifyCSS ? new PurifyCSSPlugin(purifyCSSOptions) : false,
 	generateBanners ? new webpack.BannerPlugin({
