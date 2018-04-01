@@ -193,7 +193,7 @@ When completed the setup, you'll be able to run various npm scripts from the com
 | `npm test`              | *Lints your JavaScript files and runs unit test via the Jest CLI.* |
 | `npm run test:watch`    | *Runs unit test with Jests watch option.* |
 | `npm run build`         | *Builds for production to `dist` directory.* |
-| `npm run build:check`   | *Starts a static fileserver serving the `dist` directory.* |
+| `npm run build:serve`   | *Starts a static fileserver serving the `dist` directory.* |
 | `npm run build:analyze` | *Starts »webpack bundle analyzer« to visualize size of webpack output files* |
 
 

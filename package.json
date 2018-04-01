@@ -19,7 +19,7 @@
     "start": "npm-run-all clean:dev handlebars --parallel handlebars:watch webpack:server eslint:watch stylelint:watch --silent",
     "build": "npm-run-all security test handlebars clean webpack --silent",
     "build:dev": "npm-run-all security test handlebars clean:dev webpack:dev --silent",
-    "build:check": "serve dist --open",
+    "build:serve": "serve dist --open",
     "build:analyze": "npm run webpack:stats --silent && webpack-bundle-analyzer ./.webpack-stats.json ./dist -s parsed",
     "pretest": "npm run eslint --silent",
     "test": "cross-env NODE_ENV=test jest",
