@@ -25,7 +25,7 @@ export const rules = [
 	{
 		test: /\.scss$/,
 		use: [
-			(isDevMode() ? 'style-loader' : MiniCssExtractPlugin.loader),
+			(MiniCssExtractPlugin.loader),
 			{loader: 'css-loader', options: {sourceMap: isDevMode()}},
 			{
 				loader: 'postcss-loader', options:
