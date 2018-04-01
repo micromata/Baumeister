@@ -16,6 +16,27 @@
 				"generators": true,
 				"async": true
 			}
+		],
+		[
+			"transform-imports",
+			{
+				"lodash": {
+					"transform": "lodash/${member}",
+					"preventFullImport": true
+				},
+				"reactstrap": {
+					"transform": "reactstrap/lib/${member}",
+					"preventFullImport": true
+				},
+				"react-bootstrap": {
+					"transform": "react-bootstrap/lib/${member}",
+					"preventFullImport": true
+				},
+				"react-router": {
+					"transform": "react-router/${member}",
+					"preventFullImport": true
+				}
+			}
 		]
 	]
 }
