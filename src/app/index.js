@@ -5,7 +5,7 @@
 // Import the whole Bootstrap JS bundle
 import 'bootstrap';
 
-// Or just what you need to keep your vendor bundle small
+// Or import only what you need to keep your vendor bundle small
 // import 'bootstrap/js/dist/util';
 // import 'bootstrap/js/dist/dropdown';
 

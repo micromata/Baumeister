@@ -30,6 +30,7 @@ Baumeister is here to help you to build your things. From Bootstrap themes over 
 	- check for know vulnerabilities in dependencies
 	- release new versions
 	- run unit tests and create coverage reports
+	- web performance optimization fundamentals 
 	- and more.
 
 Baumeister mainly uses [webpack](https://webpack.js.org) at its core for transpiling, bundling and minifying files and provides [npm scripts](#build-workflow-and-npm-scripts) for working with the project. Besides that we have defined a few npm scripts to handle things like our [release workflow](#release-workflow). All necessary dependencies are locally installed via npm.
@@ -47,7 +48,7 @@ Baumeister mainly uses [webpack](https://webpack.js.org) at its core for transpi
 - [Adding polyfills](#adding-polyfills)
 - [Unit tests](#unit-tests)
 - [Configuring linters](#configuring-linters)
-- [Deleting unused CSS](#deleting-unused-css)
+- [Web performance optimization](#web-performance-optimization)
 - [Deactivate cache busting](#deactivate-cache-busting)
 - [Adding banners](#adding-banners)
 - [Release Workflow](#release-workflow)
@@ -701,7 +702,13 @@ We are using [stylelint-config-standard](https://github.com/stylelint/stylelint-
 
 See [stylelint rules](https://stylelint.io/user-guide/rules/) in case you like get details to these rules and the [stylelint user guide](https://stylelint.io/user-guide/configuration/) to see how to configure stylelint (e.g. how to turn of rules).
 
-## Deleting unused CSS
+## Web performance optimization
+
+There are a few things that you don’t have to take care about, because Baumeister already had set them up to deliver the best possible optimizations while beeing safe to use (eg. image optimization and tree shaking).
+
+But besides that, you might want to tweak settings to get an even better performance.
+
+### Deleting unused CSS
 
 We are using [PurifyCSS](https://github.com/purifycss/purifycss) to remove unused selectors from your CSS. This is fully optional and is turned off by default.
 
@@ -711,13 +718,44 @@ In addition you can define a PurifyCSS `whitelist` defining an array of selector
 
 For example. `["button-active", "*modal*"]` will leave any selector that includes `modal` in it and selectors that match `button-active`. The asterisks act like a wildcard, so wrapping a string with `*`, leaves all selectors that include it.
 
-## Deactivate cache busting
+#### Alternative: selective imports:
 
-You should set far-future `Cache-Control` and `Expires` headers (see [Apache settings](https://github.com/h5bp/server-configs-apache/blob/master/src/web_performance/expires_headers.conf) and settings for other [web servers](https://github.com/h5bp/server-configs)). This ensures resources are cached for a specified time period (usually a year or more). And this will remain as long as the user doesn’t erase their browser cache.
+You could also import just the CSS from Bootstrap that you actually need in your project in `src/assets/scss/index.scss`. But you won‘t get your CSS bundle size that small in comparison to PurifyCSS. 
 
-By default we are revisioning the bundled assets with adding a hash to the filenames for the production build. So for instance the file `app.bundle.js` will be renamed to something like `app.6c38e655f70a4f9e3d26.bundle.js`. The filename will change when the file content changes which will force the browser to re-download changed files instead of serving them from the cache.
+### Make use of long-term caching
+
+You should set far-future `Cache-Control` and `Expires` headers (see [Apache settings](https://github.com/h5bp/server-configs-apache/blob/master/src/web_performance/expires_headers.conf) and settings for other [web servers](https://github.com/h5bp/server-configs)). This ensures resources are cached for a specified time period (usually a year or more). So the browser will only hit the network if the file name changes (or if a year passes or if the user manually erases their browser cache).
+
+By default we are revisioning the bundled assets with adding a content based hash to the filenames for the production build. So for instance the file `app.bundle.js` will be renamed to something like `app.6c38e655f70a4f9e3d26.bundle.js`. The filename will change when the file content changes which will force the browser to re-download changed files instead of serving them from the cache.
+
+We’ve set up webpack to store the webpack runtime in an separate file to improve the cacheability of the vendor bundle ([otherwise](https://developers.google.com/web/fundamentals/performance/webpack/use-long-term-caching#webpack_runtime_code) the hash of `vendor.js` would change even with changes to `app.js`).
+
+#### Deactivate cache busting
 
 You can disable hash based file name revving by setting the `cacheBusting` property within `baumeister.json` to `false`.
+
+### Selective JavaScript imports
+
+Some libraries, such as react-bootstrap and lodash, are rather large and pulling in the entire module just to use a few pieces would cause unnecessary bloat to your JavaScript vendor bundle. 
+
+`babel-plugin-transform-imports` can be used to add only what you need to your bundle. It automatically transforms member style imports such as:
+
+```javascript
+import { Row, Grid as MyGrid } from 'react-bootstrap';
+import { merge } from 'lodash';
+```
+
+into default style imports:
+
+```javascript
+import Row from 'react-bootstrap/lib/Row';
+import MyGrid from 'react-bootstrap/lib/Grid';
+import merge from 'lodash/merge';
+```
+
+Check the [packages page](https://www.npmjs.com/package/babel-plugin-transform-imports#thats-stupid-why-would-you-do-that) to read about the why.
+
+Baumeister has already set up the plugin for `lodash`, `reactstrap`, `react-bootstrap` and `react-router` just in case you will use them. See `src/app/.babelrc` to add aditional libraries.
 
 ## Adding banners
 
