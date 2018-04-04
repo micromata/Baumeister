@@ -49,7 +49,6 @@ Baumeister mainly uses [webpack](https://webpack.js.org) at its core for transpi
 - [Unit tests](#unit-tests)
 - [Configuring linters](#configuring-linters)
 - [Web performance optimization](#web-performance-optimization)
-- [Deactivate cache busting](#deactivate-cache-busting)
 - [Adding banners](#adding-banners)
 - [Release Workflow](#release-workflow)
 - [Contributing to this project](#contributing-to-this-project)
@@ -718,7 +717,7 @@ In addition you can define a PurifyCSS `whitelist` defining an array of selector
 
 For example. `["button-active", "*modal*"]` will leave any selector that includes `modal` in it and selectors that match `button-active`. The asterisks act like a wildcard, so wrapping a string with `*`, leaves all selectors that include it.
 
-#### Alternative: selective imports:
+#### Alternative: selective imports
 
 You could also import just the CSS from Bootstrap that you actually need in your project in `src/assets/scss/index.scss`. But you won‘t get your CSS bundle size that small in comparison to PurifyCSS. 
 

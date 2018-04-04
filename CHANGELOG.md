@@ -35,8 +35,8 @@ All notable changes to this project will be documented in this file. See [standa
   <!-- Own JS -->
   @@app.js
   ```
-
-See <https://developers.google.com/web/fundamentals/performance/webpack/use-long-term-caching#webpack_runtime_code> for details about the why.
+  
+  See <https://developers.google.com/web/fundamentals/performance/webpack/use-long-term-caching#webpack_runtime_code> for details about the why.
 
 
 
