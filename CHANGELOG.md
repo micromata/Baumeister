@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/micromata/baumeister/compare/3.0.0-beta.1...3.0.0) (2018-04-04)
+
+
+### Code Refactoring
+
+* **scripts:** serve build via `npm run build:serve` ([ce2cc70](https://github.com/micromata/baumeister/commit/ce2cc70))
+
+
+### Features
+
+* add PRODUCTION constant to ESLint config ([bb0c954](https://github.com/micromata/baumeister/commit/bb0c954))
+* improve the cacheability of the vendor bundle ([735f2e6](https://github.com/micromata/baumeister/commit/735f2e6))
+* reduce noise in terminal (especially in watch mode) ([90a84bd](https://github.com/micromata/baumeister/commit/90a84bd))
+* setup Babel plugin transform-imports ([da517ed](https://github.com/micromata/baumeister/commit/da517ed))
+* setup tree shaking ([90561f9](https://github.com/micromata/baumeister/commit/90561f9))
+
+
+### BREAKING CHANGES
+
+* **scripts:** Change the npm script name fpr serving the dist directory from `npm run build:check ` to `npm run build:serve`
+* The webpack runtime has moved into a separate file. Therefore you need to add a reference to that file into your HTML / Handlebars file(s) before the vendor bundle:
+
+  ```html
+  <!-- webpack runtime JS -->
+  @@runtime.js
+  
+  <!-- Vendor JS -->
+  @@vendor.js
+  
+  <!-- Own JS -->
+  @@app.js
+  ```
+
+See <https://developers.google.com/web/fundamentals/performance/webpack/use-long-term-caching#webpack_runtime_code> for details about the why.
+
+
+
 <a name="3.0.0-beta.1"></a>
 # [3.0.0-beta.1](https://github.com/micromata/baumeister/compare/3.0.0-beta.0...3.0.0-beta.1) (2018-03-21)
 
