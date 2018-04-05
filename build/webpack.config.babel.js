@@ -21,6 +21,11 @@ if (!cliFlags.json) {
 
 module.exports = {
 	devServer,
+	/**
+	 * The accuracy of sourcemaps affects build times.
+	 * See https://webpack.js.org/configuration/devtool/ if you need to speed up your builds.
+	 */
+	devtool: isDevMode() ? 'inline-cheap-module-source-map' : false,
 	entry,
 	module: {rules},
 	output,

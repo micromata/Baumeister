@@ -71,9 +71,7 @@ const generalPlugins = [
 /**
  * Plugins used for development builds only
  */
-const devPlugins = [
-	new webpack.SourceMapDevToolPlugin({columns: false})
-];
+const devPlugins = [];
 
 /**
  * Plugins used for production builds only
