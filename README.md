@@ -185,21 +185,21 @@ See the official [webpack ProvidePlugin docs](https://webpack.js.org/plugins/def
 
 ## Build Workflow and npm scripts
 
-When completed the setup, you'll be able to run various npm scripts from the command line. Below are listed the main scripts needed for developing and building your project.
+Once you complete the setup, you'll be able to run various npm scripts from the command line. The main scripts needed for developing and building your project are listed below.
 
 | Command                 | Description |
 | ----------------------- | --- |
-| `npm start`             | *Builds for development, starts a webserver, watches files for changes, rebuilds incremental and reloads your browser.* |
-| `npm test`              | *Lints your JavaScript files and runs unit test via the Jest CLI.* |
+| `npm start`             | *Builds for development, starts a webserver, watches files for changes, rebuilds incrementally and reloads your browser.* |
+| `npm test`              | *Lints your JavaScript files and runs unit tests via the Jest CLI.* |
 | `npm run test:watch`    | *Runs unit test with Jests watch option.* |
 | `npm run build`         | *Builds for production to `dist` directory.* |
 | `npm run build:serve`   | *Starts a static fileserver serving the `dist` directory.* |
 | `npm run build:analyze` | *Starts »webpack bundle analyzer« to visualize size of webpack output files* |
 
 
-There a lot more scripts defined in the `package.json` but most of the other ones are used to combine scripts. We recommend to to use a tool like [npm task list](https://github.com/ruyadorno/ntl) which provides a interactive CLI menu to list and select npm scripts.
+There a lot more scripts defined in the `package.json` but most of the other ones are used to combine scripts. We recommend using a tool like [npm task list](https://github.com/ruyadorno/ntl) which provides an interactive CLI menu to list and select npm scripts.
 
-Running those scripts will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following resources are created after setting up and working with the project:
+Running those scripts will create a bunch of directories and files which aren’t under version control. Do not be concerned if you see these resources:
 
 ````
 myProject
@@ -221,13 +221,13 @@ myProject
 
 ## Setting up your Editor
 
-We strongly advise to install an [EditorConfig plugin](http://editorconfig.org/#download) and take a look at the `.editorconfig` file in the root of this project.
+We strongly advise installing an [EditorConfig plugin](http://editorconfig.org/#download) and taking a look at the `.editorconfig` file in the root of this project.
 
 ## Writing Markup (static sites vs. single page apps)
 Baumeister acts like a static sites generator by default. Using handlebars we can simplify our templates and avoid markup duplications by using a combination of `pages`, `layouts` and `partials`.
 
 ### This is optional
-Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Baumeister for creating a static site. If you are developing a single page application instead you might turn off handlebars compiling and place just an `index.html` file in the `/src` directory and store additional templates in `/src/app`.
+Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Baumeister for creating a static site. If you are developing a single page application instead it would be a good idea to turn off handlebars compiling, place an `index.html` file in the `/src` directory, and store additional templates in `/src/app`.
 
 In this case you have to switch off Handlebars compiling in `baumeister.json`:
 
@@ -239,18 +239,19 @@ In this case you have to switch off Handlebars compiling in `baumeister.json`:
 ```
 
 **Please note:**  
-that we have additional guides for setting up Baumeister to be used with React and other single page applications libraries/frameworks in the Baumeister [Wiki](https://github.com/micromata/Baumeister/wiki). The [Baumeister Yeoman Generator](https://github.com/micromata/generator-baumeister) will handle the adaptions for you if you choose to create a single page application.
+We have additional guides for setting up Baumeister to be used with React and other single page applications libraries/frameworks in the Baumeister [Wiki](https://github.com/micromata/Baumeister/wiki). The [Baumeister Yeoman Generator](https://github.com/micromata/generator-baumeister) will handle the adaptions for you if you choose to create a single page application.
 
 ### Using handlebars
 
-It’s super easy to use even if you never used Handlebars before.
-Because every valid HTML page is a valid Handlebars template. But handlebars gives you some extra power. So you can:
+It’s super easy to use even if you've never used Handlebars before.
+
+Here are some powerful things you can do with Handlebars:
 
 - write plain HTML
 - use [built-In helpers](http://handlebarsjs.com/builtin_helpers.html) provided by Handlebars
 - go wild with [custom helpers](http://handlebarsjs.com/block_helpers.html) :heart_eyes:
 
-Let’s dive into it by describing a minimal example. Imagine that we have a simplified file/folder structure like the following in our project:
+Let’s dive into it by demonstrating a basic example. Imagine that we have a simplified file/folder structure like the following in our project:
 
 ```
 src
@@ -265,7 +266,7 @@ src
         └── footer.hbs
 ```
 
-As you can see our pages are stored in the root of the project and are rendered as `html` pages with a little help of Handlebars.
+As you can see, our pages are stored in the root of the project and are rendered as `html` pages with a little help of Handlebars.
 
 Let’s take a look at the content of our files.
 
@@ -397,7 +398,7 @@ src/assets/scss
 ```
 
 
-Seems to be a pretty huge amount of files for such a little project. So here we go with an explanation.
+Seems to be a pretty huge amount of files for such a small project. So here we go with an explanation.
 
 ### index.scss
 Our main Sass file is the one which is creating our index.css file. This file is just about a few imports.
@@ -430,7 +431,7 @@ Our main Sass file is the one which is creating our index.css file. This file is
 
 ### _theme.scss
 
-We use this file to import the modules/files which defines the actual theme. You could also use this to write down your styles and omit using separate files in the corresponding folder `theme`. But that’s not a recommendation. See content of `_theme.scss`:
+We use this file to import the modules/files which defines the actual theme. You could also use this to write down your styles and omit using separate files in the corresponding folder `theme`. But we recommend not doing that. See content of `_theme.scss`:
 
 ```scss
 // Override and extend Bootstrap stuff
@@ -447,7 +448,7 @@ We use this file to import the modules/files which defines the actual theme. You
 
 // Important note //
 // You could also use this file to insert theme related style definitions
-// directly within this file. But we recommend to exclude your LESS code to
+// directly within this file. But we recommend keeping your LESS code in
 // separate files like the examples above when you exceed a few hundred lines
 // of code. Otherwise it will definitely have a negative impact on
 // maintainability.
@@ -494,7 +495,7 @@ There are three files which differ from regular components. Please have a look a
 
 ## Using external libraries
 
-Let’s assume you like to add some fanciness to your form select fields. This could be accomplished with [Select2](https://github.com/select2/select2).
+Let’s assume you'd like to add some fanciness to your form select fields. This could be accomplished with [Select2](https://github.com/select2/select2).
 
 This is how you get the files into your `/node_modules` directory and define the dependency in the `package.json` file.
 
@@ -634,7 +635,7 @@ We recommend using a command line tool like »[npm-check-update](https://github.
 
 ## Adding polyfills
 
-The file `src/app/base/polyfills.js` is prepared to dynamic import polyfills you might need depending on your use of modern JavaScript language features and your target browsers. This way the polyfills are lazy loaded only in case the used browser actually needs them.
+The file `src/app/base/polyfills.js` is prepared to dynamically import polyfills you might need depending on your use of modern JavaScript language, features and your target browsers. This way the polyfills are lazy loaded only in case the used browser actually needs them.
 
 Just import the ones you need for the browsers you are targeting.
 
@@ -642,10 +643,10 @@ The only polyfill activated by default is a Promises polyfill which is needed fo
 
 ## Unit tests
 
-We use [Jest](https://facebook.github.io/jest/), for running unit test and generating test coverage reports.
+We use [Jest](https://facebook.github.io/jest/), for running unit tests and generating test coverage reports.
 See config in property `jest` in `package.json`.
 
-Just type the following to run all test once:
+Just type the following to run all tests once:
 
 ```
 npm test
@@ -656,14 +657,14 @@ You can watch changes and run tests automatically with:
 ```
 npm run test:watch
 ```
-This comes in handy since it’s blazingly fast. It runs only tests related to changed files per default but has an interactive mode which enables you to run all if needed.
+This comes in handy since it’s blazingly fast. It only run tests related to changed files per default but has an interactive mode which enables you to run all if needed.
 
 ### For those who are new to Jest
 
-Writing test with Jest feels pretty much the same like writing tests with Mocha/Chai|Jasmine.
-Just have a look at our small dummy test in `src/app/__tests__`.
+Writing tests with Jest feels pretty much the same as writing tests with Mocha/Chai|Jasmine.
+Just look at our small dummy test in `src/app/__tests__`.
 
-Placing tests in `__tests__` directories is a default from Jest.
+Placing tests in `__tests__` directories is a default feature from Jest.
 You can adjust the name of your tests-directory with the `testDirectoryName` configuration option.
 
 The most important things to know:
@@ -672,15 +673,15 @@ The most important things to know:
 
 *Your are not forced to use Jests assertions. You can alternatively use `assert` by just requiring it or install and use Chai.*
 
-We strongly recommend to check the [docs](https://facebook.github.io/jest/docs/getting-started.html) to dive deeper and read for instance how Jest can help you with mocking.
+We strongly recommend checking the [docs](https://facebook.github.io/jest/docs/getting-started.html) to dive deeper and read for instance how Jest can help you with mocking.
 
 ## Configuring linters
 
-Below you’ll find information how to adapt the rules in case they don’t fit your preferences.
+Below you’ll find information on how to adapt the rules in case they don’t fit your preferences.
 
 ### ESLint (JavaScript)
 
-We are using [eslint-config-baumeister](https://github.com/micromata/eslint-config-baumeister) as preset which is based on [eslint-config-xo](https://github.com/sindresorhus/eslint-config-xo), [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn), [eslint-plugin-security](https://github.com/nodesecurity/eslint-plugin-security), [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import), [eslint-plugin-filenames](https://github.com/selaux/eslint-plugin-filenames) with a few adaptions.
+We are currently using [eslint-config-baumeister](https://github.com/micromata/eslint-config-baumeister) which is based on [eslint-config-xo](https://github.com/sindresorhus/eslint-config-xo), [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn), [eslint-plugin-security](https://github.com/nodesecurity/eslint-plugin-security), [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import), [eslint-plugin-filenames](https://github.com/selaux/eslint-plugin-filenames) with a few adaptions.
 
 Feel free to decativate or change rules according to your needs in:
 
@@ -703,9 +704,9 @@ See [stylelint rules](https://stylelint.io/user-guide/rules/) in case you like g
 
 ## Web performance optimization
 
-There are a few things that you don’t have to take care about, because Baumeister already had set them up to deliver the best possible optimizations while beeing safe to use (eg. image optimization and tree shaking).
+There are a few things that you don’t have to worry about because Baumeister already had set them up to deliver the best possible optimizations while being safe to use (eg. image optimization and tree shaking).
 
-But besides that, you might want to tweak settings to get an even better performance.
+Besides that, you might want to tweak settings to get an even better performance.
 
 ### Deleting unused CSS
 
