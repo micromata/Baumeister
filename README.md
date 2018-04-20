@@ -448,7 +448,7 @@ We use this file to import the modules/files which defines the actual theme. You
 
 // Important note //
 // You could also use this file to insert theme related style definitions
-// directly within this file. But we recommend keeping your LESS code in
+// directly within this file. But we recommend keeping your Sass code in
 // separate files like the examples above when you exceed a few hundred lines
 // of code. Otherwise it will definitely have a negative impact on
 // maintainability.
