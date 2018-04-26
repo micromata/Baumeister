@@ -45,7 +45,7 @@ metalsmith(__dirname)
 	.use(layouts({
 		directory: path.join(__dirname, '../', settings.sources.handlebars, 'layouts'),
 		default: 'default.hbs',
-		pattern: '*.hbs'
+		pattern: '**/*.hbs'
 	}))
 
 	// Render handlebars content pages
@@ -57,7 +57,7 @@ metalsmith(__dirname)
 	}))
 
 	// Only build HTML files
-	.use(filter('*.html'))
+	.use(filter(['**/*.html', 'handlebars']))
 
 	// Finally build files
 	.build(err => {
