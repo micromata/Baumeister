@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/micromata/baumeister/compare/3.0.0...3.0.1) (2018-04-26)
+
+
+### Bug Fixes
+
+* Improve quality of source maps ([e6d22dd](https://github.com/micromata/baumeister/commit/e6d22dd))
+* Make it possible to use nested pages ([5e533ba](https://github.com/micromata/baumeister/commit/5e533ba))
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/micromata/baumeister/compare/3.0.0-beta.1...3.0.0) (2018-04-04)
 
