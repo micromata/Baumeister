@@ -22,8 +22,9 @@
     "build:serve": "serve dist --open",
     "build:analyze": "npm run webpack:stats --silent && webpack-bundle-analyzer ./.webpack-stats.json ./dist -s parsed",
     "pretest": "npm run eslint --silent",
-    "test": "cross-env NODE_ENV=test jest",
-    "test:watch": "npm run test -- --watch",
+    "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:watch": "npm run test:coverage -- --watch",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
     "eslint": "eslint --ext .jsx,.js --cache build src",
     "eslint:fix": "npm run eslint --silent -- --fix",
     "eslint:watch": "onchange \"src/**/*.js\" \"src/**/*.jsx\" \"build/**/*.js\" -- onerror \"npm run eslint --silent\" -t \"Linting error(s)\"",
@@ -117,7 +118,6 @@
       "<rootDir>/build/",
       "<rootDir>/node_modules/"
     ],
-    "collectCoverage": true,
     "collectCoverageFrom": [
       "src/app/**/*.{js,jsx}",
       "!**/node_modules/**"
