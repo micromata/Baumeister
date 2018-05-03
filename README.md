@@ -197,7 +197,12 @@ Once you complete the setup, you'll be able to run various npm scripts from the 
 | `npm run build:analyze` | *Starts »webpack bundle analyzer« to visualize size of webpack output files* |
 
 
-There a lot more scripts defined in the `package.json` but most of the other ones are used to combine scripts. We recommend using a tool like [npm task list](https://github.com/ruyadorno/ntl) which provides an interactive CLI menu to list and select npm scripts.
+>**🔥 Tip:**  
+>There a lot more scripts defined in the `package.json`, but most of the other ones are used to combine scripts. Therefore we have set up an interactive CLI menu to list and run the most importants npm scripts via:
+>
+>```
+>$ npm run tasks
+>```
 
 Running those scripts will create a bunch of directories and files which aren’t under version control. Do not be concerned if you see these resources:
 

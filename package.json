@@ -44,7 +44,18 @@
     "security": "nsp check",
     "clean": "del .webpack-assets.json dist",
     "clean:dev": "del .webpack-assets.json server",
-    "postmerge": "npm install"
+    "postmerge": "npm install",
+    "tasks": "ntl -d -o",
+    "postinstall": "chalk -t '{green Installed Baumeister successfully.\n{white Run} {yellow npm run tasks} {white to list and run the most importants npm scripts.}}'"
+  },
+  "ntl": {
+    "descriptions": {
+      "start": "Builds for development, starts a webserver, watches for changes.",
+      "build": "Builds for production to `dist` directory.",
+      "build:serve": "Starts a webserver serving the `dist` directory.",
+      "test": "Lints your JavaScript files and runs unit tests via the Jest CLI.",
+      "test:watch": "Runs unit test with Jests watch option."
+    }
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
@@ -64,6 +75,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "chalk": "^2.3.2",
+    "chalk-cli": "^4.0.0",
     "cli-error-notifier": "^1.0.9",
     "common-tags": "^1.7.2",
     "copy-webpack-plugin": "^4.5.1",
@@ -95,6 +107,7 @@
     "node-sass": "^4.8.3",
     "npm-run-all": "^4.1.2",
     "nsp": "^3.2.1",
+    "ntl": "^3.0.0",
     "onchange": "^3.3.0",
     "perfy": "^1.1.2",
     "postcss-loader": "^2.1.3",
