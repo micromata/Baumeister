@@ -57,7 +57,7 @@ export const rules = [
 		]
 	},
 	{
-		test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+		test: /\.(woff(2)?|ttf|eot|svg|png|gif|jpe?g)(\?v=\d+\.\d+\.\d+)?$/,
 		use: [
 			{
 				loader: 'file-loader',
