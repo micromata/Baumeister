@@ -119,10 +119,10 @@
     "stylelint": "^9.2.0",
     "stylelint-config-standard": "^18.2.0",
     "uglifyjs-webpack-plugin": "^2.1.1",
-    "webpack": "^4.4.1",
+    "webpack": "^4.29.3",
     "webpack-assets-manifest": "^3.0.0",
     "webpack-bundle-analyzer": "^2.11.1",
-    "webpack-cli": "^2.0.13",
+    "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.1"
   },
   "jest": {
