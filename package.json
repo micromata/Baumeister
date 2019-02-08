@@ -126,6 +126,7 @@
     "webpack-dev-server": "^3.1.1"
   },
   "jest": {
+    "testURL": "http://localhost",
     "testPathIgnorePatterns": [
       "<rootDir>/build/",
       "<rootDir>/node_modules/"
