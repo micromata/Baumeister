@@ -116,7 +116,6 @@
     "postcss-loader": "^3.0.0",
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",
-    "regenerator": "^0.12.3",
     "sass-loader": "^7.1.0",
     "serve": "^10.1.2",
     "standard-version": "^4.3.0",
