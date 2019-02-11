@@ -15,6 +15,7 @@ function getVendorCSS() {
 	if (!vendorCSS.length) {
 		return false;
 	}
+
 	return {vendor: vendorCSS};
 }
 
