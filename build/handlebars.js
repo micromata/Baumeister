@@ -82,22 +82,23 @@ metalsmith(__dirname)
 			const f = path.resolve(__dirname, '../', settings.destinations.handlebars);
 			const now = Date.now() / 1000;
 			const then = now - 10;
-				globby(f + '/**/*.html')
-					.then(files => {
-							files.forEach(file => {
-								fs.utimes(file, then, then, (err) => {
-									if (err) {
-										console.error(err);
-									}
-									console.log(
-										logSymbols.success,
-										` Finished ${chalk.blue.bold('Handlebars build')} after`,
-										chalk.yellow.bold(perfy.end('build').time >= 1 ? `${Math.round(perfy.end('build').time * 100) / 100} s` : `${Math.round(perfy.end('build').milliseconds)} ms`),
-										'\n'
-									);
-									process.exit(0);
-								});
-							});
+			globby(f + '/**/*.html')
+				.then(files => {
+					files.forEach(file => {
+						fs.utimes(file, then, then, (err) => {
+							if (err) {
+								console.error(err);
+							}
+
+							console.log(
+								logSymbols.success,
+								`Finished ${chalk.blue.bold('Handlebars build')} after`,
+								chalk.yellow.bold(perfy.end('build').time >= 1 ? `${Math.round(perfy.end('build').time * 100) / 100} s` : `${Math.round(perfy.end('build').milliseconds)} ms`),
+								'\n'
+							);
+							process.exit(0);
+						});
 					});
+				});
 		}
 	});
