@@ -1,4 +1,4 @@
-module.exports = ({file, options, env}) => ({
+module.exports = ({ file, options, env }) => ({
 	plugins: {
 		autoprefixer: options.autoprefixer,
 		/**

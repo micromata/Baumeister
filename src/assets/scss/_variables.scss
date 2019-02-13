@@ -12,21 +12,19 @@
 //			font-size: @font-size-base - 1;
 //		}
 //	}
-$retina: "(-webkit-min-device-pixel-ratio: 1.5)",
-	"(min--moz-device-pixel-ratio: 1.5)",
-	"(-o-min-device-pixel-ratio: 3/2)",
-	"(min-device-pixel-ratio: 1.5)";
-$xs-only: "only screen and (max-width: $screen-xs-max)";
-$sm-only: "only screen and (min-width: $screen-xs-min) and (max-width: $screen-sm-max)";
-$md-only: "only screen and (min-width: $screen-sm-min) and (max-width: $screen-md-max)";
-$lg-only: "only screen and (min-width: $screen-md-min) and (max-width: $screen-lg)";
-$sm-and-below: "only screen and (max-width: $screen-xs-max)";
-$md-and-below: "only screen and (max-width: $screen-sm-max)";
-$lg-and-below: "only screen and (max-width: $screen-lg-min)";
-$sm-and-above: "only screen and (min-width: $screen-xs-min)";
-$md-and-above: "only screen and (min-width: $screen-sm-min)";
-$lg-and-above: "only screen and (min-width: $screen-md-min)";
-$xl-and-above: "only screen and (min-width: $screen-lg-min)";
+$retina: '(-webkit-min-device-pixel-ratio: 1.5)', '(min--moz-device-pixel-ratio: 1.5)',
+	'(-o-min-device-pixel-ratio: 3/2)', '(min-device-pixel-ratio: 1.5)';
+$xs-only: 'only screen and (max-width: $screen-xs-max)';
+$sm-only: 'only screen and (min-width: $screen-xs-min) and (max-width: $screen-sm-max)';
+$md-only: 'only screen and (min-width: $screen-sm-min) and (max-width: $screen-md-max)';
+$lg-only: 'only screen and (min-width: $screen-md-min) and (max-width: $screen-lg)';
+$sm-and-below: 'only screen and (max-width: $screen-xs-max)';
+$md-and-below: 'only screen and (max-width: $screen-sm-max)';
+$lg-and-below: 'only screen and (max-width: $screen-lg-min)';
+$sm-and-above: 'only screen and (min-width: $screen-xs-min)';
+$md-and-above: 'only screen and (min-width: $screen-sm-min)';
+$lg-and-above: 'only screen and (min-width: $screen-md-min)';
+$xl-and-above: 'only screen and (min-width: $screen-lg-min)';
 
 // Bootstrap variables
 // --------------------------------------------------
@@ -39,12 +37,10 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 //
 // stylelint-disable max-empty-lines
 
-
 // Variables
 //
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
-
 
 //
 // Color system
@@ -149,7 +145,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $enable-grid-classes:       true !default;
 // $enable-print-styles:       true !default;
 
-
 // Spacing
 //
 // Control the default styling of most Bootstrap elements by modifying these
@@ -200,7 +195,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // $paragraph-margin-bottom:   1rem !default;
 
-
 // Grid breakpoints
 //
 // Define the minimum dimensions at which your layout will change,
@@ -217,7 +211,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
 // @include _assert-starts-at-zero($grid-breakpoints);
 
-
 // Grid containers
 //
 // Define the maximum width of `.container` for different screen sizes.
@@ -230,7 +223,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // ) !default;
 
 // @include _assert-ascending($container-max-widths, "$container-max-widths");
-
 
 // Grid columns
 //
@@ -261,7 +253,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $transition-base:             all .2s ease-in-out !default;
 // $transition-fade:             opacity .15s linear !default;
 // $transition-collapse:         height .35s ease !default;
-
 
 // Fonts
 //
@@ -334,7 +325,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // $hr-margin-y:                 $spacer !default;
 
-
 // Tables
 //
 // Customizes the `.table` component with basic values, each used across all table variations.
@@ -359,7 +349,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $table-dark-border-color:     lighten($gray-900, 7.5%) !default;
 // $table-dark-color:            $body-bg !default;
 
-
 // Buttons + Forms
 //
 // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
@@ -381,7 +370,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $input-btn-line-height-lg:    $line-height-lg !default;
 
 // $input-btn-border-width:      $border-width !default;
-
 
 // Buttons
 //
@@ -418,7 +406,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $btn-border-radius-sm:        $border-radius-sm !default;
 
 // $btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
-
 
 // Forms
 
@@ -559,13 +546,11 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 //   en: "Browse"
 // ) !default;
 
-
 // Form validation
 // $form-feedback-margin-top:          $form-text-margin-top !default;
 // $form-feedback-font-size:           $small-font-size !default;
 // $form-feedback-valid-color:         theme-color("success") !default;
 // $form-feedback-invalid-color:       theme-color("danger") !default;
-
 
 // Dropdowns
 //
@@ -594,7 +579,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $dropdown-item-padding-x:           1.5rem !default;
 
 // $dropdown-header-color:             $gray-600 !default;
-
 
 // Z-index master list
 //
@@ -688,12 +672,10 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $pagination-disabled-bg:            $white !default;
 // $pagination-disabled-border-color:  $gray-300 !default;
 
-
 // Jumbotron
 
 // $jumbotron-padding:                 2rem !default;
 // $jumbotron-bg:                      $gray-200 !default;
-
 
 // Cards
 
@@ -715,7 +697,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $card-columns-gap:                  1.25rem !default;
 // $card-columns-margin:               $card-spacer-y !default;
 
-
 // Tooltips
 
 // $tooltip-font-size:           $font-size-sm !default;
@@ -731,7 +712,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $tooltip-arrow-width:         .8rem !default;
 // $tooltip-arrow-height:        .4rem !default;
 // $tooltip-arrow-color:         $tooltip-bg !default;
-
 
 // Popovers
 
@@ -758,7 +738,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // $popover-arrow-outer-color:         fade-in($popover-border-color, .05) !default;
 
-
 // Badges
 
 // $badge-font-size:                   75% !default;
@@ -771,7 +750,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // Use a higher than normal value to ensure completely rounded edges when
 // customizing padding or font-size on labels.
 // $badge-pill-border-radius:          10rem !default;
-
 
 // Modals
 
@@ -803,7 +781,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // $modal-transition:                  transform .3s ease-out !default;
 
-
 // Alerts
 //
 // Define alert colors, border radius, and padding.
@@ -818,7 +795,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $alert-bg-level:                    -10 !default;
 // $alert-border-level:                -9 !default;
 // $alert-color-level:                 6 !default;
-
 
 // Progress bars
 
@@ -856,7 +832,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $list-group-action-active-color:    $body-color !default;
 // $list-group-action-active-bg:       $gray-200 !default;
 
-
 // Image thumbnails
 
 // $thumbnail-padding:                 .25rem !default;
@@ -866,12 +841,10 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $thumbnail-border-radius:           $border-radius !default;
 // $thumbnail-box-shadow:              0 1px 2px rgba($black, .075) !default;
 
-
 // Figures
 
 // $figure-caption-font-size:          90% !default;
 // $figure-caption-color:              $gray-600 !default;
-
 
 // Breadcrumbs
 
@@ -885,7 +858,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 // $breadcrumb-divider-color:          $gray-600 !default;
 // $breadcrumb-active-color:           $gray-600 !default;
 // $breadcrumb-divider:                "/" !default;
-
 
 // Carousel
 
@@ -908,7 +880,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // $carousel-transition:               transform .6s ease !default;
 
-
 // Close
 
 // $close-font-size:                   $font-size-base * 1.5 !default;
@@ -929,7 +900,6 @@ $xl-and-above: "only screen and (min-width: $screen-lg-min)";
 
 // $pre-color:                         $gray-900 !default;
 // $pre-scrollable-max-height:         340px !default;
-
 
 // Printing
 // $print-page-size:                   a3 !default;

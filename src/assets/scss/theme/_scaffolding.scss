@@ -1,4 +1,4 @@
-@import "footer";
+@import 'footer';
 
 //
 // Scaffolding
@@ -11,11 +11,21 @@
 // Fix viewport issues with IE 10.
 // See http://getbootstrap.com/getting-started/#support-ie10-width
 // stylelint-disable at-rule-empty-line-before
-@-webkit-viewport { width: device-width; }
-@-moz-viewport { width: device-width; }
-@-ms-viewport { width: device-width; }
-@-o-viewport { width: device-width; }
-@viewport { width: device-width; }
+@-webkit-viewport {
+	width: device-width;
+}
+@-moz-viewport {
+	width: device-width;
+}
+@-ms-viewport {
+	width: device-width;
+}
+@-o-viewport {
+	width: device-width;
+}
+@viewport {
+	width: device-width;
+}
 // stylelint-enable
 
 html {

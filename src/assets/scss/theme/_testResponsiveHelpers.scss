@@ -24,52 +24,52 @@ html::before {
 body {
 	&::after {
 		@media #{$retina} {
-			content: "undefined / retina";
+			content: 'undefined / retina';
 		}
 
 		@media #{$xs-only} {
-			content: "xs-only";
+			content: 'xs-only';
 			left: 0;
 			bottom: 0;
 
 			@media #{$retina} {
-				content: "xs-only / retina";
+				content: 'xs-only / retina';
 				left: 0;
 				bottom: 0;
 			}
 		}
 
 		@media #{$sm-only} {
-			content: "sm-only";
+			content: 'sm-only';
 			left: 0;
 			bottom: 0;
 
 			@media #{$retina} {
-				content: "sm-only / retina";
+				content: 'sm-only / retina';
 				left: 0;
 				bottom: 0;
 			}
 		}
 
 		@media #{$md-only} {
-			content: "md-only";
+			content: 'md-only';
 			left: 0;
 			bottom: 0;
 
 			@media #{$retina} {
-				content: "md-only / retina";
+				content: 'md-only / retina';
 				left: 0;
 				bottom: 0;
 			}
 		}
 
 		@media #{$lg-only} {
-			content: "lg-only";
+			content: 'lg-only';
 			left: 0;
 			bottom: 0;
 
 			@media #{$retina} {
-				content: "lg / retina";
+				content: 'lg / retina';
 				left: 0;
 				bottom: 0;
 			}
@@ -78,40 +78,40 @@ body {
 
 	&::before {
 		@media #{$retina} {
-			content: "undefined / retina";
+			content: 'undefined / retina';
 		}
 
 		@media #{$lg-and-below} {
-			content: "lg-and-below";
+			content: 'lg-and-below';
 			left: 0;
 			top: 0;
 
 			@media #{$retina} {
-				content: "lg-and-below / retina";
+				content: 'lg-and-below / retina';
 				left: 0;
 				top: 0;
 			}
 		}
 
 		@media #{$md-and-below} {
-			content: "md-and-below";
+			content: 'md-and-below';
 			left: 0;
 			top: 0;
 
 			@media #{$retina} {
-				content: "md-and-below / retina";
+				content: 'md-and-below / retina';
 				left: 0;
 				top: 0;
 			}
 		}
 
 		@media #{$sm-and-below} {
-			content: "sm-and-below";
+			content: 'sm-and-below';
 			left: 0;
 			top: 0;
 
 			@media #{$retina} {
-				content: "sm-and-below / retina";
+				content: 'sm-and-below / retina';
 				left: 0;
 				top: 0;
 			}
@@ -121,52 +121,52 @@ body {
 
 html::before {
 	@media #{$retina} {
-		content: "undefined / retina";
+		content: 'undefined / retina';
 	}
 
 	@media #{$sm-and-above} {
-		content: "sm-and-above";
+		content: 'sm-and-above';
 		right: 0;
 		bottom: 0;
 
 		@media #{$retina} {
-			content: "sm-and-above / retina";
+			content: 'sm-and-above / retina';
 			right: 0;
 			bottom: 0;
 		}
 	}
 
 	@media #{$md-and-above} {
-		content: "md-and-above";
+		content: 'md-and-above';
 		right: 0;
 		bottom: 0;
 
 		@media #{$retina} {
-			content: "md-and-above / retina";
+			content: 'md-and-above / retina';
 			right: 0;
 			bottom: 0;
 		}
 	}
 
 	@media #{$lg-and-above} {
-		content: "lg-and-above";
+		content: 'lg-and-above';
 		right: 0;
 		bottom: 0;
 
 		@media #{$retina} {
-			content: "lg-and-above / retina";
+			content: 'lg-and-above / retina';
 			right: 0;
 			bottom: 0;
 		}
 	}
 
 	@media #{$xl-and-above} {
-		content: "xl-and-above";
+		content: 'xl-and-above';
 		right: 0;
 		bottom: 0;
 
 		@media #{$retina} {
-			content: "xl-and-above / retina";
+			content: 'xl-and-above / retina';
 			right: 0;
 			bottom: 0;
 		}

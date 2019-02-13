@@ -3,12 +3,12 @@ const configFile = require('../baumeister.json');
 /**
  * Boolean flag to set when using handlebars instead of plain HTML files in `src`.
  */
-export const {useHandlebars} = configFile;
+export const { useHandlebars } = configFile;
 
 /**
  * Flag for generating banners on on top of dist files (CSS & JS).
  */
-export const {generateBanners} = configFile;
+export const { generateBanners } = configFile;
 
 export const mainDirectories = {
 	dev: '../server/',

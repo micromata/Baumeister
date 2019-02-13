@@ -3,20 +3,23 @@
   "rules": {
     "indentation": "tab",
     "number-leading-zero": ["always", { "severity": "warning" }],
-    "at-rule-no-unknown": [true, {
-      "ignoreAtRules": [
-        "extend",
-        "mixin",
-        "include",
-        "at-root",
-        "debug",
-        "warn",
-        "error",
-        "if",
-        "for",
-        "each",
-        "while"
-      ]
-    }]
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "extend",
+          "mixin",
+          "include",
+          "at-root",
+          "debug",
+          "warn",
+          "error",
+          "if",
+          "for",
+          "each",
+          "while"
+        ]
+      }
+    ]
   }
 }
