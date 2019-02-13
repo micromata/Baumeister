@@ -1,9 +1,9 @@
 // Import our variables to override Bootstraps default ones
-@import "./variables";
+@import './variables';
 
 // Bootstrap Core
 // --------------------------------------------------
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import '../../../node_modules/bootstrap/scss/bootstrap';
 
 // Or import only what you need to keep your vendor bundle small
 // See "../../../node_modules/bootstrap/scss/bootstrap" for available files
@@ -23,7 +23,7 @@
 
 // Theme
 // --------------------------------------------------
-@import "./theme";
+@import './theme';
 
 // Print Styles
 // --------------------------------------------------

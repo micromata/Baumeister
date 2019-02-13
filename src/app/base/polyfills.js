@@ -33,7 +33,6 @@ import 'promise-polyfill/src/polyfill';
  */
 
 export const applyPolyfills = () => {
-
 	const polyfills = [];
 
 	/**

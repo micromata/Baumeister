@@ -1,14 +1,14 @@
 // Override and extend Bootstrap stuff
 // --------------------------------------------------
 // Files, classes, mixins etc.
-@import "theme/mixins";
-@import "theme/scaffolding";
-@import "theme/alerts";
+@import 'theme/mixins';
+@import 'theme/scaffolding';
+@import 'theme/alerts';
 
 // Own modules
 // --------------------------------------------------
 // @import "theme/testResponsiveHelpers"; // debug
-@import "theme/footer";
+@import 'theme/footer';
 
 // Important note //
 // You could also use this file to insert theme related style definitions

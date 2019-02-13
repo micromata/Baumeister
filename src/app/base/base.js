@@ -20,8 +20,7 @@ export function ieViewportFix() {
  */
 export function consoleErrorFix() {
 	let method;
-	const noOp = function () {
-	};
+	const noOp = function() {};
 
 	const methods = [
 		'assert',
