@@ -8,11 +8,11 @@
 let one;
 
 beforeAll(() => {
-	one = 1;
+  one = 1;
 });
 
 describe('Dummy', () => {
-	it('has a test', () => {
-		expect(one).toBeTruthy();
-	});
+  it('has a test', () => {
+    expect(one).toBeTruthy();
+  });
 });

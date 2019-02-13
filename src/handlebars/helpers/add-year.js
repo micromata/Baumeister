@@ -12,7 +12,7 @@
  *
  */
 function addYear(s) {
-	return s + ' ' + new Date().getFullYear();
+  return s + ' ' + new Date().getFullYear();
 }
 
 module.exports = addYear;

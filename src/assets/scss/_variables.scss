@@ -12,8 +12,9 @@
 //			font-size: @font-size-base - 1;
 //		}
 //	}
-$retina: '(-webkit-min-device-pixel-ratio: 1.5)', '(min--moz-device-pixel-ratio: 1.5)',
-	'(-o-min-device-pixel-ratio: 3/2)', '(min-device-pixel-ratio: 1.5)';
+$retina: '(-webkit-min-device-pixel-ratio: 1.5)',
+  '(min--moz-device-pixel-ratio: 1.5)', '(-o-min-device-pixel-ratio: 3/2)',
+  '(min-device-pixel-ratio: 1.5)';
 $xs-only: 'only screen and (max-width: $screen-xs-max)';
 $sm-only: 'only screen and (min-width: $screen-xs-min) and (max-width: $screen-sm-max)';
 $md-only: 'only screen and (min-width: $screen-sm-min) and (max-width: $screen-md-max)';

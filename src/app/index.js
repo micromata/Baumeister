@@ -19,11 +19,11 @@ import { consoleErrorFix, ieViewportFix } from './base/base';
 import '../assets/scss/index.scss';
 
 $(async () => {
-	// Wait with further execution until needed polyfills are loaded.
-	await applyPolyfills();
+  // Wait with further execution until needed polyfills are loaded.
+  await applyPolyfills();
 
-	consoleErrorFix();
-	ieViewportFix();
+  consoleErrorFix();
+  ieViewportFix();
 
-	console.log('YaY, my first ES6-Module !!!!');
+  console.log('YaY, my first ES6-Module !!!!');
 });

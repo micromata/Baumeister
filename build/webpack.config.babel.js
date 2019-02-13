@@ -15,24 +15,24 @@ const cliFlags = minimist(process.argv.slice(2));
 const buildTarget = isDevMode() ? ' Development ' : ' Production ';
 
 if (!cliFlags.json) {
-	console.log(
-		chalk.yellow(stripIndents`Build target: ${chalk.bold.inverse(buildTarget)}
+  console.log(
+    chalk.yellow(stripIndents`Build target: ${chalk.bold.inverse(buildTarget)}
 	━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`)
-	);
+  );
 }
 
 module.exports = {
-	devServer,
-	/**
-	 * The accuracy of sourcemaps affects build times.
-	 * See https://webpack.js.org/configuration/devtool/ if you need to speed up your builds.
-	 */
-	devtool: isDevMode() ? 'inline-cheap-module-source-map' : false,
-	entry,
-	module: { rules },
-	output,
-	plugins,
-	optimization,
-	mode: isDevMode() ? 'development' : 'production',
-	stats
+  devServer,
+  /**
+   * The accuracy of sourcemaps affects build times.
+   * See https://webpack.js.org/configuration/devtool/ if you need to speed up your builds.
+   */
+  devtool: isDevMode() ? 'inline-cheap-module-source-map' : false,
+  entry,
+  module: { rules },
+  output,
+  plugins,
+  optimization,
+  mode: isDevMode() ? 'development' : 'production',
+  stats
 };

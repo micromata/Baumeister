@@ -33,55 +33,55 @@ import 'promise-polyfill/src/polyfill';
  */
 
 export const applyPolyfills = () => {
-	const polyfills = [];
+  const polyfills = [];
 
-	/**
-	 * Globals
-	 */
+  /**
+   * Globals
+   */
 
-	// if (typeof Object.assign !== 'function') {
-	// 	polyfills.push(import(/* webpackChunkName: "Object.assign" */ 'core-js/fn/object/assign'));
-	// }
+  // if (typeof Object.assign !== 'function') {
+  // 	polyfills.push(import(/* webpackChunkName: "Object.assign" */ 'core-js/fn/object/assign'));
+  // }
 
-	// if (!window.Set) {
-	// 	polyfills.push(import(/* webpackChunkName: "set" */ 'core-js/es6/set'));
-	// }
+  // if (!window.Set) {
+  // 	polyfills.push(import(/* webpackChunkName: "set" */ 'core-js/es6/set'));
+  // }
 
-	// if (!window.Map) {
-	// 	polyfills.push(import(/* webpackChunkName: "map" */ 'core-js/es6/map'));
-	// }
+  // if (!window.Map) {
+  // 	polyfills.push(import(/* webpackChunkName: "map" */ 'core-js/es6/map'));
+  // }
 
-	/**
-	 * Array prototype methods
-	 */
+  /**
+   * Array prototype methods
+   */
 
-	// if (!Array.prototype.includes) {
-	// 	polyfills.push(import(/* webpackChunkName: "Array.prototype.includes" */ 'core-js/fn/array/includes'));
-	// }
+  // if (!Array.prototype.includes) {
+  // 	polyfills.push(import(/* webpackChunkName: "Array.prototype.includes" */ 'core-js/fn/array/includes'));
+  // }
 
-	// if (!Array.prototype.find) {
-	// 	polyfills.push(import(/* webpackChunkName: "Array.prototype.find" */ 'core-js/fn/array/find'));
-	// }
+  // if (!Array.prototype.find) {
+  // 	polyfills.push(import(/* webpackChunkName: "Array.prototype.find" */ 'core-js/fn/array/find'));
+  // }
 
-	/**
-	 * String prototype methods
-	 */
+  /**
+   * String prototype methods
+   */
 
-	// if (!String.prototype.includes) {
-	// 	polyfills.push(import(/* webpackChunkName: "String.prototype.includes" */ 'core-js/fn/string/includes'));
-	// }
+  // if (!String.prototype.includes) {
+  // 	polyfills.push(import(/* webpackChunkName: "String.prototype.includes" */ 'core-js/fn/string/includes'));
+  // }
 
-	// if (!String.prototype.startsWith) {
-	// 	polyfills.push(import(/* webpackChunkName: "String.prototype.startsWith" */ 'core-js/fn/string/starts-with'));
-	// }
+  // if (!String.prototype.startsWith) {
+  // 	polyfills.push(import(/* webpackChunkName: "String.prototype.startsWith" */ 'core-js/fn/string/starts-with'));
+  // }
 
-	// if (!String.prototype.trimStart) {
-	// 	polyfills.push(import(/* webpackChunkName: "String.prototype.trimStart" */ 'core-js/fn/string/trim-start'));
-	// }
+  // if (!String.prototype.trimStart) {
+  // 	polyfills.push(import(/* webpackChunkName: "String.prototype.trimStart" */ 'core-js/fn/string/trim-start'));
+  // }
 
-	// if (!String.prototype.trimEnd) {
-	// 	polyfills.push(import(/* webpackChunkName: "String.prototype.trimEnd" */ 'core-js/fn/string/trim-end'));
-	// }
+  // if (!String.prototype.trimEnd) {
+  // 	polyfills.push(import(/* webpackChunkName: "String.prototype.trimEnd" */ 'core-js/fn/string/trim-end'));
+  // }
 
-	return Promise.all(polyfills);
+  return Promise.all(polyfills);
 };

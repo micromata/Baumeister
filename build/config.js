@@ -11,25 +11,25 @@ export const { useHandlebars } = configFile;
 export const { generateBanners } = configFile;
 
 export const mainDirectories = {
-	dev: '../server/',
-	prod: '../dist/',
-	src: '../src'
+  dev: '../server/',
+  prod: '../dist/',
+  src: '../src'
 };
 
 export const settings = {
-	sources: {
-		handlebars: './src/handlebars/',
-		app: './src/app/',
-		appTemplates: {
-			directory: './src/app',
-			files: '**/*.html'
-		},
-		assets: './src/assets'
-	},
-	destinations: {
-		handlebars: './.metalsmith-build',
-		assets: 'assets',
-		appTemplates: 'app',
-		vendorFiles: 'assets/vendor'
-	}
+  sources: {
+    handlebars: './src/handlebars/',
+    app: './src/app/',
+    appTemplates: {
+      directory: './src/app',
+      files: '**/*.html'
+    },
+    assets: './src/assets'
+  },
+  destinations: {
+    handlebars: './.metalsmith-build',
+    assets: 'assets',
+    appTemplates: 'app',
+    vendorFiles: 'assets/vendor'
+  }
 };
