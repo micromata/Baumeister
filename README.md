@@ -16,22 +16,23 @@ Baumeister is here to help you to build your things. From Bootstrap themes over 
 
 - a file structure with focus on maintainability and upgradability
 - a build setup based on webpack and npm scripts with the following »features«
-	- generate static sites with ease using handlebars templates
-		- optional – see [details](#writing-markup-static-sites-vs-single-page-apps)
-	- transpile, bundle and minify your code
-		- ES6 as well as Sass
-	- visualize size of bundled files with an interactive zoomable treemap
-	- remove `console` output and `debugger` statements in production files
-	- add vendor prefixes
-	- lint JavaScript, Sass and HTML
-	- optimize images (lossless)
-	- start a local server
-	- delete unused CSS (optional)
-	- check for known vulnerabilities in dependencies
-	- release new versions
-	- run unit tests and create coverage reports
-	- web performance optimization fundamentals 
-	- and more.
+  - generate static sites with ease using handlebars templates
+    - optional – see [details](#writing-markup-static-sites-vs-single-page-apps)
+  - transpile, bundle and minify your code
+    - ES6 as well as Sass
+  - visualize size of bundled files with an interactive zoomable treemap
+  - remove `console` output and `debugger` statements in production files
+  - add vendor prefixes
+  - lint JavaScript, Sass and HTML
+  - optimize images (lossless)
+  - start a local server
+  - delete unused CSS (optional)
+  - check for known vulnerabilities in dependencies
+  - release new versions
+  - run unit tests and create coverage reports
+  - web performance optimization fundamentals
+  - automatically format code
+  - and more.
 
 Baumeister mainly uses [webpack](https://webpack.js.org) at its core for transpiling, bundling and minifying files and provides [npm scripts](#build-workflow-and-npm-scripts) for working with the project. Besides that we have defined a few npm scripts to handle things like our [release workflow](#release-workflow). All necessary dependencies are installed locally via npm.
 
@@ -49,6 +50,7 @@ Baumeister mainly uses [webpack](https://webpack.js.org) at its core for transpi
 - [Unit tests](#unit-tests)
 - [Configuring linters](#configuring-linters)
 - [Web performance optimization](#web-performance-optimization)
+- [Automatic code formatting](#automatic-code-formatting)
 - [Adding banners](#adding-banners)
 - [Release Workflow](#release-workflow)
 - [Contributing to this project](#contributing-to-this-project)
@@ -59,23 +61,24 @@ Baumeister mainly uses [webpack](https://webpack.js.org) at its core for transpi
 For those already using Node.js.
 
 ### via Yeoman
-*See: <https://github.com/micromata/generator-baumeister> for details.*
 
-	$ npm i -g yo
-	$ npm i -g generator-baumeister
-	$ yo baumeister
-	$ npm start
+_See: <https://github.com/micromata/generator-baumeister> for details._
 
-*See [Build Workflow and npm scripts](#build-workflow-and-npm-scripts) for the main scripts.*
+    $ npm i -g yo
+    $ npm i -g generator-baumeister
+    $ yo baumeister
+    $ npm start
+
+_See [Build Workflow and npm scripts](#build-workflow-and-npm-scripts) for the main scripts._
 
 ### via Git
 
-	$ git clone https://github.com/micromata/baumeister.git
-	$ cd baumeister
-	$ npm install
-	$ npm start
+    $ git clone https://github.com/micromata/baumeister.git
+    $ cd baumeister
+    $ npm install
+    $ npm start
 
-*See [Build Workflow and npm scripts](#build-workflow-and-npm-scripts) for the main scripts.*
+_See [Build Workflow and npm scripts](#build-workflow-and-npm-scripts) for the main scripts._
 
 ## Dependencies
 
@@ -89,7 +92,7 @@ Please enter the following in your terminal if you aren’t sure about the avail
 
 ```
 node --version
-````
+```
 
 This should return something like the following in case Node.js and npm is already installed:
 
@@ -123,46 +126,46 @@ In the root directory is a file named `baumeister.json` which can be used to cha
 
 ```json
 {
-  "useHandlebars": true,
-  "purifyCSS": {
-    "usePurifyCSS": false,
-    "whitelist": [
-      "*navbar*",
-      "*modal*",
-      "*dropdown*",
-      "*carousel*",
-      "*tooltip*",
-      "open",
-      "fade",
-      "collapse",
-      "collapsing",
-      "in"
-    ]
-  },
-  "generateBanners": false,
-  "cacheBusting": true,
-  "vendor": {
-    "bundleCSS": [],
-    "includeStaticFiles": []
-  },
-  "webpack": {
-    "DefinePlugin": {
-      "development": {
-        "PRODUCTION": false
-      },
-      "production": {
-        "PRODUCTION": true
-      }
-    },
-    "ProvidePlugin": {
-      "$": "jquery",
-      "jQuery": "jquery"
-    }
-  }
+	"useHandlebars": true,
+	"purifyCSS": {
+		"usePurifyCSS": false,
+		"whitelist": [
+			"*navbar*",
+			"*modal*",
+			"*dropdown*",
+			"*carousel*",
+			"*tooltip*",
+			"open",
+			"fade",
+			"collapse",
+			"collapsing",
+			"in"
+		]
+	},
+	"generateBanners": false,
+	"cacheBusting": true,
+	"vendor": {
+		"bundleCSS": [],
+		"includeStaticFiles": []
+	},
+	"webpack": {
+		"DefinePlugin": {
+			"development": {
+				"PRODUCTION": false
+			},
+			"production": {
+				"PRODUCTION": true
+			}
+		},
+		"ProvidePlugin": {
+			"$": "jquery",
+			"jQuery": "jquery"
+		}
+	}
 }
 ```
 
-`vendor.bundleCSS` and `vendor.includeStaticFiles` make it possible to include additional dependencies without touching any webpack config. These settings are explained in depth in the section  [Using external libraries](#using-external-libraries) within this document.
+`vendor.bundleCSS` and `vendor.includeStaticFiles` make it possible to include additional dependencies without touching any webpack config. These settings are explained in depth in the section [Using external libraries](#using-external-libraries) within this document.
 
 The ramifications of changing the `useHandlebars` setting are explained in the section [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps).
 
@@ -172,7 +175,7 @@ The ramifications of changing the `useHandlebars` setting are explained in the s
 
 If you want to provide constants for different types of builds, you can define them inside the `development` and `production` properties of the `DefinePlugin` section.
 
-The plugin does a direct text replacement, so the value given to it must include actual quotes inside of the string. You can use alternating quotes, like `"'My value'"`, or  use `JSON.stringify('My value')`.
+The plugin does a direct text replacement, so the value given to it must include actual quotes inside of the string. You can use alternating quotes, like `"'My value'"`, or use `JSON.stringify('My value')`.
 
 This is very useful to change the behavior between development and production build. For example adapting the URL prefix to an API. This is why we have predefined the constant `PRODUCTION` in `baumeister.json`.
 
@@ -187,26 +190,25 @@ See the official [webpack ProvidePlugin docs](https://webpack.js.org/plugins/def
 
 Once you complete the setup, you'll be able to run various npm scripts from the command line. The main scripts needed for developing and building your project are listed below.
 
-| Command                 | Description |
-| ----------------------- | --- |
-| `npm start`             | *Builds for development, starts a webserver, watches files for changes, rebuilds incrementally and reloads your browser.* |
-| `npm test`              | *Lints your JavaScript files and runs unit tests via the Jest CLI.* |
-| `npm run test:watch`    | *Runs unit test with Jests watch option.* |
-| `npm run build`         | *Builds for production to `dist` directory.* |
-| `npm run build:serve`   | *Starts a static fileserver serving the `dist` directory.* |
-| `npm run build:analyze` | *Starts »webpack bundle analyzer« to visualize size of webpack output files* |
+| Command                 | Description                                                                                                               |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `npm start`             | _Builds for development, starts a webserver, watches files for changes, rebuilds incrementally and reloads your browser._ |
+| `npm test`              | _Lints your JavaScript files and runs unit tests via the Jest CLI._                                                       |
+| `npm run test:watch`    | _Runs unit test with Jests watch option._                                                                                 |
+| `npm run build`         | _Builds for production to `dist` directory._                                                                              |
+| `npm run build:serve`   | _Starts a static fileserver serving the `dist` directory._                                                                |
+| `npm run build:analyze` | _Starts »webpack bundle analyzer« to visualize size of webpack output files_                                              |
 
-
->**🔥 Tip:**  
->There a lot more scripts defined in the `package.json`, but most of the other ones are used to combine scripts. Therefore we have set up an interactive CLI menu to list and run the most importants npm scripts via:
+> **🔥 Tip:**  
+> There a lot more scripts defined in the `package.json`, but most of the other ones are used to combine scripts. Therefore we have set up an interactive CLI menu to list and run the most importants npm scripts via:
 >
->```
->$ npm run tasks
->```
+> ```
+> $ npm run tasks
+> ```
 
 Running those scripts will create a bunch of directories and files which aren’t under version control. Do not be concerned if you see these resources:
 
-````
+```
 myProject
 ├──.metalsmith-build                → Compiled handlebars sources
 ├── coverage                        → Test coverage reports
@@ -222,16 +224,18 @@ myProject
 ├── .eslintcache
 ├── .webpack-assets.json            → Contains bundled file names
 └── .webpack-stats.json             → Contains bundle information
-````
+```
 
 ## Setting up your Editor
 
 We strongly advise installing an [EditorConfig plugin](http://editorconfig.org/#download) and taking a look at the `.editorconfig` file in the root of this project.
 
 ## Writing Markup (static sites vs. single page apps)
+
 Baumeister acts like a static site generator by default. Using handlebars we can simplify our templates and avoid markup duplications by using a combination of `pages`, `layouts` and `partials`.
 
 ### This is optional
+
 Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Baumeister for creating a static site. If you are developing a single page application instead it would be a good idea to turn off handlebars compiling, place an `index.html` file in the `/src` directory, and store additional templates in `/src/app`.
 
 In this case you have to switch off Handlebars compiling in `baumeister.json`:
@@ -345,20 +349,20 @@ Content of `index.html`:
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>My Project - My page title</title>
-	<link rel="stylesheet" href="">
-</head>
-<body>
-	<h1>My page</h1>
+	<head>
+		<meta charset="utf-8" />
+		<title>My Project - My page title</title>
+		<link rel="stylesheet" href="" />
+	</head>
+	<body>
+		<h1>My page</h1>
 
-	<p>My content</p>
+		<p>My content</p>
 
-	<footer>
-		© 2017 MyCompany
-	</footer>
-</body>
+		<footer>
+			© 2017 MyCompany
+		</footer>
+	</body>
 </html>
 ```
 
@@ -372,7 +376,7 @@ title: My page title
 ---
 ```
 
-Frontmatters are basically a key/value storage you can access within your layouts, pages and partials via Handlebars.  This empowers you to do things like [handling active states](https://github.com/micromata/baumeister/blob/master/src/handlebars/partials/navbar.hbs#L16-L22) of your navigation and much more.
+Frontmatters are basically a key/value storage you can access within your layouts, pages and partials via Handlebars. This empowers you to do things like [handling active states](https://github.com/micromata/baumeister/blob/master/src/handlebars/partials/navbar.hbs#L16-L22) of your navigation and much more.
 
 There is one predefined key which let you choose a different layout file in case you’re using more than one:
 
@@ -402,19 +406,19 @@ src/assets/scss
     └── _testResponsiveHelpers.scss
 ```
 
-
 There seems to be a pretty huge amount of files for such a small project. So here we go with an explanation.
 
 ### index.scss
+
 Our main Sass file is the one which is creating our index.css file. This file just has a few imports.
 
 ```scss
 // Import our variables to override Bootstraps default ones
-@import "./variables";
+@import './variables';
 
 // Bootstrap Core
 // --------------------------------------------------
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import '../../../node_modules/bootstrap/scss/bootstrap';
 
 /**
  * --------------------------------------------------
@@ -423,7 +427,7 @@ Our main Sass file is the one which is creating our index.css file. This file ju
 
 // Theme
 // --------------------------------------------------
-@import "./theme";
+@import './theme';
 
 // Print Styles
 // --------------------------------------------------
@@ -431,10 +435,9 @@ Our main Sass file is the one which is creating our index.css file. This file ju
 // @import "./print";
 
 ////////// Do NOT insert style-definitions here! //////////
-
 ```
 
-### _theme.scss
+### \_theme.scss
 
 We use this file to import the modules/files which defines the actual theme. You could also use this to write down your styles and omit using separate files in the corresponding folder `theme`. But we recommend not doing that. See content of `_theme.scss`:
 
@@ -442,14 +445,14 @@ We use this file to import the modules/files which defines the actual theme. You
 // Override and extend Bootstrap stuff
 // --------------------------------------------------
 // Files, classes, mixins etc.
-@import "theme/mixins";
-@import "theme/scaffolding";
-@import "theme/alerts";
+@import 'theme/mixins';
+@import 'theme/scaffolding';
+@import 'theme/alerts';
 
 // Own modules
 // --------------------------------------------------
 // @import "theme/testResponsiveHelpers"; // debug
-@import "theme/footer";
+@import 'theme/footer';
 
 // Important note //
 // You could also use this file to insert theme related style definitions
@@ -482,21 +485,19 @@ This folder holds the modules needed by the theme. The skeleton of such a module
 
 	// Styles
 	//
-
 }
-
 ```
 
-See [_footer.sass](src/assets/scss/theme/_footer.scss) for a »real life« example.
+See [\_footer.sass](src/assets/scss/theme/_footer.scss) for a »real life« example.
 
 There are three files which differ from regular components. Please have a look at comments within the following files to get an idea how to handle them:
 
-- [_variables.scss](src/assets/scss/_variables.scss)
-	Used to override bootstrap variables. Make sure to read the comments which describe how to handle this file which can save you lots of time when it comes to a Bootstrap update.
-- [_mixins.scss](src/assets/scss/theme/_mixins.scss)
-	Holds additional global mixins which are meant to be used across modules.
-- [_scaffolding.scss](src/assets/scss/theme/_scaffolding.scss)
-	Used to define the most generic html elements.
+- [\_variables.scss](src/assets/scss/_variables.scss)
+  Used to override bootstrap variables. Make sure to read the comments which describe how to handle this file which can save you lots of time when it comes to a Bootstrap update.
+- [\_mixins.scss](src/assets/scss/theme/_mixins.scss)
+  Holds additional global mixins which are meant to be used across modules.
+- [\_scaffolding.scss](src/assets/scss/theme/_scaffolding.scss)
+  Used to define the most generic html elements.
 
 ## Using external libraries
 
@@ -504,8 +505,8 @@ Let’s assume you'd like to add some fanciness to your form select fields. This
 
 This is how you get the files into your `/node_modules` directory and define the dependency in the `package.json` file.
 
-	cd path/to/your/checkout/of/baumeister
-	npm search select2
+    cd path/to/your/checkout/of/baumeister
+    npm search select2
 
 This leads to something like:
 
@@ -520,7 +521,7 @@ vue-select                | A native Vue.js…     | =sagalbot       | 2017-03-1
 
 where the Name is your key for installation. In our use case you would do:
 
-	npm install --save select2
+    npm install --save select2
 
 which will:
 
@@ -534,8 +535,8 @@ which will:
 import 'select2';
 
 $(() => {
-  // Using select2
-  $('.single-select').select2();
+	// Using select2
+	$('.single-select').select2();
 });
 ```
 
@@ -662,6 +663,7 @@ You can watch changes and run tests automatically with:
 ```
 npm run test:watch
 ```
+
 This comes in handy since it’s blazingly fast. It only run tests related to changed files per default but has an interactive mode which enables you to run all if needed.
 
 ### For those who are new to Jest
@@ -673,10 +675,11 @@ Placing tests in `__tests__` directories is a default feature from Jest.
 You can adjust the name of your tests-directory with the `testDirectoryName` configuration option.
 
 The most important things to know:
+
 - [API docs](https://facebook.github.io/jest/docs/api.html)
 - [Assertions](https://facebook.github.io/jest/docs/expect.html)
 
-*You are not forced to use Jests assertions. You can alternatively use `assert` by just requiring it or installing and using Chai.*
+_You are not forced to use Jests assertions. You can alternatively use `assert` by just requiring it or installing and using Chai._
 
 We strongly recommend checking the [docs](https://facebook.github.io/jest/docs/getting-started.html) to dive deeper and read for instance how Jest can help you with mocking.
 
@@ -695,7 +698,6 @@ Feel free to deactivate or change the rules according to your needs here:
 ```
 
 See [Configuring ESLint](http://eslint.org/docs/user-guide/configuring) if you need to know more.
-
 
 ### stylelint (Sass)
 
@@ -725,7 +727,7 @@ For example. `["button-active", "*modal*"]` will leave any selector that include
 
 #### Alternative: selective imports
 
-You could also import just the CSS from Bootstrap that you actually need in your project in `src/assets/scss/index.scss`. But you won‘t get your CSS bundle size that small in comparison to PurifyCSS. 
+You could also import just the CSS from Bootstrap that you actually need in your project in `src/assets/scss/index.scss`. But you won‘t get your CSS bundle size that small in comparison to PurifyCSS.
 
 ### Make use of long-term caching
 
@@ -741,7 +743,7 @@ You can disable hash based file name revving by setting the `cacheBusting` prope
 
 ### Selective JavaScript imports
 
-Some libraries, such as react-bootstrap and lodash, are rather large and pulling in the entire module just to use a few pieces would cause unnecessary bloat to your JavaScript vendor bundle. 
+Some libraries, such as react-bootstrap and lodash, are rather large and pulling in the entire module just to use a few pieces would cause unnecessary bloat to your JavaScript vendor bundle.
 
 `babel-plugin-transform-imports` can be used to add only what you need to your bundle. It automatically transforms member style imports such as:
 
@@ -761,6 +763,23 @@ import merge from 'lodash/merge';
 Check the [packages page](https://www.npmjs.com/package/babel-plugin-transform-imports#thats-stupid-why-would-you-do-that) to read about the why.
 
 Baumeister has already set up the plugin for `lodash`, `reactstrap`, `react-bootstrap` and `react-router` just in case you will use them. See `src/app/.babelrc` to add aditional libraries.
+
+## Automatic code formatting
+
+We are using [prettier](https://prettier.io) to format JavaScript, JSON and SCSS files automatically before you commit your files to Git via a pre-commit hook.
+
+The prettier settings are defined in `.prettierrc` in the project root. In case prettier is to opinated for you or you don’t want Prettier to change your files without the chance to review the changes you just have to delete the pre-commit hook with in the `package.json`:
+
+```json
+"husky": {
+  "hooks": {
+    "post-merge": "npm install",
+    "pre-commit": "lint-staged"
+  }
+}
+```
+
+But we totally recommend you to give this workflow a chance, because it’s just one more thing you don’t have to care about.
 
 ## Adding banners
 
@@ -793,22 +812,24 @@ We provide the following npm scripts to automate releases:
 ```
 npm run release:patch
 ```
+
 ```
 npm run release:minor
 ```
+
 ```
 npm run release:major
 ```
 
 See <http://semver.org> for details of when to choose which release type.
 
-As long as your git commit messages are [conventional](https://conventionalcommits.org)  and accurate, you no longer need to specify the semver type. You can just use the following instead:
+As long as your git commit messages are [conventional](https://conventionalcommits.org) and accurate, you no longer need to specify the semver type. You can just use the following instead:
+
 ```
 npm run release
 ```
 
-*This script can also be used to define pre-releases by adding the optional flags like `npm run release -- --prerelease beta`. See [Release as a pre-release](https://github.com/conventional-changelog/standard-version/blob/master/README.md#release-as-a-pre-release) for further information.*
-
+_This script can also be used to define pre-releases by adding the optional flags like `npm run release -- --prerelease beta`. See [Release as a pre-release](https://github.com/conventional-changelog/standard-version/blob/master/README.md#release-as-a-pre-release) for further information._
 
 All release scripts will:
 
@@ -849,13 +870,17 @@ See the last [commits](https://github.com/micromata/baumeister/commits) of Baume
 #### Short summary of the conventions
 
 Example commit message:
+
 ```
 fix(uglify): Remove console output and debugger statements
 ```
+
 Consists of:
+
 ```
 type(scope): subject
 ```
+
 ##### Types
 
 Types are used to group commits in the changelog.
@@ -870,6 +895,7 @@ The scope is optional and you can choose from whatever you want.
 The scope is used as another grouping element below the type.
 
 You can skip the parentheses if you don’t want to use Scope:
+
 ```
 style: Fix linting errors
 ```
@@ -878,15 +904,16 @@ style: Fix linting errors
 
 The subject contains a succinct description of the change:
 
-* use the imperative, present tense: "change" not "changed" nor "changes"
-* capitalize first letter
-* don't add a dot (.) at the end
+- use the imperative, present tense: "change" not "changed" nor "changes"
+- capitalize first letter
+- don't add a dot (.) at the end
 
-##### Additional Info,  Breaking changes and issue references
+##### Additional Info, Breaking changes and issue references
 
 These are defined in the body of the commit message.
 
 Example:
+
 ```
 feat(build): Replace Gulp with webpack and npm scripts
 <BLANK LINE>
@@ -895,6 +922,7 @@ BREAKING CHANGE: Gulp tasks aren’t available any longer.
 But there are equivalent npm scripts.
 List the available scripts with `npx nls`
 ```
+
 The body can include the motivation for the change and contrast this with previous behavior.
 
 Plus it should contain any information about **Breaking Changes** and is also the place to
@@ -912,9 +940,9 @@ https://github.com/micromata/Baumeister/blob/master/CHANGELOG.md
 Anyone and everyone is welcome to contribute. Please take a moment to
 review our [Code of Conduct](CODE_OF_CONDUCT.md) as well as our [guidelines for contributing](CONTRIBUTING.md).
 
-* [Bug reports](CONTRIBUTING.md#bugs)
-* [Feature requests](CONTRIBUTING.md#features)
-* [Pull requests](CONTRIBUTING.md#pull-requests)
+- [Bug reports](CONTRIBUTING.md#bugs)
+- [Feature requests](CONTRIBUTING.md#features)
+- [Pull requests](CONTRIBUTING.md#pull-requests)
 
 ## License
 

@@ -1,5 +1,5 @@
 {
-  "extends": "baumeister",
+  "extends": ["baumeister", "prettier", "prettier/unicorn", "prettier/react"],
   "parser": "babel-eslint",
   "parserOptions": {
     "allowImportExportEverywhere": true
