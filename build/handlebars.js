@@ -12,7 +12,11 @@ import globby from 'globby';
 import perfy from 'perfy';
 import { stripIndents } from 'common-tags';
 
-import { settings, useHandlebars } from './config';
+import { settings, userSettings } from './config';
+
+const {
+  config: { useHandlebars }
+} = userSettings;
 
 perfy.start('build', false);
 

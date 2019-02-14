@@ -1,14 +1,11 @@
-const configFile = require('../baumeister.json');
+import path from 'path';
+import cosmiconfig from 'cosmiconfig';
 
-/**
- * Boolean flag to set when using handlebars instead of plain HTML files in `src`.
- */
-export const { useHandlebars } = configFile;
+const explorer = cosmiconfig('baumeister', {
+  searchPlaces: ['package.json', '.baumeister.json', 'baumeister.json']
+});
 
-/**
- * Flag for generating banners on on top of dist files (CSS & JS).
- */
-export const { generateBanners } = configFile;
+export const userSettings = explorer.searchSync(path.resolve(__dirname, '../'));
 
 export const mainDirectories = {
   dev: '../server/',
