@@ -120,9 +120,9 @@ npm install
 
 npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our build workflow as well as the required frontend dependencies to a `node_modules` directory.
 
-### Adjust settings via the Baumeister config file
+### Adjust settings via the Baumeister configuration file
 
-In the root directory is a file named `baumeister.json` which can be used to change the most important settings without touching any webpack config:
+You can to change the most important settings without touching any webpack config by editing the JSON based configuration. You can store this your settings either in a file called `baumeister.json` (respectively `.baumeister.json`) or in a `baumeister` key in your `package.json` file.
 
 ```json
 {
@@ -177,7 +177,7 @@ If you want to provide constants for different types of builds, you can define t
 
 The plugin does a direct text replacement, so the value given to it must include actual quotes inside of the string. You can use alternating quotes, like `"'My value'"`, or use `JSON.stringify('My value')`.
 
-This is very useful to change the behavior between development and production build. For example adapting the URL prefix to an API. This is why we have predefined the constant `PRODUCTION` in `baumeister.json`.
+This is very useful to change the behavior between development and production build. For example adapting the URL prefix to an API. This is why we have predefined the constant `PRODUCTION` in [`baumeister.json`](#adjust-settings-via-the-baumeister-configuration-file).
 
 You may take a look at the official [webpack DefinePlugin docs](https://webpack.js.org/plugins/define-plugin/).
 
@@ -238,7 +238,7 @@ Baumeister acts like a static site generator by default. Using handlebars we can
 
 Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Baumeister for creating a static site. If you are developing a single page application instead it would be a good idea to turn off handlebars compiling, place an `index.html` file in the `/src` directory, and store additional templates in `/src/app`.
 
-In this case you have to switch off Handlebars compiling in `baumeister.json`:
+In this case you have to switch off Handlebars compiling in [`baumeister.json`](#adjust-settings-via-the-baumeister-configuration-file):
 
 ```javascript
 /**
@@ -553,7 +553,7 @@ myProject
 
 ### Bundling CSS from dependencies
 
-If a used library ships its own CSS you have to include the paths to the files you like to bundle in the `vendor.bundleCSS` section of your `baumeister.json` to add the CSS to the `vendor.bundle.css` file. Please note that glob pattern matching is supported over here.
+If a used library ships its own CSS you have to include the paths to the files you like to bundle in the `vendor.bundleCSS` section of your [`baumeister.json`](#adjust-settings-via-the-baumeister-configuration-file) to add the CSS to the `vendor.bundle.css` file. Please note that glob pattern matching is supported over here.
 
 ```
 "vendor": {
@@ -578,7 +578,7 @@ myProject
 ### Including static files from dependencies
 
 Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via separate `<script>` tags.
-To handle that you have to include the files in the `vendor.includeStaticFiles` section of your `baumeister.json`. Please note that glob pattern matching is supported over here.
+To handle that you have to include the files in the `vendor.includeStaticFiles` section of your [`baumeister.json`](#adjust-settings-via-the-baumeister-configuration-file). Please note that glob pattern matching is supported over here.
 
 ```
 "includeStaticFiles": [
@@ -719,7 +719,7 @@ Besides that, you might want to tweak settings to get an even better performance
 
 We are using [PurifyCSS](https://github.com/purifycss/purifycss) to remove unused selectors from your CSS. This is fully optional and is turned off by default.
 
-To activate PurifyCSS set the `usePurifyCSS` option in within `baumeister.json` to `true`.
+To activate PurifyCSS set the `usePurifyCSS` option in within [`baumeister.json`](#adjust-settings-via-the-baumeister-configuration-file) to `true`.
 
 In addition you can define a PurifyCSS `whitelist` defining an array of selectors that should not be removed.
 
@@ -739,7 +739,7 @@ We’ve set up webpack to store the webpack runtime in an separate file to impro
 
 #### Deactivate cache busting
 
-You can disable hash based file name revving by setting the `cacheBusting` property within `baumeister.json` to `false`.
+You can disable hash based file name revving by setting the `cacheBusting` property within [`baumeister.json`](#adjust-settings-via-the-baumeister-configuration-file) to `false`.
 
 ### Selective JavaScript imports
 
@@ -785,7 +785,7 @@ But we totally recommend you to give this workflow a chance, because it’s just
 
 Adding banners on top of the production bundles is fully optional and is turned off by default.
 
-It can be enabled with setting the `generateBanners` property within `baumeister.json` to `true`.
+It can be enabled with setting the `generateBanners` property within [`baumeister.json`](#adjust-settings-via-the-baumeister-configuration-file) to `true`.
 
 ```javascript
 /**
