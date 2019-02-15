@@ -138,6 +138,32 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.1"
   },
+  "eslintConfig": {
+    "extends": [
+      "baumeister",
+      "prettier",
+      "prettier/unicorn",
+      "prettier/react"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "allowImportExportEverywhere": true
+    },
+    "globals": {
+      "PRODUCTION": false
+    },
+    "overrides": [
+      {
+        "files": [
+          "build/*.js"
+        ],
+        "rules": {
+          "no-console": "off",
+          "unicorn/no-process-exit": "off"
+        }
+      }
+    ]
+  },
   "jest": {
     "testURL": "http://localhost",
     "testPathIgnorePatterns": [
