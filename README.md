@@ -122,7 +122,7 @@ npm will look at the `package.json` file and automatically fetch and install the
 
 ### Adjust settings via the Baumeister configuration file
 
-You can to change the most important settings without touching any webpack config by editing the JSON based configuration. You can store this your settings either in a file called `baumeister.json` (respectively `.baumeister.json`) or in a `baumeister` key in your `package.json` file.
+You can change the most important settings without touching any webpack config by editing Baumeisters JSON based configuration. You are free to choose to store your settings either in a file called `baumeister.json` (respectively `.baumeister.json`) or in a `baumeister` key in your `package.json` file.
 
 ```json
 {
