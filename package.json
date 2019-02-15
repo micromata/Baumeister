@@ -138,6 +138,66 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.1"
   },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-object-rest-spread"
+    ],
+    "overrides": [
+      {
+        "include": "./src/app/**",
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "modules": false
+            }
+          ]
+        ],
+        "env": {
+          "test": {
+            "presets": [
+              [
+                "@babel/preset-env",
+                {
+                  "modules": "commonjs"
+                }
+              ]
+            ]
+          }
+        },
+        "plugins": [
+          "@babel/plugin-syntax-dynamic-import",
+          "@babel/plugin-proposal-object-rest-spread",
+          "@babel/plugin-transform-runtime",
+          "@babel/plugin-transform-regenerator",
+          [
+            "transform-imports",
+            {
+              "lodash": {
+                "transform": "lodash/${member}",
+                "preventFullImport": true
+              },
+              "reactstrap": {
+                "transform": "reactstrap/lib/${member}",
+                "preventFullImport": true
+              },
+              "react-bootstrap": {
+                "transform": "react-bootstrap/lib/${member}",
+                "preventFullImport": true
+              },
+              "react-router": {
+                "transform": "react-router/${member}",
+                "preventFullImport": true
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "baumeister",
