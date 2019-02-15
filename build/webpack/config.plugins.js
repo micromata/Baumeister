@@ -8,17 +8,18 @@ import PurifyCSSPlugin from 'purifycss-webpack';
 import ImageminPlugin from 'imagemin-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-import { generateBanners, settings, useHandlebars } from '../config';
+import { settings, userSettings } from '../config';
 import { isDevMode, isProdMode } from './helpers';
 
 const pkg = require('../../package.json');
-const configFile = require('../../baumeister.json');
+
+const { config: userConfig } = userSettings;
 
 const manifest = new WebpackAssetsManifest({
   output: path.resolve('.webpack-assets.json')
 });
 
-const copyVendorFiles = configFile.vendor.includeStaticFiles.map(glob => {
+const copyVendorFiles = userConfig.vendor.includeStaticFiles.map(glob => {
   return {
     from: glob,
     context: 'node_modules',
@@ -31,7 +32,7 @@ const purifyCSSOptions = {
   purifyOptions: {
     minify: true,
     cleanCssOptions: { level: { 1: { specialComments: 0 } } },
-    whitelist: configFile.purifyCSS.whitelist
+    whitelist: userConfig.purifyCSS.whitelist
   }
 };
 
@@ -42,15 +43,17 @@ const generalPlugins = [
   manifest,
   new MiniCssExtractPlugin({
     filename:
-      configFile.cacheBusting && isProdMode()
+      userConfig.cacheBusting && isProdMode()
         ? 'assets/css/[name].[chunkhash].bundle.css'
         : 'assets/css/[name].bundle.css'
   }),
-  new webpack.ProvidePlugin({ ...configFile.webpack.ProvidePlugin }),
+  new webpack.ProvidePlugin({ ...userConfig.webpack.ProvidePlugin }),
   new CopyWebpackPlugin([
     {
       from: '**/*.html',
-      context: useHandlebars ? settings.destinations.handlebars : './src',
+      context: userConfig.useHandlebars
+        ? settings.destinations.handlebars
+        : './src',
       transform(content) {
         return content
           .toString()
@@ -75,8 +78,8 @@ const generalPlugins = [
   ]),
   new webpack.DefinePlugin(
     isDevMode()
-      ? { ...configFile.webpack.DefinePlugin.development }
-      : { ...configFile.webpack.DefinePlugin.production }
+      ? { ...userConfig.webpack.DefinePlugin.development }
+      : { ...userConfig.webpack.DefinePlugin.production }
   )
 ];
 
@@ -91,10 +94,10 @@ const devPlugins = [];
 const prodPlugins = [
   new webpack.HashedModuleIdsPlugin(),
   new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
-  configFile.purifyCSS.usePurifyCSS
+  userConfig.purifyCSS.usePurifyCSS
     ? new PurifyCSSPlugin(purifyCSSOptions)
     : false,
-  generateBanners
+  userConfig.generateBanners
     ? new webpack.BannerPlugin({
         banner: stripIndents`${pkg.title} - v${pkg.version}
 		${pkg.author.email}

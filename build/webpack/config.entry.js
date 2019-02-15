@@ -1,8 +1,8 @@
 import path from 'path';
 import globby from 'globby';
-import { settings } from '../config';
+import { settings, userSettings } from '../config';
 
-const configFile = require('../../baumeister.json');
+const { config: userConfig } = userSettings;
 
 export const entry = {
   app: `${path.join(__dirname, '../../', settings.sources.app)}index.js`,
@@ -10,9 +10,9 @@ export const entry = {
 };
 
 function getVendorCSS() {
-  // Return flattened array of resolved globs from baumeister.json
+  // Return flattened array of resolved globs from Baumeister user config.
   const vendorCSS = [].concat(
-    ...configFile.vendor.bundleCSS.map(glob =>
+    ...userConfig.vendor.bundleCSS.map(glob =>
       globby.sync(`./node_modules/${glob}`)
     )
   );

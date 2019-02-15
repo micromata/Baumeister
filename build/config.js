@@ -1,14 +1,25 @@
-const configFile = require('../baumeister.json');
+import path from 'path';
+import cosmiconfig from 'cosmiconfig';
+import logSymbols from 'log-symbols';
+import chalk from 'chalk';
 
-/**
- * Boolean flag to set when using handlebars instead of plain HTML files in `src`.
- */
-export const { useHandlebars } = configFile;
+const explorer = cosmiconfig('baumeister', {
+  searchPlaces: ['package.json', '.baumeister.json', 'baumeister.json']
+});
 
-/**
- * Flag for generating banners on on top of dist files (CSS & JS).
- */
-export const { generateBanners } = configFile;
+export const userSettings = explorer.searchSync(path.resolve(__dirname, '../'));
+
+if (userSettings === null) {
+  console.log(
+    logSymbols.error,
+    `${chalk.red.bold('error')} – No Baumeister config found`,
+    '\n\n',
+    chalk.yellow(
+      'Please see the <https://github.com/micromata/Baumeister> for info regarding the configuration file.'
+    )
+  );
+  process.exit(1);
+}
 
 export const mainDirectories = {
   dev: '../server/',

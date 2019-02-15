@@ -1,10 +1,10 @@
 import path from 'path';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-import { settings } from '../config';
+import { settings, userSettings } from '../config';
 import { isDevMode } from './helpers';
 
-const configFile = require('../../baumeister.json');
+const { config: userConfig } = userSettings;
 
 export const rules = [
   {
@@ -31,7 +31,7 @@ export const rules = [
           sourceMap: isDevMode(),
           config: {
             ctx: {
-              usePurifyCSS: configFile.purifyCSS.usePurifyCSS,
+              usePurifyCSS: userConfig.purifyCSS.usePurifyCSS,
               cssnano: {
                 discardComments: {
                   removeAll: true

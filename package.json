@@ -64,6 +64,7 @@
   "dependencies": {
     "bootstrap": "^4.2.1",
     "core-js": "^2.6.4",
+    "cosmiconfig": "^5.0.7",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7",
     "promise-polyfill": "^8.1.0"
