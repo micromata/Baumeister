@@ -138,6 +138,44 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.1"
   },
+  "baumeister": {
+    "useHandlebars": true,
+    "purifyCSS": {
+      "usePurifyCSS": false,
+      "whitelist": [
+        "*navbar*",
+        "*modal*",
+        "*dropdown*",
+        "*carousel*",
+        "*tooltip*",
+        "open",
+        "fade",
+        "collapse",
+        "collapsing",
+        "in"
+      ]
+    },
+    "generateBanners": false,
+    "cacheBusting": true,
+    "vendor": {
+      "bundleCSS": [],
+      "includeStaticFiles": []
+    },
+    "webpack": {
+      "DefinePlugin": {
+        "development": {
+          "PRODUCTION": false
+        },
+        "production": {
+          "PRODUCTION": true
+        }
+      },
+      "ProvidePlugin": {
+        "$": "jquery",
+        "jQuery": "jquery"
+      }
+    }
+  },
   "babel": {
     "presets": [
       "@babel/preset-env"
