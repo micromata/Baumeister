@@ -2,6 +2,62 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/micromata/baumeister/compare/3.1.0...4.0.0) (2019-02-18)
+
+
+### Bug Fixes
+
+* Add missing dev dependency ([f8b022a](https://github.com/micromata/baumeister/commit/f8b022a))
+* Fix linting errors introduced by updating ESLint, plugins and configs ([6af486a](https://github.com/micromata/baumeister/commit/6af486a))
+* Initially lint files with npm start ([57d1374](https://github.com/micromata/baumeister/commit/57d1374))
+* Loading images via webpack ([44eb628](https://github.com/micromata/baumeister/commit/44eb628))
+* Resolve error running tests on Node 6 ([16b9114](https://github.com/micromata/baumeister/commit/16b9114))
+* Update webpack and webpack-cli to fix build errors ([023afe7](https://github.com/micromata/baumeister/commit/023afe7)), closes [#264](https://github.com/micromata/baumeister/issues/264)
+
+
+### Features
+
+* Auto format code using prettier as pre-commit hook ([1557458](https://github.com/micromata/baumeister/commit/1557458))
+* Enable to define baumeister config in package.json ([#270](https://github.com/micromata/baumeister/issues/270)) ([217bdd2](https://github.com/micromata/baumeister/commit/217bdd2)), closes [#246](https://github.com/micromata/baumeister/issues/246)
+* Move tooling configs to package.json ([ab6594c](https://github.com/micromata/baumeister/commit/ab6594c)), closes [#270](https://github.com/micromata/baumeister/issues/270)
+* Update ESLint, plugins and shared configs to their latest versions ([bee2cba](https://github.com/micromata/baumeister/commit/bee2cba))
+* Update husky to v1.x.x ([63238ad](https://github.com/micromata/baumeister/commit/63238ad))
+* Update Jest to v24.x.x and Babel to v7.x.x ([6e1122c](https://github.com/micromata/baumeister/commit/6e1122c))
+* Update production dependencies ([1384a3a](https://github.com/micromata/baumeister/commit/1384a3a))
+
+
+### BREAKING CHANGES
+
+* feat: Auto format code using prettier as pre-commit hook
+
+  This commit introduces a new dev dependency which requires Node.JS `>= 8.6`
+
+  We are using [prettier](https://prettier.io) to format JavaScript, JSON and SCSS files automatically before you commit your files to Git via a pre-commit hook.
+
+  The prettier settings are defined in `.prettierrc` in the project root. In case prettier is to opinated for you or you don’t want Prettier to change your files without the chance to review the changes you just have to delete the pre-commit hook with in the `package.json`:
+
+  ```json
+  "husky": {
+    "hooks": {
+      "post-merge": "npm install",
+      "pre-commit": "lint-staged"
+    }
+  }
+  ```
+
+  But we totally recommend you to give this workflow a chance, because it’s just one more thing you don’t have to care about.
+* feat: Update husky to v1.x.x
+
+  You need to update the husky config which can be autmated by running `./node_modules/.bin/husky-upgrade`. See <https://github.com/typicode/husky#upgrading-from-014> for details.
+* feat: Update ESLint, plugins and shared configs to their latest versions
+
+  This might break your build since new versions have introduced new rules which might introduce linting errors in your code base.
+
+  Tip: Run `npm run eslint:fix` to see which errors are autofixable. And remenber to turn off rules in /.eslintrc.json in case you find them too opinionated.
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/micromata/baumeister/compare/3.0.1...3.1.0) (2018-05-03)
 
