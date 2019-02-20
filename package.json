@@ -64,7 +64,6 @@
   "dependencies": {
     "bootstrap": "^4.2.1",
     "core-js": "^2.6.4",
-    "cosmiconfig": "^5.0.7",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7",
     "promise-polyfill": "^8.1.0"
@@ -86,6 +85,7 @@
     "cli-error-notifier": "^2.1.0",
     "common-tags": "^1.7.2",
     "copy-webpack-plugin": "^4.5.1",
+    "cosmiconfig": "^5.1.0",
     "cross-env": "^5.1.4",
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.8",
