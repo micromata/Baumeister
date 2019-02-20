@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/micromata/baumeister/compare/4.0.0...4.0.1) (2019-02-20)
+
+
+### Bug Fixes
+
+* Move cosmiconfig to dev dependencies 🙈 ([90f4b33](https://github.com/micromata/baumeister/commit/90f4b33))
+
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/micromata/baumeister/compare/3.1.0...4.0.0) (2019-02-18)
 
