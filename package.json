@@ -16,7 +16,7 @@
   "repository": "micromata/baumeister",
   "private": true,
   "scripts": {
-    "start": "npm-run-all clean:dev handlebars --parallel handlebars:watch webpack:server eslint eslint:watch stylelint stylelint:watch --silent",
+    "start": "npm-run-all clean:dev handlebars --parallel handlebars:watch webpack:server eslint:watch stylelint:watch --silent",
     "build": "npm-run-all test handlebars clean webpack --silent",
     "build:dev": "npm-run-all test handlebars clean:dev webpack:dev --silent",
     "build:serve": "npm-run-all --parallel build:serve:*",
