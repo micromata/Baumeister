@@ -5,8 +5,10 @@ import { settings, userSettings } from '../config';
 const { config: userConfig } = userSettings;
 
 export const entry = {
-  app: `${path.join(__dirname, '../../', settings.sources.app)}index.js`,
-  ...getVendorCSS()
+  app: [
+    ...getVendorCSS(),
+    `${path.join(__dirname, '../../', settings.sources.app)}index.js`
+  ]
 };
 
 function getVendorCSS() {
@@ -17,8 +19,8 @@ function getVendorCSS() {
     )
   );
   if (!vendorCSS.length) {
-    return false;
+    return [];
   }
 
-  return { vendor: vendorCSS };
+  return vendorCSS;
 }
