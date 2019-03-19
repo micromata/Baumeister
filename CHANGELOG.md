@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.2](https://github.com/micromata/baumeister/compare/4.0.1...4.0.2) (2019-03-19)
+
+
+### Bug Fixes
+
+* Add contents of bundleCSS to vendor CSS bundle ([5faa710](https://github.com/micromata/baumeister/commit/5faa710)), closes [#272](https://github.com/micromata/baumeister/issues/272)
+
+
+### Reverts
+
+* fix: Initially lint files with npm start ([f16bd3a](https://github.com/micromata/baumeister/commit/f16bd3a))
+
+
+
 <a name="4.0.1"></a>
 ## [4.0.1](https://github.com/micromata/baumeister/compare/4.0.0...4.0.1) (2019-02-20)
 
