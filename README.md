@@ -1,10 +1,15 @@
 [![GitHub version](https://badge.fury.io/gh/micromata%2Fbaumeister.svg)](https://badge.fury.io/gh/micromata%2Fbaumeister)
 [![Build Status](https://travis-ci.org/micromata/Baumeister.svg?branch=master)](https://travis-ci.org/micromata/Baumeister)
-[![Dependency Status](https://david-dm.org/micromata/baumeister.svg)](https://david-dm.org/micromata/baumeister)
-[![devDependency Status](https://david-dm.org/micromata/baumeister/dev-status.svg)](https://david-dm.org/micromata/baumeister#info=devDependencies)
 [![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-orange.svg?style=flat)](CODE_OF_CONDUCT.md)
-[![Join the chat at https://gitter.im/micromata/baumeister](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/micromata/baumeister?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Twitter](https://img.shields.io/badge/Twitter-%40baumeister__io%20-blue.svg?style=flat)](https://twitter.com/baumeister_io)
+
+## Sorry, this project is unmaintained 😢
+
+We recommend the following tooling:
+
+- React Apps: [Create React Apps](https://reactjs.org/docs/create-a-new-react-app.html) or [Parcel](https://parceljs.org/)
+- Static Sites: [Eleventy](https://www.11ty.dev/) or [Awesome Static Web Site Generators](https://github.com/myles/awesome-static-generators)
+
+<hr>
 
 # Baumeister – The frontend build workflow for your needs
 
